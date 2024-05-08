@@ -1,0 +1,32 @@
+{
+    "spellrack": [
+        {
+            "name": "Arcane Bolt",
+            "cost": "2",
+            "rng": "12",
+            "aoe": "-",
+            "pow": "11",
+            "dur": "-",
+            "off": true,
+            "description": "Magical bolts of energy streak toward the target model.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Escort",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range gain +2' movement when advancing as part of their Normal Movement. The spellcaster gains +2 ARM while one or more warjacks in its battlegroup are within 3' of it.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        }
+    ]
+}
