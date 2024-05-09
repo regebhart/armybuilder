@@ -39,7 +39,7 @@ class _CategoryModelsListState extends State<CategoryModelsList> {
         child: ListView.builder(
             itemCount: faction.filteredProducts.length,
             shrinkWrap: true,
-            scrollDirection: Axis.vertical,
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, g) {
               return Column(
                   mainAxisSize: MainAxisSize.min,
@@ -64,7 +64,7 @@ class _CategoryModelsListState extends State<CategoryModelsList> {
                     ListView.builder(
                       itemCount: faction.filteredProducts[g].length,
                       shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         late void Function() onTap;
                         Product p = faction.filteredProducts[g][index];

@@ -190,7 +190,9 @@ class _SwipingArmyBuildingNarrowLayoutState extends State<SwipingArmyBuildingNar
                             ),
                             Flexible(
                               flex: 17,
-                              child: !faction.showingoptions ? const CategoryModelsList() : const ModularOptionList(),
+                              child: SingleChildScrollView(
+                                child: !faction.showingoptions ? const CategoryModelsList() : const ModularOptionList(),
+                              ),
                             ),
                           ],
                         ),
