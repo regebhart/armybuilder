@@ -160,9 +160,15 @@ class FactionNotifier extends ChangeNotifier {
       _filteredProducts[1] = _sortedProducts[1][index];
       _filteredProducts[2] = _sortedProducts[2][index];
     } else if (unitname != null) {
-      _filteredProducts[0] = _unitAttachments[0][index - 7][unitname]!;
-      _filteredProducts[1] = _unitAttachments[1][index - 7][unitname]!;
-      _filteredProducts[2] = _unitAttachments[2][index - 7][unitname]!;
+      if (_unitAttachments[0][index - 7].containsKey(unitname)) {
+        _filteredProducts[0] = _unitAttachments[0][index - 7][unitname]!;
+      }
+      if (_unitAttachments[1][index - 7].containsKey(unitname)) {
+        _filteredProducts[1] = _unitAttachments[1][index - 7][unitname]!;
+      }
+      if (_unitAttachments[2][index - 7].containsKey(unitname)) {
+        _filteredProducts[2] = _unitAttachments[2][index - 7][unitname]!;
+      }
     }
     _showingoptions = false;
     notifyListeners();

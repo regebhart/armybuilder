@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
-    String lastupdated = '5/8/2024 v3';
+    String lastupdated = '5/11/2024 v1';
 
     return SafeArea(
       child: Scaffold(

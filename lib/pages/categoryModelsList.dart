@@ -39,7 +39,7 @@ class _CategoryModelsListState extends State<CategoryModelsList> {
         child: ListView.builder(
             itemCount: faction.filteredProducts.length,
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            // physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, g) {
               return Column(
                   mainAxisSize: MainAxisSize.min,
