@@ -2465,6 +2465,138 @@
                         ]
                     },
                     {
+                        "name": "Gatorman Posse",
+                        "category": "Units",
+                        "primaryfaction": [
+                            "Blindwater Congregation",
+                            "Circle Orboros",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Mercenaries",
+                            "Skorne",
+                            "Trollbloods"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Circle Orboros",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Mercenaries",
+                            "Skorne",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "3",
+                        "unitpoints": {
+                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "10",
+                            "mincost": "7",
+                            "maxunit": "Leader and 9 Grunts"
+                        },
+                        "models": [
+                            {
+                                "name": "Gatorman Posse",
+                                "title": "Mercenary Blindwater Congregation Unit",
+                                "modeltype": [
+                                    "Unit",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Amphibious",
+                                    "Gatorman",
+                                    "Tough"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Mercenary [Circle, Legion, Skorne, Trollbloods, Khymaera, Thornfall]",
+                                        "description": "This model will work for Circle, Legion, Skorne, Trollbloods, Khymaera, Thornfall."
+                                    },
+                                    {
+                                        "name": "Partisan [Blindwater Congregration]",
+                                        "description": "When included in a Blindwater Congregration army, this model is a Blindwater Congregration model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Unyielding",
+                                        "description": "This model gains +2 ARM against melee damage rolls."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "40MM",
+                                    "spd": "5",
+                                    "str": "8",
+                                    "mat": "6",
+                                    "rat": "3",
+                                    "def": "12",
+                                    "arm": "16",
+                                    "cmd": "7",
+                                    "hp": "8"
+                                },
+                                "hpbars": [
+                                    {
+                                        "name": "Leader",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model A",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model B",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model C",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model D",
+                                        "hp": "8"
+                                    }
+                                ],
+                                "nestedabilities": [
+                                    {
+                                        "topability": {
+                                            "name": "Prayers",
+                                            "description": "This unit's Leader can use the following prayers at any time during each of its unit's activations. Each model in this unit gains the benefits listed."
+                                        },
+                                        "subabilities": [
+                                            {
+                                                "name": "Dirge Of Mists",
+                                                "description": "Affected models gain concealment. Models are not affected while out of formation. Dirge of Mists lasts for one round."
+                                            },
+                                            {
+                                                "name": "Offerings To Kossk",
+                                                "description": "Affected models can reroll missed attack rolls. Each roll can be rerolled only once as a result of Offerings to Kossk. Offerings to Kossk lasts for one turn."
+                                            },
+                                            {
+                                                "name": "Predator's Prayer",
+                                                "description": "Affected models gain Bloodthirst this activation. (Bloodthirst - When it charges a living model, a model with Bloodthirst gains +2\" movement.)"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "weapons": [
+                                    {
+                                        "name": "Bite",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "5",
+                                        "count": "1"
+                                    },
+                                    {
+                                        "name": "Gatorman Weapon",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "2",
+                                        "pow": "5",
+                                        "count": "1"
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
                         "name": "Incarnate Knights",
                         "category": "Units",
                         "primaryfaction": [
@@ -2476,9 +2608,9 @@
                         "fieldallowance": "1",
                         "unitpoints": {
                             "mincost": "11",
+                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "Leader and 5 Grunts",
-                            "maxcost": "18",
-                            "minunit": "Leader and 2 Grunts"
+                            "maxcost": "18"
                         },
                         "models": [
                             {
@@ -2501,8 +2633,8 @@
                                         "description": "When one or more models in this unit are damaged by an enemy attack, after the attack is resolved models in this unit gain +2 STR and ARM and Pathfinder for one round."
                                     },
                                     {
-                                        "name": "Reposition [3\"]",
-                                        "description": "At the end of an activation in which it did not run or fail a charge, this model can advance up to 3\", then it's activation ends."
+                                        "name": "Reposition [2\"]",
+                                        "description": "At the end of an activation in which it did not run or fail a charge, this model can advance up to 2\", then it's activation ends."
                                     },
                                     {
                                         "name": "Steady",
@@ -2587,10 +2719,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 4 Grunts",
+                            "mincost": "7",
                             "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "13",
-                            "mincost": "7"
+                            "minunit": "Leader and 4 Grunts",
+                            "maxcost": "13"
                         },
                         "models": [
                             {
@@ -2738,10 +2870,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "7",
                             "maxcost": "-",
                             "maxunit": "-",
-                            "minunit": "Leader and 2 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "mincost": "7"
                         },
                         "models": [
                             {
@@ -2825,9 +2957,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
                             "mincost": "7",
                             "maxunit": "-",
+                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -2915,8 +3047,8 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts",
                             "mincost": "7",
                             "maxunit": "-"
                         },
@@ -3011,10 +3143,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "mincost": "5",
-                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "-",
                             "maxunit": "-",
-                            "maxcost": "-"
+                            "mincost": "5",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -3943,7 +4075,7 @@
                                     },
                                     {
                                         "name": "Trapper [5\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 5\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
@@ -3987,7 +4119,7 @@
                     {
                         "name": "Malvin & Mayhem",
                         "points": "13",
-                        "category": "Warjacks/Warbeasts/Horrors",
+                        "category": "Solos",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -4595,6 +4727,10 @@
                                         "description": "When an enemy living or undead model is destroyed while in this model's command range, this model gains the destroyed model's corpse token. When a friendly living model is destroyed by a continuous effect, an enemy attack, or collateral damage from an enemy attack while in this model's command range, this model gains the destroyed model's corpse token. This model can have up to five corpse tokens at any time."
                                     },
                                     {
+                                        "name": "Chain Attack [Iron Reapers] [Death Chill]",
+                                        "description": "If this model hits the same model with two Iron Reapers attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Divine Manifestation",
                                         "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
                                     },
@@ -4648,10 +4784,6 @@
                                             {
                                                 "name": "Blood Reaper",
                                                 "description": "When this model makes an initial attack with this weapon, it makes one melee attack with this weapon against each model in its LOS that is in this weapon's melee range. Blood Reaper attacks are simultaneous."
-                                            },
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
                                             }
                                         ],
                                         "damagetype": [
@@ -5811,6 +5943,7 @@
                                     "rat": "5",
                                     "def": "14",
                                     "arm": "17",
+                                    "cmd": "10",
                                     "hp": "8"
                                 },
                                 "nestedabilities": [
@@ -5830,7 +5963,7 @@
                                             },
                                             {
                                                 "name": "Winter Storm (★Action)",
-                                                "description": "Enemy models that begin their activations within 10” of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
+                                                "description": "Enemy models that begin their activations within CMD of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
                                             }
                                         ]
                                     }

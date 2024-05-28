@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:armybuilder/pages/widgets/factiondropdown.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -228,8 +229,11 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                                     child: GestureDetector(
                                       onTap: () async {
                                         await army.setArmyList(await faction.convertJsonStringToArmyList(armies[index]), index, 'edit');
-                                        faction.setSelectedCategory(0, null);                                        
+                                        faction.setSelectedFactionIndex(
+                                            AppData().factionList.indexWhere((element) => element['name'] == army.armyList.listfaction));
+                                        faction.setSelectedCategory(0, null, null);
                                         army.pageController.jumpToPage(2);
+                                        army.setDeploying(false);
                                       },
                                       child: Container(
                                           padding: const EdgeInsets.all(3),
@@ -266,6 +270,18 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                                         army.resetDeployedLists();
                                         await army.deployList(await faction.convertJsonStringToArmyList(armies[index]));
                                         army.pageController.jumpToPage(5);
+                                        army.setDeploying(true);
+                                        FirebaseAnalytics.instance.logEvent(
+                                          name: 'Deployed List',
+                                          parameters: {
+                                            'list':
+                                                '${army.deployedLists[0].list.listfaction}:${army.deployedLists[0].list.pointtarget}:${army.deployedLists[0].list.name}:${army.deployedLists[0].list.leadergroup[0].leader.name}',
+                                            'faction': army.deployedLists[0].list.listfaction,
+                                            'points': army.deployedLists[0].list.pointtarget,
+                                            'listname': army.deployedLists[0].list.name,
+                                            'leader': army.deployedLists[0].list.leadergroup[0].leader.name,
+                                          },
+                                        );
                                       },
                                       child: Container(
                                           padding: const EdgeInsets.all(3),

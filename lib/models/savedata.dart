@@ -133,7 +133,7 @@ Future<int> importLists() async {
   }
 }
 
-Future<bool>  importPastedList(String text, bool opponent, ArmyListNotifier army) async {
+Future<bool> importPastedList(String text, bool opponent, ArmyListNotifier army) async {
   if (text == '') return false;
   final alphanumeric = RegExp(r'^[a-zA-Z0-9 ]+$');
   List<String> lines = text.split('\n');
@@ -194,8 +194,8 @@ Future<bool>  importPastedList(String text, bool opponent, ArmyListNotifier army
   );
 
   int factionindex = AppData().factionList.indexWhere((element) => element['name'] == factionselected);
-  String filename = AppData().factionList[factionindex]['file']!;
-  bool valid = await FactionNotifier().validateProductNames(filename, productNames);
+
+  bool valid = await FactionNotifier().validateProductNames(factionindex, productNames);
   // return valid;
   if (valid) {
     newlist = await FactionNotifier().convertProductNameListToArmyList(newlist, productNames);

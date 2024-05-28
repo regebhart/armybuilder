@@ -52,8 +52,12 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     Cohort cohort = Cohort(product: army.blankproduct, selectedOptions: []);
     Product p = army.blankproduct;
     Model m = Model(modelname: '', modeltype: [], stats: BaseStats(base: ''), title: '');
+    int index = 0;
+    if (widget.listindex != null) {
+      index = widget.listindex!;
+    }
 
-    if (army.viewingcohort) {
+    if (army.viewingcohort[index]) {
       cohort = army.selectedCohort;
       if (widget.deployed) {
         cohort = army.deployedLists[widget.listindex!].selectedCohort;
@@ -110,6 +114,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     Widget ability = const SizedBox();
     Widget stats = const SizedBox();
     Widget hp = const SizedBox();
+    Widget custombar = const SizedBox();
     List<Widget> weapons = [];
     List<Widget> modularoptions = [];
     List<Widget> spells = [];
@@ -117,7 +122,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     Widget hpTitle = const SizedBox();
     bool addhp = false;
 
-    if (army.viewingcohort) {
+    if (army.viewingcohort[index]) {
       for (Option op in cohort.selectedOptions!) {
         if (op.keywords!.isNotEmpty) {
           keywordlist.addAll(op.keywords!);
@@ -226,6 +231,154 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       defaultColumnWidth: const IntrinsicColumnWidth(),
       children: [toprow, bottomrow],
     );
+
+    if (m.grid!.columns.isEmpty && m.spiral!.values.isEmpty && m.web!.values.isEmpty && m.hpbars!.isEmpty) {
+      //single model with more than 1 HP
+      if (m.stats.hp != '-' && m.stats.hp != '1') {
+        addhp = true;
+        List<Widget> hpbar = List.generate(
+          int.parse(m.stats.hp!),
+          (index) => hpbox(index, bordercolor, army, widget.listindex, widget.listmodelindex, null),
+        );
+
+        List<Widget> hpbarrow = List.generate(
+            (hpbar.length / 5).ceil(),
+            (index) => Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: hpbar.sublist(index * 5, (index * 5) + 5 > hpbar.length ? hpbar.length : (index * 5) + 5),
+                ));
+        hp = Padding(
+          padding: const EdgeInsets.all(5),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 0),
+                child: Text('${m.modelname} HP: ${m.stats.hp!}'),
+              ),
+              Wrap(
+                alignment: WrapAlignment.start,
+                runSpacing: 0,
+                direction: Axis.horizontal,
+                children: hpbarrow,
+              ),
+            ],
+          ),
+        );
+      }
+    }
+
+    if (m.hpbars!.isNotEmpty) {
+      List<Widget> bars = [];
+      List<Widget> hpbar = [];
+      int hpbarnum = 0;
+      addhp = true;
+      int barcount = 0;
+      if (widget.deployed) {
+        barcount = army.deployedLists[widget.listindex!].barcount;
+      } else {
+        barcount = m.hpbars!.length;
+      }
+      for (int b = 0; b < barcount; b++) {
+        var hp = m.hpbars![b];
+        if (hp.hp != '1') {
+          hpbar = List.generate(
+            int.parse(hp.hp),
+            (index) => hpbox(
+              index,
+              bordercolor,
+              army,
+              widget.listindex,
+              widget.listmodelindex,
+              hpbarnum,
+            ),
+          );
+
+          if (bars.isEmpty) {
+            bars.add(const SizedBox(height: 3));
+          }
+          bars.add(
+            Padding(
+              padding: const EdgeInsets.only(top: 0),
+              child: Text('${hp.name} HP: ${hp.hp}'),
+            ),
+          );
+          bars.add(
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: hpbar,
+            ),
+          );
+        }
+        hpbarnum++;
+      }
+
+      hp = Padding(
+        padding: const EdgeInsets.only(left: 5, bottom: 5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: bars,
+        ),
+      );
+    }
+
+    if (m.custombars!.isNotEmpty) {
+      List<Widget> bars = [];
+      List<Widget> bar = [];
+      int barnum = 0;
+      int custombarcount = 0;
+      if (widget.deployed) {
+        custombarcount = army.deployedLists[widget.listindex!].barcount;
+      } else {
+        custombarcount = m.custombars!.length;
+      }
+      for (int b = 0; b < custombarcount; b++) {
+        var cb = m.custombars![b];
+        bar = List.generate(
+          int.parse(cb.totalcount),
+          (index) => custombarbox(
+            index,
+            bordercolor,
+            army,
+            widget.listindex!,
+            widget.listmodelindex!,
+            barnum,
+          ),
+        );
+
+        if (bars.isEmpty) {
+          bars.add(const SizedBox(height: 3));
+        }
+        bars.add(
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 0, right: 5),
+                child: Text('${cb.name}:'),
+              ),
+              ...bar,
+            ],
+          ),
+        );
+        barnum++;
+      }
+
+      custombar = Padding(
+        padding: const EdgeInsets.only(left: 5, bottom: 5),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: bars,
+        ),
+      );
+    }
 
     if (m.grid!.columns.isNotEmpty) {
       //generate grid
@@ -348,7 +501,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         spiralvalues.add(int.parse(s));
       }
 
-      hp = spiral(spiralvalues, 0, army, widget.listindex, 0);
+      hp = spiral(spiralvalues, 0, army, widget.listindex, widget.listmodelindex);
     }
 
     if (m.web!.values.isNotEmpty) {
@@ -366,7 +519,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       int outer = int.parse(m.web!.values[0]);
       int middle = int.parse(m.web!.values[1]);
       int inner = int.parse(m.web!.values[2]);
-      hp = web(outer, middle, inner, army, widget.listindex, 0);
+      hp = web(outer, middle, inner, army, widget.listindex, widget.listmodelindex);
     }
 
     if (m.arcana!.name != '' && m.arcana!.description != '') {
@@ -2092,6 +2245,20 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         child: hp,
       ));
     }
+
+    modeldoc.add(Container(
+      width: width,
+      padding: const EdgeInsets.only(right: 5, bottom: 10),
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(width: 1, color: bordercolor),
+          left: BorderSide(width: 1, color: bordercolor),
+          right: BorderSide(width: 1, color: bordercolor),
+          bottom: BorderSide(width: 1, color: bordercolor),
+        ),
+      ),
+      child: custombar,
+    ));
 
     modeldoc.add(Container(
       width: width,

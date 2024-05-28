@@ -33,7 +33,7 @@ class _SingleModelStatPageState extends State<SingleModelStatPage> {
     List<Widget> modelsWidget = [];
     String cost = 'PC: ${p.points!}';
 
-    if (!army.viewingcohort) {
+    if (!army.viewingcohort[widget.listindex]) {
       p = army.deployedLists[widget.listindex].selectedProduct;
     } else {
       c = army.deployedLists[widget.listindex].selectedCohort;

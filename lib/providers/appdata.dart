@@ -1,14 +1,11 @@
 class AppData {
   final List<Map<String, String>> _factionList = [
-    // {'name': 'Blindwater Congregation', 'type': 'warmachine'}
+    {'name': 'Blindwater Congregation', 'list': 'hordes', 'file': 'blindwater.json'},
     // {'name': 'Cephalyx', 'type': 'warmachine'}
     // {'name': 'Convergence of Cyriss', 'type': 'warmachine'}
     {'name': 'Circle Orboros', 'list': 'hordes', 'file': 'circle.json'},
     {'name': 'Crucible Guard', 'list': 'warmachine', 'file': 'crucible.json'},
     {'name': 'Cryx', 'list': 'warmachine', 'file': 'cryx.json'},
-    // {'name': 'Blindwater Congregation', 'type': 'warmachine'}
-    // 'Cephalyx',
-    // 'Convergence of Cyriss',
     {'name': 'Cygnar', 'list': 'warmachine', 'file': 'cygnar.json'},
     {'name': 'Grymkin', 'list': 'hordes', 'file': 'grymkin.json'},
     // 'Infernals',
@@ -26,8 +23,8 @@ class AppData {
     {'name': 'Skorne', 'list': 'hordes', 'file': 'skorne.json'},
     // 'Supernal Coalition',
     // 'Talion Charter',
-    // 'Thornfall Alliance',
-    // 'Trollbloods',
+    {'name': 'Thornfall Alliance', 'list': 'hordes', 'file': 'thornfall.json'},
+    {'name': 'Trollbloods', 'list': 'hordes', 'file': 'trollbloods.json'},
   ];
   final List<String> _productCategories = [
     'Warcasters/Warlocks/Masters',

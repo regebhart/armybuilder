@@ -1,3 +1,4 @@
+import 'package:armybuilder/pages/copytoclipboardbutton.dart';
 import 'package:armybuilder/pages/deployedlist.dart';
 import 'package:armybuilder/pages/singlemodelstatpage.dart';
 import 'package:armybuilder/pages/widgets/importfield.dart';
@@ -28,14 +29,29 @@ class ArmyDeployment extends StatelessWidget {
         additionallists.add(Flexible(
           flex: 5,
           child: SingleChildScrollView(
-            child: Padding(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600, minWidth: 450),
+              child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(army.deployedLists[d].list.name),
-                  Text('Faction: ${army.deployedLists[d].list.listfaction}'),
-                  Text('Points: ${army.deployedLists[d].list.totalpoints} / ${army.deployedLists[d].list.pointtarget}'),
-                  ConstrainedBox(constraints: const BoxConstraints(maxWidth: 600, minWidth: 450), child: DeployedListWidget(listindex: d))
-                ])),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(army.deployedLists[d].list.name),
+                          Text('Faction: ${army.deployedLists[d].list.listfaction}'),
+                          Text('Points: ${army.deployedLists[d].list.totalpoints} / ${army.deployedLists[d].list.pointtarget}'),
+                        ],
+                      ),
+                    ),
+                    DeployedListWidget(listindex: d),
+                  ],
+                ),
+              ),
+            ),
           ),
         ));
       }
@@ -49,22 +65,41 @@ class ArmyDeployment extends StatelessWidget {
         Flexible(
           flex: 5,
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(army.deployedLists[0].list.name),
-                  Text('Faction: ${army.deployedLists[0].list.listfaction}'),
-                  Text('Points: ${army.deployedLists[0].list.totalpoints} / ${army.deployedLists[0].list.pointtarget}'),
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 600, minWidth: 450),
-                    child: const DeployedListWidget(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600, minWidth: 450),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 5, left: 15.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(army.deployedLists[0].list.name),
+                              Text('Faction: ${army.deployedLists[0].list.listfaction}'),
+                              Text('Points: ${army.deployedLists[0].list.totalpoints} / ${army.deployedLists[0].list.pointtarget}'),
+                            ],
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 15.0),
+                          child: CopyToClipboardButton(),
+                        ),
+                      ],
+                    ),
+                    const DeployedListWidget(
                       listindex: 0,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

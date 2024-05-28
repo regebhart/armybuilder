@@ -1,6 +1,7 @@
 import 'package:armybuilder/providers/appdata.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class FactionSelection extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(
             minWidth: 200,
-            maxWidth: 800,
+            maxWidth: 840,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -31,7 +32,7 @@ class FactionSelection extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
-                  'Select Faction',
+                  'Select a Faction',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 32,
@@ -45,7 +46,7 @@ class FactionSelection extends StatelessWidget {
                     (index) => Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: SizedBox(
-                            width: 180,
+                            width: 190,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8),
                               child: Container(
@@ -53,11 +54,19 @@ class FactionSelection extends StatelessWidget {
                                 color: Colors.white,
                                 child: TextButton(
                                   onPressed: () async {
-                                    await faction.readFactionProducts(factionlist[index]['file']!);
+                                    // await faction.readFactionProducts(factionlist[index]['file']!);
                                     army.setFactionSelected(factionlist[index]['name']!);
-                                    await faction.sortFactionProducts();
-                                    faction.setSelectedCategory(0, null);
+                                    faction.setSelectedFactionIndex(index);
+                                    // await faction.sortFactionProducts();
+                                    faction.setSelectedCategory(0, null, null);
                                     army.pageController.jumpToPage(2);
+                                    army.setDeploying(false);
+                                    await FirebaseAnalytics.instance.logEvent(
+                                      name: 'Faction Selected',
+                                      parameters: {
+                                        'faction': factionlist[index]['name']!,
+                                      },
+                                    );
                                   },
                                   child: Text(
                                     factionlist[index]['name']!,
@@ -104,10 +113,11 @@ List<Widget> buttonGrid(double width, FactionNotifier faction, ArmyListNotifier 
                         color: Colors.white,
                         child: TextButton(
                           onPressed: () async {
-                            await faction.readFactionProducts(factionlist[(r * itemsPerRow) + index]['file']!);
+                            // await faction.readFactionProducts(factionlist[(r * itemsPerRow) + index]['file']!);
                             army.setFactionSelected(factionlist[(r * itemsPerRow) + index]['name']!);
-                            await faction.sortFactionProducts();
-                            faction.setSelectedCategory(0, null);
+                            faction.setSelectedFactionIndex(index);
+                            // await faction.sortFactionProducts();
+                            faction.setSelectedCategory(0, null, null);
                             army.pageController.jumpToPage(2);
                           },
                           child: Text(

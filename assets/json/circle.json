@@ -3195,8 +3195,8 @@
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Chain Attack: Headbutt",
-                                        "description": "If this model hits the same model with two initial attacks with Open Fist, after resolving the attacks it can immediately make a headbutt power attack against that model."
+                                        "name": "Chain Attack [Claw] [Brutalize]",
+                                        "description": "If this model hits the same model with two Claw attacks, after resolving the attacks it can immediately Brutalize. (This model may make one head-butt power attack against that model.)"
                                     },
                                     {
                                         "name": "Regeneration [d3]",
@@ -4076,8 +4076,8 @@
                                         "description": "When this model is B2B with an enemy model during it's Normal Movement, it can push that model up to 2\" directly away from it. A model can be pushed by Bulldoze only once per turn. Bulldoze has no effect when this model makes a trample power attack."
                                     },
                                     {
-                                        "name": "Chain Attack: Smash & Grab",
-                                        "description": "If this model hits the same model with two initial attacks with Open Fist, after resolving the attacks it can immediately make a headbutt or throw power attack against that model."
+                                        "name": "Chain Attack [Bladed Gauntlet] [Smash & Grab]",
+                                        "description": "If this model hits the same model with two Bladed Gauntlet attacks, after resolving the attacks it can immediately Smash & Grab. (This model can make a headbutt or throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Gung-ho",
@@ -4372,8 +4372,8 @@
                                         "description": "Once per activation, after making a full advance as its Normal Movement but before performing its Combat Action, this model can spend 1 focus point or be forced to be placed completely within 5” of its current location."
                                     },
                                     {
-                                        "name": "Chain Attack: Throw",
-                                        "description": "If this model hits the same model with two initial attacks with Open Fist, after resolving the attacks it can immediately make throw power attack against that model."
+                                        "name": "Chain Attack [Claw] [Upheaval]",
+                                        "description": "If this model hits the same model with two Claw attacks, after resolving the attacks it can immediately Upheaval. (This model can make a throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Set Defense",
@@ -4409,12 +4409,12 @@
                                         ]
                                     },
                                     {
-                                        "name": "Claws",
+                                        "name": "Claw",
                                         "type": "Melee",
                                         "fieldoffire": "None",
                                         "rng": "1",
                                         "pow": "3",
-                                        "count": "1",
+                                        "count": "2",
                                         "ability": [
                                             {
                                                 "name": "Beat Back",
@@ -5035,8 +5035,8 @@
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Chain Attack: Smite",
-                                        "description": "If this model hits the same model with both its initial attacks, after resolving the attacks it can immediately make a one additional melee attack against the model hit. If the additional attack hits, the target is slammed d6” directly away from this model and suffers a damage roll with POW equal to the STR of this model plus the POW of this weapon. The POW of the collateral damage is equal to the STR of this model."
+                                        "name": "Chain Attack [Rune Fist] [Smite]",
+                                        "description": "If this model hits the same model with two Rune Fist attacks, after resolving the attacks it can immediately Smite. (The target is slammed d6” directly away from this model and suffers a damage roll with POW equal to the STR of this model plus the POW of the weapon. The POW of the collateral damage is equal to the STR of this model.)"
                                     },
                                     {
                                         "name": "Mend",
@@ -6975,8 +6975,8 @@
                         "unitpoints": {
                             "maxunit": "-",
                             "minunit": "Brighid and Caul",
-                            "maxcost": "-",
-                            "mincost": "7"
+                            "mincost": "7",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -7126,10 +7126,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "-",
+                            "mincost": "8",
                             "minunit": "Skoll, Tala and Caleb",
                             "maxunit": "-",
-                            "mincost": "8"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -7361,9 +7361,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "mincost": "9",
                             "maxunit": "Leader and 4 Grunts",
                             "minunit": "Leader and 2 Grunts",
-                            "mincost": "9",
                             "maxcost": "15"
                         },
                         "models": [
@@ -7479,8 +7479,8 @@
                         "unitpoints": {
                             "maxunit": "-",
                             "mincost": "8",
-                            "minunit": "Skoll, Tala and Caleb",
-                            "maxcost": "-"
+                            "maxcost": "-",
+                            "minunit": "Skoll, Tala and Caleb"
                         },
                         "models": [
                             {
@@ -7566,6 +7566,138 @@
                         ]
                     },
                     {
+                        "name": "Gatorman Posse",
+                        "category": "Units",
+                        "primaryfaction": [
+                            "Blindwater Congregation",
+                            "Circle Orboros",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Mercenaries",
+                            "Skorne",
+                            "Trollbloods"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Circle Orboros",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Mercenaries",
+                            "Skorne",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "3",
+                        "unitpoints": {
+                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "7",
+                            "maxcost": "10",
+                            "maxunit": "Leader and 9 Grunts"
+                        },
+                        "models": [
+                            {
+                                "name": "Gatorman Posse",
+                                "title": "Mercenary Blindwater Congregation Unit",
+                                "modeltype": [
+                                    "Unit",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Amphibious",
+                                    "Gatorman",
+                                    "Tough"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Mercenary [Circle, Legion, Skorne, Trollbloods, Khymaera, Thornfall]",
+                                        "description": "This model will work for Circle, Legion, Skorne, Trollbloods, Khymaera, Thornfall."
+                                    },
+                                    {
+                                        "name": "Partisan [Blindwater Congregration]",
+                                        "description": "When included in a Blindwater Congregration army, this model is a Blindwater Congregration model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Unyielding",
+                                        "description": "This model gains +2 ARM against melee damage rolls."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "40MM",
+                                    "spd": "5",
+                                    "str": "8",
+                                    "mat": "6",
+                                    "rat": "3",
+                                    "def": "12",
+                                    "arm": "16",
+                                    "cmd": "7",
+                                    "hp": "8"
+                                },
+                                "hpbars": [
+                                    {
+                                        "name": "Leader",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model A",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model B",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model C",
+                                        "hp": "8"
+                                    },
+                                    {
+                                        "name": "Model D",
+                                        "hp": "8"
+                                    }
+                                ],
+                                "nestedabilities": [
+                                    {
+                                        "topability": {
+                                            "name": "Prayers",
+                                            "description": "This unit's Leader can use the following prayers at any time during each of its unit's activations. Each model in this unit gains the benefits listed."
+                                        },
+                                        "subabilities": [
+                                            {
+                                                "name": "Dirge Of Mists",
+                                                "description": "Affected models gain concealment. Models are not affected while out of formation. Dirge of Mists lasts for one round."
+                                            },
+                                            {
+                                                "name": "Offerings To Kossk",
+                                                "description": "Affected models can reroll missed attack rolls. Each roll can be rerolled only once as a result of Offerings to Kossk. Offerings to Kossk lasts for one turn."
+                                            },
+                                            {
+                                                "name": "Predator's Prayer",
+                                                "description": "Affected models gain Bloodthirst this activation. (Bloodthirst - When it charges a living model, a model with Bloodthirst gains +2\" movement.)"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "weapons": [
+                                    {
+                                        "name": "Bite",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "5",
+                                        "count": "1"
+                                    },
+                                    {
+                                        "name": "Gatorman Weapon",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "2",
+                                        "pow": "5",
+                                        "count": "1"
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
                         "name": "Reeves Of Orboros",
                         "category": "Units",
                         "primaryfaction": [
@@ -7578,8 +7710,8 @@
                         "unitpoints": {
                             "mincost": "9",
                             "maxcost": "15",
-                            "maxunit": "Leader and 4 Grunts",
-                            "minunit": "Leader and 2 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -7645,10 +7777,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
                             "mincost": "6",
                             "maxunit": "-",
-                            "minunit": "Leader and 3 Grunts"
+                            "minunit": "Leader and 3 Grunts",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -7763,10 +7895,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-",
+                            "mincost": "5",
                             "maxunit": "-",
-                            "mincost": "5"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -7842,10 +7974,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "9",
-                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "Leader and 4 Grunts",
-                            "maxcost": "15"
+                            "maxcost": "15",
+                            "minunit": "Leader and 2 Grunts",
+                            "mincost": "9"
                         },
                         "models": [
                             {
@@ -7983,9 +8115,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "mincost": "5",
-                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "-",
                             "maxunit": "-",
-                            "maxcost": "-"
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -8103,10 +8235,10 @@
                         ],
                         "fieldallowance": "1",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-",
                             "mincost": "5",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -8182,9 +8314,9 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
+                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
                             "mincost": "5",
-                            "maxcost": "-",
                             "maxunit": "-"
                         },
                         "models": [
@@ -8269,10 +8401,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "mincost": "5"
+                            "mincost": "5",
+                            "maxcost": "-",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -8369,9 +8501,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "16",
-                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "Leader and 4 Grunts",
                             "mincost": "10",
-                            "maxunit": "Leader and 4 Grunts"
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -8504,10 +8636,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "mincost": "5",
                             "maxunit": "-",
-                            "maxcost": "-"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "-",
+                            "mincost": "5"
                         },
                         "models": [
                             {
@@ -8603,9 +8735,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "5",
                             "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "-"
                         },
                         "models": [
@@ -10723,7 +10855,7 @@
                                     },
                                     {
                                         "name": "Trapper [5\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 5\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
@@ -10784,7 +10916,7 @@
                         "models": [
                             {
                                 "name": "Rask 1",
-                                "title": "Mercenary Warlock",
+                                "title": "Mercenary Blindwater Congregration Warlock",
                                 "modeltype": [
                                     "Warlock"
                                 ],
@@ -10816,7 +10948,7 @@
                                 ],
                                 "feat": {
                                     "name": "Dark Waters",
-                                    "description": "While in Rask’s control range, friendly Faction models cannot be targeted by attacks, charges, or slam power attacks made by models more then 5” away from them. Dark Waters lasts for one round."
+                                    "description": "While in Rask's control range, friendly Faction models cannot be targeted by attacks, charges, or slam power attacks made by models more then 5” away from them. Dark Waters lasts for one round."
                                 },
                                 "execution": {
                                     "name": "Reload [1]",
@@ -10854,7 +10986,7 @@
                                                 "subabilities": [
                                                     {
                                                         "name": "Arcane Interference",
-                                                        "description": "When this model hits another model with this weapon, upkeep spells and animi on the model hit expire and it loses any focus points on it. When this model hits a warjack with this weapon, that warjack suffers Disruption."
+                                                        "description": "Arcane Interference - When this model hits an enemy model, upkeep spells and animi affected that model expire. Additionally the model hit loses all Focus points and cannot spend Fury points for one turn. When this model hits a warjack, that warjack sufferes Disruption."
                                                     },
                                                     {
                                                         "name": "Energy Siphon",
@@ -10932,7 +11064,7 @@
                     {
                         "name": "Malvin & Mayhem",
                         "points": "13",
-                        "category": "Warjacks/Warbeasts/Horrors",
+                        "category": "Solos",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -11537,6 +11669,10 @@
                                         "description": "When an enemy living or undead model is destroyed while in this model's command range, this model gains the destroyed model's corpse token. When a friendly living model is destroyed by a continuous effect, an enemy attack, or collateral damage from an enemy attack while in this model's command range, this model gains the destroyed model's corpse token. This model can have up to five corpse tokens at any time."
                                     },
                                     {
+                                        "name": "Chain Attack [Iron Reapers] [Death Chill]",
+                                        "description": "If this model hits the same model with two Iron Reapers attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Divine Manifestation",
                                         "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
                                     },
@@ -11590,10 +11726,6 @@
                                             {
                                                 "name": "Blood Reaper",
                                                 "description": "When this model makes an initial attack with this weapon, it makes one melee attack with this weapon against each model in its LOS that is in this weapon's melee range. Blood Reaper attacks are simultaneous."
-                                            },
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
                                             }
                                         ],
                                         "damagetype": [
@@ -12779,7 +12911,8 @@
                         "points": "4",
                         "category": "Solos",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Thornfall Alliance"
                         ],
                         "factions": [
                             "Circle Orboros",
@@ -12788,6 +12921,7 @@
                             "Mercenaries",
                             "Orgoth",
                             "Skorne",
+                            "Thornfall Alliance",
                             "Trollbloods"
                         ],
                         "fieldallowance": "C",
@@ -12816,6 +12950,10 @@
                                     {
                                         "name": "Impervious Flesh",
                                         "description": "When this model suffers a damage roll, roll one fewer die."
+                                    },
+                                    {
+                                        "name": "Mercenary [Circle, Legion Of Everblight, Skorne, Trollbloods, Thornfall Alliance, Orgoth, Infernals]",
+                                        "description": "This model will work for Circle, Legion Of Everblight, Skorne, Trollbloods, Thornfall Alliance, Orgoth, Infernals."
                                     },
                                     {
                                         "name": "Partisan [Thornfall Alliance]",
@@ -13087,7 +13225,8 @@
                         "points": "14",
                         "category": "Solos",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Thornfall Alliance"
                         ],
                         "factions": [
                             "Circle Orboros",
@@ -13122,8 +13261,8 @@
                                         "description": "This model cannot be targeted by ranged or magic attacks while knocked down."
                                     },
                                     {
-                                        "name": "Lesser Warlock",
-                                        "description": "This model is not a warlock but has the following special rules: Battlegroup Commander, Fury Manipulation, Healing, Spellcaster, and Transferring Damage. This model must have at least one warbeast in its battlegroup at the start of the game."
+                                        "name": "Mercenary [Circle, Legion, Skorne, Trollbloods, Thornfall Alliance, Orgoth, or Infernals]",
+                                        "description": "This model will work for Circle, Legion, Skorne, Trollbloods, Thornfall Alliance, Orgoth, or Infernals."
                                     },
                                     {
                                         "name": "Partisan [Thornfall Alliance]",
@@ -13529,10 +13668,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "Raefyll and 9 Grunts",
+                            "minunit": "Raefyll and 5 Grunts",
                             "mincost": "8",
-                            "maxcost": "14",
-                            "minunit": "Raefyll and 5 Grunts"
+                            "maxunit": "Raefyll and 9 Grunts",
+                            "maxcost": "14"
                         },
                         "models": [
                             {
@@ -13682,10 +13821,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "minunit": "Blythe and Bull",
                             "maxunit": "-",
+                            "maxcost": "-",
                             "mincost": "5",
-                            "maxcost": "-"
+                            "minunit": "Blythe and Bull"
                         },
                         "models": [
                             {
@@ -13835,8 +13974,8 @@
                         "unitpoints": {
                             "maxunit": "Leader and 9 Grunts",
                             "mincost": "7",
-                            "minunit": "Leader and 5 Grunts",
-                            "maxcost": "12"
+                            "maxcost": "12",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {

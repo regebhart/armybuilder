@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:armybuilder/models/modularoptions.dart';
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/providers/armylist.dart';
@@ -10,164 +9,221 @@ import '../models/armylist.dart';
 import 'appdata.dart';
 
 class FactionNotifier extends ChangeNotifier {
-  late List<List<Product>> _factionProducts;
-  late List<List<List<Product>>> _sortedProducts;
-  late List<List<Product>> _filteredProducts;
+  late List<Map<String, dynamic>> _allFactions;
+  // late List<List<Product>> _factionProducts;
+  // late List<List<List<Product>>> _sortedProducts;
+  late List<List<Product>> _filteredProducts; //used for category selected and filtering attachments to be displayed on categoryModelList
   late List<Option> _modularOptions;
-  late List<List<Map<String, List<Product>>>> _unitAttachments;
+  // late List<List<Map<String, List<Product>>>> _unitAttachments;
+  late int _selectedFactionIndex;
   late int _selectedCategory;
   late bool _showingoptions;
   late String _groupname;
   late List<ModularOption> _modeloptions;
-  late List<bool> _factionHasCasterAttachments;
+  // late List<bool> _factionHasCasterAttachments;
 
-  List<List<Product>> get factionProducts => _factionProducts;
+  List<Map<String, dynamic>> get allFactions => _allFactions;
+  int get selectedFactionIndex => _selectedFactionIndex;
+  // List<List<Product>> get factionProducts => _factionProducts;
   List<List<Product>> get filteredProducts => _filteredProducts;
   int get selectedCategory => _selectedCategory;
   String get groupname => _groupname;
   List<Option> get modularOptions => _modularOptions;
   bool get showingoptions => _showingoptions;
   List<ModularOption> get modeloptions => _modeloptions;
-  List<bool> get factionHasCasterAttachments => _factionHasCasterAttachments;
+  // List<bool> get factionHasCasterAttachments => _factionHasCasterAttachments;
 
   FactionNotifier() {
+    _allFactions = [];
     _showingoptions = false;
-    _factionProducts = [[], [], []]; //1 list of faction models, 1 list of allys, 1 of mercs
+    // _factionProducts = [[], [], []]; //1 list of faction models, 1 list of allys, 1 of mercs
     _selectedCategory = 0;
-    _unitAttachments = [
-      [{}, {}],
-      [{}, {}],
-      [{}, {}]
-    ];
-    _sortedProducts = [
-      [[], [], [], [], [], [], []],
-      [[], [], [], [], [], [], []],
-      [[], [], [], [], [], [], []],
-    ];
+    // _unitAttachments = [
+    //   [{}, {}],
+    //   [{}, {}],
+    //   [{}, {}]
+    // ];
+    // _sortedProducts = [
+    //   [[], [], [], [], [], [], []],
+    //   [[], [], [], [], [], [], []],
+    //   [[], [], [], [], [], [], []],
+    // ];
+    _selectedFactionIndex = 0;
     _filteredProducts = [[], [], []]; //selected model type, 1 list of faction models, 1 list of allys, 1 of mercs
     _modularOptions = [];
     _groupname = '';
     _modeloptions = [];
-    _factionHasCasterAttachments = [false, false, false];
+    // _factionHasCasterAttachments = [false, false, false];
   }
 
-  readFactionProducts(String filename) async {
-    String data = await rootBundle.loadString('json/${filename.toLowerCase()}');
-    var decodeddata = jsonDecode(data);
-    // print('loading $faction');
-    _factionProducts = [[], [], []];
-    _factionHasCasterAttachments = [false, false, false];
+  readAllFactions() async {
+    int index = 0;
     List<String> groups = [
       'primary',
       'allies',
       'mercenaries',
     ];
 
-    for (var g = 0; g < groups.length; g++) {
-      for (var p in decodeddata['group'][g][groups[g]]['products']) {
-        _factionProducts[g].add(Product.fromJson(p));
-      }
-    }
-  }
+    _allFactions.clear();
 
-  resetLists() {
-    _filteredProducts.clear();
-    _unitAttachments.clear();
-    _sortedProducts.clear();
-    _filteredProducts = [[], [], []];
-    _factionHasCasterAttachments = [false, false, false];
-    _unitAttachments = [
-      [{}, {}],
-      [{}, {}],
-      [{}, {}]
-    ];
-    _sortedProducts = [
-      [[], [], [], [], [], [], []],
-      [[], [], [], [], [], [], []],
-      [[], [], [], [], [], [], []],
-    ];
-  }
+    for (Map<String, String> f in AppData().factionList) {
+      List<List<Product>> factionProducts = [[], [], []];
+      List<bool> factionHasCasterAttachments = [false, false, false];
+      List<List<Map<String, List<Product>>>> ua = [
+        [{}, {}],
+        [{}, {}],
+        [{}, {}]
+      ];
+      List<List<List<Product>>> products = [
+        [[], [], [], [], [], [], []],
+        [[], [], [], [], [], [], []],
+        [[], [], [], [], [], [], []],
+      ];
+      String data = await rootBundle.loadString('json/${f['file'].toString().toLowerCase()}');
+      var decodeddata = jsonDecode(data);
+      for (var g = 0; g < groups.length; g++) {
+        for (var p in decodeddata['group'][g][groups[g]]['products']) {
+          factionProducts[g].add(Product.fromJson(p));
 
-  sortFactionProducts() async {
-    List<List<Map<String, List<Product>>>> ua = [
-      [{}, {}],
-      [{}, {}],
-      [{}, {}]
-    ];
-    List<List<List<Product>>> products = [
-      [[], [], [], [], [], [], []],
-      [[], [], [], [], [], [], []],
-      [[], [], [], [], [], [], []],
-    ];
-    resetLists();
-    int index = 0;
-    for (var g = 0; g < 3; g++) {
-      for (var p in _factionProducts[g]) {
-        String attachname = '';
-        index = AppData().productCategories.indexWhere((element) => element == p.category);
-        if (index == -1) {
-          for (var ab in p.models[0].characterabilities!) {
-            if (ab.name == "Attached") {
-              index = 6;
-              _factionHasCasterAttachments[g] = true;
-              break;
-            }
-            if (ab.name.toLowerCase().contains('command attachment')) {
-              index = 7;
-              attachname = ab.name.substring(ab.name.indexOf('['));
-              attachname = attachname.replaceAll('[', '').replaceAll(']', '');
-              break;
-            }
-            if (ab.name.toLowerCase().contains('weapon attachment')) {
-              index = 8;
-              attachname = ab.name.substring(ab.name.indexOf('['));
-              attachname = attachname.replaceAll('[', '').replaceAll(']', '');
-              break;
+          Product thisproduct = factionProducts[g].last;
+          String attachname = '';
+          index = AppData().productCategories.indexWhere((element) => element == thisproduct.category);
+          if (index == -1) {
+            for (var ab in thisproduct.models[0].characterabilities!) {
+              if (ab.name == "Attached") {
+                index = 6;
+                factionHasCasterAttachments[g] = true;
+                break;
+              }
+              if (ab.name.toLowerCase().contains('command attachment')) {
+                index = 7;
+                attachname = ab.name.substring(ab.name.indexOf('['));
+                attachname = attachname.replaceAll('[', '').replaceAll(']', '');
+                break;
+              }
+              if (ab.name.toLowerCase().contains('weapon attachment')) {
+                index = 8;
+                attachname = ab.name.substring(ab.name.indexOf('['));
+                attachname = attachname.replaceAll('[', '').replaceAll(']', '');
+                break;
+              }
             }
           }
 
-          //break;
-        }
-        if (index == -1) {
-          print('error: ${p.name}');
-        } else {
-          if (index <= 6) {
-            products[g][index].add(p);
+          if (index == -1) {
+            print('error: ${thisproduct.name}');
           } else {
-            List<String> names = attachname.split(',');
-            for (var n in names) {
-              String name = n.trim();
-              if (!ua[g][index - 7].containsKey(name)) {
-                ua[g][index - 7][name] = [p];
-              } else {
-                ua[g][index - 7][name]!.add(p);
+            if (index <= 6) {
+              products[g][index].add(thisproduct);
+            } else {
+              List<String> names = attachname.split(',');
+              for (var n in names) {
+                String name = n.trim();
+                if (!ua[g][index - 7].containsKey(name)) {
+                  ua[g][index - 7][name] = [thisproduct];
+                } else {
+                  ua[g][index - 7][name]!.add(thisproduct);
+                }
               }
             }
           }
         }
       }
+      _allFactions.add({
+        'faction': '${f['name']}',
+        'products': factionProducts,
+        'hascasterattachments': factionHasCasterAttachments,
+        'sortedproducts': products,
+        'unitattachments': ua
+      });
     }
-    _sortedProducts = products;
-    _unitAttachments = ua;
   }
 
-  setSelectedCategory(int index, String? unitname) {
+  // readFactionProducts(String filename) async {
+  //   String data = await rootBundle.loadString('json/${filename.toLowerCase()}');
+  //   var decodeddata = jsonDecode(data);
+  //   // print('loading $faction');
+  //   _factionProducts = [[], [], []];
+  //   _factionHasCasterAttachments = [false, false, false];
+  //   List<String> groups = [
+  //     'primary',
+  //     'allies',
+  //     'mercenaries',
+  //   ];
+
+  //   for (var g = 0; g < groups.length; g++) {
+  //     for (var p in decodeddata['group'][g][groups[g]]['products']) {
+  //       _factionProducts[g].add(Product.fromJson(p));
+  //     }
+  //   }
+  // }
+
+  resetLists() {
+    _filteredProducts.clear();
+    // _unitAttachments.clear();
+    // _sortedProducts.clear();
+    _filteredProducts = [[], [], []];
+    // _factionHasCasterAttachments = [false, false, false];
+    // _unitAttachments = [
+    //   [{}, {}],
+    //   [{}, {}],
+    //   [{}, {}]
+    // ];
+    // _sortedProducts = [
+    //   [[], [], [], [], [], [], []],
+    //   [[], [], [], [], [], [], []],
+    //   [[], [], [], [], [], [], []],
+    // ];
+  }
+
+  setSelectedFactionIndex(int value) {
+    _selectedFactionIndex = value;
+  }
+
+  // sortFactionProducts() async {
+  //   resetLists();
+
+  //   for (var f in _allFactions) {
+  //     int index = 0;
+  //     for (var g = 0; g < 3; g++) {}
+  //     f['sortedproducts'] = products;
+  //     f['unitattachments'] = ua;
+  //   }
+  // }
+
+  setSelectedCategory(int index, String? unitname, List<int>? casterFactionIndex) {
     _selectedCategory = index;
     _filteredProducts.clear();
     _filteredProducts = [[], [], []];
+    List<int> factionindex = [];
+    factionindex.add(_selectedFactionIndex); //to filter cohort lists
+
     if (index <= 6) {
-      _filteredProducts[0] = _sortedProducts[0][index];
-      _filteredProducts[1] = _sortedProducts[1][index];
-      _filteredProducts[2] = _sortedProducts[2][index];
+      if (index == 1) {
+        if (casterFactionIndex != null) {
+          factionindex.clear();
+          factionindex.addAll(casterFactionIndex);
+        }
+        _filteredProducts[0].clear();
+        for (int f in factionindex) {
+          if (f >= 0) {
+            _filteredProducts[0].addAll(_allFactions[f]['sortedproducts'][0][index]);
+          }
+        }
+      } else {
+        _filteredProducts[0] = _allFactions[_selectedFactionIndex]['sortedproducts'][0][index];
+      }
+      _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
+      _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
     } else if (unitname != null) {
-      if (_unitAttachments[0][index - 7].containsKey(unitname)) {
-        _filteredProducts[0] = _unitAttachments[0][index - 7][unitname]!;
+      if (_allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7].containsKey(unitname)) {
+        _filteredProducts[0] = _allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7][unitname]!;
       }
-      if (_unitAttachments[1][index - 7].containsKey(unitname)) {
-        _filteredProducts[1] = _unitAttachments[1][index - 7][unitname]!;
+      if (_allFactions[_selectedFactionIndex]['unitattachments'][1][index - 7].containsKey(unitname)) {
+        _filteredProducts[1] = _allFactions[_selectedFactionIndex]['unitattachments'][1][index - 7][unitname]!;
       }
-      if (_unitAttachments[2][index - 7].containsKey(unitname)) {
-        _filteredProducts[2] = _unitAttachments[2][index - 7][unitname]!;
+      if (_allFactions[_selectedFactionIndex]['unitattachments'][2][index - 7].containsKey(unitname)) {
+        _filteredProducts[2] = _allFactions[_selectedFactionIndex]['unitattachments'][2][index - 7][unitname]!;
       }
     }
     _showingoptions = false;
@@ -208,14 +264,14 @@ class FactionNotifier extends ChangeNotifier {
 
   bool unitHasCommandAttachments(String unitname) {
     for (int g = 0; g < 3; g++) {
-      if (_unitAttachments[g][0].containsKey(unitname)) return true;
+      if (_allFactions[_selectedFactionIndex]['unitattachments'][g][0].containsKey(unitname)) return true;
     }
     return false;
   }
 
   bool unitHasWeaponAttachments(String unitname) {
     for (int g = 0; g < 3; g++) {
-      if (_unitAttachments[g][1].containsKey(unitname)) return true;
+      if (_allFactions[_selectedFactionIndex]['unitattachments'][g][1].containsKey(unitname)) return true;
     }
     return false;
   }
@@ -270,8 +326,13 @@ class FactionNotifier extends ChangeNotifier {
   Product findByName(String name) {
     Product blankproduct = ArmyListNotifier().blankproduct;
     Product foundproduct = blankproduct;
-    for (int g = 0; g < 3; g++) {
-      foundproduct = _factionProducts[g].firstWhere((element) => element.name == name, orElse: () => blankproduct);
+    for (int f = 0; f < AppData().factionList.length; f++) {
+      for (int g = 0; g < 3; g++) {
+        foundproduct = _allFactions[f]['products'][g].firstWhere((element) => element.name == name, orElse: () => blankproduct);
+        if (foundproduct.name != '') {
+          break;
+        }
+      }
       if (foundproduct.name != '') {
         break;
       }
@@ -281,10 +342,9 @@ class FactionNotifier extends ChangeNotifier {
 
   Future<ArmyList> convertJsonStringToArmyList(String productlist) async {
     Map<String, dynamic> list = jsonDecode(productlist);
-    int factionindex = AppData().factionList.indexWhere((element) => element['name'] == list['faction']);
-    String filename = AppData().factionList[factionindex]['file']!;
-    await readFactionProducts(filename);
-    await sortFactionProducts();
+    // if (_allFactions.isEmpty) {
+    //   await readAllFactions();
+    // }
     ArmyList army = ArmyList(
       name: list['name'],
       listfaction: list['faction'],
@@ -397,10 +457,12 @@ class FactionNotifier extends ChangeNotifier {
     return cohorts;
   }
 
-  Future<bool> validateProductNames(String filename, List<String> products) async {
+  Future<bool> validateProductNames(int factionindex, List<String> products) async {
     Product blankproduct = ArmyListNotifier().blankproduct;
     Product foundproduct = blankproduct;
-    await readFactionProducts(filename);
+    if (_allFactions.isEmpty) {
+      await readAllFactions();
+    }
     // return true;
     for (var p in products) {
       if (p.contains(' - ')) {
@@ -409,7 +471,7 @@ class FactionNotifier extends ChangeNotifier {
       if (!p.contains('+ ')) {
         //skip modular parts
         for (int g = 0; g < 3; g++) {
-          foundproduct = factionProducts[g].firstWhere((element) => element.name == p, orElse: () => blankproduct);
+          foundproduct = _allFactions[factionindex]['products'][g].firstWhere((element) => element.name == p, orElse: () => blankproduct);
           if (foundproduct.name != '') return true;
         }
         if (foundproduct.name == '') return false;
@@ -419,9 +481,9 @@ class FactionNotifier extends ChangeNotifier {
   }
 
   Future<ArmyList> convertProductNameListToArmyList(ArmyList list, List<String> products) async {
-    int factionindex = AppData().factionList.indexWhere((element) => element['name'] == list.listfaction);
-    String filename = AppData().factionList[factionindex]['file']!;
-    await readFactionProducts(filename);
+    if (_allFactions.isEmpty) {
+      await readAllFactions();
+    }
 
     Product blankproduct = ArmyListNotifier().blankproduct;
     int leadergroup = -1;
@@ -430,6 +492,7 @@ class FactionNotifier extends ChangeNotifier {
     String lastleader = '';
     for (var p in products) {
       if (p.contains('+ ')) {
+        //for modular parts
         String optionname = p.replaceFirst('+', '').trim();
         switch (lastleader) {
           case 'warcaster':
@@ -584,9 +647,9 @@ class FactionNotifier extends ChangeNotifier {
     } else {
       return false;
     }
-    int factionindex = AppData().factionList.indexWhere((element) => element['name'] == army['faction']);
-    String filename = AppData().factionList[factionindex]['file']!;
-    await readFactionProducts(filename);
+    if (_allFactions.isEmpty) {
+      await readAllFactions();
+    }
     if (army.containsKey('leadergroups')) {
       for (Map<String, dynamic> lg in army['leadergroups']) {
         if (!validatename(lg['leader'])) return false;
@@ -651,7 +714,7 @@ class FactionNotifier extends ChangeNotifier {
   bool validatename(String name) {
     List<dynamic> found = [];
     for (int g = 0; g < 3; g++) {
-      found.addAll(factionProducts[g].where((element) => element.name == name));
+      found.addAll(_allFactions[_selectedFactionIndex]['products'][g].where((element) => element.name == name));
     }
     return found.isNotEmpty;
   }

@@ -3160,6 +3160,7 @@
                                     "rat": "5",
                                     "def": "14",
                                     "arm": "17",
+                                    "cmd": "10",
                                     "hp": "8"
                                 },
                                 "nestedabilities": [
@@ -3179,7 +3180,7 @@
                                             },
                                             {
                                                 "name": "Winter Storm (★Action)",
-                                                "description": "Enemy models that begin their activations within 10” of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
+                                                "description": "Enemy models that begin their activations within CMD of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
                                             }
                                         ]
                                     }
@@ -3229,10 +3230,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "6",
-                            "maxcost": "10",
                             "minunit": "Leader and 5 Grunts",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxcost": "10",
+                            "maxunit": "Leader and 9 Grunts",
+                            "mincost": "6"
                         },
                         "models": [
                             {
@@ -3294,10 +3295,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
                             "maxcost": "13",
-                            "mincost": "8",
-                            "minunit": "Leader and 5 Grunts"
+                            "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -3376,10 +3377,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Boss and 2 Grunts",
+                            "mincost": "5",
                             "maxcost": "-",
                             "maxunit": "-",
-                            "mincost": "5"
+                            "minunit": "Boss and 2 Grunts"
                         },
                         "models": [
                             {
@@ -3493,10 +3494,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "maxunit": "-",
                             "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
-                            "maxcost": "-",
-                            "maxunit": "-"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -3574,10 +3575,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "maxcost": "12",
                             "mincost": "7",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 4 Grunts",
-                            "maxcost": "12"
+                            "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -3649,9 +3650,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "8",
-                            "maxcost": "15",
                             "maxunit": "Leader and 4 Grunts",
+                            "maxcost": "15",
+                            "mincost": "8",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -3732,10 +3733,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
                             "maxcost": "-",
                             "mincost": "5",
-                            "minunit": "Heidrun and Agrona"
+                            "minunit": "Heidrun and Agrona",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -4625,7 +4626,7 @@
                                     },
                                     {
                                         "name": "Trapper [5\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 5\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
@@ -4669,7 +4670,7 @@
                     {
                         "name": "Malvin & Mayhem",
                         "points": "13",
-                        "category": "Warjacks/Warbeasts/Horrors",
+                        "category": "Solos",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -5277,6 +5278,10 @@
                                         "description": "When an enemy living or undead model is destroyed while in this model's command range, this model gains the destroyed model's corpse token. When a friendly living model is destroyed by a continuous effect, an enemy attack, or collateral damage from an enemy attack while in this model's command range, this model gains the destroyed model's corpse token. This model can have up to five corpse tokens at any time."
                                     },
                                     {
+                                        "name": "Chain Attack [Iron Reapers] [Death Chill]",
+                                        "description": "If this model hits the same model with two Iron Reapers attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Divine Manifestation",
                                         "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
                                     },
@@ -5330,10 +5335,6 @@
                                             {
                                                 "name": "Blood Reaper",
                                                 "description": "When this model makes an initial attack with this weapon, it makes one melee attack with this weapon against each model in its LOS that is in this weapon's melee range. Blood Reaper attacks are simultaneous."
-                                            },
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
                                             }
                                         ],
                                         "damagetype": [
@@ -6673,8 +6674,8 @@
                         "fieldallowance": "C",
                         "unitpoints": {
                             "maxunit": "-",
-                            "mincost": "5",
                             "maxcost": "-",
+                            "mincost": "5",
                             "minunit": "Blythe and Bull"
                         },
                         "models": [
@@ -6824,9 +6825,9 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "maxcost": "-",
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "10",
+                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "-",
                             "maxunit": "-"
                         },
                         "models": [

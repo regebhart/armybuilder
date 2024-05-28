@@ -697,7 +697,7 @@
                                                         "ability": [
                                                             {
                                                                 "name": "Critical Amputation",
-                                                                "description": ""
+                                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                                             }
                                                         ]
                                                     }
@@ -3155,7 +3155,7 @@
                                         "subabilities": [
                                             {
                                                 "name": "Brutality",
-                                                "description": "During its Combat Action, this model can spend rage tokens to make additional melee attacks. It can make one additional attack for each token spent."
+                                                "description": "FIX ME"
                                             },
                                             {
                                                 "name": "Hyper-Aggression",
@@ -3422,9 +3422,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "11",
-                            "minunit": "Leader and 4 Grunts",
                             "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 4 Grunts",
+                            "maxcost": "11",
                             "mincost": "6"
                         },
                         "models": [
@@ -3499,10 +3499,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "9",
-                            "maxunit": "-",
                             "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts"
+                            "mincost": "9",
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -3589,9 +3589,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "mincost": "6",
+                            "maxunit": "Leader and 9 Grunts",
                             "maxcost": "11",
-                            "minunit": "Leader and 4 Grunts",
-                            "maxunit": "Leader and 9 Grunts"
+                            "minunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -3656,10 +3656,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
-                            "maxunit": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "mincost": "10"
+                            "maxunit": "-",
+                            "mincost": "10",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -3753,8 +3753,8 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "7",
                             "maxcost": "12",
+                            "mincost": "7",
                             "maxunit": "Leader and 9 Grunts",
                             "minunit": "Leader and 4 Grunts"
                         },
@@ -3824,10 +3824,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "8",
-                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "mincost": "8",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -3908,10 +3908,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "9",
-                            "maxunit": "-",
-                            "maxcost": "-"
+                            "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -3992,8 +3992,8 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "-",
                             "mincost": "4"
                         },
@@ -4591,7 +4591,7 @@
                                     },
                                     {
                                         "name": "Trapper [5\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 5\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
@@ -4635,7 +4635,7 @@
                     {
                         "name": "Malvin & Mayhem",
                         "points": "13",
-                        "category": "Warjacks/Warbeasts/Horrors",
+                        "category": "Solos",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -5148,6 +5148,10 @@
                                         "description": "When an enemy living or undead model is destroyed while in this model's command range, this model gains the destroyed model's corpse token. When a friendly living model is destroyed by a continuous effect, an enemy attack, or collateral damage from an enemy attack while in this model's command range, this model gains the destroyed model's corpse token. This model can have up to five corpse tokens at any time."
                                     },
                                     {
+                                        "name": "Chain Attack [Iron Reapers] [Death Chill]",
+                                        "description": "If this model hits the same model with two Iron Reapers attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Divine Manifestation",
                                         "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
                                     },
@@ -5201,10 +5205,6 @@
                                             {
                                                 "name": "Blood Reaper",
                                                 "description": "When this model makes an initial attack with this weapon, it makes one melee attack with this weapon against each model in its LOS that is in this weapon's melee range. Blood Reaper attacks are simultaneous."
-                                            },
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
                                             }
                                         ],
                                         "damagetype": [
@@ -6278,7 +6278,8 @@
                         "points": "4",
                         "category": "Solos",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Thornfall Alliance"
                         ],
                         "factions": [
                             "Circle Orboros",
@@ -6287,6 +6288,7 @@
                             "Mercenaries",
                             "Orgoth",
                             "Skorne",
+                            "Thornfall Alliance",
                             "Trollbloods"
                         ],
                         "fieldallowance": "C",
@@ -6315,6 +6317,10 @@
                                     {
                                         "name": "Impervious Flesh",
                                         "description": "When this model suffers a damage roll, roll one fewer die."
+                                    },
+                                    {
+                                        "name": "Mercenary [Circle, Legion Of Everblight, Skorne, Trollbloods, Thornfall Alliance, Orgoth, Infernals]",
+                                        "description": "This model will work for Circle, Legion Of Everblight, Skorne, Trollbloods, Thornfall Alliance, Orgoth, Infernals."
                                     },
                                     {
                                         "name": "Partisan [Thornfall Alliance]",
@@ -6662,7 +6668,8 @@
                         "points": "14",
                         "category": "Solos",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Thornfall Alliance"
                         ],
                         "factions": [
                             "Circle Orboros",
@@ -6697,8 +6704,8 @@
                                         "description": "This model cannot be targeted by ranged or magic attacks while knocked down."
                                     },
                                     {
-                                        "name": "Lesser Warlock",
-                                        "description": "This model is not a warlock but has the following special rules: Battlegroup Commander, Fury Manipulation, Healing, Spellcaster, and Transferring Damage. This model must have at least one warbeast in its battlegroup at the start of the game."
+                                        "name": "Mercenary [Circle, Legion, Skorne, Trollbloods, Thornfall Alliance, Orgoth, or Infernals]",
+                                        "description": "This model will work for Circle, Legion, Skorne, Trollbloods, Thornfall Alliance, Orgoth, or Infernals."
                                     },
                                     {
                                         "name": "Partisan [Thornfall Alliance]",
@@ -6894,9 +6901,9 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
+                            "mincost": "5",
                             "minunit": "Blythe and Bull",
                             "maxcost": "-",
-                            "mincost": "5",
                             "maxunit": "-"
                         },
                         "models": [
@@ -7046,10 +7053,10 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "mincost": "10",
                             "minunit": "Leader and 5 Grunts",
+                            "maxcost": "-",
                             "maxunit": "-",
-                            "maxcost": "-"
+                            "mincost": "10"
                         },
                         "models": [
                             {

@@ -66,7 +66,14 @@ class _CategoryListState extends State<CategoryList> {
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: InkWell(
             onTap: () {
-              faction.setSelectedCategory(index, null);
+              faction.setSelectedCategory(
+                  index,
+                  null,
+                  index == 1
+                      ? army.selectedcasterFactionIndexes.isNotEmpty
+                          ? army.selectedcasterFactionIndexes
+                          : null
+                      : null);
             },
             borderRadius: BorderRadius.circular(5),
             child: ClipRRect(

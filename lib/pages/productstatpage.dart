@@ -31,7 +31,7 @@ class _ProductStatPageState extends State<ProductStatPage> {
     List<Widget> modelsWidget = [];
     String cost = 'PC: ${p.points!}';
 
-    if (!army.viewingcohort) {
+    if (!army.viewingcohort[0]) {
       p = army.selectedProduct;
     } else {
       c = army.selectedCohort;

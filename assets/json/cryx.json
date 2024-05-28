@@ -2887,8 +2887,8 @@
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Chain Attack: Flash",
-                                        "description": "If this model hits the same model with both of it's initial melee attacks, after resolving the attacks you can immediately warp this model anywhere completely within 3\" of its current location."
+                                        "name": "Chain Attack [Blade] [Flash]",
+                                        "description": "If this model hits the same model with two Blade attacks, after resolving the attacks it can immediately Flash. (Immediately warp this model anywhere completely within 3\" of its current location.)"
                                     },
                                     {
                                         "name": "Dark Shroud",
@@ -2944,7 +2944,7 @@
                                         "count": "1"
                                     },
                                     {
-                                        "name": "Pole Arm Left Blade",
+                                        "name": "Blade (Left)",
                                         "type": "melee",
                                         "fieldoffire": "none",
                                         "rng": "2",
@@ -2958,7 +2958,7 @@
                                         ]
                                     },
                                     {
-                                        "name": "Pole Arm Right Blade",
+                                        "name": "Blade (Right)",
                                         "type": "melee",
                                         "fieldoffire": "none",
                                         "rng": "2",
@@ -6239,8 +6239,8 @@
                                         "description": "If this model begins the game in Deneghra's battlegroup, it is bonded to her. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Deneghra and in her control range, it gains Apparition. (During your Control Phase, Warp this model anywhere completely within 2” of its current location.)"
                                     },
                                     {
-                                        "name": "Chain Attack: Smash & Grab",
-                                        "description": "If this model hits the same model with two initial attacks with Open Fist, after resolving the attacks it can immediately make a headbutt or throw power attack against that model."
+                                        "name": "Chain Attack [Wicked Claw] [Smash & Grab]",
+                                        "description": "If this model hits the same model with two Wicked Claw attacks, after resolving the attacks it can immediately Smash & Grab. (This model can make a headbutt or throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Ghostly",
@@ -8862,8 +8862,8 @@
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Chain Attack: Maelstrom",
-                                        "description": "If this model hits two different enemy models with it's initial attacks, it gains one additional ranged attack."
+                                        "name": "Chain Attack [Wraithstrom Pistol] [Maelstorm]",
+                                        "description": "If this model hits the same model with two Wraithstrom Pistol attacks, after resolving the attacks it can immediately Maelstorm. (This model gains one additional ranged attack.)"
                                     },
                                     {
                                         "name": "Soul Taker [3 Tokens]",
@@ -9391,6 +9391,10 @@
                                 ],
                                 "characterabilities": [
                                     {
+                                        "name": "Chain Attack [Wraithlock] [Death Chill]",
+                                        "description": "If this model hits the same model with two Wraithlock attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Soul Taker [3 Tokens]",
                                         "description": "This model can gain soul tokens. This model can carry up to 3 soul tokens at any time.."
                                     }
@@ -9429,12 +9433,6 @@
                                         "rof": "1",
                                         "pow": "10",
                                         "count": "2",
-                                        "ability": [
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
-                                            }
-                                        ],
                                         "nestedabilities": [
                                             {
                                                 "topability": {
@@ -9659,6 +9657,10 @@
                                 ],
                                 "characterabilities": [
                                     {
+                                        "name": "Chain Attack [Magelock] [Vortex Blast]",
+                                        "description": "If this model hits the same model with two Magelock attacks, after resolving the attacks it can immediately Vortex Blast. (This model can make an additional ranged attack against that model. If the attack misses, nothing happens. If it hits, push models within 2” of the model hit 2” directly toward it in the order you choose. Then center a 3” AOE on the model hit. Models in the AOE are hit and suffer a POW 12 damage roll. Models boxed by Vortex Blast are removed from play.)"
+                                    },
+                                    {
                                         "name": "Elite Cadre [Satyxis Gunslingers] [Run & Gun]",
                                         "description": "Friendly Satyxis Gunslingers models gain Run & Gun. (At the end of it's activation, if a model with Run & Gun destroyed one or more enemy models with ranged attacks this activation, it can make a full advance.)"
                                     },
@@ -9699,12 +9701,6 @@
                                         "rof": "1",
                                         "pow": "10",
                                         "count": "2",
-                                        "ability": [
-                                            {
-                                                "name": "Chain Attack: Vortex Blast",
-                                                "description": "If this model hits the same enemy model with both it's initial ranged attack with this weapon, after resolving the attacks it can immediately make an additional ranged attack against that model. If the attack misses, nothing happens. If it hits, push models within 2” of the model hit 2” directly toward it in the order you choose. Then center a 3” AOE on the model hit. Models in the AOE are hit and suffer a POW 12 damage roll. Models boxed by Vortex Blast are removed from play."
-                                            }
-                                        ],
                                         "nestedabilities": [
                                             {
                                                 "topability": {
@@ -10020,10 +10016,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxcost": "13",
                             "minunit": "Leader and 5 Grunts",
-                            "mincost": "8",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxcost": "13",
+                            "maxunit": "Leader and 9 Grunts",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -10098,9 +10094,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "16",
-                            "maxunit": "Leader and 4 Grunts",
                             "minunit": "Leader and 2 Grunts",
-                            "mincost": "10"
+                            "mincost": "10",
+                            "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -10208,10 +10204,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxcost": "13",
                             "minunit": "Leader and 5 Grunts",
-                            "maxunit": "Leader and 9 Grunts",
-                            "mincost": "8"
+                            "mincost": "8",
+                            "maxcost": "13",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -10277,9 +10273,9 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
+                            "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
                             "maxcost": "9",
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "6"
                         },
                         "models": [
@@ -10356,10 +10352,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "Blackbane and 9 Grunts",
-                            "maxcost": "16",
+                            "minunit": "Blackbane and 5 Grunts",
                             "mincost": "10",
-                            "minunit": "Blackbane and 5 Grunts"
+                            "maxcost": "16",
+                            "maxunit": "Blackbane and 9 Grunts"
                         },
                         "models": [
                             {
@@ -10500,10 +10496,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "mincost": "8",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 5 Grunts",
                             "maxcost": "14",
-                            "mincost": "8"
+                            "maxunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -10590,9 +10586,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "8",
-                            "maxcost": "14",
                             "maxunit": "Leader and 5 Grunts",
+                            "maxcost": "14",
+                            "mincost": "8",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -10663,10 +10659,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "9",
+                            "mincost": "6",
                             "minunit": "Leader and 5 Grunts",
-                            "maxunit": "Leader and 9 Grunts",
-                            "mincost": "6"
+                            "maxcost": "9",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -10737,10 +10733,10 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts",
                             "maxcost": "9",
-                            "mincost": "6"
+                            "mincost": "6",
+                            "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -10805,10 +10801,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "-",
+                            "minunit": "Necrosurgeon and 3 Stitch Thralls",
                             "mincost": "3",
-                            "maxcost": "-",
-                            "minunit": "Necrosurgeon and 3 Stitch Thralls"
+                            "maxunit": "-",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -10912,9 +10908,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "mincost": "4",
-                            "maxunit": "-",
+                            "minunit": "Gunner and 2 Grunts",
                             "maxcost": "-",
-                            "minunit": "Gunner and 2 Grunts"
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -11079,9 +11075,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
+                            "maxcost": "12",
                             "mincost": "7",
-                            "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "12"
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -11171,10 +11167,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "10",
                             "minunit": "Leader and 5 Grunts",
-                            "mincost": "6"
+                            "maxcost": "10",
+                            "mincost": "6",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -11278,10 +11274,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "6",
                             "maxunit": "-",
+                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-"
+                            "mincost": "6"
                         },
                         "models": [
                             {
@@ -11384,10 +11380,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
                             "maxcost": "12",
-                            "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts"
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -11476,10 +11472,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "7",
-                            "maxcost": "12",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 5 Grunts"
+                            "maxunit": "Leader and 5 Grunts",
+                            "maxcost": "12",
+                            "mincost": "7"
                         },
                         "models": [
                             {
@@ -11513,7 +11509,7 @@
                                     "rat": "5",
                                     "def": "13",
                                     "arm": "15",
-                                    "cmd": "77",
+                                    "cmd": "7",
                                     "hp": "8"
                                 },
                                 "hpbars": [
@@ -11588,10 +11584,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "5",
+                            "maxunit": "-",
                             "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
-                            "maxunit": "-"
+                            "mincost": "5"
                         },
                         "models": [
                             {
@@ -11722,8 +11718,8 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxunit": "Leader and 5 Grunts",
-                            "mincost": "8",
                             "maxcost": "14",
+                            "mincost": "8",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -11837,9 +11833,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "maxcost": "-",
                             "maxunit": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-",
                             "mincost": "4"
                         },
                         "models": [
@@ -11943,9 +11939,9 @@
                         "fieldallowance": "U",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
+                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "6",
-                            "maxcost": "11",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxcost": "11"
                         },
                         "models": [
                             {
@@ -12017,10 +12013,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "15",
-                            "mincost": "9",
+                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "Leader and 4 Grunts",
-                            "minunit": "Leader and 2 Grunts"
+                            "mincost": "9",
+                            "maxcost": "15"
                         },
                         "models": [
                             {
@@ -12159,10 +12155,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "8",
+                            "maxunit": "-",
                             "maxcost": "-",
-                            "minunit": "Maelovus, Admonia and Tremulus",
-                            "maxunit": "-"
+                            "mincost": "8",
+                            "minunit": "Maelovus, Admonia and Tremulus"
                         },
                         "models": [
                             {
@@ -13452,7 +13448,7 @@
                                                 "description": "Dark Fire is a RNG 10, POW 12 Arcane Attack. When a living enemy model is destroyed by Dark Fire, the spellcaster gains the destroyed model's soul token regardless of the proximity of other models."
                                             },
                                             {
-                                                "name": "Disbanding",
+                                                "name": "Disbinding",
                                                 "description": "Enemy upkeep spells and animi on this model and its unit immediately expire."
                                             }
                                         ]
@@ -15381,7 +15377,7 @@
                                     },
                                     {
                                         "name": "Trapper [5\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 5\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
@@ -16113,7 +16109,7 @@
                     {
                         "name": "Malvin & Mayhem",
                         "points": "13",
-                        "category": "Warjacks/Warbeasts/Horrors",
+                        "category": "Solos",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -16603,7 +16599,7 @@
                                         "ability": [
                                             {
                                                 "name": "Critical Amputation",
-                                                "description": ""
+                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                             },
                                             {
                                                 "name": "Knockdown",
@@ -16947,6 +16943,10 @@
                                         "description": "When an enemy living or undead model is destroyed while in this model's command range, this model gains the destroyed model's corpse token. When a friendly living model is destroyed by a continuous effect, an enemy attack, or collateral damage from an enemy attack while in this model's command range, this model gains the destroyed model's corpse token. This model can have up to five corpse tokens at any time."
                                     },
                                     {
+                                        "name": "Chain Attack [Iron Reapers] [Death Chill]",
+                                        "description": "If this model hits the same model with two Iron Reapers attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Divine Manifestation",
                                         "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
                                     },
@@ -17000,10 +17000,6 @@
                                             {
                                                 "name": "Blood Reaper",
                                                 "description": "When this model makes an initial attack with this weapon, it makes one melee attack with this weapon against each model in its LOS that is in this weapon's melee range. Blood Reaper attacks are simultaneous."
-                                            },
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
                                             }
                                         ],
                                         "damagetype": [
@@ -18522,6 +18518,7 @@
                                     "rat": "5",
                                     "def": "14",
                                     "arm": "17",
+                                    "cmd": "10",
                                     "hp": "8"
                                 },
                                 "nestedabilities": [
@@ -18541,7 +18538,7 @@
                                             },
                                             {
                                                 "name": "Winter Storm (★Action)",
-                                                "description": "Enemy models that begin their activations within 10” of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
+                                                "description": "Enemy models that begin their activations within CMD of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
                                             }
                                         ]
                                     }
@@ -18600,10 +18597,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "Croe and 9 Grunts",
-                            "mincost": "8",
+                            "minunit": "Croe and 5 Grunts",
                             "maxcost": "14",
-                            "minunit": "Croe and 5 Grunts"
+                            "mincost": "8",
+                            "maxunit": "Croe and 9 Grunts"
                         },
                         "models": [
                             {
@@ -18775,10 +18772,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "minunit": "Raefyll and 5 Grunts",
-                            "mincost": "8",
                             "maxunit": "Raefyll and 9 Grunts",
-                            "maxcost": "14"
+                            "maxcost": "14",
+                            "mincost": "8",
+                            "minunit": "Raefyll and 5 Grunts"
                         },
                         "models": [
                             {
@@ -18929,9 +18926,9 @@
                         "fieldallowance": "C",
                         "unitpoints": {
                             "minunit": "Blythe and Bull",
+                            "mincost": "5",
                             "maxunit": "-",
-                            "maxcost": "-",
-                            "mincost": "5"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -19084,10 +19081,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "8",
                             "maxunit": "Boomhowler and 9 Grunts",
-                            "maxcost": "12",
-                            "minunit": "Boomhowler and 5 Grunts"
+                            "minunit": "Boomhowler and 5 Grunts",
+                            "mincost": "8",
+                            "maxcost": "12"
                         },
                         "models": [
                             {
@@ -19228,9 +19225,9 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
+                            "mincost": "6",
                             "minunit": "Mar, Morland and Zira",
                             "maxunit": "-",
-                            "mincost": "6",
                             "maxcost": "-"
                         },
                         "models": [

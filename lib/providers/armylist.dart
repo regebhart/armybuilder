@@ -21,6 +21,7 @@ class ArmyListNotifier extends ChangeNotifier {
   late List<Product> _categoryProductsList;
   late int _addToIndex;
   late ArmyList _armyList;
+  late bool _deploying;
   late List<DeployedArmyList> _deployedLists;
   late String _factionSelected;
   late Map<String, dynamic> _encounterLevelSelected;
@@ -30,17 +31,19 @@ class ArmyListNotifier extends ChangeNotifier {
   late int _selectedcaster;
   late String _selectedcastertype;
   late Product _selectedcasterProduct;
+  late List<int> _selectedcasterFactionIndexes;
   late int _castercount;
   late Product _selectedProduct;
   late Cohort _selectedCohort;
-  late bool _viewingcohort;
-  late String _status;
+  late List<bool> _viewingcohort;
+  late String _status; //list building status - 'new' for new list, 'edit' for editing an existing list
   late int _armylistindex;
   late String _armylistFactionFilter;
   late int _cohortleaderindex;
   late int _cohortindex;
   // late int _groupindex;
   late String _leadertype;
+
   bool _swiping = false;
   List<List<dynamic>> _hptracking = [];
   List<List<dynamic>> _custombartracking = [];
@@ -99,6 +102,7 @@ class ArmyListNotifier extends ChangeNotifier {
   String get factionSelected => _factionSelected;
   Map<String, dynamic> get encounterLevelSelected => _encounterLevelSelected;
   ArmyList get armyList => _armyList;
+  bool get deploying => _deploying;
   List<DeployedArmyList> get deployedLists => _deployedLists;
   int get currentpoints => _currentpoints;
   int get cohortpoints => _cohortpoints;
@@ -106,9 +110,10 @@ class ArmyListNotifier extends ChangeNotifier {
   int get selectedcaster => _selectedcaster;
   String get selectedcastertype => _selectedcastertype;
   Product get selectedcasterProduct => _selectedcasterProduct;
+  List<int> get selectedcasterFactionIndexes => _selectedcasterFactionIndexes;
   Product get selectedProduct => _selectedProduct;
   Cohort get selectedCohort => _selectedCohort;
-  bool get viewingcohort => _viewingcohort;
+  List<bool> get viewingcohort => _viewingcohort;
   String get status => _status;
   bool get swiping => _swiping;
   int get armylistindex => _armylistindex;
@@ -134,7 +139,8 @@ class ArmyListNotifier extends ChangeNotifier {
     _castercount = -1;
     _selectedProduct = blankproduct;
     _selectedCohort = Cohort(product: blankproduct, selectedOptions: []);
-    _viewingcohort = false;
+    _selectedcasterFactionIndexes = [];
+    _viewingcohort = [false, false];
     _selectedcasterProduct = blankproduct;
     _status = '';
     _armyList = ArmyList(
@@ -149,6 +155,7 @@ class ArmyListNotifier extends ChangeNotifier {
       structures: [],
       jrcasters: [],
     );
+    _deploying = false;
     _deployedLists = [];
     _armylistindex = 0;
     _armylistFactionFilter = 'All';
@@ -187,6 +194,7 @@ class ArmyListNotifier extends ChangeNotifier {
   setFactionSelected(String faction) {
     _factionSelected = faction;
     _armyList.listfaction = faction;
+
     notifyListeners();
   }
 
@@ -194,15 +202,19 @@ class ArmyListNotifier extends ChangeNotifier {
     _addToIndex = index;
   }
 
+  setDeploying(bool value) {
+    _deploying = value;
+  }
+
   setSelectedProduct(Product product) {
     _selectedProduct = product;
-    _viewingcohort = false;
+    _viewingcohort[0] = false;
     notifyListeners();
   }
 
   setSelectedCohortWithOptions(Cohort cohort) {
     _selectedCohort = cohort;
-    _viewingcohort = true;
+    _viewingcohort[0] = true;
     notifyListeners();
   }
 
@@ -212,7 +224,7 @@ class ArmyListNotifier extends ChangeNotifier {
     _deployedLists[listindex].selectedModelIndex = modelindex;
     _deployedLists[listindex].selectedListModelIndex = listmodelindex;
     _deployedLists[listindex].barcount = barcount;
-    _viewingcohort = false;
+    _viewingcohort[listindex] = false;
     notifyListeners();
   }
 
@@ -222,7 +234,7 @@ class ArmyListNotifier extends ChangeNotifier {
     _deployedLists[listindex].selectedModelIndex = modelindex;
     _deployedLists[listindex].selectedListModelIndex = listmodelindex;
     _deployedLists[listindex].barcount = barcount;
-    _viewingcohort = true;
+    _viewingcohort[listindex] = true;
     notifyListeners();
   }
 
@@ -235,7 +247,9 @@ class ArmyListNotifier extends ChangeNotifier {
     _encounterLevelSelected = level;
     _encounterlevel = level['level'];
     _armyList.pointtarget = level['armypoints'].toString();
-    updateSelectedCaster(0, 'warcaster');
+    if (_armyList.leadergroup[0].leader.name != '') {
+      updateSelectedCaster(0, 'warcaster');
+    }
     if (_armyList.leadergroup.length > level['castercount']) {
       do {
         _armyList.leadergroup.removeLast();
@@ -262,6 +276,7 @@ class ArmyListNotifier extends ChangeNotifier {
 
   bool updateSelectedCaster(int value, String type) {
     bool found = false;
+
     _selectedcaster = value;
     _selectedcastertype = type;
     switch (type) {
@@ -270,6 +285,7 @@ class ArmyListNotifier extends ChangeNotifier {
           for (var a = 0; a < armyList.leadergroup.length; a++) {
             if (value == a) {
               _selectedcasterProduct = armyList.leadergroup[a].leader;
+              setcasterfactionindex();
               found = true;
               break;
             }
@@ -280,6 +296,7 @@ class ArmyListNotifier extends ChangeNotifier {
         for (var a = armyList.leadergroup.length; a < armyList.leadergroup.length + armyList.jrcasters.length; a++) {
           if (value == a) {
             _selectedcasterProduct = _armyList.jrcasters[a - armyList.leadergroup.length].leader;
+            setcasterfactionindex();
             found = true;
             break;
           }
@@ -292,6 +309,7 @@ class ArmyListNotifier extends ChangeNotifier {
           if (FactionNotifier().checkUnitForMashal(armyList.units[u])) {
             if (value == totalcasters + marshals) {
               _selectedcasterProduct = _armyList.units[u].unit;
+              setcasterfactionindex();
               found = true;
               break;
             }
@@ -305,6 +323,67 @@ class ArmyListNotifier extends ChangeNotifier {
     }
     notifyListeners();
     return found;
+  }
+
+  setcasterfactionindex() {
+    //sets faction indexes to show the appropriate cohort models that the caster can take
+    int primaryfactionindex = 0;
+    _selectedcasterFactionIndexes.clear();
+    for (var f in _selectedcasterProduct.primaryFaction) {
+      _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == f));
+    }
+    for (var ab in _selectedcasterProduct.models[0].characterabilities!) {
+      // Partisan - not mercenary, faction of selected faction
+      // Mercenary
+      // Strange Bedfellows - faction of caster
+      // Attachment
+      // Attached
+      // Requisition - gains tagged faction
+      // Military Atache - mercenary model for tagged faction
+      // Split Loyalties - two primary factions, selected faction is valid
+      // Animosity - can not be in army that includes tag
+      // Faithful - is a Religion of the Twins model as well as primary faction ///should be primary faction
+      // Garrison Troops - is Ord or Llael - //////should be primary
+      // Flames in the Darkness - faction of the caster
+      // Heart of Darkness - faction of the caster - /////should be primary
+      // Special Issue - can be included in any list with character listed
+
+      if (ab.name.toLowerCase().contains("split loyalties")) {
+        _selectedcasterFactionIndexes.clear();
+        _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == _armyList.listfaction));
+      }
+      if (ab.name.toLowerCase().contains('partisan')) {
+        if (_armyList.listfaction != "Mercenaries") {
+          _selectedcasterFactionIndexes.clear();
+          _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == _armyList.listfaction));
+        }
+      }
+      if (ab.name.toLowerCase().contains('heart of darkness')) {
+        if (_armyList.listfaction == "Infernals") {
+          _selectedcasterFactionIndexes.remove("Infernals");
+        }
+      }
+      // case "strange bedfellows":
+      //   //no changes
+      //   break;
+      // case "requisition":
+      //   //should be primary faction
+      //   break;
+      // case "faitful":
+      //   //should be primary faction
+      //   break;
+      // case "mercenary atache":
+      //   //becomes mercenary for llael, cohort
+      //   break;
+      // case "garrison"
+      //   break;
+    }
+    // if (_selectedcasterProduct.primaryFaction.length > 1) {
+    //   primaryfactionindex = _selectedcasterProduct.primaryFaction.indexWhere((element) => element == _armyList.listfaction);
+    //   _selectedcasterFactionIndex =
+    //       AppData().factionList.indexWhere((element) => element == _selectedcasterProduct.primaryFaction[primaryfactionindex]);
+    // }
+    notifyListeners();
   }
 
   updateEverything() {
@@ -1128,7 +1207,7 @@ class ArmyListNotifier extends ChangeNotifier {
   resetList() {
     _armyList = ArmyList(
       name: '',
-      listfaction: '',
+      listfaction: _armyList.listfaction,
       pointtarget: encounterLevelSelected['armypoints'].toString(),
       totalpoints: '0',
       leadergroup: [LeaderGroup(leader: blankproduct, leaderattachment: blankproduct, cohort: [], spellrack: [])],
@@ -1143,6 +1222,7 @@ class ArmyListNotifier extends ChangeNotifier {
     _cohortpoints = 0;
     _selectedcaster = 0;
     _castercount = -1;
+    _selectedcasterFactionIndexes = [];
     _selectedProduct = blankproduct;
     _leadertype = 'warcaster';
     _status = 'new';
@@ -1156,9 +1236,16 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   String copytListToClipboard() {
-    String export = 'WM3.5 Army\n\n$factionSelected - ${_listnameController.text}\n\n$_currentpoints / ${_encounterLevelSelected['armypoints']}\n';
+    // String export = 'WM3.5 Army\n\n$factionSelected - ${_listnameController.text}\n\n$_currentpoints / ${_encounterLevelSelected['armypoints']}\n';
+    ArmyList list;
+    if (_deploying) {
+      list = _deployedLists[0].list;
+    } else {
+      list = _armyList;
+    }
+    String export = 'WM3.5 Army\n\n${list.listfaction} - ${list.name}\n\n${list.totalpoints} / ${list.pointtarget}\n';
 
-    for (var g in _armyList.leadergroup) {
+    for (var g in list.leadergroup) {
       if (g.leader.name != '') {
         export = '$export\n${g.leader.name} - BGP: +${g.leader.points}';
       }
@@ -1174,9 +1261,9 @@ class ArmyListNotifier extends ChangeNotifier {
         }
       }
     }
-    if (_armyList.jrcasters.isNotEmpty) {
+    if (list.jrcasters.isNotEmpty) {
       export = '$export\n';
-      for (var jr in _armyList.jrcasters) {
+      for (var jr in list.jrcasters) {
         export = '$export\n${jr.leader.name} - PC: ${jr.leader.points}';
         for (var c in jr.cohort) {
           export = '$export\n- ${c.product.name} - PC: ${c.product.points}';
@@ -1188,9 +1275,9 @@ class ArmyListNotifier extends ChangeNotifier {
         }
       }
     }
-    if (_armyList.units.isNotEmpty) {
+    if (list.units.isNotEmpty) {
       export = '$export\n';
-      for (var u in _armyList.units) {
+      for (var u in list.units) {
         export =
             '$export\n${u.unit.name} - ${u.unit.unitPoints![u.minsize ? 'minunit' : 'maxunit']} - PC: ${u.unit.unitPoints![u.minsize ? 'mincost' : 'maxcost']}';
         if (u.commandattachment.name != '') {
@@ -1211,21 +1298,21 @@ class ArmyListNotifier extends ChangeNotifier {
         }
       }
     }
-    if (_armyList.solos.isNotEmpty) {
+    if (list.solos.isNotEmpty) {
       export = '$export\n';
-      for (var s in _armyList.solos) {
+      for (var s in list.solos) {
         export = '$export\n${s.name} - PC: ${s.points}';
       }
     }
-    if (_armyList.battleengines.isNotEmpty) {
+    if (list.battleengines.isNotEmpty) {
       export = '$export\n';
-      for (var be in _armyList.battleengines) {
+      for (var be in list.battleengines) {
         export = '$export\n${be.name} - PC: ${be.points}';
       }
     }
-    if (_armyList.structures.isNotEmpty) {
+    if (list.structures.isNotEmpty) {
       export = '$export\n';
-      for (var st in _armyList.structures) {
+      for (var st in list.structures) {
         export = '$export\n${st.name} - PC: ${st.points}';
       }
     }

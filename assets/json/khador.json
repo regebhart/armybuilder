@@ -4686,12 +4686,12 @@
                                         "description": "When this model destroys one or more models with a melee attack during its Combat Action, immediately after the attack is resolved it must make one additional melee attack against another model in its melee range."
                                     },
                                     {
-                                        "name": "Chain Attack: Brutality",
-                                        "description": "If this model hits the same model with both its initial attacks with its weapons, after resolving the attacks it can immediately make one head-butt power attack against that model."
+                                        "name": "Chain Attack [War Axe] [Brutalize]",
+                                        "description": "If this model hits the same model with two War Axe attacks, after resolving the attacks it can immediately Brutalize. (This model may make one head-butt power attack against that model.)"
                                     },
                                     {
-                                        "name": "Imprint [Jury-Rigged[SPD]]",
-                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged[SPD]. (A model with Jury-Rigged can spend 1 focus point to use Jury-Rigged at the start of its activation. This activation, the model gains +2 SPD. At the end of the activation, the model suffers 1 damage point to its first available Movement system box. The model can't use Jury-Rigged if its Movement system is crippled. Jury-Rigged can only be used once per activation.)"
+                                        "name": "Imprint [Jury-Rigged [SPD]]",
+                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]. (A model with Jury-Rigged can spend 1 focus point to use Jury-Rigged at the start of its activation. This activation, the model gains +2 SPD. At the end of the activation, the model suffers 1 damage point to its first available Movement system box. The model can't use Jury-Rigged if its Movement system is crippled. Jury-Rigged can only be used once per activation.)"
                                     },
                                     {
                                         "name": "Unstable",
@@ -5625,7 +5625,7 @@
                                         "ability": [
                                             {
                                                 "name": "Critical Amputation",
-                                                "description": ""
+                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                             }
                                         ]
                                     }
@@ -6471,8 +6471,8 @@
                                         "description": "If this model begins the game in Vladimir's battlegroup, it is bonded to him. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Vladimir and in his control range, it gains Restraint."
                                     },
                                     {
-                                        "name": "Chain Attack: Brutality",
-                                        "description": "If this model hits the same model with both its initial attacks with its weapons, after resolving the attacks it can immediately make one head-butt power attack against that model."
+                                        "name": "Chain Attack [Excutioner Axe] [Brutalize]",
+                                        "description": "If this model hits the same model with two Excutioner Axe attacks, after resolving the attacks it can immediately Brutalize. (This model may make one head-butt power attack against that model.)"
                                     },
                                     {
                                         "name": "Gung-ho",
@@ -6514,7 +6514,7 @@
                                         "ability": [
                                             {
                                                 "name": "Critical Amputation",
-                                                "description": ""
+                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                             }
                                         ]
                                     },
@@ -6529,7 +6529,7 @@
                                         "ability": [
                                             {
                                                 "name": "Critical Amputation",
-                                                "description": ""
+                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                             }
                                         ]
                                     }
@@ -6985,7 +6985,7 @@
                                                         "ability": [
                                                             {
                                                                 "name": "Critical Amputation",
-                                                                "description": ""
+                                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                                             }
                                                         ]
                                                     }
@@ -7544,8 +7544,8 @@
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Chain Attack: Smash & Grab",
-                                        "description": "If this model hits the same model with two initial attacks with Open Fist, after resolving the attacks it can immediately make a headbutt or throw power attack against that model."
+                                        "name": "Chain Attack [Fist] [Smash & Grab]",
+                                        "description": "If this model hits the same model with two Fist attacks, after resolving the attacks it can immediately Smash & Grab. (This model can make a headbutt or throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Gung-ho",
@@ -8654,8 +8654,8 @@
                                         "description": "When this model is B2B with an enemy model during it's Normal Movement, it can push that model up to 2\" directly away from it. A model can be pushed by Bulldoze only once per turn. Bulldoze has no effect when this model makes a trample power attack."
                                     },
                                     {
-                                        "name": "Chain Attack: Smash & Grab",
-                                        "description": "If this model hits the same model with two initial attacks with Open Fist, after resolving the attacks it can immediately make a headbutt or throw power attack against that model."
+                                        "name": "Chain Attack [Bear Claw] [Smash & Grab]",
+                                        "description": "If this model hits the same model with two Bear Claw attacks, after resolving the attacks it can immediately Smash & Grab. (This model can make a headbutt or throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Hand of Vengeance",
@@ -11987,7 +11987,7 @@
                                     },
                                     {
                                         "name": "Trapper [4\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 4\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     }
                                 ],
                                 "stats": {
@@ -12040,8 +12040,8 @@
                         "unitpoints": {
                             "mincost": "2",
                             "minunit": "Leader and 3 Grunts",
-                            "maxcost": "4",
-                            "maxunit": "Leader and 5 Grunts"
+                            "maxunit": "Leader and 5 Grunts",
+                            "maxcost": "4"
                         },
                         "models": [
                             {
@@ -12101,10 +12101,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "8",
                             "maxcost": "12",
+                            "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts"
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -12219,10 +12219,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxcost": "4",
-                            "mincost": "2",
                             "minunit": "Leader and 3 Grunts",
-                            "maxunit": "Leader and 5 Grunts"
+                            "mincost": "2",
+                            "maxunit": "Leader and 5 Grunts",
+                            "maxcost": "4"
                         },
                         "models": [
                             {
@@ -12276,8 +12276,8 @@
                         "unitpoints": {
                             "maxunit": "Leader and 9 Grunts",
                             "mincost": "9",
-                            "maxcost": "15",
-                            "minunit": "Leader and 5 Grunts"
+                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "15"
                         },
                         "models": [
                             {
@@ -12361,10 +12361,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "maxcost": "-",
                             "minunit": "Volkov, Kolsk and Yarovich ",
-                            "mincost": "9"
+                            "mincost": "9",
+                            "maxcost": "-",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -12593,9 +12593,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxunit": "Leader and 4 Grunts",
-                            "mincost": "8",
                             "maxcost": "15",
-                            "minunit": "Leader and 2 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -12717,9 +12717,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "maxunit": "-",
+                            "maxcost": "-",
                             "mincost": "5",
-                            "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-"
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -12805,8 +12805,8 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
+                            "minunit": "Leader and 5 Grunts",
                             "maxcost": "12",
                             "maxunit": "Leader and 9 Grunts"
                         },
@@ -12880,10 +12880,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "17",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 4 Grunts",
-                            "mincost": "10"
+                            "mincost": "10",
+                            "maxcost": "17",
+                            "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -12975,10 +12975,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
                             "maxcost": "-",
                             "mincost": "5",
-                            "minunit": "Arcondvich and Standard"
+                            "minunit": "Arcondvich and Standard",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -13112,10 +13112,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "6",
-                            "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "10"
+                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "10",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -13198,9 +13198,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
+                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "8",
-                            "maxcost": "14",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxcost": "14"
                         },
                         "models": [
                             {
@@ -13299,10 +13299,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
+                            "maxcost": "13",
                             "mincost": "7",
-                            "maxcost": "13"
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -13389,10 +13389,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 3 Grunts",
+                            "mincost": "8",
                             "maxcost": "14",
                             "maxunit": "Leader and 9 Grunts",
-                            "mincost": "8"
+                            "minunit": "Leader and 3 Grunts"
                         },
                         "models": [
                             {
@@ -13493,10 +13493,10 @@
                         ],
                         "fieldallowance": "1",
                         "unitpoints": {
-                            "maxcost": "20",
+                            "maxunit": "Leader and 5 Grunts",
                             "mincost": "11",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 5 Grunts"
+                            "maxcost": "20"
                         },
                         "models": [
                             {
@@ -13608,9 +13608,9 @@
                         "fieldallowance": "1",
                         "unitpoints": {
                             "mincost": "10",
+                            "maxcost": "19",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 5 Grunts",
-                            "maxcost": "19"
+                            "maxunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -13731,9 +13731,9 @@
                         ],
                         "fieldallowance": "4",
                         "unitpoints": {
-                            "maxunit": "-",
                             "maxcost": "-",
                             "mincost": "7",
+                            "maxunit": "-",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -13813,8 +13813,8 @@
                         "fieldallowance": "4",
                         "unitpoints": {
                             "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "-",
+                            "minunit": "Leader and 2 Grunts",
                             "mincost": "7"
                         },
                         "models": [
@@ -13904,10 +13904,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
-                            "maxunit": "-",
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "6",
-                            "minunit": "Leader and 5 Grunts"
+                            "maxunit": "-",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -13980,10 +13980,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "9",
-                            "mincost": "4",
                             "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts"
+                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "4",
+                            "maxcost": "9"
                         },
                         "models": [
                             {
@@ -14053,9 +14053,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
-                            "maxcost": "9",
                             "maxunit": "Leader and 9 Grunts",
+                            "maxcost": "9",
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "5"
                         },
                         "models": [
@@ -14120,9 +14120,9 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxcost": "12",
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "6",
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "12",
                             "maxunit": "Leader and 5 Grunts"
                         },
                         "models": [
@@ -14188,9 +14188,9 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "mincost": "4",
                             "maxcost": "-",
+                            "mincost": "4",
+                            "maxunit": "-",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -15275,7 +15275,7 @@
                         "models": [
                             {
                                 "name": "Winter Korps Hunting Dog",
-                                "title": "Khador Command Attachement",
+                                "title": "Khador Command Attachment",
                                 "modeltype": [
                                     "Attachment",
                                     "Warrior"
@@ -15340,7 +15340,7 @@
                         "models": [
                             {
                                 "name": "Winter Korps Infantry - Auto Cannon",
-                                "title": "Winter Weapon Attachement",
+                                "title": "Winter Weapon Attachment",
                                 "modeltype": [
                                     "Attachment",
                                     "Warrior"
@@ -15412,7 +15412,7 @@
                         "models": [
                             {
                                 "name": "Winter Korps Infantry - Grenade Porter",
-                                "title": "Khador Weapon Attachement",
+                                "title": "Khador Weapon Attachment",
                                 "modeltype": [
                                     "Attachment",
                                     "Warrior"
@@ -15495,7 +15495,7 @@
                         "models": [
                             {
                                 "name": "Winter Korps Infantry - Rocketeer",
-                                "title": "Khador Weapon Attachement",
+                                "title": "Khador Weapon Attachment",
                                 "modeltype": [
                                     "Attachment",
                                     "Warrior"
@@ -15568,7 +15568,7 @@
                         "models": [
                             {
                                 "name": "Winter Korps Standard",
-                                "title": "Khador Command Attachement",
+                                "title": "Khador Command Attachment",
                                 "modeltype": [
                                     "Attachment",
                                     "Warrior"
@@ -17060,7 +17060,7 @@
                                     },
                                     {
                                         "name": "Trapper [5\"] (★Action)",
-                                        "description": "Place a 5” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
+                                        "description": "Place a 5\"” AOE in base contact with this model. The AOE remains in place for one round. Living and undead models entering or ending their activations in the AOE suffer a POW 10 damage roll. Models damaged by Trapper become knocked down. Models with Flight are not affected."
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
@@ -17617,7 +17617,7 @@
                     {
                         "name": "Malvin & Mayhem",
                         "points": "13",
-                        "category": "Warjacks/Warbeasts/Horrors",
+                        "category": "Solos",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -18586,7 +18586,7 @@
                                         "ability": [
                                             {
                                                 "name": "Critical Amputation",
-                                                "description": ""
+                                                "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged."
                                             },
                                             {
                                                 "name": "Knockdown",
@@ -19168,6 +19168,10 @@
                                         "description": "When an enemy living or undead model is destroyed while in this model's command range, this model gains the destroyed model's corpse token. When a friendly living model is destroyed by a continuous effect, an enemy attack, or collateral damage from an enemy attack while in this model's command range, this model gains the destroyed model's corpse token. This model can have up to five corpse tokens at any time."
                                     },
                                     {
+                                        "name": "Chain Attack [Iron Reapers] [Death Chill]",
+                                        "description": "If this model hits the same model with two Iron Reapers attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
+                                    },
+                                    {
                                         "name": "Divine Manifestation",
                                         "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
                                     },
@@ -19221,10 +19225,6 @@
                                             {
                                                 "name": "Blood Reaper",
                                                 "description": "When this model makes an initial attack with this weapon, it makes one melee attack with this weapon against each model in its LOS that is in this weapon's melee range. Blood Reaper attacks are simultaneous."
-                                            },
-                                            {
-                                                "name": "Chain Attack: Death Chill",
-                                                "description": "If this model hits the same model with both it's initial attacks with this weapon, the model hit becomes stationary for one round."
                                             }
                                         ],
                                         "damagetype": [
@@ -19488,16 +19488,16 @@
                                 ],
                                 "characterabilities": [
                                     {
+                                        "name": "Arcane Interference",
+                                        "description": "Arcane Interference - When this model hits an enemy model, upkeep spells and animi affected that model expire. Additionally the model hit loses all Focus points and cannot spend Fury points for one turn. When this model hits a warjack, that warjack sufferes Disruption."
+                                    },
+                                    {
                                         "name": "Partisan [Ios]",
                                         "description": "When included in a Ios army, this model is a Ios model instead of a Mercenary model."
                                     },
                                     {
-                                        "name": "Reposition [3\"]",
-                                        "description": "At the end of an activation in which it did not run or fail a charge, this model can advance up to 3\", then it's activation ends."
-                                    },
-                                    {
-                                        "name": "Spell Breaker",
-                                        "description": "When this model hits another model with an attack, enemy upkeep spells on the model hit expire. A spellcaster can keep that upkeep spell in play by suffering d3 damage points."
+                                        "name": "Whiplash",
+                                        "description": "When an enemy model misses this model with a magic attack, the attacking model becomes the target and is automatically hit by the attack. AOE magic attacks that miss are centered on the attacking model. This model is the point of origin for all these attacks."
                                     },
                                     {
                                         "name": "Witch Hunter",
@@ -19526,8 +19526,8 @@
                                         "count": "1",
                                         "ability": [
                                             {
-                                                "name": "Purgation",
-                                                "description": "Gain an additional die on accuracy and damage rolls with this weapon against models with an enemy upkeep spell or animus on them."
+                                                "name": "Cortex Damage",
+                                                "description": "When a warjack is hit by this weapon, it suffers 1 damage point to it's first available Cortex system box."
                                             }
                                         ],
                                         "damagetype": [
@@ -19535,7 +19535,8 @@
                                             "Disruption"
                                         ],
                                         "presetabilities": [
-                                            "Blessed"
+                                            "Blessed",
+                                            "Weapon Master"
                                         ]
                                     },
                                     {
@@ -19545,6 +19546,12 @@
                                         "rng": "1",
                                         "pow": "2",
                                         "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Cortex Damage",
+                                                "description": "When a warjack is hit by this weapon, it suffers 1 damage point to it's first available Cortex system box."
+                                            }
+                                        ],
                                         "damagetype": [
                                             "Arcane",
                                             "Disruption"
@@ -19561,6 +19568,12 @@
                                         "rng": "1",
                                         "pow": "3",
                                         "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Cortex Damage",
+                                                "description": "When a warjack is hit by this weapon, it suffers 1 damage point to it's first available Cortex system box."
+                                            }
+                                        ],
                                         "damagetype": [
                                             "Arcane",
                                             "Disruption"
@@ -19710,7 +19723,6 @@
                                 ],
                                 "keywords": [
                                     "Advance Deploy",
-                                    "Iosan",
                                     "Iosan",
                                     "Mage Hunter",
                                     "Pathfinder",
@@ -21982,7 +21994,7 @@
                                                     },
                                                     {
                                                         "name": "Flash",
-                                                        "description": "The AOE remains in play for one round. A model beginning an activation in the AOE cannot make ranged attacks this turn."
+                                                        "description": "Immediately warp this model anywhere completely within 3\" of its current location."
                                                     }
                                                 ]
                                             }
@@ -22993,6 +23005,7 @@
                                     "rat": "5",
                                     "def": "14",
                                     "arm": "17",
+                                    "cmd": "10",
                                     "hp": "8"
                                 },
                                 "nestedabilities": [
@@ -23012,7 +23025,7 @@
                                             },
                                             {
                                                 "name": "Winter Storm (★Action)",
-                                                "description": "Enemy models that begin their activations within 10” of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
+                                                "description": "Enemy models that begin their activations within CMD of this model lose Eyeless Sight, Flight, and Pathfinder that activation. Winter Storm lasts for one round."
                                             }
                                         ]
                                     }
@@ -23068,10 +23081,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
                             "mincost": "8",
                             "maxcost": "-",
-                            "minunit": "Leader and 5 Grunts"
+                            "minunit": "Leader and 5 Grunts",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -23242,10 +23255,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "14",
                             "minunit": "Croe and 5 Grunts",
-                            "mincost": "8",
-                            "maxunit": "Croe and 9 Grunts"
+                            "maxunit": "Croe and 9 Grunts",
+                            "maxcost": "14",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -23417,10 +23430,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "14",
+                            "maxunit": "Raefyll and 9 Grunts",
                             "minunit": "Raefyll and 5 Grunts",
                             "mincost": "8",
-                            "maxunit": "Raefyll and 9 Grunts"
+                            "maxcost": "14"
                         },
                         "models": [
                             {
@@ -23722,10 +23735,10 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "10",
                             "maxunit": "-",
-                            "maxcost": "-"
+                            "maxcost": "-",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -23807,9 +23820,9 @@
                         "fieldallowance": "C",
                         "unitpoints": {
                             "minunit": "Boomhowler and 5 Grunts",
-                            "mincost": "8",
                             "maxunit": "Boomhowler and 9 Grunts",
-                            "maxcost": "12"
+                            "maxcost": "12",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -23954,10 +23967,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "8",
-                            "maxcost": "-",
                             "minunit": "Lady Aiyana and Master Holt",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "mincost": "8",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -24085,10 +24098,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxcost": "16",
+                            "mincost": "9",
                             "maxunit": "Leader and 9 Grunts",
                             "minunit": "Leader and 5 Grunts",
-                            "mincost": "9"
+                            "maxcost": "16"
                         },
                         "models": [
                             {
@@ -24199,9 +24212,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "minunit": "Leader and 2 Grunts",
                             "mincost": "8",
                             "maxcost": "13",
-                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
@@ -24311,10 +24324,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "12",
-                            "minunit": "Leader and 2 Grunts",
+                            "mincost": "8",
                             "maxunit": "Leader and 4 Grunts",
-                            "mincost": "8"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "12"
                         },
                         "models": [
                             {
@@ -24409,10 +24422,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "mincost": "8",
                             "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "mincost": "8"
                         },
                         "models": [
                             {

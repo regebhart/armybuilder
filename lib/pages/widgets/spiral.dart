@@ -133,8 +133,10 @@ Widget spiralArmNum(int h, Color color) {
 Widget spiralBox(Color color, double dotsize, int branchnum, int dotnum, ArmyListNotifier army, int? listindex, int? modellistindex) {
   Color dotcolor = Colors.white;
   if (listindex != null && modellistindex != null) {
-    if (army.hptracking[listindex][modellistindex]['spiral'][branchnum][dotnum]) {
-      dotcolor = Colors.red;
+    if (army.hptracking[listindex][modellistindex].containsKey('spiral')) {
+      if (army.hptracking[listindex][modellistindex]['spiral'][branchnum][dotnum]) {
+        dotcolor = Colors.red;
+      }
     }
   }
   return GestureDetector(

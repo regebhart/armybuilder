@@ -125,7 +125,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
               }
             }
           }
-          if (!hasAttachment && faction.factionHasCasterAttachments[army.castergroupindex[a]]) {
+          if (!hasAttachment && faction.allFactions[faction.selectedFactionIndex]['hascasterattachments'][army.castergroupindex[a]]) {
             leaders.add(Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -138,7 +138,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () async {
-                            faction.setSelectedCategory(6, null);
+                            faction.setSelectedCategory(6, null, null);
                             if (army.swiping) {
                               army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -277,7 +277,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                           child: OutlinedButton(
                             onPressed: () async {
                               army.setAddtoIndex(u);
-                              faction.setSelectedCategory(7, thisunit.unit.name);
+                              faction.setSelectedCategory(7, thisunit.unit.name, null);
                               if (army.swiping) {
                                 army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
@@ -332,7 +332,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                           child: OutlinedButton(
                             onPressed: () async {
                               army.setAddtoIndex(u);
-                              faction.setSelectedCategory(8, thisunit.unit.name);
+                              faction.setSelectedCategory(8, thisunit.unit.name, null);
                               if (army.swiping) {
                                 army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }

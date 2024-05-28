@@ -1,13 +1,21 @@
+import 'package:armybuilder/firebase_options.dart';
 import 'package:armybuilder/providers/appdata.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'pages/pagecontainer.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAnalytics.instance.logScreenView(screenName: 'Visitor');
+
   runApp(const MyApp());
 }
 
@@ -52,7 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
-    String lastupdated = '5/11/2024 v1';
+    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
+
+    String lastupdated = '5/27/2024 v1';
+
+    if (faction.allFactions.isEmpty) {
+      faction.readAllFactions();
+      print('here');
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -99,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
         ),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: const Center(
           child: PagesContainer(),
         ),

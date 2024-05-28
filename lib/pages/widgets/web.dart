@@ -122,8 +122,10 @@ Widget ring(
 Widget webBox(Color color, double dotsize, int ringindex, int dotindex, ArmyListNotifier army, int? listindex, int? modelindex) {
   Color dotcolor = Colors.white;
   if (listindex != null && modelindex != null) {
-    if (army.hptracking[listindex][modelindex]['web'][ringindex][dotindex]) {
-      dotcolor = Colors.red;
+    if (army.hptracking[listindex][modelindex].containsKey('web')) {
+      if (army.hptracking[listindex][modelindex]['web'][ringindex][dotindex]) {
+        dotcolor = Colors.red;
+      }
     }
   }
   return GestureDetector(
