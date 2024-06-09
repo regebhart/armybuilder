@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/armylist.dart';
+import '../models/cohort.dart';
+import '../models/unit.dart';
 import '../providers/appdata.dart';
 import '../providers/armylist.dart';
 
@@ -138,7 +140,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () async {
-                            faction.setSelectedCategory(6, null, null);
+                            faction.setSelectedCategory(6, null, null, null);
                             if (army.swiping) {
                               army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -277,7 +279,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                           child: OutlinedButton(
                             onPressed: () async {
                               army.setAddtoIndex(u);
-                              faction.setSelectedCategory(7, thisunit.unit.name, null);
+                              faction.setSelectedCategory(7, null, thisunit.unit.name, null);
                               if (army.swiping) {
                                 army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
@@ -317,7 +319,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
               ),
             ));
           }
-          if (thisunit.weaponattachments.length < 3) {
+          int walimit = thisunit.minsize ? thisunit.weaponattachmentlimits[0] : thisunit.weaponattachmentlimits[1];
+          if (thisunit.weaponattachments.length < walimit) {
             units.add(
               Align(
                 alignment: Alignment.centerLeft,
@@ -332,7 +335,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                           child: OutlinedButton(
                             onPressed: () async {
                               army.setAddtoIndex(u);
-                              faction.setSelectedCategory(8, thisunit.unit.name, null);
+                              faction.setSelectedCategory(8, null, thisunit.unit.name, null);
                               if (army.swiping) {
                                 army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }

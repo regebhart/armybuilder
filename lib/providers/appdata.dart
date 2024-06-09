@@ -1,28 +1,28 @@
 class AppData {
   final List<Map<String, String>> _factionList = [
     {'name': 'Blindwater Congregation', 'list': 'hordes', 'file': 'blindwater.json'},
-    // {'name': 'Cephalyx', 'type': 'warmachine'}
-    // {'name': 'Convergence of Cyriss', 'type': 'warmachine'}
+    {'name': 'Cephalyx', 'list': 'warmachine', 'file': 'cephalyx.json'},
     {'name': 'Circle Orboros', 'list': 'hordes', 'file': 'circle.json'},
+    // {'name': 'Convergence of Cyriss', 'list': 'warmachine', 'file': 'convergence.json'},
     {'name': 'Crucible Guard', 'list': 'warmachine', 'file': 'crucible.json'},
     {'name': 'Cryx', 'list': 'warmachine', 'file': 'cryx.json'},
     {'name': 'Cygnar', 'list': 'warmachine', 'file': 'cygnar.json'},
     {'name': 'Grymkin', 'list': 'hordes', 'file': 'grymkin.json'},
-    // 'Infernals',
-    // 'Ios',
+    // {'name': 'Infernals', 'list': 'hordes', 'file': 'infernals.json'},
+    // {'name': 'Ios', 'list': 'hordes', 'file': 'ios.json'},
     {'name': 'Khador', 'list': 'warmachine', 'file': 'khador.json'},
     {'name': 'Khymaera', 'list': 'hordes', 'file': 'khymaera.json'},
     {'name': 'Legion of Everblight', 'list': 'hordes', 'file': 'everblight.json'},
-    // 'Llael',
-    // 'Mercenaries',
-    // 'Ord',
+    {'name': 'Llael', 'list': 'hordes', 'file': 'llael.json'},
+    {'name': 'Mercenaries', 'list': 'warmachine', 'file': 'mercenaries.json'},
+    {'name': 'Ord', 'list': 'warmachine', 'file': 'ord.json'},
     {'name': 'Orgoth', 'list': 'warmachine', 'file': 'orgoth.json'},
     {'name': 'Protectorate of Menoth', 'list': 'warmachine', 'file': 'protectorate.json'},
-    // 'Religion of the Twins',
-    // 'Searforge Commission',
+    {'name': 'Religion of the Twins', 'list': 'warmachine', 'file': 'religion.json'},
+    // {'name': 'Searforge Commission', 'list': 'warmachine', 'file': 'searforge.json'},
     {'name': 'Skorne', 'list': 'hordes', 'file': 'skorne.json'},
-    // 'Supernal Coalition',
-    // 'Talion Charter',
+    {'name': 'Supernal Coalition', 'list': 'warmachine', 'file': 'supernal.json'},
+    // {'name': 'Talion Charter', 'list': 'warmachine', 'file': 'talion.json'},
     {'name': 'Thornfall Alliance', 'list': 'hordes', 'file': 'thornfall.json'},
     {'name': 'Trollbloods', 'list': 'hordes', 'file': 'trollbloods.json'},
   ];
@@ -31,7 +31,6 @@ class AppData {
     'Warjacks/Warbeasts/Horrors',
     'Solos',
     'Units',
-    // 'Attachments',
     'Battle Engines',
     'Structures',
   ];
@@ -40,7 +39,6 @@ class AppData {
     'Warjacks',
     'Solos',
     'Units',
-    // 'Attachments',
     'Battle Engines',
     'Structures',
   ];
@@ -49,19 +47,10 @@ class AppData {
     'Warbeasts',
     'Solos',
     'Units',
-    // 'Attachments',
     'Battle Engines',
     'Structures',
   ];
-  // final List<String> _infernals = [
-  //   'Warcasters/Warlocks/Masters',
-  //   'Warjacks/Warbeasts/Horrors',
-  //   'Solos',
-  //   'Units',
-  //   // 'Attachments',
-  //   'Battle Engines',
-  //   'Structures',
-  // ];
+
   final List<Map<String, dynamic>> encounterlevels = [
     {'name': 'Duel', 'level': '0', 'armypoints': 0, 'options': 0, 'castercount': 1},
     {'name': 'Demo', 'level': '0.5', 'armypoints': 15, 'options': 0, 'castercount': 1},
@@ -82,6 +71,15 @@ class AppData {
     {'name': 'Open War', 'level': '15', 'armypoints': 375, 'options': 10, 'castercount': 5},
     {'name': 'Open War', 'level': '16', 'armypoints': 400, 'options': 10, 'castercount': 5},
   ];
+
+  final List<String> limitedBattlegroup = [
+    'archnumen aurora',
+    'carver ultimus',
+    'dr. egan arkadius',
+    'magnus the unstoppable',
+    'una the falconer',
+  ];
+
   final double _fontsize = 16;
   final double _iconsize = 28;
   final double _listButtonSpacing = 8;

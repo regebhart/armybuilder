@@ -5,8 +5,9 @@ import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/armylist.dart';
+import '../models/cohort.dart';
 import '../models/product.dart';
+import '../models/unit.dart';
 import '../providers/appdata.dart';
 import 'widgets/modelListTile.dart';
 
@@ -136,16 +137,16 @@ class _CategoryModelsListState extends State<CategoryModelsList> {
                 }
               };
               if (p.points == '') {
-                cost = 'Min: ${p.unitPoints!['mincost']}';
+                cost = 'Min: ${p.unitPoints!['mincost']}';                
                 onTap = () {
                   army.addUnit(Unit(
-                    unit: Product.copyProduct(p),
-                    minsize: true,
-                    hasMarshal: false,
-                    commandattachment: army.blankproduct,
-                    weaponattachments: [],
-                    cohort: [],
-                  ));
+                      unit: Product.copyProduct(p),
+                      minsize: true,
+                      hasMarshal: false,
+                      commandattachment: army.blankproduct,
+                      weaponattachments: [],
+                      cohort: [],
+                      weaponattachmentlimits: faction.getUnitWeaponAttachLimit(p.name)));
                   toast.show(context);
                 };
                 if (p.unitPoints!['maxcost'] != '-') {

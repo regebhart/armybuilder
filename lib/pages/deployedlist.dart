@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../models/armylist.dart';
 import '../models/product.dart';
+import '../models/unit.dart';
 import '../providers/armylist.dart';
 
 class DeployedListWidget extends StatefulWidget {

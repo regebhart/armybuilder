@@ -2,8 +2,8 @@ import 'package:armybuilder/models/model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/armylist.dart';
 import '../models/base_stats.dart';
+import '../models/cohort.dart';
 import '../models/modularoptions.dart';
 import '../models/product.dart';
 import '../providers/appdata.dart';

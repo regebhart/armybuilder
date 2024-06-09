@@ -1,4 +1,5 @@
 import 'package:armybuilder/firebase_options.dart';
+import 'package:armybuilder/pages/widgets/factionupdatedates.dart';
 import 'package:armybuilder/providers/appdata.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
@@ -62,11 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
 
-    String lastupdated = '5/27/2024 v1';
+    String buildlastupdated = '6/8/2024 v1';
 
     if (faction.allFactions.isEmpty) {
       faction.readAllFactions();
-      print('here');
     }
 
     return SafeArea(
@@ -102,10 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 ListTile(
                   title: Text(
-                    'Last Updated: $lastupdated',
-                    style: TextStyle(fontSize: AppData().fontsize - 6),
+                    'Build Updated: $buildlastupdated',
+                    style: TextStyle(fontSize: AppData().fontsize - 4),
                   ),
                 ),
+                const FactionDatesListTile(),
               ],
             ),
           ),

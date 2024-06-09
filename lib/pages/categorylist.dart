@@ -22,6 +22,7 @@ class _CategoryListState extends State<CategoryList> {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
+
     Map<String, String> f = AppData().factionList.firstWhere((element) => element['name'] == army.factionSelected);
     List<String> list = [];
     List<String> icons = [];
@@ -68,6 +69,7 @@ class _CategoryListState extends State<CategoryList> {
             onTap: () {
               faction.setSelectedCategory(
                   index,
+                  index == 1 ? army.selectedcasterProduct : null,
                   null,
                   index == 1
                       ? army.selectedcasterFactionIndexes.isNotEmpty

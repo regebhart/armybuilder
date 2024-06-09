@@ -3,7 +3,7 @@ import 'package:armybuilder/providers/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/armylist.dart';
+import '../models/cohort.dart';
 import '../providers/armylist.dart';
 import 'universalmodelstatpage.dart';
 

@@ -1,6 +1,8 @@
 import 'package:armybuilder/models/armylist.dart';
 import 'package:armybuilder/models/product.dart';
 
+import 'cohort.dart';
+
 class DeployedArmyList {
   ArmyList list;
   Product selectedProduct;

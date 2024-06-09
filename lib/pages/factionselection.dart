@@ -29,6 +29,13 @@ class FactionSelection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                width: 400,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 30.0),
+                  child: Image.asset('assets/3_5_logo.png'),
+                ),
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: Text(
@@ -58,7 +65,7 @@ class FactionSelection extends StatelessWidget {
                                     army.setFactionSelected(factionlist[index]['name']!);
                                     faction.setSelectedFactionIndex(index);
                                     // await faction.sortFactionProducts();
-                                    faction.setSelectedCategory(0, null, null);
+                                    faction.setSelectedCategory(0, null, null, null);
                                     army.pageController.jumpToPage(2);
                                     army.setDeploying(false);
                                     await FirebaseAnalytics.instance.logEvent(
@@ -78,6 +85,16 @@ class FactionSelection extends StatelessWidget {
                             ),
                           ),
                         )),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: SizedBox(
+                  width: 300,
+                  child: Text(
+                    'Please note:\nThis site and all of the models included within are a work in progress. There may be errors and some features may not work properly.',
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               )
             ],
           ),
@@ -117,7 +134,7 @@ List<Widget> buttonGrid(double width, FactionNotifier faction, ArmyListNotifier 
                             army.setFactionSelected(factionlist[(r * itemsPerRow) + index]['name']!);
                             faction.setSelectedFactionIndex(index);
                             // await faction.sortFactionProducts();
-                            faction.setSelectedCategory(0, null, null);
+                            faction.setSelectedCategory(0, null, null, null);
                             army.pageController.jumpToPage(2);
                           },
                           child: Text(

@@ -30,6 +30,7 @@ saveNewList(ArmyList list) async {
   List<String> lists = prefs.getStringList('lists') ?? [];
   lists.insert(0, jsonEncode(list.toJson()));
   prefs.setStringList('lists', lists);
+  await sortSavedLists();
 }
 
 //save as
@@ -38,19 +39,41 @@ updateExisitingList(ArmyList army, int index) async {
   List<String> lists = prefs.getStringList('lists') ?? [];
   lists[index] = jsonEncode(army.toJson());
   prefs.setStringList('lists', lists);
+  await sortSavedLists();
 }
 
 sortSavedLists() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   List<String> lists = prefs.getStringList('lists') ?? [];
   List<Map<String, dynamic>> armylists = [];
+  List<Map<String, dynamic>> favoritelists = [];
   for (var list in lists) {
-    armylists.add(jsonDecode(list));
+    if (list.contains('favorite":true')) {
+      favoritelists.add(jsonDecode(list));
+    } else {
+      armylists.add(jsonDecode(list));
+    }
   }
-  armylists.sort((a, b) {
+  favoritelists.sort((a, b) {
     final int sortbyfaction = a['faction'].toString().toLowerCase().compareTo(b['faction'].toString().toLowerCase());
+    //if factions are equal
     if (sortbyfaction == 0) {
       final int pointsort = a['pointtarget'].toString().toLowerCase().compareTo(b['pointtarget'].toString().toLowerCase());
+      //if point targets are equal
+      if (pointsort == 0) {
+        //sort by point value
+        return a['name'].toString().toLowerCase().compareTo(b['name'].toString().toLowerCase());
+      }
+      return pointsort;
+    }
+    return sortbyfaction;
+  });
+  armylists.sort((a, b) {
+    final int sortbyfaction = a['faction'].toString().toLowerCase().compareTo(b['faction'].toString().toLowerCase());
+    //if factions are equal
+    if (sortbyfaction == 0) {
+      final int pointsort = a['pointtarget'].toString().toLowerCase().compareTo(b['pointtarget'].toString().toLowerCase());
+      //if point targets are equal
       if (pointsort == 0) {
         //sort by point value
         return a['name'].toString().toLowerCase().compareTo(b['name'].toString().toLowerCase());
@@ -60,6 +83,9 @@ sortSavedLists() async {
     return sortbyfaction;
   });
   lists.clear();
+  for (var list in favoritelists) {
+    lists.add(jsonEncode(list));
+  }
   for (var list in armylists) {
     lists.add(jsonEncode(list));
   }
@@ -180,11 +206,13 @@ Future<bool> importPastedList(String text, bool opponent, ArmyListNotifier army)
   if (currentpoints == '') return false;
   if (pointtarget == '') return false;
   if (productNames.isEmpty) return false;
+
   ArmyList newlist = ArmyList(
     name: listname,
     listfaction: factionselected,
     totalpoints: currentpoints,
     pointtarget: pointtarget,
+    favorite: false,
     leadergroup: [],
     units: [],
     solos: [],

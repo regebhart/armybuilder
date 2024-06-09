@@ -2,13 +2,16 @@ import 'package:armybuilder/models/modularoptions.dart';
 import 'package:armybuilder/models/spells.dart';
 import 'package:armybuilder/providers/armylist.dart';
 
+import 'cohort.dart';
 import 'product.dart';
+import 'unit.dart';
 
 class ArmyList {
   String name;
   String listfaction;
   String totalpoints;
   String pointtarget;
+  bool favorite;
   List<LeaderGroup> leadergroup;
   List<Unit> units;
   List<Product> solos;
@@ -21,6 +24,7 @@ class ArmyList {
     required this.listfaction,
     required this.totalpoints,
     required this.pointtarget,
+    required this.favorite,
     required this.leadergroup,
     required this.units,
     required this.solos,
@@ -70,11 +74,17 @@ class ArmyList {
       }
     }
 
+    bool favorite = false;
+    if (json.containsKey('favorite')) {
+      favorite = json['favorite'];
+    }
+
     return ArmyList(
       name: json['name'],
       listfaction: json['faction'],
       totalpoints: json['totalpoints'],
       pointtarget: json['pointtarget'],
+      favorite: favorite,
       leadergroup: leaders,
       units: units,
       solos: solos,
@@ -107,6 +117,7 @@ class ArmyList {
     data['faction'] = listfaction;
     data['totalpoints'] = totalpoints;
     data['pointtarget'] = pointtarget;
+    data['favorite'] = favorite;
     if (leadergroup.isNotEmpty) {
       List<Map<String, dynamic>> leadergroups = [];
       for (var lg in leadergroup) {
@@ -288,91 +299,6 @@ class JrCasterGroup {
 
     return JrCasterGroup(
       leader: Product.fromJson(json['leader']),
-      cohort: cohort,
-    );
-  }
-}
-
-class Cohort {
-  Product product;
-  List<Option>? selectedOptions;
-
-  Cohort({
-    required this.product,
-    this.selectedOptions,
-  });
-
-  factory Cohort.fromJson(Map<String, dynamic> json) {
-    Product product = ArmyListNotifier().blankproduct;
-    List<Option> options = [];
-
-    if (json.containsKey('product')) {
-      product = Product.fromJson(json['product']);
-      if (json.containsKey('options')) {
-        for (var op in json['options']) {
-          options.add(Option.fromJson(op));
-        }
-      }
-    } else {
-      product = Product.fromJson(json);
-    }
-
-    return Cohort(
-      product: product,
-      selectedOptions: options,
-    );
-  }
-}
-
-class Unit {
-  Product unit;
-  bool minsize;
-  bool hasMarshal;
-  Product commandattachment;
-  List<Product> weaponattachments;
-  List<Cohort> cohort;
-
-  Unit({
-    required this.unit,
-    required this.minsize,
-    required this.hasMarshal,
-    required this.commandattachment,
-    required this.weaponattachments,
-    required this.cohort,
-  });
-
-  factory Unit.fromJson(Map<String, dynamic> json) {
-    Product command = ArmyListNotifier().blankproduct;
-    bool hasmarshal = false;
-
-    if (json.containsKey('hasmarshal')) {
-      hasmarshal = json['hasmarshal'];
-    }
-
-    if (json.containsKey('commandattachment')) {
-      command = Product.fromJson(json['commandattachment']);
-    }
-
-    List<Product> weapons = [];
-    if (json.containsKey('weaponattachments')) {
-      for (var wa in json['weaponattachments']) {
-        weapons.add(Product.fromJson(wa));
-      }
-    }
-
-    List<Cohort> cohort = [];
-    if (json.containsKey('cohort')) {
-      for (var c in json['cohort']) {
-        cohort.add(Cohort.fromJson(c));
-      }
-    }
-
-    return Unit(
-      unit: Product.fromJson(json['unit']),
-      minsize: json['minsize'],
-      hasMarshal: hasmarshal,
-      commandattachment: command,
-      weaponattachments: weapons,
       cohort: cohort,
     );
   }

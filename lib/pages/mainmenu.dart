@@ -15,6 +15,13 @@ class MainMenu extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
+        SizedBox(
+          width: 400,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 30.0),
+            child: Image.asset('assets/3_5_logo.png'),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: SizedBox(
@@ -62,7 +69,7 @@ class MainMenu extends StatelessWidget {
               ),
             ),
           ),
-        ),        
+        ),
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: SizedBox(
@@ -86,6 +93,16 @@ class MainMenu extends StatelessWidget {
             ),
           ),
         ),
+        const Padding(
+          padding: EdgeInsets.only(top: 30),
+          child: SizedBox(
+            width: 300,
+            child: Text(
+              'Please note:\nThis site and all of the models included within are a work in progress. There may be errors and some features may not work properly.',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        )
       ],
     );
   }

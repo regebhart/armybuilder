@@ -1,10 +1,11 @@
 {
+    "updated": "06-02-2024",
     "group": [
         {
             "primary": {
                 "products": [
                     {
-                        "name": "Horruskh, The Thousand Wraths",
+                        "name": "Horruskh, the Thousand Wraths",
                         "points": "30",
                         "category": "Warcasters/Warlocks/Masters",
                         "primaryfaction": [
@@ -30,7 +31,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Fate Blessed",
-                                        "description": "When a friendly Faction model makes an accuracy or damage roll during its activation while in this model's control range, this model can spend 1 focus point to allow the model to reroll that roll. Each roll can be rerolled once as a result of Fate Blessed."
+                                        "description": "When a friendly Faction model makes an accuracy or damage roll during its activation while in this model's Control range, this model can spend 1 focus point to allow the model to reroll that roll. Each roll can be rerolled once as a result of Fate Blessed."
                                     },
                                     {
                                         "name": "Hell Marked",
@@ -42,8 +43,8 @@
                                     }
                                 ],
                                 "feat": {
-                                    "name": "ILLIMITABLE DOMINION",
-                                    "description": "While in Horruskh’s control area, friendly  Faction models cannot be knocked down and gain +3 ARM. When a friendly Faction warrior model makes a Tough roll of 4, 5, or 6 while in Horruskh’s control range, that model can remove 1 damage point. Illimitable Dominion lasts for one round."
+                                    "name": "Illimitable Dominion",
+                                    "description": "While in Horruskh's Control area, friendly Faction models cannot be knocked down and gain +3 ARM. When a friendly Faction warrior model makes a Tough roll of 4, 5, or 6 while in Horruskh's Control range, that model can remove 1 damage point. Illimitable Dominion lasts for one round."
                                 },
                                 "execution": {
                                     "name": "Unyielding",
@@ -119,7 +120,7 @@
                         ]
                     },
                     {
-                        "name": "Kishtaar, The Howling Silence",
+                        "name": "Kishtaar, the Howling Silence",
                         "points": "25",
                         "category": "Warcasters/Warlocks/Masters",
                         "primaryfaction": [
@@ -164,7 +165,7 @@
                                 ],
                                 "feat": {
                                     "name": "Pandemonium",
-                                    "description": "While in Kishtaar’s control range, models in her battlegroup gain Reposition [3\"]. Additionally, while in Kishtaar's control range models in her battlegroup gain an additional die on accuracy and damage rolls. Discard the lowest die in each roll. Pandemonium lats for one turn."
+                                    "description": "While in Kishtaar's Control range, models in her battlegroup gain Reposition [3\"]. Additionally, while in Kishtaar's Control range models in her battlegroup gain an additional die on accuracy and damage rolls. Discard the lowest die in each roll. Pandemonium lats for one turn."
                                 },
                                 "execution": {
                                     "name": "Apparition",
@@ -196,7 +197,7 @@
                                         "ability": [
                                             {
                                                 "name": "Ricochet",
-                                                "description": ""
+                                                "description": "When this model directly hits an enemy model with an initial attack with this weapon, immediately after the attack is resolved this model can make another ranged attack with this weapon targeting another model within 4\" of the model originally hit, ignoring Line of Sight and this weapon's RNG. Attacks gained from Ricochet cannot generate additional attacks from Ricochet."
                                             }
                                         ],
                                         "damagetype": [
@@ -213,14 +214,11 @@
                                         "rng": "1",
                                         "pow": "7",
                                         "count": "2",
-                                        "ability": [
-                                            {
-                                                "name": "Critical Fire",
-                                                "description": ""
-                                            }
-                                        ],
                                         "damagetype": [
                                             "Arcane"
+                                        ],
+                                        "presetabilities": [
+                                            "Critical Continuous Fire"
                                         ]
                                     }
                                 ],
@@ -251,7 +249,7 @@
                         ]
                     },
                     {
-                        "name": "Oriax, The Soul Slaver",
+                        "name": "Oriax, the Soul Slaver",
                         "points": "30",
                         "category": "Warcasters/Warlocks/Masters",
                         "primaryfaction": [
@@ -276,8 +274,12 @@
                                 ],
                                 "characterabilities": [
                                     {
+                                        "name": "Soul Scavenger [CTRL]",
+                                        "description": "This model gains soul tokens from any living model that is destroyed within its Control range. After this model replenishes its focus/fury/essence during your next Control Phase, replace each soul token with 1 focus/fury/essence point."
+                                    },
+                                    {
                                         "name": "Soul Taker [5 Tokens]",
-                                        "description": "This model can gain soul tokens. This model can carry up to 5 soul tokens at any time.."
+                                        "description": "This model can gain soul tokens. This model can carry up to 5 soul tokens at any time."
                                     },
                                     {
                                         "name": "Spell Rack [2]",
@@ -285,8 +287,8 @@
                                     }
                                 ],
                                 "feat": {
-                                    "name": "HOWL OF THE ABYSS",
-                                    "description": "Oriax gains up to 5 soul tokens. Additionally, while in Oriax’s control range the melee weapons of Cohort models in his battlegroup gain Shadow Bind. Howl of the Abyss lasts for one turn."
+                                    "name": "Howl of the Abyss",
+                                    "description": "Oriax gains up to 5 soul tokens. Additionally, while in Oriax's Control range the melee weapons of Cohort models in his battlegroup gain Shadow Bind. Howl of the Abyss lasts for one turn."
                                 },
                                 "execution": {
                                     "name": "Ghost Shield",
@@ -309,7 +311,7 @@
                                     {
                                         "topability": {
                                             "name": "Soul Mastery",
-                                            "description": "At any time during its activation, this model can spend soul tokens to use one of the following effects for each token spent:."
+                                            "description": "At any time during its activation, this model can spend soul tokens to use one of the following effects for each token spent:"
                                         },
                                         "subabilities": [
                                             {
@@ -382,7 +384,7 @@
                                         "pow": "-",
                                         "dur": "UP",
                                         "off": "NO",
-                                        "description": "While in the spellcaster's control range, enemy models gain an additional die on accuracy rolls. Discard the highest die of each roll. Star-Crossed lasts for one round."
+                                        "description": "While in the spellcaster's Control range, enemy models gain an additional die on accuracy rolls. Discard the highest die of each roll. Star-Crossed lasts for one round."
                                     }
                                 ],
                                 "displayorder": 0
@@ -390,7 +392,7 @@
                         ]
                     },
                     {
-                        "name": "Sabbreth, The Eternal Annihilation",
+                        "name": "Sabbreth, the Eternal Annihilation",
                         "points": "27",
                         "category": "Warcasters/Warlocks/Masters",
                         "primaryfaction": [
@@ -439,7 +441,7 @@
                                     }
                                 ],
                                 "feat": {
-                                    "name": "INVOCATION OF FIRE",
+                                    "name": "Invocation of Fire",
                                     "description": "This activation, Sabbreth can cast each of her spells once without spending focus."
                                 },
                                 "execution": {
@@ -520,9 +522,11 @@
                         "points": "*",
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
+                            "Cephalyx",
                             "Orgoth"
                         ],
                         "factions": [
+                            "Cephalyx",
                             "Orgoth"
                         ],
                         "fieldallowance": "2",
@@ -558,11 +562,11 @@
                                     },
                                     {
                                         "name": "Orgoth Monstrosity",
-                                        "description": "This model is a monstrosity that can be included in any Orgoth Warcaster's battlegroup. An Orgoth warcaster can allocate focus points to this model as if it were a warjack. If this model's warcaster is destroyed or removed from the table, it becomes autonomous. An Orgoth warcaster can take control of an autonomous friendly Monstrosity. To do this, an Orgoth warcaster must spend 1 focus point during its activation while B2B with the autonomous monstrosity. The monstrosity must forfeit either its normal movement or combat action the turn it becomes controlled. The monstrosity becomes a part of the battlegroup of the warcaster that took control of it. At any time during its activation, an Orgoth warcaster can spend focus points to heal damage a monstrosity in its battlegroup in its control range has suffered. For each focus point spent this way, remove 1 damage point."
+                                        "description": "This model is a monstrosity that can be included in any Orgoth Warcaster's battlegroup. An Orgoth warcaster can allocate focus points to this model as if it were a warjack. If this model's warcaster is destroyed or removed from the table, it becomes autonomous. An Orgoth warcaster can take Control of an autonomous friendly Monstrosity. To do this, an Orgoth warcaster must spend 1 focus point during its activation while B2B with the autonomous monstrosity. The monstrosity must forfeit either its normal movement or combat action the turn it becomes controlled. The monstrosity becomes a part of the battlegroup of the warcaster that took Control of it. At any time during its activation, an Orgoth warcaster can spend focus points to heal damage a monstrosity in its battlegroup in its Control range has suffered. For each focus point spent this way, remove 1 damage point."
                                     },
                                     {
                                         "name": "Requisition [Cephalyx]",
-                                        "description": "This model/unit can be included in a Cephalyx army as if it were that faction."
+                                        "description": "This model/unit can be included in a Cephalyx army as if it were in that faction."
                                     }
                                 ],
                                 "stats": {
@@ -1252,7 +1256,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Gung-ho",
-                                        "description": "This model can run or charge without spending focus or fury."
+                                        "description": "This model can run or charge without spending focus or fury or using the Hurry! 'jack marshal benefit."
                                     },
                                     {
                                         "name": "Modular [3]",
@@ -1784,7 +1788,7 @@
                                     },
                                     {
                                         "name": "Soul Taker [3 Tokens]",
-                                        "description": "This model can gain soul tokens. This model can carry up to 3 soul tokens at any time.."
+                                        "description": "This model can gain soul tokens. This model can carry up to 3 soul tokens at any time."
                                     }
                                 ],
                                 "stats": {
@@ -1800,7 +1804,7 @@
                                     {
                                         "topability": {
                                             "name": "Soul Collector [10\"]",
-                                            "description": "When a living enemy model is destroyed while withing 10\" of this model, this model gains the destroyed model's token. This model can spend soul tokens for the following:."
+                                            "description": "When a living enemy model is destroyed while within 10\" of this model, this model gains the destroyed model's token. This model can spend soul tokens for the following:"
                                         },
                                         "subabilities": [
                                             {
@@ -1839,7 +1843,7 @@
                                         "ability": [
                                             {
                                                 "name": "Possession",
-                                                "description": "When this model hits an enemy non-Leader model with a basic melee attack during this model's activation, this model can spend a soul token to take control of the enemy model. Immediately after the attack has been resolved, you can make a full advance with the enemy model and can then make one basic attack, then Possession expires. The enemy model cannot be targeted by free strikes during this movement. A model can be affected by Possession only once per turn."
+                                                "description": "When this model hits an enemy non-Leader model with a basic melee attack during this model's activation, this model can spend a soul token to take Control of the enemy model. Immediately after the attack has been resolved, you can make a full advance with the enemy model and can then make one basic attack, then Possession expires. The enemy model cannot be targeted by free strikes during this movement. A model can be affected by Possession only once per turn."
                                             }
                                         ],
                                         "damagetype": [
@@ -1975,11 +1979,11 @@
                                     },
                                     {
                                         "name": "Orgoth Monstrosity",
-                                        "description": "This model is a monstrosity that can be included in any Orgoth Warcaster's battlegroup. An Orgoth warcaster can allocate focus points to this model as if it were a warjack. If this model's warcaster is destroyed or removed from the table, it becomes autonomous. An Orgoth warcaster can take control of an autonomous friendly Monstrosity. To do this, an Orgoth warcaster must spend 1 focus point during its activation while B2B with the autonomous monstrosity. The monstrosity must forfeit either its normal movement or combat action the turn it becomes controlled. The monstrosity becomes a part of the battlegroup of the warcaster that took control of it. At any time during its activation, an Orgoth warcaster can spend focus points to heal damage a monstrosity in its battlegroup in its control range has suffered. For each focus point spent this way, remove 1 damage point."
+                                        "description": "This model is a monstrosity that can be included in any Orgoth Warcaster's battlegroup. An Orgoth warcaster can allocate focus points to this model as if it were a warjack. If this model's warcaster is destroyed or removed from the table, it becomes autonomous. An Orgoth warcaster can take Control of an autonomous friendly Monstrosity. To do this, an Orgoth warcaster must spend 1 focus point during its activation while B2B with the autonomous monstrosity. The monstrosity must forfeit either its normal movement or combat action the turn it becomes controlled. The monstrosity becomes a part of the battlegroup of the warcaster that took Control of it. At any time during its activation, an Orgoth warcaster can spend focus points to heal damage a monstrosity in its battlegroup in its Control range has suffered. For each focus point spent this way, remove 1 damage point."
                                     },
                                     {
                                         "name": "Requisition [Cephalyx]",
-                                        "description": "This model/unit can be included in a Cephalyx army as if it were that faction."
+                                        "description": "This model/unit can be included in a Cephalyx army as if it were in that faction."
                                     },
                                     {
                                         "name": "Snacking",
@@ -2856,7 +2860,7 @@
                                     },
                                     {
                                         "name": "Blade Shield",
-                                        "description": "This model gains +2 DEF vs ranged attack accuracy rolls."
+                                        "description": "This model gains +2 DEF against ranged attack accuracy rolls."
                                     },
                                     {
                                         "name": "Blood Drinker",
@@ -2945,20 +2949,8 @@
                                         "description": "When this model hits an enemy model with an initial melee attack or a melee special attack, it can advance up to 2\" after the attack is resolved."
                                     },
                                     {
-                                        "name": "Soul Taker [3]",
-                                        "description": "This model can gain soul tokens. 3."
-                                    },
-                                    {
-                                        "name": "Soul Transfer (★Action)",
-                                        "description": "RNG 5. Target friendly Faction model with a Soul Taker special rule. If the model is in range, remove any number of soul tokens from this model and place them on the friendly model."
-                                    },
-                                    {
-                                        "name": "Soul-Powered",
-                                        "description": "During its Combat Action, this model can spend soul tokens to make additional melee attacks. It can make one additional attack for each token spent."
-                                    },
-                                    {
-                                        "name": "Spectral Vortex",
-                                        "description": "This model can immediately negate any spell that targets it or a model within 3\" of it by spending 1 soul token. The negated spell does not take effect, but its COST remains spent."
+                                        "name": "Soul Taker [3 Tokens]",
+                                        "description": "This model can gain soul tokens. This model can carry up to 3 soul tokens at any time."
                                     }
                                 ],
                                 "stats": {
@@ -2971,6 +2963,28 @@
                                     "cmd": "9",
                                     "hp": "8"
                                 },
+                                "nestedabilities": [
+                                    {
+                                        "topability": {
+                                            "name": "Body Count",
+                                            "description": "When this model destroys a living enemy model with an attack, this model gains the destroyed model's soul token. This model can spend soul tokens for the following:"
+                                        },
+                                        "subabilities": [
+                                            {
+                                                "name": "Soul Transfer (★Action)",
+                                                "description": "RNG 5. Target friendly Faction model with a Soul Taker special rule. If the model is in range, remove any number of soul tokens from this model and place them on the friendly model."
+                                            },
+                                            {
+                                                "name": "Soul-Powered",
+                                                "description": "During its Combat Action, this model can spend soul tokens to make additional melee attacks. It can make one additional attack for each token spent."
+                                            },
+                                            {
+                                                "name": "Spectral Vortex",
+                                                "description": "This model can immediately negate any spell that targets it or a model within 3\" of it by spending 1 soul token. The negated spell does not take effect, but its COST remains spent."
+                                            }
+                                        ]
+                                    }
+                                ],
                                 "weapons": [
                                     {
                                         "name": "Deathgorger",
@@ -3132,7 +3146,7 @@
                                     },
                                     {
                                         "name": "Rage Fueled",
-                                        "description": "When this model is damaged by an enemy attack, it gains one rage token. This model can have up to three rage tokens at any time. This model gains +1 to its melee accuracy and melee damage rolls for each rage token on it. This model can spend rage tokens for the following:."
+                                        "description": "When this model is damaged by an enemy attack, it gains one rage token. This model can have up to three rage tokens at any time. This model gains +1 to its melee accuracy and melee damage rolls for each rage token on it. This model can spend rage tokens for the following:"
                                     }
                                 ],
                                 "stats": {
@@ -3150,12 +3164,12 @@
                                     {
                                         "topability": {
                                             "name": "Rage Fueled",
-                                            "description": "When this model is damaged by an enemy attack, it gains one rage token. This model can have up to three rage tokens at any time. This model gains +1 to its melee accuracy and melee damage rolls for each rage token on it. This model can spend rage tokens for the following:."
+                                            "description": "When this model is damaged by an enemy attack, it gains one rage token. This model can have up to three rage tokens at any time. This model gains +1 to its melee accuracy and melee damage rolls for each rage token on it. This model can spend rage tokens for the following:"
                                         },
                                         "subabilities": [
                                             {
                                                 "name": "Brutality",
-                                                "description": "FIX ME"
+                                                "description": "During its Combat Action, this model can spend rage tokens to make additional melee attacks. It can make one additional attack for each token spent."
                                             },
                                             {
                                                 "name": "Hyper-Aggression",
@@ -3376,8 +3390,8 @@
                                                 "description": "RNG 1. Target friendly Faction warjack, if the warjack is in range, enemy upkeep spells and animi on that warjack immediately expire. Additionally, he warjack gains Spell Ward for one round."
                                             },
                                             {
-                                                "name": "Tune Up (★Action)",
-                                                "description": "RNG B2B. Target friendly Faction warjack. If the warjack is in range, all attack accuracy and damage rolls resulting from its next basic attack this turn are boosted."
+                                                "name": "Tune Up [Faction Warjack] (★Action)",
+                                                "description": "RNG 1\". Target friendly Faction Warjack. If the Faction Warjack is in range, all attack accuracy and damage rolls resulting from its next basic attack this turn are boosted."
                                             }
                                         ]
                                     }
@@ -3422,10 +3436,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 4 Grunts",
+                            "mincost": "6",
                             "maxcost": "11",
-                            "mincost": "6"
+                            "minunit": "Leader and 4 Grunts",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -3500,9 +3514,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "-",
-                            "mincost": "9",
+                            "maxunit": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-"
+                            "mincost": "9"
                         },
                         "models": [
                             {
@@ -3588,10 +3602,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "6",
-                            "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 4 Grunts",
                             "maxcost": "11",
-                            "minunit": "Leader and 4 Grunts"
+                            "mincost": "6",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -3656,10 +3670,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-",
+                            "maxcost": "-",
                             "mincost": "10",
-                            "maxcost": "-"
+                            "maxunit": "-",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -3753,10 +3767,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "12",
                             "mincost": "7",
+                            "minunit": "Leader and 4 Grunts",
                             "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 4 Grunts"
+                            "maxcost": "12"
                         },
                         "models": [
                             {
@@ -3825,9 +3839,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-",
                             "mincost": "8",
-                            "maxcost": "-"
+                            "maxcost": "-",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -3908,10 +3922,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "9",
-                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "mincost": "9",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -3992,10 +4006,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "-",
-                            "mincost": "4"
+                            "mincost": "4",
+                            "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -4183,7 +4197,6 @@
                                     "Warlock"
                                 ],
                                 "keywords": [
-                                    "Mercenary",
                                     "Pathfinder",
                                     "Tough",
                                     "Trollkin"
@@ -4208,7 +4221,7 @@
                                 ],
                                 "feat": {
                                     "name": "Spread the Net",
-                                    "description": "While in Grim’s control range, enemy models suffer -3 DEF. Enemy models beginning their activations in Grim’s control range suffer -3 SPD and cannot charge or make power attacks or special attacks. Spread the Net lasts for one round."
+                                    "description": "While in Grim’s Control range, enemy models suffer -3 DEF. Enemy models beginning their activations in Grim’s Control range suffer -3 SPD and cannot charge or make power attacks or special attacks. Spread the Net lasts for one round."
                                 },
                                 "execution": {
                                     "name": "Prey",
@@ -4368,7 +4381,6 @@
                                     "Warlock"
                                 ],
                                 "keywords": [
-                                    "Mercenary",
                                     "Pathfinder",
                                     "Tough",
                                     "Trollkin"
@@ -4393,7 +4405,7 @@
                                 ],
                                 "feat": {
                                     "name": "On My Mark",
-                                    "description": "While in Grim’s control range, friendly Faction models gain Mark Target and their ranged weapons gain Snipe. On My Mark lasts for one turn. (Other friendly Faction models gain +2 to ranged accuracy rolls against enemy models within 5” of a model with Mark Target that are in it's LOS.) (Ranged weapons with Snipe gain +4 RNG.)"
+                                    "description": "While in Grim’s Control range, friendly Faction models gain Mark Target and their ranged weapons gain Snipe. On My Mark lasts for one turn. (Other friendly Faction models gain +2 to ranged accuracy rolls against enemy models within 5” of a model with Mark Target that are in it's LOS.) (Ranged weapons with Snipe gain +4 RNG.)"
                                 },
                                 "execution": {
                                     "name": "Prowl",
@@ -4522,6 +4534,10 @@
                                     {
                                         "name": "Warrant Officer [Reposition [3\"]]",
                                         "description": "While this model is alive, and not under enemy control, non-cohort models in this model's battlegroup gain Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -4596,6 +4612,10 @@
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
                                         "description": "While this model is alive, and not under enemy control, non-cohort models in this model's battlegroup gain Circular Vision. (Models never gain a back strike bonus against a model with Circular Vision.)"
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -4633,9 +4653,9 @@
                         ]
                     },
                     {
-                        "name": "Malvin & Mayhem",
-                        "points": "13",
-                        "category": "Solos",
+                        "name": "Invictus",
+                        "points": "20",
+                        "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
                             "Mercenaries"
                         ],
@@ -4669,89 +4689,127 @@
                         "fieldallowance": "C",
                         "models": [
                             {
-                                "name": "Malvin & Mayhem 1",
-                                "title": "Mercenary Heavy Warjack Solo",
+                                "name": "Invictus",
+                                "title": "Mercenary Super Heavy Warjack",
                                 "modeltype": [
                                     "Warjack",
-                                    "Solo",
-                                    "Warrior"
+                                    "Companion"
                                 ],
                                 "keywords": [
+                                    "Arc Node",
                                     "Construct",
+                                    "Dual Attack",
                                     "Grab Attack",
                                     "Power Attack: Headbutt",
                                     "Power Attack: Slam",
-                                    "Power Attack: Throw",
                                     "Power Attack: Trample",
-                                    "Riot Quest"
+                                    "Power Attack: Trample",
+                                    "Unstoppable"
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Independent Warjack",
-                                        "description": "This model cannot be part of a battlegroup or be ‘jack marshaled. During the focus allocation step of your Control Phase, this model receives 3 focus points."
+                                        "name": "Bond [Magnus]",
+                                        "description": "If this model begins the game in Magnus' battlegroup, it is bonded to him. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Magnus and in his control range, it gains Retaliatory Strike."
                                     },
                                     {
-                                        "name": "The Button",
-                                        "description": "This model can use The Button once per game at the start of its activation. This model gains the benefit of all of its Arcane Machinery effects this activation."
+                                        "name": "Companion [Magnus the Unstoppable]",
+                                        "description": "This model is included in any army that includes Magnus the Unstoppable. If Magnus the Unstoppable is destroyed or removed from play, remove this model from play. This model is part of Magnus the Unstoppable's battlegroup."
+                                    },
+                                    {
+                                        "name": "Dispensation [Magnus] [Magnus the Unstoppable]",
+                                        "description": "This model can be included in Magnus lists as an cohort model. If it is, don't include Magnus the Unstoppable models however, the point cost of this model remains the same as if Magnus the Unstoppable were included. This model loses compainion in this case."
+                                    },
+                                    {
+                                        "name": "Mercenary [any army]",
+                                        "description": "This model will work for any army."
                                     }
                                 ],
                                 "stats": {
-                                    "basesize": "50MM",
+                                    "basesize": "80MM",
                                     "spd": "5",
-                                    "str": "11",
+                                    "str": "14",
                                     "mat": "7",
-                                    "rat": "5",
-                                    "def": "11",
-                                    "arm": "18",
-                                    "cmd": "8",
-                                    "hp": "30"
+                                    "rat": "6",
+                                    "def": "9",
+                                    "arm": "20",
+                                    "hp": "34"
                                 },
-                                "nestedabilities": [
-                                    {
-                                        "topability": {
-                                            "name": "Arcane Machinery",
-                                            "description": "Once per turn at any time during its activation, this model can use one of the following effects. Arcane Machinery effects last for one round."
-                                        },
-                                        "subabilities": [
-                                            {
-                                                "name": "Disengage Safety",
-                                                "description": "This model gains +2 STR and Berserk."
-                                            },
-                                            {
-                                                "name": "Ignite Thrusters",
-                                                "description": "This model gains +2 SPD, Flight and Flame Trail."
-                                            },
-                                            {
-                                                "name": "Telescoping Shields",
-                                                "description": "This model gains +2 ARM and Roadblock."
-                                            }
-                                        ]
-                                    }
-                                ],
                                 "weapons": [
                                     {
-                                        "name": "Dream Crusher",
-                                        "type": "Melee",
+                                        "name": "Obliterator",
+                                        "type": "ranged",
                                         "fieldoffire": "None",
-                                        "rng": "1",
-                                        "pow": "7",
+                                        "rng": "12",
+                                        "rof": "1",
+                                        "aoe": "3",
+                                        "pow": "15",
+                                        "system": "L",
                                         "count": "1",
                                         "ability": [
                                             {
-                                                "name": "Warhead",
-                                                "description": "When this model directly hits a model with an attack with this weapon, you can center a 4” AOE on the model directly hit. Models in the AOE are hit and suffer a POW 10 blast damage roll. This damage is not considered to have been caused by an attack. On a critical hit, models in the AOE become knocked down. THis model is not affected by Warhead."
+                                                "name": "Arcing Fire",
+                                                "description": "When attacking with this weapon, this model can ignore intervening models except those within 1\" of the target."
+                                            },
+                                            {
+                                                "name": "Critical Knockdown",
+                                                "description": "On a critical hit, the model hit becomes knocked down."
                                             }
                                         ]
                                     },
                                     {
-                                        "name": "Spiked Fist",
+                                        "name": "Flamethrower",
+                                        "type": "ranged",
+                                        "fieldoffire": "None",
+                                        "rng": "SP 8",
+                                        "rof": "1",
+                                        "pow": "12",
+                                        "count": "1",
+                                        "damagetype": [
+                                            "Fire"
+                                        ],
+                                        "presetabilities": [
+                                            "Continuous Fire"
+                                        ]
+                                    },
+                                    {
+                                        "name": "Scrap Saw",
                                         "type": "Melee",
                                         "fieldoffire": "None",
-                                        "rng": "1",
+                                        "rng": "2",
                                         "pow": "4",
+                                        "system": "L",
                                         "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Critical Shred",
+                                                "description": "On a critical hit with this weapon during this model's Combat Action, after the attack is resolved this model can make one additional attack with this weapon against the model hit."
+                                            },
+                                            {
+                                                "name": "Sustained Attack",
+                                                "description": "During this model's activation, when it makes an attack with this weapon against the last model hit by the weapon this activation, the attack automatically hits."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Battle Flail",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "3",
+                                        "pow": "4",
+                                        "system": "R",
+                                        "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Critical Knockdown",
+                                                "description": "On a critical hit, the model hit becomes knocked down."
+                                            },
+                                            {
+                                                "name": "Thresher (★Attack)",
+                                                "description": "This model makes one melee attack with this weapon against each model in it's LOS that is in this weapon's melee range. Thresher attacks are simultaneous."
+                                            }
+                                        ],
                                         "presetabilities": [
-                                            "Open Fist"
+                                            "Chain Weapon"
                                         ]
                                     }
                                 ],
@@ -4760,7 +4818,7 @@
                                         {
                                             "column": "1",
                                             "values": [
-                                                "-",
+                                                "x",
                                                 "x",
                                                 "x",
                                                 "x",
@@ -4771,7 +4829,7 @@
                                         {
                                             "column": "2",
                                             "values": [
-                                                "-",
+                                                "x",
                                                 "x",
                                                 "x",
                                                 "L",
@@ -4785,7 +4843,7 @@
                                                 "x",
                                                 "x",
                                                 "x",
-                                                "x",
+                                                "A",
                                                 "M",
                                                 "M"
                                             ]
@@ -4796,7 +4854,7 @@
                                                 "x",
                                                 "x",
                                                 "x",
-                                                "x",
+                                                "A",
                                                 "C",
                                                 "C"
                                             ]
@@ -4804,7 +4862,7 @@
                                         {
                                             "column": "5",
                                             "values": [
-                                                "-",
+                                                "x",
                                                 "x",
                                                 "x",
                                                 "R",
@@ -4815,7 +4873,7 @@
                                         {
                                             "column": "6",
                                             "values": [
-                                                "-",
+                                                "x",
                                                 "x",
                                                 "x",
                                                 "x",
@@ -4825,7 +4883,149 @@
                                         }
                                     ]
                                 },
-                                "displayorder": 0
+                                "displayorder": 1
+                            }
+                        ]
+                    },
+                    {
+                        "name": "War Boar MMD47",
+                        "points": "20",
+                        "category": "Warjacks/Warbeasts/Horrors",
+                        "primaryfaction": [
+                            "Mercenaries"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "C",
+                        "models": [
+                            {
+                                "name": "War Boar MMD47",
+                                "title": "Mercenary Super Heavy Warbeast",
+                                "modeltype": [
+                                    "Warbeast",
+                                    "Companion"
+                                ],
+                                "keywords": [
+                                    "Dual Attack",
+                                    "Eyeless Sight",
+                                    "Gladiator",
+                                    "MK4",
+                                    "Power Attack: Headbutt",
+                                    "Power Attack: Slam",
+                                    "Power Attack: Trample",
+                                    "Unstoppable"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Bond [Carver]",
+                                        "description": "If this model begins the game in Carver's battlegroup, it is bonded to him. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Carver and in his Control range, it gains Exhaust Fumes."
+                                    },
+                                    {
+                                        "name": "Companion [Carver Ultimus]",
+                                        "description": "This model is included in any army that includes Carver Ultimus. If Carver Ultimus is destroyed or removed from play, remove this model from play. This model is part of Carver Ultimus's battlegroup."
+                                    },
+                                    {
+                                        "name": "Dispensation [Carver] [Carver Ultimus]",
+                                        "description": "This model can be included in Carver lists as an cohort model. If it is, don't include Carver Ultimus models however, the point cost of this model remains the same as if Carver Ultimus were included. This model loses compainion in this case."
+                                    },
+                                    {
+                                        "name": "Full Boar",
+                                        "description": "This model can use Full Boar at the start of its activation. This model gains +2 SPD that activation. At the end of that activation, this model suffers d3 damage points. Full Boar can only be used once per activation."
+                                    },
+                                    {
+                                        "name": "Mercenary [any army]",
+                                        "description": "This model will work for any army."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "80MM",
+                                    "spd": "4",
+                                    "str": "12",
+                                    "mat": "7",
+                                    "rat": "6",
+                                    "def": "10",
+                                    "arm": "19",
+                                    "hp": "35",
+                                    "fury": "5",
+                                    "thr": "8"
+                                },
+                                "weapons": [
+                                    {
+                                        "name": "Volley Cannon",
+                                        "type": "ranged",
+                                        "fieldoffire": "None",
+                                        "rng": "12",
+                                        "rof": "2",
+                                        "pow": "13",
+                                        "count": "2",
+                                        "ability": [
+                                            {
+                                                "name": "Volume Fire",
+                                                "description": "Attacks with this weapon gain +1 to attack accuracy and damage rolls against medium-based models and +2 to attack accuracy and damage rolls against large, extra-large, and huge-based models."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Chain Tusks",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "6",
+                                        "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Critical Shred",
+                                                "description": "On a critical hit with this weapon during this model's Combat Action, after the attack is resolved this model can make one additional attack with this weapon against the model hit."
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "animi": [
+                                    {
+                                        "name": "Recoil",
+                                        "cost": "1",
+                                        "rng": "SELF",
+                                        "aoe": "-",
+                                        "pow": "10",
+                                        "dur": "Turn",
+                                        "off": "NO",
+                                        "description": "The spellcaster gains Swift Hunter. Recoil lasts for one turn. (When a model with Swift Hunter destroys one or more enemy models with a basic aranged attack, immediately after the attack is resolved it can advance up to 2\".)"
+                                    }
+                                ],
+                                "spiral": [
+                                    "6",
+                                    "3",
+                                    "10",
+                                    "7",
+                                    "6",
+                                    "3"
+                                ],
+                                "displayorder": 1
                             }
                         ]
                     },
@@ -4889,7 +5089,11 @@
                                     },
                                     {
                                         "name": "Limited Battlegroup [War Boar MMD47]",
-                                        "description": "The only warbeasts that can be included in this model's battlegroup are War Boar MMD47."
+                                        "description": "The only cohort models that can be included in this model's battlegroup are War Boar MMD47."
+                                    },
+                                    {
+                                        "name": "Mercenary [any army]",
+                                        "description": "This model will work for any army."
                                     }
                                 ],
                                 "stats": {
@@ -4929,14 +5133,11 @@
                                         "rng": "2",
                                         "pow": "7",
                                         "count": "1",
-                                        "ability": [
-                                            {
-                                                "name": "Fire Continuous",
-                                                "description": ""
-                                            }
-                                        ],
                                         "damagetype": [
                                             "Arcane"
+                                        ],
+                                        "presetabilities": [
+                                            "Continuous Fire"
                                         ]
                                     },
                                     {
@@ -4963,7 +5164,7 @@
                                         "pow": "-",
                                         "dur": "RND",
                                         "off": "NO",
-                                        "description": "While in the spellcaster's control range, models in its battlegroup cannot become knocked down and gain +3 ARM but suffer -2 DEF. Batten Down the Hatches lasts for one round."
+                                        "description": "While in the spellcaster's Control range, models in its battlegroup cannot become knocked down and gain +3 ARM but suffer -2 DEF. Batten Down the Hatches lasts for one round."
                                     },
                                     {
                                         "name": "Quagmire",
@@ -5008,7 +5209,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Bond [Carver]",
-                                        "description": "If this model begins the game in Carver's battlegroup, it is bonded to him. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Carver and in his control range, it gains Exhaust Fumes."
+                                        "description": "If this model begins the game in Carver's battlegroup, it is bonded to him. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Carver and in his Control range, it gains Exhaust Fumes."
                                     },
                                     {
                                         "name": "Companion [Carver Ultimus]",
@@ -5021,6 +5222,10 @@
                                     {
                                         "name": "Full Boar",
                                         "description": "This model can use Full Boar at the start of its activation. This model gains +2 SPD that activation. At the end of that activation, this model suffers d3 damage points. Full Boar can only be used once per activation."
+                                    },
+                                    {
+                                        "name": "Mercenary [any army]",
+                                        "description": "This model will work for any army."
                                     }
                                 ],
                                 "stats": {
@@ -5153,11 +5358,15 @@
                                     },
                                     {
                                         "name": "Divine Manifestation",
-                                        "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take control of this model."
+                                        "description": "This model is not a living model, cannot become knocked down, and never suffers Blind or Shadow Bind. Opponents cannot take Control of this model."
                                     },
                                     {
                                         "name": "Vendetta [Other Types of Archons]",
                                         "description": "This model gains an additional die on all accuracy and damage rolls against Other Types of Archons."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -5180,7 +5389,7 @@
                                         "subabilities": [
                                             {
                                                 "name": "Meat for the Beast",
-                                                "description": "Once during each of your turns when a model in this model's battlegroup destroys an enemy model with a melee attack while in this model's control range, immediately after the attack is resolved this model can cast a spell without spending focus."
+                                                "description": "Once during each of your turns when a model in this model's battlegroup destroys an enemy model with a melee attack while in this model's Control range, immediately after the attack is resolved this model can cast a spell without spending focus."
                                             },
                                             {
                                                 "name": "Mortal Fear",
@@ -5217,7 +5426,7 @@
                         ]
                     },
                     {
-                        "name": "Draegon, The Black Bastard",
+                        "name": "Draegon, the Black Bastard",
                         "points": "5",
                         "category": "Solos",
                         "primaryfaction": [
@@ -5280,6 +5489,10 @@
                                     {
                                         "name": "Reciprocate",
                                         "description": "When it is missed by an enemy ranged attack, immediately after the attack is resolved this model can make one basic ranged attack against the attacking model."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -5319,6 +5532,114 @@
                                         ],
                                         "presetabilities": [
                                             "Weapon Master"
+                                        ]
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Eilish Garrity, the Occultist of the BRI",
+                        "points": "4",
+                        "category": "Solos",
+                        "primaryfaction": [
+                            "Infernals",
+                            "Mercenaries"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "C",
+                        "models": [
+                            {
+                                "name": "Garrity 1",
+                                "title": "Mercenary Solo",
+                                "modeltype": [
+                                    "Solo",
+                                    "Warrior"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Arcane Void",
+                                        "description": ""
+                                    },
+                                    {
+                                        "name": "Gate Walker",
+                                        "description": "Once per activation, immediately after this model casts a spell, you can warp this model anywhere completely within 5\" of its current location."
+                                    },
+                                    {
+                                        "name": "Marked Soul",
+                                        "description": "This model is a Marked Soul."
+                                    },
+                                    {
+                                        "name": "Mental Force",
+                                        "description": "This model can use Mental Force at the beginning of each attack. If it does, all attack and damage rolls resulting from the attack are boosted. After the attack is resolved, this model suffers d3 damage points."
+                                    },
+                                    {
+                                        "name": "Partisan [Infernals]",
+                                        "description": "When included in a Infernals army, this model is a Infernals model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "30MM",
+                                    "spd": "6",
+                                    "str": "4",
+                                    "aat": "6",
+                                    "mat": "5",
+                                    "rat": "5",
+                                    "def": "13",
+                                    "arm": "14",
+                                    "cmd": "5",
+                                    "hp": "5"
+                                },
+                                "nestedabilities": [
+                                    {
+                                        "topability": {
+                                            "name": "Magic Ability",
+                                            "description": "Performing a Magic Ability special action or special attack counts as casting a spell."
+                                        },
+                                        "subabilities": [
+                                            {
+                                                "name": "Bleed",
+                                                "description": ""
+                                            },
+                                            {
+                                                "name": "Puppet Master (★Action) (★Attack)",
+                                                "description": "Puppet Master is a RNG 10 spell. When it targets an enemy model/unit, it is a magic attack. You can have one affected model reroll one accuracy or damage roll, then Puppet Master expires. Puppet Master lasts for one round."
+                                            },
+                                            {
+                                                "name": "Unbinding (★Action)",
+                                                "description": "Enemy upkeep spells on models/units within 5” of this model expire. For each upkeep spell that expires as a result of Unbinding, the model maintaining the spell suffers d3 damage points."
+                                            }
                                         ]
                                     }
                                 ],
@@ -5546,8 +5867,7 @@
                                     "Warrior"
                                 ],
                                 "keywords": [
-                                    "Iosan",
-                                    "Mercenary"
+                                    "Iosan"
                                 ],
                                 "characterabilities": [
                                     {
@@ -5573,6 +5893,10 @@
                                     {
                                         "name": "Partisan [Ios]",
                                         "description": "When included in a Ios army, this model is a Ios model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -5681,6 +6005,10 @@
                                     {
                                         "name": "Treasure Hunter",
                                         "description": "While this model is securing an area or holding an objective, friendly models within 8\" of it gain Pathfinder."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -5710,6 +6038,122 @@
                                         ],
                                         "damagetype": [
                                             "Arcane"
+                                        ]
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "J.A.I.M.S.",
+                        "points": "4",
+                        "category": "Solos",
+                        "primaryfaction": [
+                            "Convergence of Cyriss",
+                            "Mercenaries"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "C",
+                        "models": [
+                            {
+                                "name": "J.A.I.M.S",
+                                "title": "Mercenary Solo",
+                                "modeltype": [
+                                    "Solo",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Construct",
+                                    "Unstoppable"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Acrobatics",
+                                        "description": "This model can advance through other models if it has enough movement to move completely past their bases. This model ignores intervening models when declaring its charge target."
+                                    },
+                                    {
+                                        "name": "Blade Shield",
+                                        "description": "This model gains +2 DEF against ranged attack accuracy rolls."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    },
+                                    {
+                                        "name": "Partisan [Convergence]",
+                                        "description": "When included in a Convergence army, this model is a Convergence model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Prey",
+                                        "description": "After deployment but before the first player's turn, choose an enemy model/unit to be this model/unit's prey. This model gains +2 to attack accuracy and damage rolls against it's prey. When the prey is destroyed or removed from play, choose another model/unit to be the prey."
+                                    },
+                                    {
+                                        "name": "Sidestep",
+                                        "description": "When this model hits an enemy model with an initial melee attack or a melee special attack, it can advance up to 2\" after the attack is resolved."
+                                    },
+                                    {
+                                        "name": "Soul Vessel",
+                                        "description": "This model generates soul tokens as if it were a living model."
+                                    },
+                                    {
+                                        "name": "Spring Blades",
+                                        "description": "If a model hits this model with a melee attack, the attacking model suffers d3 damage points immediately after the attack is resolved unless this model was destroyed or removed from play by the attack."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "40MM",
+                                    "spd": "7",
+                                    "str": "8",
+                                    "mat": "7",
+                                    "rat": "5",
+                                    "def": "12",
+                                    "arm": "17",
+                                    "cmd": "7",
+                                    "hp": "8"
+                                },
+                                "weapons": [
+                                    {
+                                        "name": "Ripping Claw",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "3",
+                                        "count": "2",
+                                        "ability": [
+                                            {
+                                                "name": "Grievous Wounds",
+                                                "description": "A model hit by this weapon loses Tough and cannot have damage removed from it for one round."
+                                            }
+                                        ],
+                                        "presetabilities": [
+                                            "Weapon Master"
                                         ]
                                     }
                                 ],
@@ -5749,15 +6193,23 @@
                                 "characterabilities": [
                                     {
                                         "name": "Attached",
-                                        "description": "Before the start of the game, attach this model to a friendly Faction leader for the rest of the game. Each Leader can have only one model/unit attached to it."
+                                        "description": "Before the start of the game, attach this model to a friendly Faction leader for the rest of the game. Each Leader can have only one model/unit attached to it. The attached model is part of its Leader's Battlegroup."
                                     },
                                     {
                                         "name": "Battle Wizard",
                                         "description": "Once per turn, when this model destroys one or more enemy models with a melee attack during its activation, immediately after the attack is resolved it can make one Magic ability special attack or special action."
                                     },
                                     {
-                                        "name": "Partisan [Khador and Orgoth]",
-                                        "description": "When included in a Khador and Orgoth army, this model is a Khador and Orgoth model instead of a Mercenary model."
+                                        "name": "Partisan [Khador]",
+                                        "description": "When included in a Khador army, this model is a Khador model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Partisan [Orgoth]",
+                                        "description": "When included in a Orgoth army, this model is a Orgoth model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Mercenary [Infernals, Khador, Orgoth, Religion of the Twins]",
+                                        "description": "This model will work for Infernals, Khador, Orgoth, Religion of the Twins."
                                     }
                                 ],
                                 "stats": {
@@ -5817,7 +6269,7 @@
                         ]
                     },
                     {
-                        "name": "Magnus The Unstoppable",
+                        "name": "Magnus the Unstoppable",
                         "points": "20",
                         "category": "Solos",
                         "primaryfaction": [
@@ -5874,7 +6326,11 @@
                                     },
                                     {
                                         "name": "Limited Battlegroup [Invictus]",
-                                        "description": "The only warbeasts that can be included in this model's battlegroup are Invictus."
+                                        "description": "The only cohort models that can be included in this model's battlegroup are Invictus."
+                                    },
+                                    {
+                                        "name": "Mercenary [any army]",
+                                        "description": "This model will work for any army."
                                     }
                                 ],
                                 "stats": {
@@ -6007,16 +6463,20 @@
                                 ],
                                 "characterabilities": [
                                     {
-                                        "name": "Bond Magnus",
-                                        "description": ""
+                                        "name": "Bond [Magnus]",
+                                        "description": "If this model begins the game in Magnus' battlegroup, it is bonded to him. This model is not considered to be bonded while under your opponent's control. While this model is bonded to Magnus and in his control range, it gains Retaliatory Strike."
                                     },
                                     {
-                                        "name": "Companion",
-                                        "description": "This model is included in any army that includes [#tag1]. If [#tag1] is destroyed or removed from play, remove this model from play. This model is part of [#tag1]'s battlegroup."
+                                        "name": "Companion [Magnus the Unstoppable]",
+                                        "description": "This model is included in any army that includes Magnus the Unstoppable. If Magnus the Unstoppable is destroyed or removed from play, remove this model from play. This model is part of Magnus the Unstoppable's battlegroup."
                                     },
                                     {
                                         "name": "Dispensation [Magnus] [Magnus the Unstoppable]",
                                         "description": "This model can be included in Magnus lists as an cohort model. If it is, don't include Magnus the Unstoppable models however, the point cost of this model remains the same as if Magnus the Unstoppable were included. This model loses compainion in this case."
+                                    },
+                                    {
+                                        "name": "Mercenary [any army]",
+                                        "description": "This model will work for any army."
                                     }
                                 ],
                                 "stats": {
@@ -6055,7 +6515,7 @@
                                         "name": "Flamethrower",
                                         "type": "ranged",
                                         "fieldoffire": "None",
-                                        "rng": "Sp 8",
+                                        "rng": "SP 8",
                                         "rof": "1",
                                         "pow": "12",
                                         "count": "1",
@@ -6183,7 +6643,208 @@
                         ]
                     },
                     {
-                        "name": "Maulgreth, The Charnel Plague",
+                        "name": "Malvin & Mayhem",
+                        "points": "13",
+                        "category": "Solos",
+                        "primaryfaction": [
+                            "Mercenaries"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "C",
+                        "models": [
+                            {
+                                "name": "Malvin & Mayhem 1",
+                                "title": "Mercenary Heavy Warjack Solo",
+                                "modeltype": [
+                                    "Warjack",
+                                    "Solo",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Construct",
+                                    "Grab Attack",
+                                    "Power Attack: Headbutt",
+                                    "Power Attack: Slam",
+                                    "Power Attack: Throw",
+                                    "Power Attack: Trample",
+                                    "Riot Quest"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Independent Warjack",
+                                        "description": "This model cannot be part of a battlegroup or be ‘jack marshaled. During the focus allocation step of your Control Phase, this model receives 3 focus points."
+                                    },
+                                    {
+                                        "name": "The Button",
+                                        "description": "This model can use The Button once per game at the start of its activation. This model gains the benefit of all of its Arcane Machinery effects this activation."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "50MM",
+                                    "spd": "5",
+                                    "str": "11",
+                                    "mat": "7",
+                                    "rat": "5",
+                                    "def": "11",
+                                    "arm": "18",
+                                    "cmd": "8",
+                                    "hp": "30"
+                                },
+                                "nestedabilities": [
+                                    {
+                                        "topability": {
+                                            "name": "Arcane Machinery",
+                                            "description": "Once per turn at any time during its activation, this model can use one of the following effects. Arcane Machinery effects last for one round."
+                                        },
+                                        "subabilities": [
+                                            {
+                                                "name": "Disengage Safety",
+                                                "description": "This model gains +2 STR and Berserk."
+                                            },
+                                            {
+                                                "name": "Ignite Thrusters",
+                                                "description": "This model gains +2 SPD, Flight and Flame Trail."
+                                            },
+                                            {
+                                                "name": "Telescoping Shields",
+                                                "description": "This model gains +2 ARM and Roadblock."
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "weapons": [
+                                    {
+                                        "name": "Dream Crusher",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "7",
+                                        "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Warhead",
+                                                "description": "When this model directly hits a model with an attack with this weapon, you can center a 4” AOE on the model directly hit. Models in the AOE are hit and suffer a POW 10 blast damage roll. This damage is not considered to have been caused by an attack. On a critical hit, models in the AOE become knocked down. THis model is not affected by Warhead."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "name": "Spiked Fist",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "4",
+                                        "count": "1",
+                                        "presetabilities": [
+                                            "Open Fist"
+                                        ]
+                                    }
+                                ],
+                                "grid": {
+                                    "columns": [
+                                        {
+                                            "column": "1",
+                                            "values": [
+                                                "-",
+                                                "x",
+                                                "x",
+                                                "x",
+                                                "L",
+                                                "-"
+                                            ]
+                                        },
+                                        {
+                                            "column": "2",
+                                            "values": [
+                                                "-",
+                                                "x",
+                                                "x",
+                                                "L",
+                                                "L",
+                                                "M"
+                                            ]
+                                        },
+                                        {
+                                            "column": "3",
+                                            "values": [
+                                                "x",
+                                                "x",
+                                                "x",
+                                                "x",
+                                                "M",
+                                                "M"
+                                            ]
+                                        },
+                                        {
+                                            "column": "4",
+                                            "values": [
+                                                "x",
+                                                "x",
+                                                "x",
+                                                "x",
+                                                "C",
+                                                "C"
+                                            ]
+                                        },
+                                        {
+                                            "column": "5",
+                                            "values": [
+                                                "-",
+                                                "x",
+                                                "x",
+                                                "R",
+                                                "R",
+                                                "C"
+                                            ]
+                                        },
+                                        {
+                                            "column": "6",
+                                            "values": [
+                                                "-",
+                                                "x",
+                                                "x",
+                                                "x",
+                                                "R",
+                                                "-"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Maulgreth, the Charnel Plague",
                         "points": "4",
                         "category": "Solos",
                         "primaryfaction": [
@@ -6235,6 +6896,10 @@
                                     {
                                         "name": "Spell Ward",
                                         "description": "This model cannot be targeted by enemy spells."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Cryx, Grymkin, Infernals, Ios, Orgoth, Skorne, Thornfall Alliance]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Cryx, Grymkin, Infernals, Ios, Orgoth, Skorne, Thornfall Alliance."
                                     }
                                 ],
                                 "stats": {
@@ -6420,6 +7085,10 @@
                                     {
                                         "name": "Spell Ward",
                                         "description": "This model cannot be targeted by enemy spells."
+                                    },
+                                    {
+                                        "name": "Mercenary [Grymkin, Infernals, Khador, Orgoth, Religion of the Twins]",
+                                        "description": "This model will work for Grymkin, Infernals, Khador, Orgoth, Religion of the Twins."
                                     }
                                 ],
                                 "stats": {
@@ -6527,6 +7196,10 @@
                                     {
                                         "name": "Spell Ward",
                                         "description": "This model cannot be targeted by enemy spells."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Cryx, Grymkin, Infernals, Ios, Khador, Orgoth, Religion of the Twins, Skorne, Supernal Coalition, Thornfall Alliance]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Cryx, Grymkin, Infernals, Ios, Khador, Orgoth, Religion of the Twins, Skorne, Supernal Coalition, Thornfall Alliance."
                                     }
                                 ],
                                 "stats": {
@@ -6630,6 +7303,10 @@
                                     {
                                         "name": "Subterfuge",
                                         "description": "If this model is within 5\" of an objective secured by an opponent, score a victory point each time your opponenet scores a victory point from that objective."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -6654,7 +7331,7 @@
                                         "ability": [
                                             {
                                                 "name": "Nimble Fingers",
-                                                "description": ""
+                                                "description": "This attack causes no damage. When this attack hits an enemy model, remove 1 of any token from that model."
                                             }
                                         ]
                                     }
@@ -6713,7 +7390,7 @@
                                     },
                                     {
                                         "name": "Souie (★Action)",
-                                        "description": "If Brine is currently in this model's control range, Brine can immediately make a full advance toward this model."
+                                        "description": "If Brine is currently in this model's Control range, Brine can immediately make a full advance toward this model."
                                     }
                                 ],
                                 "stats": {
@@ -6795,7 +7472,7 @@
                                     },
                                     {
                                         "name": "Extended Control Range",
-                                        "description": "When checking to see if this model is in its controller's control range, double the range."
+                                        "description": "When checking to see if this model is in its controller's Control range, double the range."
                                     },
                                     {
                                         "name": "Pain Response",
@@ -6804,6 +7481,10 @@
                                     {
                                         "name": "Retaliatory Strike",
                                         "description": "If a model with Retaliatory Strike is hit by a melee attack made by an enemy model during your opponent's turn, after that attack is resolved the model with Retaliatory Strike can immediately make one basic melee attack against that model. The model with Retaliatory Strike can make only one Retaliatory Strike per turn."
+                                    },
+                                    {
+                                        "name": "Mercenary [Circle Orboros, Infernals, Legion of Everblight, Orgoth, Skorne, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Circle Orboros, Infernals, Legion of Everblight, Orgoth, Skorne, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -6867,6 +7548,230 @@
                         ]
                     },
                     {
+                        "name": "Saxon Orrik",
+                        "points": "4",
+                        "category": "Solos",
+                        "primaryfaction": [
+                            "Infernals",
+                            "Mercenaries"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Circle Orboros",
+                            "Cryx",
+                            "Infernals",
+                            "Khador",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Searforge Commission",
+                            "Thornfall Alliance",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "C",
+                        "models": [
+                            {
+                                "name": "Saxon 1",
+                                "title": "Mercenary Solo",
+                                "modeltype": [
+                                    "Solo",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Advance Deploy",
+                                    "Pathfinder",
+                                    "Stealth",
+                                    "Tough"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Blind Spot",
+                                        "description": ""
+                                    },
+                                    {
+                                        "name": "Dismember",
+                                        "description": "When this model hits a warbeast with a melee attack, it gains an additional die to the attack damage roll."
+                                    },
+                                    {
+                                        "name": "Marked Soul",
+                                        "description": "This model is a Marked Soul."
+                                    },
+                                    {
+                                        "name": "Partisan [Infernals]",
+                                        "description": "When included in a Infernals army, this model is a Infernals model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Reconnaissance (★Action)",
+                                        "description": "Choose one enemy model or unit with ambush that has not yet been put into play. Its controller must immediately deploy the chosen model or unit. This ability can only be used once per game."
+                                    },
+                                    {
+                                        "name": "Reposition [3\"]",
+                                        "description": "At the end of an activation in which it did not run or fail a charge, this model can advance up to 3\", then it's activation ends."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Circle Orboros, Cryx, Infernals, Khador, Llael, Ord, Orgoth, Protectorate of Menoth, Searforge Commission, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Circle Orboros, Cryx, Infernals, Khador, Llael, Ord, Orgoth, Protectorate of Menoth, Searforge Commission, Thornfall Alliance, Trollbloods."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "30MM",
+                                    "spd": "6",
+                                    "str": "6",
+                                    "mat": "7",
+                                    "rat": "7",
+                                    "def": "15",
+                                    "arm": "14",
+                                    "cmd": "7",
+                                    "hp": "5"
+                                },
+                                "weapons": [
+                                    {
+                                        "name": "Military Rifle",
+                                        "type": "ranged",
+                                        "fieldoffire": "None",
+                                        "rng": "10",
+                                        "rof": "1",
+                                        "pow": "11",
+                                        "count": "1"
+                                    },
+                                    {
+                                        "name": "Sword",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "4",
+                                        "count": "1"
+                                    },
+                                    {
+                                        "name": "Skinning Knife",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "1",
+                                        "pow": "2",
+                                        "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Inflict Pain",
+                                                "description": "When this weapon hits a warbeast, this model can place 1 fury point on or remove 1 fury point from the hit warbeast."
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Widget, Mathlete Archaeologist",
+                        "points": "4",
+                        "category": "Solos",
+                        "primaryfaction": [
+                            "Convergence of Cyriss",
+                            "Mercenaries",
+                            "Supernal Coalition"
+                        ],
+                        "factions": [
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods"
+                        ],
+                        "fieldallowance": "C",
+                        "models": [
+                            {
+                                "name": "Widget 2",
+                                "title": "Mercenary Solo",
+                                "modeltype": [
+                                    "Solo",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Flight",
+                                    "Gunfighter",
+                                    "Riot Quest"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "'Jack Hunter",
+                                        "description": "This model gains an additional die on its melee and ranged damage rolls against warjacks."
+                                    },
+                                    {
+                                        "name": "Archeologist",
+                                        "description": "After deployment but before the first player's turn, choose a table half as this model's excavation site. Draw a line through the center of the table horizontally or Vertically to choose half. This model gains +2 to accuracy and damage rolls against enemy models/units completely within this model's excavation site."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    },
+                                    {
+                                        "name": "Partisan [Convergence]",
+                                        "description": "When included in a Convergence army, this model is a Convergence model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Partisan [Supernal Coalition]",
+                                        "description": "When included in a Supernal Coalition army, this model is a Supernal Coalition model instead of a Mercenary model."
+                                    },
+                                    {
+                                        "name": "Reposition [3\"]",
+                                        "description": "At the end of an activation in which it did not run or fail a charge, this model can advance up to 3\", then it's activation ends."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "30MM",
+                                    "spd": "7",
+                                    "str": "5",
+                                    "mat": "6",
+                                    "rat": "5",
+                                    "def": "15",
+                                    "arm": "13",
+                                    "cmd": "6",
+                                    "hp": "5"
+                                },
+                                "weapons": [
+                                    {
+                                        "name": "Servitor Launch",
+                                        "type": "ranged",
+                                        "fieldoffire": "None",
+                                        "rng": "12",
+                                        "rof": "1",
+                                        "pow": "12",
+                                        "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Servitor Launch",
+                                                "description": "When this model directly hits an enemy model with this weapon during it's activation, if this model is a Convergence or Supernal Coalition model, you can immediately spawn one servitor solo into play completely within 2” of the enemy model hit.The Solo must forfeit it's Combat Action the turn it is put into play."
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
                         "name": "Dannon Blythe & Bull",
                         "category": "Units",
                         "primaryfaction": [
@@ -6901,10 +7806,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "5",
-                            "minunit": "Blythe and Bull",
                             "maxcost": "-",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "mincost": "5",
+                            "minunit": "Blythe and Bull"
                         },
                         "models": [
                             {
@@ -6939,6 +7844,10 @@
                                     {
                                         "name": "Tactics [Take Down]",
                                         "description": "Models in this unit gain Take Down. (Models disabled by a melee attack made by a model with Take Down cannot make a Tough roll. Models boxed by a melee attack made by this model are removed from play.)"
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -6989,6 +7898,10 @@
                                     {
                                         "name": "Rapid Strike",
                                         "description": "This model can make one additional melee attack each Combat Action."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -7053,9 +7966,9 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
                             "maxcost": "-",
                             "maxunit": "-",
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "10"
                         },
                         "models": [
@@ -7084,6 +7997,10 @@
                                     {
                                         "name": "Spell Ward",
                                         "description": "This model cannot be targeted by enemy spells."
+                                    },
+                                    {
+                                        "name": "Mercenary [Grymkin, Infernals, Khador, Orgoth, Religion of the Twins]",
+                                        "description": "This model will work for Grymkin, Infernals, Khador, Orgoth, Religion of the Twins."
                                     }
                                 ],
                                 "stats": {
@@ -7110,6 +8027,83 @@
                                         ],
                                         "presetabilities": [
                                             "Weapon Master"
+                                        ]
+                                    }
+                                ],
+                                "displayorder": 0
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Steelhead Halberdiers",
+                        "category": "Units",
+                        "primaryfaction": [
+                            "Mercenaries"
+                        ],
+                        "factions": [
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Khador",
+                            "Llael",
+                            "Mercenaries",
+                            "Orgoth",
+                            "Religion of the Twins",
+                            "Searforge Commission"
+                        ],
+                        "fieldallowance": "2",
+                        "unitpoints": {
+                            "minunit": "Gunner and 2 Grunts",
+                            "maxcost": "-",
+                            "maxunit": "-",
+                            "mincost": "4"
+                        },
+                        "models": [
+                            {
+                                "name": "Steelhead Halberdiers",
+                                "title": "Mercenary Unit",
+                                "modeltype": [
+                                    "Infernal Master",
+                                    "Unit",
+                                    "Warrior"
+                                ],
+                                "keywords": [
+                                    "Combined Melee Attack",
+                                    "Steelhead"
+                                ],
+                                "characterabilities": [
+                                    {
+                                        "name": "Mercenary [Crucible Guard, Cygnar, Cryx, Khador, Protectorate, Ord, Llael, Religion of the Twins, or Searforge Commission]",
+                                        "description": "This model will work for Crucible Guard, Cygnar, Cryx, Khador, Protectorate, Ord, Llael, Religion of the Twins, or Searforge Commission."
+                                    },
+                                    {
+                                        "name": "Set Defense",
+                                        "description": "A model in this model's front arc suffers -2 on charge, slam power attack, and impact attack accuracy rolls against this model."
+                                    }
+                                ],
+                                "stats": {
+                                    "basesize": "30MM",
+                                    "spd": "6",
+                                    "str": "6",
+                                    "mat": "6",
+                                    "def": "13",
+                                    "arm": "13",
+                                    "cmd": "7",
+                                    "hp": "1"
+                                },
+                                "weapons": [
+                                    {
+                                        "name": "Halberd",
+                                        "type": "Melee",
+                                        "fieldoffire": "None",
+                                        "rng": "2",
+                                        "pow": "5",
+                                        "count": "1",
+                                        "ability": [
+                                            {
+                                                "name": "Powerful Charge",
+                                                "description": "This model gains +2 to charge accuracy rolls with this weapon."
+                                            }
                                         ]
                                     }
                                 ],
@@ -7191,6 +8185,10 @@
                                     {
                                         "name": "Shooting Gallery",
                                         "description": "This model gains +2 to Ranged accuracy rolls against models within 5” of it."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -7339,6 +8337,10 @@
                                     {
                                         "name": "Sky Ladder",
                                         "description": "When this model ends it's Normal Movement, choose one small or medium-based friendly solo model within 2” of it. You can place the chosen model completely within 2” of its current location. A model can be placed as a result of Sky Ladder only once per turn."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -7448,7 +8450,7 @@
                         "models": [
                             {
                                 "name": "Bunker",
-                                "title": "Mercenary , Structure",
+                                "title": "Mercenary Structure",
                                 "modeltype": [
                                     "Structure"
                                 ],
@@ -7472,6 +8474,10 @@
                                     {
                                         "name": "Habitable [Bunker]",
                                         "description": "Small and medium-based units and solos can enter this structure through a door on the lower level. A model/unit ending its Normal Movement within 1” of the door can choose to enter this building. Models entering this building can be placed on either the lower or upper levels. Models in a unit occupying this structure can be placed on either floor or both. There can be up to six small-based models or three medium-based models on each floor. There must be room for a model's base for it to be placed on either floor."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     },
                                     {
                                         "name": "Movement Inside [Bunker]",
@@ -7542,7 +8548,6 @@
                                 ],
                                 "keywords": [
                                     "Construct",
-                                    "Mercenary",
                                     "MK4"
                                 ],
                                 "characterabilities": [
@@ -7569,6 +8574,10 @@
                                     {
                                         "name": "Top Floor: Guard Tower",
                                         "description": "The upper level of this structure is considered to be elevated terrain. Additionally, models on the Top Floor gain Snipe. Spells cast from the Top Floor gain +4 RNG."
+                                    },
+                                    {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {

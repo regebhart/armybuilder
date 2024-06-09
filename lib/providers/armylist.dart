@@ -9,8 +9,10 @@ import 'package:armybuilder/models/web.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 
+import '../models/cohort.dart';
 import '../models/modularoptions.dart';
 import '../models/spells.dart';
+import '../models/unit.dart';
 import 'appdata.dart';
 
 class ArmyListNotifier extends ChangeNotifier {
@@ -148,6 +150,7 @@ class ArmyListNotifier extends ChangeNotifier {
       listfaction: '',
       pointtarget: '',
       totalpoints: '',
+      favorite: false,
       leadergroup: [LeaderGroup(leader: blankproduct, leaderattachment: blankproduct, cohort: [], spellrack: [])],
       solos: [],
       units: [],
@@ -165,6 +168,10 @@ class ArmyListNotifier extends ChangeNotifier {
     // _groupindex = 0;
     _leadertype = 'warcaster';
     _castergroupindex = [0];
+  }
+
+  notify() {
+    notifyListeners();
   }
 
   setStatus(String value) {
@@ -363,6 +370,7 @@ class ArmyListNotifier extends ChangeNotifier {
           _selectedcasterFactionIndexes.remove("Infernals");
         }
       }
+
       // case "strange bedfellows":
       //   //no changes
       //   break;
@@ -771,6 +779,7 @@ class ArmyListNotifier extends ChangeNotifier {
       listfaction: _armyList.listfaction,
       pointtarget: encounterLevelSelected['armypoints'].toString(),
       totalpoints: _currentpoints.toString(),
+      favorite: false,
       leadergroup: [],
       solos: [],
       units: [],
@@ -811,6 +820,7 @@ class ArmyListNotifier extends ChangeNotifier {
         commandattachment: blankproduct,
         weaponattachments: [],
         cohort: [],
+        weaponattachmentlimits: [],
       ));
       newarmy.units.last.unit = Product.copyProduct(u.unit);
       newarmy.units.last.unit.fanum = calculateFA(newarmy, u.unit);
@@ -829,6 +839,7 @@ class ArmyListNotifier extends ChangeNotifier {
           newarmy.units.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
         }
       }
+      newarmy.units.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(u.unit.name);
     }
     for (var s in _armyList.solos) {
       newarmy.solos.add(Product.copyProduct(s));
@@ -1110,6 +1121,7 @@ class ArmyListNotifier extends ChangeNotifier {
   addUnit(Unit unit) {
     _armyList.units.add(unit);
     _armyList.units.last.hasMarshal = FactionNotifier().checkUnitForMashal(unit);
+    _armyList.units.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(unit.unit.name);
     if (_armyList.units.last.hasMarshal) {
       updateCasterCount(1);
       updateSelectedCaster(_castercount, 'unit');
@@ -1142,7 +1154,10 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   addUnitWeaponAttachment(Product product) {
-    if (_armyList.units[_addToIndex].weaponattachments.length < 3) {
+    int walimit = _armyList.units[_addToIndex].minsize
+        ? _armyList.units[_addToIndex].weaponattachmentlimits[0]
+        : _armyList.units[_addToIndex].weaponattachmentlimits[1];
+    if (_armyList.units[_addToIndex].weaponattachments.length < walimit) {
       _armyList.units[_addToIndex].weaponattachments.add(Product.copyProduct(product));
     }
     updateEverything();
@@ -1210,6 +1225,7 @@ class ArmyListNotifier extends ChangeNotifier {
       listfaction: _armyList.listfaction,
       pointtarget: encounterLevelSelected['armypoints'].toString(),
       totalpoints: '0',
+      favorite: false,
       leadergroup: [LeaderGroup(leader: blankproduct, leaderattachment: blankproduct, cohort: [], spellrack: [])],
       solos: [],
       units: [],
@@ -1330,6 +1346,7 @@ class ArmyListNotifier extends ChangeNotifier {
       listfaction: '',
       pointtarget: '',
       totalpoints: '',
+      favorite: false,
       leadergroup: [LeaderGroup(leader: blankproduct, leaderattachment: blankproduct, cohort: [], spellrack: [])],
       solos: [],
       units: [],

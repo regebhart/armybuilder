@@ -10,7 +10,7 @@ import 'package:armybuilder/providers/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/armylist.dart';
+import '../models/cohort.dart';
 import '../models/grid.dart';
 import '../models/model.dart';
 import '../models/spells.dart';

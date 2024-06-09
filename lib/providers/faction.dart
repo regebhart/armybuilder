@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../models/armylist.dart';
+import '../models/cohort.dart';
+import '../models/unit.dart';
 import 'appdata.dart';
 
 class FactionNotifier extends ChangeNotifier {
   late List<Map<String, dynamic>> _allFactions;
+  late Map<String, String> _factionUpdateDates;
   // late List<List<Product>> _factionProducts;
   // late List<List<List<Product>>> _sortedProducts;
   late List<List<Product>> _filteredProducts; //used for category selected and filtering attachments to be displayed on categoryModelList
@@ -23,6 +26,7 @@ class FactionNotifier extends ChangeNotifier {
   // late List<bool> _factionHasCasterAttachments;
 
   List<Map<String, dynamic>> get allFactions => _allFactions;
+  Map<String, String> get factionUpdateDates => _factionUpdateDates;
   int get selectedFactionIndex => _selectedFactionIndex;
   // List<List<Product>> get factionProducts => _factionProducts;
   List<List<Product>> get filteredProducts => _filteredProducts;
@@ -35,6 +39,7 @@ class FactionNotifier extends ChangeNotifier {
 
   FactionNotifier() {
     _allFactions = [];
+    _factionUpdateDates = {};
     _showingoptions = false;
     // _factionProducts = [[], [], []]; //1 list of faction models, 1 list of allys, 1 of mercs
     _selectedCategory = 0;
@@ -81,6 +86,11 @@ class FactionNotifier extends ChangeNotifier {
       ];
       String data = await rootBundle.loadString('json/${f['file'].toString().toLowerCase()}');
       var decodeddata = jsonDecode(data);
+      if (decodeddata.containsKey('updated')) {
+        _factionUpdateDates[f['name']!] = decodeddata['updated'];
+      } else {
+        _factionUpdateDates[f['name']!] = 'pending';
+      }
       for (var g = 0; g < groups.length; g++) {
         for (var p in decodeddata['group'][g][groups[g]]['products']) {
           factionProducts[g].add(Product.fromJson(p));
@@ -97,15 +107,60 @@ class FactionNotifier extends ChangeNotifier {
               }
               if (ab.name.toLowerCase().contains('command attachment')) {
                 index = 7;
-                attachname = ab.name.substring(ab.name.indexOf('['));
-                attachname = attachname.replaceAll('[', '').replaceAll(']', '');
-                break;
+                switch (p['name']) {
+                  case 'Captain Jonas Murdoch' || 'Doctor Alejandro Mosby':
+                    //small or medium based mercenary
+                    attachname =
+                        'Alexia Ciannor & the Risen,Captain Sam Machorne & the Devil Dogs,Croe\'s Cutthroats,Cylena Raefyll & Nyss Hunters,Dannon Blythe & Bull,Doom Reaver Swordsmen,Gatorman Posse,Greygore Boomhowler & Co,Hammerfall High Shield Gun Corps,Herne & Jonne,Horgenhold Forge Guard,Idrian Skirmishers,Kayazy Assassins,Lady Aiyana & Master Holt,Legion of Lost Souls,Order of Illumination Resolutes,Order of Illumination Vigilants,Precursor Knights,Press Gangers,Steelhead Cannon Crew,Steelhead Halberdiers,Steelhead Mortal Crew,Steelhead Riflemen,Steelhead Volley Gun Crew,Storm Vanes,Swamp Gobber Bellows Crew,Tactical Arcanist Corps,The Devil\'s Shadow Mutineers,Thorn Gun Mages';
+                    break;
+                  case 'Legionnaire Standard Bearer':
+                    //small or medium based storm legion
+                    attachname =
+                        'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
+                    break;
+                  case 'Marauder Crew Bosun' || 'Marauder Crew Quartermaster' || 'Marauder Crew Tapper':
+                    //medium based marauder crew
+                    attachname = 'Marauder Crew';
+                    break;
+                  case 'Pyg Coxswain':
+                    //small based pyg unit
+                    attachname = 'Pyg Boarding Party,Pyg Burrowers,Pyg Bushwhackers,Pyg Galley Crew,Pyg Lookouts,Pyg Shockers';
+                    break;
+                  case 'Transverse Enumerator':
+                    //non-character convergence
+                    attachname = 'Clockwork Angels,Eradicators,Negation Angels,Obstructors,Optifex Directive,Perforators,Reciprocators,Reductors';
+                    break;
+                  case 'Tyrant Vorkesh':
+                    //cataphract unit
+                    attachname = 'Cataphract Arcuarii,Cataphract Cetrati,Cataphract Incindiarii';
+                    break;
+                  default:
+                    attachname = ab.name.substring(ab.name.indexOf('['));
+                    attachname = attachname.replaceAll('[', '').replaceAll(']', '');
+                    break;
+                }
               }
               if (ab.name.toLowerCase().contains('weapon attachment')) {
                 index = 8;
-                attachname = ab.name.substring(ab.name.indexOf('['));
-                attachname = attachname.replaceAll('[', '').replaceAll(']', '');
-                break;
+                switch (p['name']) {
+                  case 'Trollkin Sorcerer':
+                    attachname =
+                        'Dannon Blythe & Bull,Greygore Boomhowler & Co,Dhunian Knot,Kriel Warriors,KrielStone & Stone Scribes,Marauder Crew,Northkin Raiders,Scattergunners,Sons of Bragg,Trollkin Barrage Team,Trollkin Champions,Trollkin Fennblades,Trollkin Highwaymen,Trollkin Runeshapers,Trollkin Scouts,Strollkin Sluggers,Trollkin Warders';
+                    break;
+                  case 'Morrowan Battle Priest':
+                    //small or medium based unit
+                    attachname = 'Alexia Ciannor & the Risen,Captain Sam Machorne & the Devil Dogs,Croe\'s Cutthroats,Cylena Raefyll & Nyss Hunters,Dannon Blythe & Bull,Doom Reaver Swordsmen,Gatorman Posse,Greygore Boomhowler & Co,Hammerfall High Shield Gun Corps,Herne & Jonne,Horgenhold Forge Guard,Idrian Skirmishers,Kayazy Assassins,Lady Aiyana & Master Holt,Legion of Lost Souls,Order of Illumination Resolutes,Order of Illumination Vigilants,Precursor Knights,Press Gangers,Steelhead Cannon Crew,Steelhead Halberdiers,Steelhead Mortal Crew,Steelhead Riflemen,Steelhead Volley Gun Crew,Storm Vanes,Swamp Gobber Bellows Crew,Tactical Arcanist Corps,The Devil\'s Shadow Mutineers,Thorn Gun Mages,Arcane Mechaniks,Black 13th Strike Force,Field Mechaniks,Long Gunner Infantry,Order of the Arcane Tempest Gun Mage Pistoleers,Rangers,Silverline Stormguard,Storm Callers,Storm Lance Legionnaires,Stormblade Infantry,Stormblade Legionnaires,Stormguard Infantry,Stormguard Legionnaires,Stormsmith Grenadiers,Stormsmith Stormtower,Stormthrower Legionnaires,Sword Knights,Tempest Assailers,Tempest Thunderers,Trencher Cannon Crew,Trencher Chain Gun Crew,Trencher Combat Engineers,Trencher Commandos,Trencher Express Team,Trencher Infantry,Trencher Long Gunners';
+                    break;
+                  case 'Void Leech':
+                    //blind water congregation unit
+                    attachname =
+                        'Bog Trog Ambushers,Boil Master & Spirit Cauldron,Croak Raiders,Croak Trappers,Fire Spitters,Gatorman Bokor & Bog Trog Swamp Shamblers,Gatorman Posse,Spirit Shamans,Swamp Gobber Bellows Crew';
+                    break;
+                  default:
+                    attachname = ab.name.substring(ab.name.indexOf('['));
+                    attachname = attachname.replaceAll('[', '').replaceAll(']', '');
+                    break;
+                }
               }
             }
           }
@@ -191,7 +246,7 @@ class FactionNotifier extends ChangeNotifier {
   //   }
   // }
 
-  setSelectedCategory(int index, String? unitname, List<int>? casterFactionIndex) {
+  setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex) {
     _selectedCategory = index;
     _filteredProducts.clear();
     _filteredProducts = [[], [], []];
@@ -200,14 +255,43 @@ class FactionNotifier extends ChangeNotifier {
 
     if (index <= 6) {
       if (index == 1) {
-        if (casterFactionIndex != null) {
-          factionindex.clear();
-          factionindex.addAll(casterFactionIndex);
-        }
-        _filteredProducts[0].clear();
-        for (int f in factionindex) {
-          if (f >= 0) {
-            _filteredProducts[0].addAll(_allFactions[f]['sortedproducts'][0][index]);
+        if (selectedCaster!.name != '' && AppData().limitedBattlegroup.contains(selectedCaster.name)) {
+          setLimitedCohort(selectedCaster.name);
+        } else {
+          if (casterFactionIndex != null) {
+            factionindex.clear();
+            factionindex.addAll(casterFactionIndex);
+          }
+          _filteredProducts[0].clear();
+          for (int f in factionindex) {
+            if (f >= 0) {
+              _filteredProducts[0].addAll(_allFactions[f]['sortedproducts'][0][index]);
+            }
+          }
+          switch (selectedCaster.name.toLowerCase()) {
+            case 'magnus the warlord' || 'magnus the traitor':
+              //add invictus to the list
+              int index = _allFactions.indexWhere((element) => element['name'] == 'Mercenaries');
+              for (var m in _allFactions[index]['sortedproducts'][0][1]) {
+                if (m['name'] == 'Invictus') {
+                  _filteredProducts.add(m);
+                  break;
+                }
+              }
+              _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+              break;
+            case 'lord carver, bmmd, esq, iii':
+              int index = _allFactions.indexWhere((element) => element['name'] == 'Mercenaries');
+              for (var m in _allFactions[index]['sortedproducts'][0][1]) {
+                if (m['name'] == 'War Boar MMD47') {
+                  _filteredProducts.add(m);
+                  break;
+                }
+              }
+              _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+              break;
+            default:
+              break;
           }
         }
       } else {
@@ -228,6 +312,61 @@ class FactionNotifier extends ChangeNotifier {
     }
     _showingoptions = false;
     notifyListeners();
+  }
+
+  setLimitedCohort(String castername) {
+    switch (castername.toLowerCase()) {
+      case 'archnumen aurora':
+        //convergence cohort
+        int index = _allFactions.indexWhere((element) => element['name'] == 'Convergence of Cyriss');
+        _filteredProducts[0].clear();
+        _filteredProducts[0].addAll(_allFactions[index]['sortedproducts'][0][1]);
+        break;
+      case 'carver ultimus':
+        //only war boar mmd47
+        int index = _allFactions.indexWhere((element) => element['name'] == 'Mercenaries');
+        _filteredProducts[0].clear();
+        for (var m in _allFactions[index]['sortedproducts'][0][1]) {
+          if (m['name'] == 'War Boar MMD47') {
+            _filteredProducts.add(m);
+            break;
+          }
+        }
+        break;
+      case 'dr. egan arkadius':
+        //gorax ragers and farrow warbeasts
+        //gorax ragers from circle
+        //farrows - Battle Boar, Gun Boar, Razor Boar, Road Hog, Spatter Boar
+        int index = _allFactions.indexWhere((element) => element['name'] == 'Thornfall Alliance');
+        _filteredProducts[0].clear();
+        _filteredProducts[0].addAll(_allFactions[index]['sortedproducts'][0][1]);
+        break;
+      case 'magnus the unstoppable':
+        //only invictus
+        int index = _allFactions.indexWhere((element) => element['name'] == 'Mercenaries');
+        _filteredProducts[0].clear();
+        for (var m in _allFactions[index]['sortedproducts'][0][1]) {
+          if (m['name'] == 'Invictus') {
+            _filteredProducts.add(m);
+            break;
+          }
+        }
+        break;
+      case 'una the falconer':
+        //circle warbeasts with flying
+        //Razorwing Griffon, Rotterhorn Griffon, Scarfell Griffon, Storm Raptor,
+        int index = _allFactions.indexWhere((element) => element['name'] == 'Circle of Orboros');
+        List<Product> circleCohort = [];
+        List<Product> flyingCircle = [];
+        flyingCircle.addAll(_allFactions[index]['sortedproducts'][0][1]);
+        for (var p in circleCohort) {
+          if (p.models[0].keywords!.toString().contains('Flying')) {
+            flyingCircle.add(p);
+          }
+        }
+        _filteredProducts[0].addAll(flyingCircle);
+        break;
+    }
   }
 
   setShowModularGroupOptions(Product product) {
@@ -274,6 +413,15 @@ class FactionNotifier extends ChangeNotifier {
       if (_allFactions[_selectedFactionIndex]['unitattachments'][g][1].containsKey(unitname)) return true;
     }
     return false;
+  }
+
+  List<int> getUnitWeaponAttachLimit(String unitname) {
+    switch (unitname) {
+      case 'Winter Korps Infantry':
+        return [2, 4];
+      default:
+        return [3, 3];
+    }
   }
 
   bool checkSoloForJourneyman(Product product) {
@@ -350,6 +498,7 @@ class FactionNotifier extends ChangeNotifier {
       listfaction: list['faction'],
       totalpoints: list['totalpoints'],
       pointtarget: list['pointtarget'],
+      favorite: false,
       leadergroup: [],
       units: [],
       solos: [],
@@ -392,6 +541,7 @@ class FactionNotifier extends ChangeNotifier {
               u.containsKey('commandattachment') ? Product.copyProduct(findByName(u['commandattachment'])) : ArmyListNotifier().blankproduct,
           weaponattachments: [],
           cohort: [],
+          weaponattachmentlimits: [],
         );
         if (u.containsKey('weaponattachments')) {
           for (var wa in u['weaponattachments']) {
@@ -400,15 +550,9 @@ class FactionNotifier extends ChangeNotifier {
         }
         group.hasMarshal = checkUnitForMashal(group);
         if (group.hasMarshal && u.containsKey('cohort')) {
-          // for (Map<String, dynamic> c in u['cohort']) {
           group.cohort.addAll(getCohortModelsFromJson(u['cohort']));
-          // if (c.containsKey('options')) {
-          //   group.cohort.add(Cohort(product: Product.copyProduct(findByName(c['product'])), selectedOptions: c['options']));
-          // } else {
-          //   group.cohort.add(Cohort(product: Product.copyProduct(findByName(c['product'])), selectedOptions: []));
-          // }
-          // }
         }
+        group.weaponattachmentlimits = getUnitWeaponAttachLimit(group.unit.name);
         army.units.add(group);
       }
     }
@@ -588,12 +732,14 @@ class FactionNotifier extends ChangeNotifier {
                 commandattachment: blankproduct,
                 weaponattachments: [],
                 cohort: [],
+                weaponattachmentlimits: [],
               ));
               unitgroup += 1;
               list.units.last.hasMarshal = checkUnitForMashal(list.units.last);
               if (list.units.last.hasMarshal) {
                 lastleader = 'unit';
               }
+              list.units.last.weaponattachmentlimits = getUnitWeaponAttachLimit(list.units.last.unit.name);
               break;
             case 'Attachments':
               for (var ab in thisproduct.models[0].characterabilities!) {
