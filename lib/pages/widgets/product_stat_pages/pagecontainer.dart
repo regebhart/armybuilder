@@ -1,9 +1,9 @@
-import 'package:armybuilder/pages/deploymainview.dart';
-import 'package:armybuilder/pages/importexport.dart';
+import 'package:armybuilder/pages/deployed_list/deploymainview.dart';
+import 'package:armybuilder/pages/widgets/import_export/importexport.dart';
 import 'package:armybuilder/pages/layouts/wide.dart';
-import 'package:armybuilder/pages/factionselection.dart';
-import 'package:armybuilder/pages/lists.dart';
-import 'package:armybuilder/pages/mainmenu.dart';
+import 'package:armybuilder/pages/widgets/menu_widgets/factionselection.dart';
+import 'package:armybuilder/pages/list_selection/lists.dart';
+import 'package:armybuilder/pages/widgets/menu_widgets/mainmenu.dart';
 import 'package:armybuilder/pages/layouts/narrow-swiping.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:flutter/material.dart';

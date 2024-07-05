@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class SpellRackListItem extends StatelessWidget {
   final String title;
   final String cost;
   final int casterindex;
-  final int spellindex;    
-  const SpellRackListItem(
-      {required this.title,
-      required this.cost,
-      required this.casterindex,
-      required this.spellindex,
-      super.key});
+  final int spellindex;
+  const SpellRackListItem({required this.title, required this.cost, required this.casterindex, required this.spellindex, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +50,10 @@ class SpellRackListItem extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 2),
                     child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minHeight: AppData().fontsize,
-                                maxHeight: AppData().fontsize * 2 + 25,),
+                      constraints: BoxConstraints(
+                        minHeight: AppData().fontsize,
+                        maxHeight: AppData().fontsize * 2 + 25,
+                      ),
                       child: Text(
                         title,
                         style: TextStyle(fontSize: AppData().fontsize - 2),

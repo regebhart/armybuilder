@@ -1,6 +1,4 @@
 import 'package:armybuilder/firebase_options.dart';
-import 'package:armybuilder/pages/widgets/factionupdatedates.dart';
-import 'package:armybuilder/providers/appdata.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -8,7 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/pagecontainer.dart';
+import 'pages/widgets/menu_widgets/drawer.dart';
+import 'pages/widgets/product_stat_pages/pagecontainer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
 
-    String buildlastupdated = '6/8/2024 v1';
+    String buildlastupdated = '7/5/2024 v1';
 
     if (faction.allFactions.isEmpty) {
       faction.readAllFactions();
@@ -75,40 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Padding(
           padding: const EdgeInsets.only(top: 55.0),
           child: Drawer(
-            child: ListView(
-              children: [
-                ListTile(
-                  title: const Text('New List'),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    army.resetEncounterLevel();
-                    army.resetList();
-                    army.pageController.jumpToPage(1);
-                  },
-                ),
-                ListTile(
-                  title: const Text('Edit/Deploy Army'),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    army.pageController.jumpToPage(3);
-                  },
-                ),
-                ListTile(
-                  title: const Text('Import/Export'),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    army.pageController.jumpToPage(4);
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    'Build Updated: $buildlastupdated',
-                    style: TextStyle(fontSize: AppData().fontsize - 4),
-                  ),
-                ),
-                const FactionDatesListTile(),
-              ],
-            ),
+            child: MenuDrawer(army: army, buildlastupdated: buildlastupdated),
           ),
         ),
         appBar: AppBar(

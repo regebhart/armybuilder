@@ -2,9 +2,9 @@ import 'package:armybuilder/models/model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/product.dart';
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../models/product.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class DeployedListItem extends StatelessWidget {
   final int listindex;
@@ -12,8 +12,7 @@ class DeployedListItem extends StatelessWidget {
   final Product product;
   final int modelindex;
   final bool minsize;
-  const DeployedListItem(
-      {required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
+  const DeployedListItem({required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +96,7 @@ class DeployedListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: GestureDetector(
-        onTap: () {          
+        onTap: () {
           army.setDeployedListSelectedProduct(listindex, product, modelindex, listmodelindex, unitmodelcount);
           // if (army.swiping) {
           // army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);

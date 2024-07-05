@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/product.dart';
-import '../../providers/appdata.dart';
-import '../../providers/armylist.dart';
+import '../../../models/product.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class CategoryModelListTile extends StatelessWidget {
   final int index;
@@ -12,8 +12,7 @@ class CategoryModelListTile extends StatelessWidget {
   final String cost;
   final void Function() onTap;
   final int group;
-  const CategoryModelListTile(
-      {required this.index, required this.p, required this.atlimit, required this.cost, required this.onTap, required this.group, super.key});
+  const CategoryModelListTile({required this.index, required this.p, required this.atlimit, required this.cost, required this.onTap, required this.group, super.key});
 
   @override
   Widget build(BuildContext context) {

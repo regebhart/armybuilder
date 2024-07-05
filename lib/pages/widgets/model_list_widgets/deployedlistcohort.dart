@@ -2,12 +2,12 @@ import 'package:armybuilder/models/model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/base_stats.dart';
-import '../models/cohort.dart';
-import '../models/modularoptions.dart';
-import '../models/product.dart';
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../models/base_stats.dart';
+import '../../../models/cohort.dart';
+import '../../../models/modularoptions.dart';
+import '../../../models/product.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class DeployedListCohortItem extends StatelessWidget {
   final int listindex;
@@ -15,8 +15,7 @@ class DeployedListCohortItem extends StatelessWidget {
   final Cohort cohort;
   final int modelindex;
   final bool minsize;
-  const DeployedListCohortItem(
-      {required this.listindex, required this.listmodelindex, required this.cohort, required this.modelindex, required this.minsize, super.key});
+  const DeployedListCohortItem({required this.listindex, required this.listmodelindex, required this.cohort, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,11 +1,11 @@
 import 'package:armybuilder/models/product.dart';
-import 'package:armybuilder/pages/universalmodelstatpage.dart';
+import 'package:armybuilder/pages/widgets/product_stat_pages/universalmodelstatpage.dart';
 import 'package:armybuilder/providers/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/cohort.dart';
-import '../providers/armylist.dart';
+import '../../../models/cohort.dart';
+import '../../../providers/armylist.dart';
 
 class SingleModelStatPage extends StatefulWidget {
   final int listindex;

@@ -5,17 +5,17 @@ import 'package:armybuilder/models/modularoptions.dart';
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/models/specialability.dart';
 import 'package:armybuilder/models/weapons.dart';
-import 'package:armybuilder/pages/widgets/spiral.dart';
+import 'package:armybuilder/pages/widgets/damage_widgets/spiral.dart';
 import 'package:armybuilder/providers/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/cohort.dart';
-import '../models/grid.dart';
-import '../models/model.dart';
-import '../models/spells.dart';
-import '../providers/armylist.dart';
-import 'widgets/web.dart';
+import '../../../models/cohort.dart';
+import '../../../models/grid.dart';
+import '../../../models/model.dart';
+import '../../../models/spells.dart';
+import '../../../providers/armylist.dart';
+import '../damage_widgets/web.dart';
 
 class UniversalModelStatPage extends StatefulWidget {
   final bool deployed;

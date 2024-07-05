@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../models/cohort.dart';
 import '../../../providers/armylist.dart';
-import 'universalmodelstatpage.dart';
+import '../product_stat_pages/universalmodelstatpage.dart';
 
 class ProductStatPage extends StatefulWidget {
   final bool deployed;

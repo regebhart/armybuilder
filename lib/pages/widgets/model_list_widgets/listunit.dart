@@ -2,8 +2,8 @@ import 'package:armybuilder/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class ArmyListUnitItem extends StatelessWidget {
   final Product product;
@@ -12,14 +12,7 @@ class ArmyListUnitItem extends StatelessWidget {
   final bool minsize;
   final bool hasmarshal;
   final int casterindex;
-  const ArmyListUnitItem(
-      {required this.product,
-      required this.index,
-      required this.onTap,
-      required this.minsize,
-      required this.hasmarshal,
-      required this.casterindex,
-      super.key});
+  const ArmyListUnitItem({required this.product, required this.index, required this.onTap, required this.minsize, required this.hasmarshal, required this.casterindex, super.key});
 
   @override
   Widget build(BuildContext context) {

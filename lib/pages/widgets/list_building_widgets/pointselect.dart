@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/appdata.dart';
-import '../../providers/armylist.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class PointSelect extends StatefulWidget {
   const PointSelect({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class ModularOptionListItem extends StatelessWidget {
   final String title;
@@ -12,13 +12,7 @@ class ModularOptionListItem extends StatelessWidget {
   final int groupindex;
   final String leadertype;
   const ModularOptionListItem(
-      {required this.title,
-      required this.cost,
-      required this.casterindex,
-      required this.cohortindex,
-      required this.groupindex,
-      required this.leadertype,
-      super.key});
+      {required this.title, required this.cost, required this.casterindex, required this.cohortindex, required this.groupindex, required this.leadertype, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +53,10 @@ class ModularOptionListItem extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 2),
                     child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minHeight: AppData().fontsize,
-                                maxHeight: AppData().fontsize * 2 + 25,),
+                      constraints: BoxConstraints(
+                        minHeight: AppData().fontsize,
+                        maxHeight: AppData().fontsize * 2 + 25,
+                      ),
                       child: Text(
                         title,
                         style: TextStyle(fontSize: AppData().fontsize - 2),

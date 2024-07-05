@@ -5,11 +5,11 @@ import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/cohort.dart';
-import '../models/product.dart';
-import '../models/unit.dart';
-import '../providers/appdata.dart';
-import 'widgets/modelListTile.dart';
+import '../../../models/cohort.dart';
+import '../../../models/product.dart';
+import '../../../models/unit.dart';
+import '../../../providers/appdata.dart';
+import '../model_list_widgets/modelListTile.dart';
 
 class CategoryModelsList extends StatefulWidget {
   const CategoryModelsList({super.key});
@@ -137,7 +137,7 @@ class _CategoryModelsListState extends State<CategoryModelsList> {
                 }
               };
               if (p.points == '') {
-                cost = 'Min: ${p.unitPoints!['mincost']}';                
+                cost = 'Min: ${p.unitPoints!['mincost']}';
                 onTap = () {
                   army.addUnit(Unit(
                       unit: Product.copyProduct(p),

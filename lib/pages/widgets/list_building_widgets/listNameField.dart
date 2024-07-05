@@ -1,11 +1,11 @@
-import 'package:armybuilder/pages/widgets/savelistbutton.dart';
+import 'package:armybuilder/pages/widgets/buttons/savelistbutton.dart';
 import 'package:flutter/material.dart';
-import 'package:armybuilder/pages/copytoclipboardbutton.dart';
+import 'package:armybuilder/pages/widgets/buttons/copytoclipboardbutton.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class ListNameField extends StatefulWidget {
   const ListNameField({super.key});

@@ -5,8 +5,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/savedata.dart';
-import '../../providers/appdata.dart';
+import '../../../models/savedata.dart';
+import '../../../providers/appdata.dart';
 
 class SaveListButton extends StatelessWidget {
   const SaveListButton({super.key});
@@ -39,14 +39,14 @@ class SaveListButton extends StatelessWidget {
             army.setlistname();
             saveNewList(army.armyList);
           }
+
           FirebaseAnalytics.instance.logEvent(
             name: 'Saved List',
             parameters: {
-              'list': '${army.armyList.listfaction}:${army.armyList.pointtarget}:${army.armyList.name}:${army.armyList.leadergroup[0].leader.name}',
+              'list': army.armyListToString(),
               'faction': army.armyList.listfaction,
               'points': army.armyList.pointtarget,
               'listname': army.armyList.name,
-              'leader': army.armyList.leadergroup[0].leader.name,
             },
           );
         }

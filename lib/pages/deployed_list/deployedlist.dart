@@ -1,12 +1,12 @@
-import 'package:armybuilder/selectedlistitems/deployedlistcohort.dart';
-import 'package:armybuilder/selectedlistitems/deployedlistitem.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/deployedlistcohort.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/deployedlistitem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/armylist.dart';
-import '../models/product.dart';
-import '../models/unit.dart';
-import '../providers/armylist.dart';
+import '../../models/armylist.dart';
+import '../../models/product.dart';
+import '../../models/unit.dart';
+import '../../providers/armylist.dart';
 
 class DeployedListWidget extends StatefulWidget {
   final int listindex;

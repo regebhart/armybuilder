@@ -1,17 +1,17 @@
-import 'package:armybuilder/selectedlistitems/listcohort.dart';
-import 'package:armybuilder/selectedlistitems/listitem.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/listcohort.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/listitem.dart';
 import 'package:armybuilder/providers/faction.dart';
-import 'package:armybuilder/selectedlistitems/listmodularoption.dart';
-import 'package:armybuilder/selectedlistitems/listunit.dart';
-import 'package:armybuilder/selectedlistitems/spellracklistitem.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/listmodularoption.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/listunit.dart';
+import 'package:armybuilder/pages/widgets/model_list_widgets/spellracklistitem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/armylist.dart';
-import '../models/cohort.dart';
-import '../models/unit.dart';
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
+import '../../../models/armylist.dart';
+import '../../../models/cohort.dart';
+import '../../../models/unit.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
 
 class ModelSelectedList extends StatefulWidget {
   const ModelSelectedList({super.key});
@@ -486,8 +486,7 @@ Future<void> _showResetDialog(context, ArmyListNotifier army) async {
   );
 }
 
-Widget emptyModuleOption(
-    int leaderindex, int cohortindex, int groupindex, Cohort c, ArmyListNotifier army, FactionNotifier faction, String type, double buttonHeight) {
+Widget emptyModuleOption(int leaderindex, int cohortindex, int groupindex, Cohort c, ArmyListNotifier army, FactionNotifier faction, String type, double buttonHeight) {
   return Align(
     alignment: Alignment.centerLeft,
     child: Padding(

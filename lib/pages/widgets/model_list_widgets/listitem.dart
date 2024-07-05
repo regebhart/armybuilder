@@ -2,9 +2,9 @@ import 'package:armybuilder/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
-import '../providers/faction.dart';
+import '../../../providers/appdata.dart';
+import '../../../providers/armylist.dart';
+import '../../../providers/faction.dart';
 
 class ArmyListItem extends StatelessWidget {
   final Product product;

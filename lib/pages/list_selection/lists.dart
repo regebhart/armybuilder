@@ -1,15 +1,15 @@
 import 'dart:convert';
 
 import 'package:armybuilder/models/armylist.dart';
-import 'package:armybuilder/pages/widgets/factiondropdown.dart';
+import 'package:armybuilder/pages/deployed_list/factiondropdown.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/savedata.dart';
-import '../providers/appdata.dart';
-import '../providers/armylist.dart';
-import '../providers/faction.dart';
+import '../../models/savedata.dart';
+import '../../providers/appdata.dart';
+import '../../providers/armylist.dart';
+import '../../providers/faction.dart';
 
 class SavedArmyLists extends StatefulWidget {
   const SavedArmyLists({super.key});
@@ -346,12 +346,10 @@ class SavedArmyListTile extends StatelessWidget {
                     FirebaseAnalytics.instance.logEvent(
                       name: 'Deployed List',
                       parameters: {
-                        'list':
-                            '${army.deployedLists[0].list.listfaction}:${army.deployedLists[0].list.pointtarget}:${army.deployedLists[0].list.name}:${army.deployedLists[0].list.leadergroup[0].leader.name}',
+                        'list': army.armyListToString(),
                         'faction': army.deployedLists[0].list.listfaction,
                         'points': army.deployedLists[0].list.pointtarget,
                         'listname': army.deployedLists[0].list.name,
-                        'leader': army.deployedLists[0].list.leadergroup[0].leader.name,
                       },
                     );
                   },
