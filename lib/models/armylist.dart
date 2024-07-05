@@ -1,4 +1,3 @@
-import 'package:armybuilder/models/modularoptions.dart';
 import 'package:armybuilder/models/spells.dart';
 import 'package:armybuilder/providers/armylist.dart';
 

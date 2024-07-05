@@ -149,12 +149,18 @@ class FactionNotifier extends ChangeNotifier {
                     break;
                   case 'Morrowan Battle Priest':
                     //small or medium based unit
-                    attachname = 'Alexia Ciannor & the Risen,Captain Sam Machorne & the Devil Dogs,Croe\'s Cutthroats,Cylena Raefyll & Nyss Hunters,Dannon Blythe & Bull,Doom Reaver Swordsmen,Gatorman Posse,Greygore Boomhowler & Co,Hammerfall High Shield Gun Corps,Herne & Jonne,Horgenhold Forge Guard,Idrian Skirmishers,Kayazy Assassins,Lady Aiyana & Master Holt,Legion of Lost Souls,Order of Illumination Resolutes,Order of Illumination Vigilants,Precursor Knights,Press Gangers,Steelhead Cannon Crew,Steelhead Halberdiers,Steelhead Mortal Crew,Steelhead Riflemen,Steelhead Volley Gun Crew,Storm Vanes,Swamp Gobber Bellows Crew,Tactical Arcanist Corps,The Devil\'s Shadow Mutineers,Thorn Gun Mages,Arcane Mechaniks,Black 13th Strike Force,Field Mechaniks,Long Gunner Infantry,Order of the Arcane Tempest Gun Mage Pistoleers,Rangers,Silverline Stormguard,Storm Callers,Storm Lance Legionnaires,Stormblade Infantry,Stormblade Legionnaires,Stormguard Infantry,Stormguard Legionnaires,Stormsmith Grenadiers,Stormsmith Stormtower,Stormthrower Legionnaires,Sword Knights,Tempest Assailers,Tempest Thunderers,Trencher Cannon Crew,Trencher Chain Gun Crew,Trencher Combat Engineers,Trencher Commandos,Trencher Express Team,Trencher Infantry,Trencher Long Gunners';
+                    attachname =
+                        'Alexia Ciannor & the Risen,Captain Sam Machorne & the Devil Dogs,Croe\'s Cutthroats,Cylena Raefyll & Nyss Hunters,Dannon Blythe & Bull,Doom Reaver Swordsmen,Gatorman Posse,Greygore Boomhowler & Co,Hammerfall High Shield Gun Corps,Herne & Jonne,Horgenhold Forge Guard,Idrian Skirmishers,Kayazy Assassins,Lady Aiyana & Master Holt,Legion of Lost Souls,Order of Illumination Resolutes,Order of Illumination Vigilants,Precursor Knights,Press Gangers,Steelhead Cannon Crew,Steelhead Halberdiers,Steelhead Mortal Crew,Steelhead Riflemen,Steelhead Volley Gun Crew,Storm Vanes,Swamp Gobber Bellows Crew,Tactical Arcanist Corps,The Devil\'s Shadow Mutineers,Thorn Gun Mages,Arcane Mechaniks,Black 13th Strike Force,Field Mechaniks,Long Gunner Infantry,Order of the Arcane Tempest Gun Mage Pistoleers,Rangers,Silverline Stormguard,Storm Callers,Storm Lance Legionnaires,Stormblade Infantry,Stormblade Legionnaires,Stormguard Infantry,Stormguard Legionnaires,Stormsmith Grenadiers,Stormsmith Stormtower,Stormthrower Legionnaires,Sword Knights,Tempest Assailers,Tempest Thunderers,Trencher Cannon Crew,Trencher Chain Gun Crew,Trencher Combat Engineers,Trencher Commandos,Trencher Express Team,Trencher Infantry,Trencher Long Gunners';
                     break;
                   case 'Void Leech':
                     //blind water congregation unit
                     attachname =
                         'Bog Trog Ambushers,Boil Master & Spirit Cauldron,Croak Raiders,Croak Trappers,Fire Spitters,Gatorman Bokor & Bog Trog Swamp Shamblers,Gatorman Posse,Spirit Shamans,Swamp Gobber Bellows Crew';
+                    break;
+                  case 'Soulless Escort':
+                    //any Ios unit
+                    attachname =
+                        'Dawnguard Destors,Dawnguard Invictors,Dawnguard Sentinels,Dreadguard Archers,Dreadguard Cavalry,Dreadguard Slayers,Heavy Rifle Team,House Ellowuyr Swordsman,House Ellowuyr Wardens,House Shyeel Arcanists,House Shyeel Battle Mages,House Vyre Electromancers,Houseguard Halberdiers,Houseguard Riflemen,Mage Hunter Assassins,Mage Hunter Infiltrators,Mage Hunter Rangers,Mage Hunter Strike Force,Ryssovass Defenders,Seeker Adepts,Soulless Blademasters,Soulless Guardians,Soulless Hunters,Spears of Scyrah,Stormfall Archers';
                     break;
                   default:
                     attachname = ab.name.substring(ab.name.indexOf('['));

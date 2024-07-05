@@ -1444,6 +1444,16 @@ class ArmyListNotifier extends ChangeNotifier {
     _hptracking[listindex].add(hp);
   }
 
+  addShieldTracking(int listindex) {
+    List<List<bool>> shield = [];
+    for (int c = 0; c < 2; c++) {
+      shield.add([]);
+      for (int i = 0; i < 6; i++) {
+        shield[c].add(false);
+      }
+    }
+  }
+
   addSpiralHPTracking(int listindex, Spiral s) {
     List<List<bool>> spiral = List.generate(6, (index) => List.generate(int.parse(s.values[index]), (index) => false));
     Map<String, dynamic> hp = {'damage': 0, 'spiral': spiral};
@@ -1491,6 +1501,19 @@ class ArmyListNotifier extends ChangeNotifier {
     } else {
       //remove damage
       _hptracking[listindex][modelindex]['damage']--;
+    }
+    notifyListeners();
+  }
+
+  adjustShieldDamage(int listindex, int modelindex, int columnindex, int rowindex) {
+    bool active = !_hptracking[listindex][modelindex]['shield'][columnindex][rowindex];
+    _hptracking[listindex][modelindex]['shield'][columnindex][rowindex] = active;
+    if (active) {
+      //add damage
+      _hptracking[listindex][modelindex]['shield']++;
+    } else {
+      //remove damage
+      _hptracking[listindex][modelindex]['shield']--;
     }
     notifyListeners();
   }

@@ -39,7 +39,13 @@ class Spell {
     if (json.containsKey('aoe')) aoe = json['aoe'];
     if (json.containsKey('pow')) pow = json['pow'];
     if (json.containsKey('dur')) dur = json['dur'];
-    if (json.containsKey('off')) off = json['off'];
+    if (json.containsKey('off')) {
+      if (json['off'] == '-') {
+        off = json['off'];
+      } else {
+        off = json['off'] ? 'YES' : 'NO';
+      }
+    }
     if (json.containsKey('description')) description = json['description'];
     if (json.containsKey('poolcost')) poolcost = json['poolcost'];
     if (json.containsKey('poolfactions')) {

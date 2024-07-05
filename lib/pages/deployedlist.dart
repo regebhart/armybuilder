@@ -139,6 +139,9 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
             if (c.product.models[m].grid!.columns.isNotEmpty) {
               army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
             }
+            if (c.product.models[m].shield != null) {
+              army.addShieldTracking(listindex);
+            }
             if (c.product.models[m].spiral!.values.isNotEmpty) {
               army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
             }

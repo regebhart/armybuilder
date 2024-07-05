@@ -19,84 +19,86 @@ class FactionSelection extends StatelessWidget {
 
     return Center(
       child: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: 200,
-            maxWidth: 840,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 400,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 30.0),
-                  child: Image.asset('assets/3_5_logo.png'),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  'Select a Faction',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 32,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: 200,
+              maxWidth: 840,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 400,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 30.0),
+                    child: Image.asset('assets/3_5_logo.png'),
                   ),
                 ),
-              ),
-              Wrap(
-                alignment: WrapAlignment.center,
-                children: List.generate(
-                    factionlist.length,
-                    (index) => Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: SizedBox(
-                            width: 190,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Container(
-                                padding: const EdgeInsets.all(4),
-                                color: Colors.white,
-                                child: TextButton(
-                                  onPressed: () async {
-                                    // await faction.readFactionProducts(factionlist[index]['file']!);
-                                    army.setFactionSelected(factionlist[index]['name']!);
-                                    faction.setSelectedFactionIndex(index);
-                                    // await faction.sortFactionProducts();
-                                    faction.setSelectedCategory(0, null, null, null);
-                                    army.pageController.jumpToPage(2);
-                                    army.setDeploying(false);
-                                    await FirebaseAnalytics.instance.logEvent(
-                                      name: 'Faction Selected',
-                                      parameters: {
-                                        'faction': factionlist[index]['name']!,
-                                      },
-                                    );
-                                  },
-                                  child: Text(
-                                    factionlist[index]['name']!,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(fontSize: 14, color: Colors.black),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'Select a Faction',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 32,
+                    ),
+                  ),
+                ),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: List.generate(
+                      factionlist.length,
+                      (index) => Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: SizedBox(
+                              width: 190,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  padding: const EdgeInsets.all(4),
+                                  color: Colors.white,
+                                  child: TextButton(
+                                    onPressed: () async {
+                                      // await faction.readFactionProducts(factionlist[index]['file']!);
+                                      army.setFactionSelected(factionlist[index]['name']!);
+                                      faction.setSelectedFactionIndex(index);
+                                      // await faction.sortFactionProducts();
+                                      faction.setSelectedCategory(0, null, null, null);
+                                      army.pageController.jumpToPage(2);
+                                      army.setDeploying(false);
+                                      await FirebaseAnalytics.instance.logEvent(
+                                        name: 'Faction Selected',
+                                        parameters: {
+                                          'faction': factionlist[index]['name']!,
+                                        },
+                                      );
+                                    },
+                                    child: Text(
+                                      factionlist[index]['name']!,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        )),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 30),
-                child: SizedBox(
-                  width: 300,
-                  child: Text(
-                    'Please note:\nThis site and all of the models included within are a work in progress. There may be errors and some features may not work properly.',
-                    textAlign: TextAlign.center,
-                  ),
+                          )),
                 ),
-              )
-            ],
+                const Padding(
+                  padding: EdgeInsets.only(top: 30),
+                  child: SizedBox(
+                    width: 300,
+                    child: Text(
+                      'Please note:\nThis site and all of the models included within are a work in progress. There may be errors and some features may not work properly.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

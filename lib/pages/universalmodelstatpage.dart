@@ -380,6 +380,11 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       );
     }
 
+    bool hasshield = false;
+    if (m.shield != null) {
+      hasshield = m.shield != '0' && m.shield!.isNotEmpty;
+    }
+
     if (m.grid!.columns.isNotEmpty) {
       //generate grid
       List<Widget> grid = [];
@@ -408,12 +413,15 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         }
         List<Widget> column = [];
         column.add(
-          Text(col.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: textcolor,
-                fontSize: fontsize,
-              )),
+          Padding(
+            padding: EdgeInsets.only(top: hasshield ? fontsize + 5 : 0),
+            child: Text(col.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: textcolor,
+                  fontSize: fontsize,
+                )),
+          ),
         );
         for (int rownum = 0; rownum < m.grid!.columns[c].boxes.length; rownum++) {
           GridBox r = m.grid!.columns[c].boxes[rownum];
@@ -437,31 +445,28 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
             // boxborder = fillColor;
           }
 
-          Widget gridBox = SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: GestureDetector(
-              onTap: () {
-                if (r.system != '-' && widget.listindex != null) {
-                  army.adjustGridDamage(widget.listindex!, widget.listmodelindex!, c, rownum);
-                }
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: Container(
-                  decoration: BoxDecoration(border: Border.all(width: 5, color: boxborder)),
-                  child: SizedBox.square(
-                    dimension: 17,
-                    child: Container(
-                      color: fillColor,
-                      child: Center(
-                          child: Text(
-                        system,
-                        style: TextStyle(
-                          color: Colors.grey.shade800,
-                          fontSize: fontsize,
-                        ),
-                      )),
-                    ),
+          Widget gridBox = GestureDetector(
+            onTap: () {
+              if (r.system != '-' && widget.listindex != null) {
+                army.adjustGridDamage(widget.listindex!, widget.listmodelindex!, c, rownum);
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Container(
+                decoration: BoxDecoration(border: Border.all(width: 5, color: boxborder)),
+                child: SizedBox.square(
+                  dimension: 17,
+                  child: Container(
+                    color: fillColor,
+                    child: Center(
+                        child: Text(
+                      system,
+                      style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontSize: fontsize,
+                      ),
+                    )),
                   ),
                 ),
               ),
@@ -474,6 +479,58 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
           children: column,
         ));
       }
+
+      if (hasshield) {
+        double shield = double.parse(m.shield!);
+        var shieldWidget = Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Force\nField',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: fontsize,
+              ),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(
+                    6,
+                    (index) => shieldBox(
+                      index >= (6 - (shield / 2)),
+                      army,
+                      widget.listindex,
+                      widget.listmodelindex,
+                      0,
+                      index,
+                    ),
+                  ),
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(
+                    6,
+                    (index) => shieldBox(
+                      index >= (6 - (shield / 2)),
+                      army,
+                      widget.listindex,
+                      widget.listmodelindex,
+                      1,
+                      index,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        );
+
+        grid.insert(6, shieldWidget);
+      }
+
       hp = Padding(
         padding: const EdgeInsets.all(5),
         child: Row(
@@ -2753,6 +2810,37 @@ Widget custombarbox(int boxindex, Color bordercolor, ArmyListNotifier army, int 
         border: Border.all(color: bordercolor),
       ),
       child: const SizedBox(width: 20, height: 20),
+    ),
+  );
+}
+
+Widget shieldBox(bool active, ArmyListNotifier army, int? listindex, int? modelindex, int column, int row) {
+  Color fillColor;
+  Color borderColor = Colors.grey.shade700;
+
+  if (!active) {
+    fillColor = Colors.black;
+  } else {
+    // fillColor = const Color.fromARGB(255, 170, 212, 221); //light blue
+    fillColor = Colors.lightBlue.shade200;
+  }
+
+  return GestureDetector(
+    onTap: () {
+      if (listindex != null && modelindex != null) {
+        army.adjustShieldDamage(listindex, modelindex, column, row);
+      }
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(3),
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(width: 5, color: borderColor)),
+        child: SizedBox.square(
+            dimension: 17,
+            child: Container(
+              color: fillColor,
+            )),
+      ),
     ),
   );
 }
