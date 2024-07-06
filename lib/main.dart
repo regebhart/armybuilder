@@ -6,8 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/widgets/menu_widgets/drawer.dart';
-import 'pages/widgets/product_stat_pages/pagecontainer.dart';
+import 'pages/menu_widgets/drawer.dart';
+import 'pages/pagecontainer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

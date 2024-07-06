@@ -1,10 +1,10 @@
-import 'package:armybuilder/pages/widgets/import_export/importfield.dart';
+import 'package:armybuilder/pages/import_export/importfield.dart';
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/savedata.dart';
-import '../../../providers/appdata.dart';
+import '../../models/savedata.dart';
+import '../../providers/appdata.dart';
 
 class ImportExport extends StatefulWidget {
   const ImportExport({super.key});

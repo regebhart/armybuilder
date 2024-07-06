@@ -1,16 +1,16 @@
-import 'package:armybuilder/pages/widgets/list_building_widgets/categorylist.dart';
-import 'package:armybuilder/pages/widgets/list_building_widgets/listpoints.dart';
+import 'package:armybuilder/pages/list_building_widgets/categorylist.dart';
+import 'package:armybuilder/pages/list_building_widgets/listpoints.dart';
 import 'package:armybuilder/pages/widgets/product_stat_pages/productstatpage.dart';
-import 'package:armybuilder/pages/widgets/list_building_widgets/pointselect.dart';
-import 'package:armybuilder/pages/widgets/list_building_widgets/selectedModelsList.dart';
-import 'package:armybuilder/pages/widgets/list_building_widgets/categoryModelsList.dart';
+import 'package:armybuilder/pages/list_building_widgets/pointselect.dart';
+import 'package:armybuilder/pages/list_building_widgets/selectedModelsList.dart';
+import 'package:armybuilder/pages/list_building_widgets/categoryModelsList.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/faction.dart';
-import '../widgets/list_building_widgets/listNameField.dart';
-import '../widgets/list_building_widgets/modularItemsList.dart';
+import '../list_building_widgets/listNameField.dart';
+import '../list_building_widgets/modularItemsList.dart';
 
 class ArmyBuildingWideLayout extends StatefulWidget {
   const ArmyBuildingWideLayout({super.key});

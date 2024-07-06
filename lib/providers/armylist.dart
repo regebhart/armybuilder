@@ -17,6 +17,7 @@ import 'appdata.dart';
 
 class ArmyListNotifier extends ChangeNotifier {
   late PageController _pageController;
+  late PageController _browsingPageController;
   late PageController _builderPageController;
   late ScrollController _listController;
   late TextEditingController _listnameController;
@@ -96,6 +97,7 @@ class ArmyListNotifier extends ChangeNotifier {
   );
 
   PageController get pageController => _pageController;
+  PageController get browsingPageController => _browsingPageController;
   PageController get builderPageController => _builderPageController;
   ScrollController get listController => _listController;
   TextEditingController get listnameController => _listnameController;
@@ -188,6 +190,10 @@ class ArmyListNotifier extends ChangeNotifier {
 
   setBuilderPageController(PageController con) {
     _builderPageController = con;
+  }
+
+  setBrowsingPageController(PageController con) {
+    _browsingPageController = con;
   }
 
   setlistnameController(TextEditingController con) {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/appdata.dart';
-import '../../../providers/armylist.dart';
+import '../../providers/appdata.dart';
+import '../../providers/armylist.dart';
 
 class MainMenu extends StatelessWidget {
   const MainMenu({super.key});
@@ -81,6 +81,7 @@ class MainMenu extends StatelessWidget {
                 color: Colors.white,
                 child: TextButton(
                   onPressed: () {
+                    army.setDeployFactionFilter('All');
                     army.pageController.jumpToPage(4);
                   },
                   child: Text(

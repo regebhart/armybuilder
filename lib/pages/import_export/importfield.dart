@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/savedata.dart';
-import '../../../providers/appdata.dart';
+import '../../models/savedata.dart';
+import '../../providers/appdata.dart';
 
 class ImportPastedList extends StatefulWidget {
   final bool opponent;

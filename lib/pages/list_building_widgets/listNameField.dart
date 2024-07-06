@@ -4,8 +4,8 @@ import 'package:armybuilder/pages/widgets/buttons/copytoclipboardbutton.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/appdata.dart';
-import '../../../providers/armylist.dart';
+import '../../providers/appdata.dart';
+import '../../providers/armylist.dart';
 
 class ListNameField extends StatefulWidget {
   const ListNameField({super.key});

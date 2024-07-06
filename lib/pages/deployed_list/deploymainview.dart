@@ -1,7 +1,7 @@
 import 'package:armybuilder/pages/widgets/buttons/copytoclipboardbutton.dart';
 import 'package:armybuilder/pages/deployed_list/deployedlist.dart';
 import 'package:armybuilder/pages/widgets/product_stat_pages/singlemodelstatpage.dart';
-import 'package:armybuilder/pages/widgets/import_export/importfield.dart';
+import 'package:armybuilder/pages/import_export/importfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

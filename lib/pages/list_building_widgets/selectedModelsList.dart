@@ -7,11 +7,11 @@ import 'package:armybuilder/pages/widgets/model_list_widgets/spellracklistitem.d
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/armylist.dart';
-import '../../../models/cohort.dart';
-import '../../../models/unit.dart';
-import '../../../providers/appdata.dart';
-import '../../../providers/armylist.dart';
+import '../../models/armylist.dart';
+import '../../models/cohort.dart';
+import '../../models/unit.dart';
+import '../../providers/appdata.dart';
+import '../../providers/armylist.dart';
 
 class ModelSelectedList extends StatefulWidget {
   const ModelSelectedList({super.key});

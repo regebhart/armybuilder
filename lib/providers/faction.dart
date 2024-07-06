@@ -115,8 +115,7 @@ class FactionNotifier extends ChangeNotifier {
                     break;
                   case 'Legionnaire Standard Bearer':
                     //small or medium based storm legion
-                    attachname =
-                        'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
+                    attachname = 'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
                     break;
                   case 'Marauder Crew Bosun' || 'Marauder Crew Quartermaster' || 'Marauder Crew Tapper':
                     //medium based marauder crew
@@ -190,13 +189,8 @@ class FactionNotifier extends ChangeNotifier {
           }
         }
       }
-      _allFactions.add({
-        'faction': '${f['name']}',
-        'products': factionProducts,
-        'hascasterattachments': factionHasCasterAttachments,
-        'sortedproducts': products,
-        'unitattachments': ua
-      });
+      _allFactions
+          .add({'faction': '${f['name']}', 'products': factionProducts, 'hascasterattachments': factionHasCasterAttachments, 'sortedproducts': products, 'unitattachments': ua});
     }
   }
 
@@ -251,6 +245,27 @@ class FactionNotifier extends ChangeNotifier {
   //     f['unitattachments'] = ua;
   //   }
   // }
+
+  setBrowsingCategory(int index) {
+    _selectedCategory = index;
+    _filteredProducts.clear();
+    _filteredProducts = [[], [], []];
+
+    if (index <= 6) {
+      if (index == 1) {
+        _filteredProducts[0] = _allFactions[_selectedFactionIndex]['sortedproducts'][0][index];
+        _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
+        _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
+      } else {
+        for (int i = 0; i <= 2; i++) {
+          for (var n in _allFactions[_selectedFactionIndex]['unitattachments'][i][index - 7 + i]) {
+            filteredProducts[i].add(n);
+          }
+        }
+      }
+    }
+    notifyListeners();
+  }
 
   setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex) {
     _selectedCategory = index;
@@ -514,8 +529,7 @@ class FactionNotifier extends ChangeNotifier {
     );
     if (list.containsKey('leadergroups')) {
       for (Map<String, dynamic> lg in list['leadergroups']) {
-        LeaderGroup group =
-            LeaderGroup(leader: ArmyListNotifier().blankproduct, leaderattachment: ArmyListNotifier().blankproduct, cohort: [], spellrack: []);
+        LeaderGroup group = LeaderGroup(leader: ArmyListNotifier().blankproduct, leaderattachment: ArmyListNotifier().blankproduct, cohort: [], spellrack: []);
         group.leader = Product.copyProduct(findByName(lg['leader']));
         if (lg.containsKey('leaderattachment')) {
           group.leaderattachment = Product.copyProduct(findByName(lg['leaderattachment']));
@@ -543,8 +557,7 @@ class FactionNotifier extends ChangeNotifier {
           unit: Product.copyProduct(findByName(u['unit'])),
           minsize: u['minsize'],
           hasMarshal: false,
-          commandattachment:
-              u.containsKey('commandattachment') ? Product.copyProduct(findByName(u['commandattachment'])) : ArmyListNotifier().blankproduct,
+          commandattachment: u.containsKey('commandattachment') ? Product.copyProduct(findByName(u['commandattachment'])) : ArmyListNotifier().blankproduct,
           weaponattachments: [],
           cohort: [],
           weaponattachmentlimits: [],
