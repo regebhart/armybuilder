@@ -1,6 +1,6 @@
 {
     "faction": "Circle Orboros",
-    "updated": "07-05-2024",
+    "updated": "07-06-2024",
     "group": [
         {
             "primary": {
@@ -6061,7 +6061,7 @@
                                         "description": "During it's activation, this model can spend corpse tokens to remove d3 damage points for each token spent."
                                     },
                                     {
-                                        "name": "Death Powered",
+                                        "name": "Death-Powered",
                                         "description": "This model gains +1 STR and ARM for each corpse token currently on it."
                                     },
                                     {

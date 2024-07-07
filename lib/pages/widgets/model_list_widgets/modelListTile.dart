@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../models/product.dart';
 import '../../../providers/appdata.dart';
 import '../../../providers/armylist.dart';
+import '../../../providers/navigation.dart';
 
 class CategoryModelListTile extends StatelessWidget {
   final int index;
@@ -17,6 +18,8 @@ class CategoryModelListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
     Color normaltextcolor = Colors.grey.shade100;
     Color limittextcolor = Colors.grey.shade400;
     Color tilecolor = Colors.deepPurple.shade700;
@@ -41,8 +44,8 @@ class CategoryModelListTile extends StatelessWidget {
             leading: GestureDetector(
               onTap: () {
                 army.setSelectedProduct(p);
-                if (army.swiping) {
-                  army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                if (nav.swiping) {
+                  nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                 }
               },
               child: ClipRRect(

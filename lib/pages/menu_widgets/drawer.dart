@@ -1,48 +1,106 @@
+import 'dart:html' as html;
+
+import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../providers/appdata.dart';
 import '../../providers/armylist.dart';
+import '../../providers/faction.dart';
 import 'factionupdatedates.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({
     super.key,
-    required this.army,
     required this.buildlastupdated,
   });
-
-  final ArmyListNotifier army;
   final String buildlastupdated;
 
   @override
   Widget build(BuildContext context) {
+    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+
     return ListView(
       children: [
+        ListTile(
+          title: const Text('Browse Models'),
+          onTap: () {
+            Navigator.of(context).pop();
+            army.setFactionSelected(AppData().factionList.first['name']!);
+            faction.setSelectedFactionIndex(0);
+            faction.setBrowsingCategory(0);
+            army.setSelectedProduct(army.blankproduct);
+            nav.pageController.jumpToPage(1);
+          },
+        ),
         ListTile(
           title: const Text('New List'),
           onTap: () {
             Navigator.of(context).pop();
             army.resetEncounterLevel();
             army.resetList();
-            army.pageController.jumpToPage(1);
+            nav.pageController.jumpToPage(2);
           },
         ),
         ListTile(
           title: const Text('Edit/Deploy Army'),
           onTap: () {
             Navigator.of(context).pop();
-            army.pageController.jumpToPage(3);
+            nav.pageController.jumpToPage(4);
           },
         ),
         ListTile(
           title: const Text('Import/Export'),
           onTap: () {
             Navigator.of(context).pop();
-            army.pageController.jumpToPage(4);
+            nav.pageController.jumpToPage(5);
           },
         ),
-        ListTile(title: const Text('Core Rulebook (coming soon)'), onTap: () {} //html.window.open('https://www.legacymachine.online/rulebook/', 'new tab'),
+        ListTile(
+          title: const Text('Core Rulebook'),
+          onTap: () {
+            html.window.open('https://www.legacymachine.online/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
+          },
+        ),
+        SizedBox(
+          height: 25,
+        ),
+        ListTile(
+          onTap: () {
+            html.window.open('https://discord.gg/N6G974U248', 'new tab');
+          },
+          leading: CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Image.asset(
+                'discord-mark-blue.png',
+              ),
             ),
+          ),
+          title: const Text('3.5 Discord'),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: GestureDetector(
+              onTap: () {
+                html.window.open('https://ko-fi.com/murvkins', 'new tab');
+              },
+              child: Image.asset(
+                'kofi.png',
+                height: 40,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 25,
+        ),
         ListTile(
           title: Text(
             'Build Updated: $buildlastupdated',

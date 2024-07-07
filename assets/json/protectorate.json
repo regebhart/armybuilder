@@ -1,6 +1,6 @@
 {
     "faction": "Protectorate of Menoth",
-    "updated": "07-05-2024",
+    "updated": "07-06-2024",
     "group": [
         {
             "primary": {
@@ -11462,7 +11462,7 @@
                                     "No Quarter",
                                     "Tough"
                                 ],
-                                "characterabilities": [
+                                "characterabilities": [                                    
                                     {
                                         "name": "Granted [Ranked Attacks]",
                                         "description": "While this model is in play, models in its unit gain Ranked Attacks."
@@ -11478,6 +11478,10 @@
                                     {
                                         "name": "Tactics [Spellpiercer]",
                                         "description": "Models in this unit gain Spellpiercer."
+                                    },
+                                    {
+                                        "name": "Weapon Attachment [Temple Flameguard]",
+                                        "description": "This attachment can be added to a Temple Flameguard unit."
                                     }
                                 ],
                                 "stats": {

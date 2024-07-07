@@ -16,9 +16,6 @@ import '../models/unit.dart';
 import 'appdata.dart';
 
 class ArmyListNotifier extends ChangeNotifier {
-  late PageController _pageController;
-  late PageController _browsingPageController;
-  late PageController _builderPageController;
   late ScrollController _listController;
   late TextEditingController _listnameController;
   late List<Product> _categoryProductsList;
@@ -47,7 +44,6 @@ class ArmyListNotifier extends ChangeNotifier {
   // late int _groupindex;
   late String _leadertype;
 
-  bool _swiping = false;
   List<List<dynamic>> _hptracking = [];
   List<List<dynamic>> _custombartracking = [];
   List<int> _castergroupindex = []; //used to track if caster's are added from primary, allies or mercs to list
@@ -96,9 +92,6 @@ class ArmyListNotifier extends ChangeNotifier {
     rng: '',
   );
 
-  PageController get pageController => _pageController;
-  PageController get browsingPageController => _browsingPageController;
-  PageController get builderPageController => _builderPageController;
   ScrollController get listController => _listController;
   TextEditingController get listnameController => _listnameController;
   List<Product> get categoryProductsList => _categoryProductsList;
@@ -119,7 +112,6 @@ class ArmyListNotifier extends ChangeNotifier {
   Cohort get selectedCohort => _selectedCohort;
   List<bool> get viewingcohort => _viewingcohort;
   String get status => _status;
-  bool get swiping => _swiping;
   int get armylistindex => _armylistindex;
   String get armylistFactionFilter => _armylistFactionFilter;
   // int get cohortcasterindex => _cohortcasterindex;
@@ -178,22 +170,6 @@ class ArmyListNotifier extends ChangeNotifier {
 
   setStatus(String value) {
     _status = value;
-  }
-
-  setPageController(PageController con) {
-    _pageController = con;
-  }
-
-  setSwiping(bool value) {
-    _swiping = value;
-  }
-
-  setBuilderPageController(PageController con) {
-    _builderPageController = con;
-  }
-
-  setBrowsingPageController(PageController con) {
-    _browsingPageController = con;
   }
 
   setlistnameController(TextEditingController con) {

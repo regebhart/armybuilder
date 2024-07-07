@@ -12,6 +12,7 @@ import '../../models/cohort.dart';
 import '../../models/unit.dart';
 import '../../providers/appdata.dart';
 import '../../providers/armylist.dart';
+import '../../providers/navigation.dart';
 
 class ModelSelectedList extends StatefulWidget {
   const ModelSelectedList({super.key});
@@ -30,6 +31,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
     const EdgeInsets buttonInsets = EdgeInsets.only(top: 4, bottom: 4, left: 50);
     const EdgeInsets itemInsets = EdgeInsets.only(left: 30);
     double buttonHeight = AppData().fontsize + 16;
@@ -141,8 +144,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                         child: OutlinedButton(
                           onPressed: () async {
                             faction.setSelectedCategory(6, null, null, null);
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           },
                           child: Text(
@@ -174,7 +177,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
         if (c.product.models[0].modularoptions!.isNotEmpty) {
           for (int groupindex = 0; groupindex < c.product.models[0].modularoptions!.length; groupindex++) {
             if (c.selectedOptions![groupindex].name == '') {
-              leaders.add(emptyModuleOption(a, cohortindex, groupindex, c, army, faction, 'warcaster', buttonHeight));
+              leaders.add(emptyModuleOption(a, cohortindex, groupindex, c, army, faction, nav, 'warcaster', buttonHeight));
             } else {
               leaders.add(
                 ModularOptionListItem(
@@ -221,7 +224,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
           if (c.product.models[0].modularoptions!.isNotEmpty) {
             for (int groupindex = 0; groupindex < c.product.models[0].modularoptions!.length; groupindex++) {
               if (c.selectedOptions![groupindex].name == '') {
-                jrcasters.add(emptyModuleOption(jr, cohortindex, groupindex, c, army, faction, 'jrcaster', buttonHeight));
+                jrcasters.add(emptyModuleOption(jr, cohortindex, groupindex, c, army, faction, nav, 'jrcaster', buttonHeight));
               } else {
                 jrcasters.add(
                   ModularOptionListItem(
@@ -280,8 +283,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                             onPressed: () async {
                               army.setAddtoIndex(u);
                               faction.setSelectedCategory(7, null, thisunit.unit.name, null);
-                              if (army.swiping) {
-                                army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                              if (nav.swiping) {
+                                nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
                             },
                             child: Text(
@@ -336,8 +339,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                             onPressed: () async {
                               army.setAddtoIndex(u);
                               faction.setSelectedCategory(8, null, thisunit.unit.name, null);
-                              if (army.swiping) {
-                                army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                              if (nav.swiping) {
+                                nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
                             },
                             child: Text('Select a Weapon Attachment',
@@ -370,7 +373,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
           if (c.product.models[0].modularoptions!.isNotEmpty) {
             for (int groupindex = 0; groupindex < c.product.models[0].modularoptions!.length; groupindex++) {
               if (c.selectedOptions![groupindex].name == '') {
-                units.add(emptyModuleOption(u, cohortindex, groupindex, c, army, faction, 'unit', buttonHeight));
+                units.add(emptyModuleOption(u, cohortindex, groupindex, c, army, faction, nav, 'unit', buttonHeight));
               } else {
                 units.add(
                   ModularOptionListItem(
@@ -486,7 +489,7 @@ Future<void> _showResetDialog(context, ArmyListNotifier army) async {
   );
 }
 
-Widget emptyModuleOption(int leaderindex, int cohortindex, int groupindex, Cohort c, ArmyListNotifier army, FactionNotifier faction, String type, double buttonHeight) {
+Widget emptyModuleOption(int leaderindex, int cohortindex, int groupindex, Cohort c, ArmyListNotifier army, FactionNotifier faction, NavigationNotifier nav, String type, double buttonHeight) {
   return Align(
     alignment: Alignment.centerLeft,
     child: Padding(
@@ -501,8 +504,8 @@ Widget emptyModuleOption(int leaderindex, int cohortindex, int groupindex, Cohor
                 onPressed: () async {
                   army.setCohortVals(leaderindex, cohortindex, type);
                   faction.setShowModularGroupOptions(c.product);
-                  if (army.swiping) {
-                    army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                  if (nav.swiping) {
+                    nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                   }
                 },
                 child: Text(

@@ -1,13 +1,17 @@
 import 'package:armybuilder/pages/deployed_list/deploymainview.dart';
 import 'package:armybuilder/pages/import_export/importexport.dart';
-import 'package:armybuilder/pages/layouts/wide.dart';
+import 'package:armybuilder/pages/list_building_widgets/layouts/wide.dart';
 import 'package:armybuilder/pages/menu_widgets/factionselection.dart';
 import 'package:armybuilder/pages/list_selection/lists.dart';
 import 'package:armybuilder/pages/menu_widgets/mainmenu.dart';
-import 'package:armybuilder/pages/layouts/narrow-swiping.dart';
+import 'package:armybuilder/pages/list_building_widgets/layouts/narrow-swiping.dart';
+import 'package:armybuilder/pages/model_browsing/layouts/narrow-swiping.dart';
+import 'package:armybuilder/pages/model_browsing/layouts/wide.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/navigation.dart';
 
 class PagesContainer extends StatefulWidget {
   const PagesContainer({super.key});
@@ -28,19 +32,37 @@ class _PagesContainerState extends State<PagesContainer> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
     const double maxwidth = 800;
-    army.setPageController(pageController);
+    nav.setPageController(pageController);
 
     return PageView(
       physics: const NeverScrollableScrollPhysics(),
       controller: pageController,
       children: [
+        //1:menu
         const MainMenu(),
+
+        //2:model browsing
         LayoutBuilder(builder: (context, constraints) {
           bool swiping = constraints.maxWidth < maxwidth;
-          army.setSwiping(swiping);
+          nav.setSwiping(swiping);
+          if (swiping) {
+            return SwipingBrowsingNarrowLayout(status: army.status);
+          } else {
+            return const BrowsingWideLayout();
+          }
+        }),
+
+        //3:faction selection
+        LayoutBuilder(builder: (context, constraints) {
+          bool swiping = constraints.maxWidth < maxwidth;
+          nav.setSwiping(swiping);
           return FactionSelection(swiping: swiping);
         }),
+
+        //3:list building
         LayoutBuilder(builder: (context, constraints) {
           if (constraints.maxWidth < maxwidth) {
             return SwipingArmyBuildingNarrowLayout(status: army.status);
@@ -48,8 +70,14 @@ class _PagesContainerState extends State<PagesContainer> {
             return const ArmyBuildingWideLayout();
           }
         }),
+
+        //4:edit/deploy army lists
         const SavedArmyLists(),
+
+        //5:import or export lists
         const ImportExport(),
+
+        //6:deployed lists/playing a game
         const ArmyDeployment(),
       ],
     );

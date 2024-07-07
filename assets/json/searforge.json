@@ -1,6 +1,6 @@
 {
     "faction": "Searforge Commission",
-    "updated": "07-05-2024",
+    "updated": "07-06-2024",
     "group": [
         {
             "primary": {
@@ -3030,6 +3030,10 @@
                                     "Tough"
                                 ],
                                 "characterabilities": [
+                                    {
+                                        "name": "Command Attachment [Ogrun Assualt Corps]",
+                                        "description": "This attachment can be added to a Ogrun Assualt Corps unit."
+                                    },
                                     {
                                         "name": "'Jack Hunter",
                                         "description": "This model gains an additional die on its melee and ranged damage rolls against warjacks."

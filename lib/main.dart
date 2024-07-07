@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'pages/menu_widgets/drawer.dart';
 import 'pages/pagecontainer.dart';
+import 'providers/navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => FactionNotifier(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => NavigationNotifier(),
+        )
       ],
       child: MaterialApp(
         title: 'Warmachine MK 3.5 Army Builder',
@@ -61,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     String buildlastupdated = '7/5/2024 v1';
 
@@ -74,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Padding(
           padding: const EdgeInsets.only(top: 55.0),
           child: Drawer(
-            child: MenuDrawer(army: army, buildlastupdated: buildlastupdated),
+            child: MenuDrawer(buildlastupdated: buildlastupdated),
           ),
         ),
         appBar: AppBar(

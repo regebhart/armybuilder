@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../providers/appdata.dart';
 import '../../../providers/armylist.dart';
 import '../../../providers/faction.dart';
+import '../../../providers/navigation.dart';
 
 class ArmyListItem extends StatelessWidget {
   final Product product;
@@ -16,6 +17,8 @@ class ArmyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
     String cost = product.points!;
     String type = '';
     bool displayradio = false;
@@ -95,8 +98,8 @@ class ArmyListItem extends StatelessWidget {
                           ),
                           onTap: () {
                             army.setSelectedProduct(product);
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           }),
                       SizedBox(width: AppData().listButtonSpacing),
@@ -104,8 +107,8 @@ class ArmyListItem extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             army.setSelectedProduct(product);
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           },
                           child: Padding(

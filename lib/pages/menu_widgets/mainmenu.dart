@@ -1,3 +1,5 @@
+import 'package:armybuilder/providers/faction.dart';
+import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +12,8 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -33,9 +37,36 @@ class MainMenu extends StatelessWidget {
                 color: Colors.white,
                 child: TextButton(
                   onPressed: () {
+                    army.setFactionSelected(AppData().factionList.first['name']!);
+                    faction.setSelectedFactionIndex(0);
+                    faction.setBrowsingCategory(0);
+                    army.setSelectedProduct(army.blankproduct);
+                    nav.pageController.jumpToPage(1);
+                  },
+                  child: Text(
+                    'Browse Models',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: AppData().fontsize - 2, color: Colors.black),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: SizedBox(
+            width: 200,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Container(
+                padding: const EdgeInsets.all(4),
+                color: Colors.white,
+                child: TextButton(
+                  onPressed: () {
                     army.resetEncounterLevel();
                     army.resetList();
-                    army.pageController.jumpToPage(1);
+                    nav.pageController.jumpToPage(2);
                   },
                   child: Text(
                     'New Army',
@@ -58,7 +89,7 @@ class MainMenu extends StatelessWidget {
                 color: Colors.white,
                 child: TextButton(
                   onPressed: () {
-                    army.pageController.jumpToPage(3);
+                    nav.pageController.jumpToPage(4);
                   },
                   child: Text(
                     'Edit/Deploy Army',
@@ -82,7 +113,7 @@ class MainMenu extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     army.setDeployFactionFilter('All');
-                    army.pageController.jumpToPage(4);
+                    nav.pageController.jumpToPage(5);
                   },
                   child: Text(
                     'Import/Export',

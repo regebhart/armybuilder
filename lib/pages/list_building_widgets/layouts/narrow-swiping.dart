@@ -9,8 +9,9 @@ import 'package:armybuilder/providers/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/armylist.dart';
-import '../../providers/faction.dart';
+import '../../../providers/armylist.dart';
+import '../../../providers/faction.dart';
+import '../../../providers/navigation.dart';
 
 class SwipingArmyBuildingNarrowLayout extends StatefulWidget {
   final String status;
@@ -41,9 +42,10 @@ class _SwipingArmyBuildingNarrowLayoutState extends State<SwipingArmyBuildingNar
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
-    army.setBuilderPageController(pageController);
-    army.setSwiping(true);
+    nav.setBuilderPageController(pageController);
+    nav.setSwiping(true);
 
     void updateBottomBarIndex(int index) {
       if (index != _bottomBarIndex) {

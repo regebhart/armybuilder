@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../models/cohort.dart';
 import '../../../providers/appdata.dart';
 import '../../../providers/armylist.dart';
+import '../../../providers/navigation.dart';
 
 class CohortListItem extends StatelessWidget {
   final Cohort cohort;
@@ -17,6 +18,7 @@ class CohortListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
     String cost = cohort.product.points!;
 
     return Padding(
@@ -37,8 +39,8 @@ class CohortListItem extends StatelessWidget {
                         int leaderindex = army.getSelectedCasterIndex();
                         army.setCohortVals(leaderindex, cohortindex, army.selectedcastertype);
                         faction.setShowModularGroupOptions(cohort.product);
-                        if (army.swiping) {
-                          army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                        if (nav.swiping) {
+                          nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                         }
                       },
                       child: ClipRRect(
@@ -96,8 +98,8 @@ class CohortListItem extends StatelessWidget {
                             } else {
                               army.setSelectedCohortWithOptions(cohort);
                             }
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           }),
                       SizedBox(width: AppData().listButtonSpacing),
@@ -109,8 +111,8 @@ class CohortListItem extends StatelessWidget {
                             } else {
                               army.setSelectedCohortWithOptions(cohort);
                             }
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           },
                           child: Padding(

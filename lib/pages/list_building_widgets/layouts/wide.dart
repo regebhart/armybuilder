@@ -4,13 +4,13 @@ import 'package:armybuilder/pages/widgets/product_stat_pages/productstatpage.dar
 import 'package:armybuilder/pages/list_building_widgets/pointselect.dart';
 import 'package:armybuilder/pages/list_building_widgets/selectedModelsList.dart';
 import 'package:armybuilder/pages/list_building_widgets/categoryModelsList.dart';
-import 'package:armybuilder/providers/armylist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/faction.dart';
-import '../list_building_widgets/listNameField.dart';
-import '../list_building_widgets/modularItemsList.dart';
+import '../../../providers/faction.dart';
+import '../../../providers/navigation.dart';
+import '../listNameField.dart';
+import '../modularItemsList.dart';
 
 class ArmyBuildingWideLayout extends StatefulWidget {
   const ArmyBuildingWideLayout({super.key});
@@ -29,10 +29,10 @@ class _ArmyBuildingWideLayoutState extends State<ArmyBuildingWideLayout> {
 
   @override
   Widget build(BuildContext context) {
-    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
-
-    army.setSwiping(false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
+    nav.setSwiping(false);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,

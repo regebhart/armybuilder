@@ -1,6 +1,6 @@
 {
     "faction": "Infernals",
-    "updated": "07-05-2024",
+    "updated": "07-06-2024",
     "group": [
         {
             "primary": {
@@ -2644,7 +2644,7 @@
                                     {
                                         "name": "Arcane Vortex",
                                         "description": "This model can immediately negate any spell that targets it or a model within 3\" of it by spending 1 focus/fury/essence. The negated spell does not take effect, but its COST remains spent."
-                                    },
+                                    },                                    
                                     {
                                         "name": "Inquisitor's Talisman",
                                         "description": "This model begins the game with three power tokens. During its activation, this model can spend power tokens to make additional melee attacks or to boost accuracy or damage rolls. It can make one additional attack or boost one roll for each token spent."
@@ -3581,6 +3581,10 @@
                                     {
                                         "name": "Battle Wizard",
                                         "description": "Once per turn, when this model destroys one or more enemy models with a melee attack during its activation, immediately after the attack is resolved it can make one Magic ability special attack or special action."
+                                    },
+                                    {
+                                        "name": "Command Attachment [Cultist Band]",
+                                        "description": "This attachment can be added to a Cultist Band unit."
                                     },
                                     {
                                         "name": "Gang",

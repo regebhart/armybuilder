@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/appdata.dart';
 import '../../../providers/armylist.dart';
+import '../../../providers/navigation.dart';
 
 class ArmyListUnitItem extends StatelessWidget {
   final Product product;
@@ -17,6 +18,8 @@ class ArmyListUnitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
     String cost = product.points!;
     bool displayradio = hasmarshal;
 
@@ -82,8 +85,8 @@ class ArmyListUnitItem extends StatelessWidget {
                           ),
                           onTap: () {
                             army.setSelectedProduct(product);
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           }),
                       SizedBox(width: AppData().listButtonSpacing),
@@ -91,8 +94,8 @@ class ArmyListUnitItem extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () {
                             army.setSelectedProduct(product);
-                            if (army.swiping) {
-                              army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
                           },
                           child: Padding(

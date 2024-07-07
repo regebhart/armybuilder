@@ -80,9 +80,9 @@ class FactionNotifier extends ChangeNotifier {
         [{}, {}]
       ];
       List<List<List<Product>>> products = [
-        [[], [], [], [], [], [], []],
-        [[], [], [], [], [], [], []],
-        [[], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
+        [[], [], [], [], [], [], [], []],
       ];
       String data = await rootBundle.loadString('json/${f['file'].toString().toLowerCase()}');
       var decodeddata = jsonDecode(data);
@@ -115,7 +115,8 @@ class FactionNotifier extends ChangeNotifier {
                     break;
                   case 'Legionnaire Standard Bearer':
                     //small or medium based storm legion
-                    attachname = 'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
+                    attachname =
+                        'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
                     break;
                   case 'Marauder Crew Bosun' || 'Marauder Crew Quartermaster' || 'Marauder Crew Tapper':
                     //medium based marauder crew
@@ -176,6 +177,7 @@ class FactionNotifier extends ChangeNotifier {
             if (index <= 6) {
               products[g][index].add(thisproduct);
             } else {
+              products[g][7].add(thisproduct);
               List<String> names = attachname.split(',');
               for (var n in names) {
                 String name = n.trim();
@@ -189,8 +191,13 @@ class FactionNotifier extends ChangeNotifier {
           }
         }
       }
-      _allFactions
-          .add({'faction': '${f['name']}', 'products': factionProducts, 'hascasterattachments': factionHasCasterAttachments, 'sortedproducts': products, 'unitattachments': ua});
+      _allFactions.add({
+        'faction': '${f['name']}',
+        'products': factionProducts,
+        'hascasterattachments': factionHasCasterAttachments,
+        'sortedproducts': products,
+        'unitattachments': ua
+      });
     }
   }
 
@@ -246,24 +253,21 @@ class FactionNotifier extends ChangeNotifier {
   //   }
   // }
 
+  setBrowsingFaction(int index) {
+    if (_selectedFactionIndex != index) {
+      _selectedFactionIndex = index;
+      setBrowsingCategory(_selectedCategory);
+    }
+  }
+
   setBrowsingCategory(int index) {
     _selectedCategory = index;
     _filteredProducts.clear();
     _filteredProducts = [[], [], []];
 
-    if (index <= 6) {
-      if (index == 1) {
-        _filteredProducts[0] = _allFactions[_selectedFactionIndex]['sortedproducts'][0][index];
-        _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
-        _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
-      } else {
-        for (int i = 0; i <= 2; i++) {
-          for (var n in _allFactions[_selectedFactionIndex]['unitattachments'][i][index - 7 + i]) {
-            filteredProducts[i].add(n);
-          }
-        }
-      }
-    }
+    _filteredProducts[0] = _allFactions[_selectedFactionIndex]['sortedproducts'][0][index];
+    _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
+    _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
     notifyListeners();
   }
 
@@ -529,7 +533,8 @@ class FactionNotifier extends ChangeNotifier {
     );
     if (list.containsKey('leadergroups')) {
       for (Map<String, dynamic> lg in list['leadergroups']) {
-        LeaderGroup group = LeaderGroup(leader: ArmyListNotifier().blankproduct, leaderattachment: ArmyListNotifier().blankproduct, cohort: [], spellrack: []);
+        LeaderGroup group =
+            LeaderGroup(leader: ArmyListNotifier().blankproduct, leaderattachment: ArmyListNotifier().blankproduct, cohort: [], spellrack: []);
         group.leader = Product.copyProduct(findByName(lg['leader']));
         if (lg.containsKey('leaderattachment')) {
           group.leaderattachment = Product.copyProduct(findByName(lg['leaderattachment']));
@@ -557,7 +562,8 @@ class FactionNotifier extends ChangeNotifier {
           unit: Product.copyProduct(findByName(u['unit'])),
           minsize: u['minsize'],
           hasMarshal: false,
-          commandattachment: u.containsKey('commandattachment') ? Product.copyProduct(findByName(u['commandattachment'])) : ArmyListNotifier().blankproduct,
+          commandattachment:
+              u.containsKey('commandattachment') ? Product.copyProduct(findByName(u['commandattachment'])) : ArmyListNotifier().blankproduct,
           weaponattachments: [],
           cohort: [],
           weaponattachmentlimits: [],

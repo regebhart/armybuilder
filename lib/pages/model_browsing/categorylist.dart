@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/appdata.dart';
-import '../../providers/armylist.dart';
 import '../../providers/faction.dart';
 
-class CategoryList extends StatefulWidget {
-  const CategoryList({super.key});
+class BrowsingCategoryList extends StatefulWidget {
+  const BrowsingCategoryList({super.key});
 
   @override
-  State<CategoryList> createState() => _CategoryListState();
+  State<BrowsingCategoryList> createState() => _BrowsingCategoryListState();
 }
 
-class _CategoryListState extends State<CategoryList> {
+class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
   @override
   void dispose() {
     super.dispose();
@@ -20,10 +19,9 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
 
-    Map<String, String> f = AppData().factionList.firstWhere((element) => element['name'] == army.factionSelected);
+    Map<String, String> f = AppData().factionList[faction.selectedFactionIndex];
     List<String> list = [];
     List<String> icons = [];
     switch (f['list']!) {
@@ -34,8 +32,8 @@ class _CategoryListState extends State<CategoryList> {
           'assets/Warjack_Icon.png',
           'assets/Solo_Icon.png',
           'assets/Unit_Icon.png',
-          'assets/attachment_icon.png'
-              'assets/Battle_Engine_Icon.png',
+          'assets/attachment_icon.png',
+          'assets/Battle_Engine_Icon.png',
           'assets/Structure_Icon.png',
         ];
       case 'hordes':
@@ -45,8 +43,8 @@ class _CategoryListState extends State<CategoryList> {
           'assets/Warbeast_Icon.png',
           'assets/Solo_Icon.png',
           'assets/Unit_Icon.png',
-          'assets/attachment_icon.png'
-              'assets/Battle_Engine_Icon.png',
+          'assets/attachment_icon.png',
+          'assets/Battle_Engine_Icon.png',
           'assets/Structure_Icon.png',
         ];
       default:
@@ -56,8 +54,8 @@ class _CategoryListState extends State<CategoryList> {
           'assets/Warjack_Icon.png',
           'assets/Solo_Icon.png',
           'assets/Unit_Icon.png',
-          'assets/attachment_icon.png'
-              'assets/Battle_Engine_Icon.png',
+          'assets/attachment_icon.png',
+          'assets/Battle_Engine_Icon.png',
           'assets/Structure_Icon.png',
         ];
     }

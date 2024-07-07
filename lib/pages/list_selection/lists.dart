@@ -10,6 +10,7 @@ import '../../models/savedata.dart';
 import '../../providers/appdata.dart';
 import '../../providers/armylist.dart';
 import '../../providers/faction.dart';
+import '../../providers/navigation.dart';
 
 class SavedArmyLists extends StatefulWidget {
   const SavedArmyLists({super.key});
@@ -27,6 +28,7 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -36,24 +38,6 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // ConstrainedBox(
-            //   constraints: const BoxConstraints(maxWidth: 475),
-            //   child: Align(
-            //     alignment: Alignment.topLeft,
-            //     child: ClipRRect(
-            //       borderRadius: BorderRadius.circular(5),
-            //       child: Container(
-            //         decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.white)),
-            //         child: InkWell(
-            //           onTap: () {
-            //             army.pageController.jumpToPage(0);
-            //           },
-            //           child: const Icon(Icons.arrow_back),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 450),
               child: Stack(
@@ -66,24 +50,6 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                       style: TextStyle(fontSize: AppData().fontsize + 2, decoration: TextDecoration.underline),
                     ),
                   ),
-                  // Align(
-                  //   alignment: Alignment.centerRight,
-                  //   child: InkWell(
-                  //     onTap: () async {
-                  //       await sortSavedLists();
-                  //       setState(() {});
-                  //     },
-                  //     child: ClipRRect(
-                  //       borderRadius: BorderRadius.circular(5),
-                  //       child: Container(
-                  //           padding: const EdgeInsets.all(3),
-                  //           decoration: BoxDecoration(
-                  //             border: Border.all(width: 2, color: Colors.white),
-                  //           ),
-                  //           child: const Icon(Icons.sort_by_alpha)),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -145,7 +111,7 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                                       color: Colors.white,
                                       child: TextButton(
                                         onPressed: () async {
-                                          army.pageController.jumpToPage(1);
+                                          nav.pageController.jumpToPage(1);
                                         },
                                         child: const Text(
                                           'Start a New List',
@@ -172,7 +138,7 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                                       color: Colors.white,
                                       child: TextButton(
                                         onPressed: () async {
-                                          army.pageController.jumpToPage(4);
+                                          nav.pageController.jumpToPage(4);
                                         },
                                         child: const Text(
                                           'Import a List',
@@ -256,7 +222,8 @@ class SavedArmyListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
-
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
+    
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
       child: ListTile(
@@ -304,7 +271,7 @@ class SavedArmyListTile extends StatelessWidget {
                     await army.setArmyList(await faction.convertJsonStringToArmyList(armyjson), index, 'edit');
                     faction.setSelectedFactionIndex(AppData().factionList.indexWhere((element) => element['name'] == army.armyList.listfaction));
                     faction.setSelectedCategory(0, null, null, null);
-                    army.pageController.jumpToPage(2);
+                    nav.pageController.jumpToPage(3);
                     army.setDeploying(false);
                   },
                   child: Container(
@@ -341,7 +308,7 @@ class SavedArmyListTile extends StatelessWidget {
                   onTap: () async {
                     army.resetDeployedLists();
                     await army.deployList(await faction.convertJsonStringToArmyList(armyjson));
-                    army.pageController.jumpToPage(5);
+                    nav.pageController.jumpToPage(6);
                     army.setDeploying(true);
                     FirebaseAnalytics.instance.logEvent(
                       name: 'Deployed List',
