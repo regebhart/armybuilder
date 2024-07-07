@@ -6,7 +6,7 @@ import '../../../models/base_stats.dart';
 import '../../../models/cohort.dart';
 import '../../../models/modularoptions.dart';
 import '../../../models/product.dart';
-import '../../../providers/appdata.dart';
+import '../../../appdata.dart';
 import '../../../providers/armylist.dart';
 
 class DeployedListCohortItem extends StatelessWidget {

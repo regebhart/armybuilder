@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 import '../models/armylist.dart';
 import '../models/cohort.dart';
 import '../models/unit.dart';
-import 'appdata.dart';
+import '../appdata.dart';
 
 class FactionNotifier extends ChangeNotifier {
   late List<Map<String, dynamic>> _allFactions;

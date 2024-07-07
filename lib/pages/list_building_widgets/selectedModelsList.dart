@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../../models/armylist.dart';
 import '../../models/cohort.dart';
 import '../../models/unit.dart';
-import '../../providers/appdata.dart';
+import '../../appdata.dart';
 import '../../providers/armylist.dart';
 import '../../providers/navigation.dart';
 

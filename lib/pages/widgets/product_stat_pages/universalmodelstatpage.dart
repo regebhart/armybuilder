@@ -6,7 +6,7 @@ import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/models/specialability.dart';
 import 'package:armybuilder/models/weapons.dart';
 import 'package:armybuilder/pages/widgets/damage_widgets/spiral.dart';
-import 'package:armybuilder/providers/appdata.dart';
+import 'package:armybuilder/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -111,6 +111,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     Widget arcananame = const SizedBox();
     Widget arcanadescription = const SizedBox();
     List<Widget> abilities = [];
+    List<Widget> listbuildingrestrictions = [];
     Widget ability = const SizedBox();
     Widget stats = const SizedBox();
     Widget hp = const SizedBox();
@@ -121,6 +122,34 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     List<Widget> animi = [];
     Widget hpTitle = const SizedBox();
     bool addhp = false;
+
+    List<String> listbuildingabilities = [
+      'animosity',
+      'attachment',
+      'attached',
+      'bog trog warlock',
+      'caster adept',
+      'command attachment',
+      'companion',
+      'faithful',
+      'flames in the darkness',
+      'garrison troops',
+      'heart of darkness',
+      'limited battlegroup',
+      'limited marshal',
+      'mercenary',
+      'military attaché',
+      'of the swamp',
+      'paid loyalties',
+      'partisan',
+      'requisition',
+      'special issue',
+      'spell rack',
+      'split loyalties',
+      'strange bedfelllows',
+      'weapon attachment',
+      'weapon attachment specialists'
+    ];
 
     if (army.viewingcohort[index]) {
       for (Option op in cohort.selectedOptions!) {
@@ -710,7 +739,13 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
             ),
           ),
         );
-        abilities.add(ability);
+
+        String abname = ab.name.replaceAll(RegExp(r'\[(.*)\]'), '').replaceAll('(★Attack)', '').replaceAll('(★Action)', '').trim().toLowerCase();
+        if (listbuildingabilities.contains(abname)) {
+          listbuildingrestrictions.add(ability);
+        } else {
+          abilities.add(ability);
+        }
       }
     }
 
@@ -2356,6 +2391,33 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
 
     modeldoc.add(arcananame);
     modeldoc.add(arcanadescription);
+
+    for (var a = 0; a < listbuildingrestrictions.length; a++) {
+      if (a < listbuildingrestrictions.length - 1) {
+        modeldoc.add(Container(
+          width: width,
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(width: 1, color: bordercolor),
+              right: BorderSide(width: 1, color: bordercolor),
+            ),
+          ),
+          child: listbuildingrestrictions[a],
+        ));
+      } else {
+        modeldoc.add(Container(
+          width: width,
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(width: 1, color: bordercolor),
+              right: BorderSide(width: 1, color: bordercolor),
+              bottom: BorderSide(width: 1, color: bordercolor),
+            ),
+          ),
+          child: listbuildingrestrictions[a],
+        ));
+      }
+    }
 
     for (var a = 0; a < abilities.length; a++) {
       if (a < abilities.length - 1) {

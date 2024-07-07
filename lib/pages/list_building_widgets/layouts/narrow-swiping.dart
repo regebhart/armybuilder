@@ -5,7 +5,7 @@ import 'package:armybuilder/pages/widgets/product_stat_pages/productstatpage.dar
 import 'package:armybuilder/pages/list_building_widgets/pointselect.dart';
 import 'package:armybuilder/pages/list_building_widgets/selectedModelsList.dart';
 import 'package:armybuilder/pages/list_building_widgets/categoryModelsList.dart';
-import 'package:armybuilder/providers/appdata.dart';
+import 'package:armybuilder/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

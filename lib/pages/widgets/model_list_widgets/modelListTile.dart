@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/product.dart';
-import '../../../providers/appdata.dart';
+import '../../../appdata.dart';
 import '../../../providers/armylist.dart';
 import '../../../providers/navigation.dart';
 

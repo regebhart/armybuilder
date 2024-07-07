@@ -1,4 +1,4 @@
-import 'package:armybuilder/providers/appdata.dart';
+import 'package:armybuilder/appdata.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

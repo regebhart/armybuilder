@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../../models/cohort.dart';
 import '../../models/product.dart';
 import '../../models/unit.dart';
-import '../../providers/appdata.dart';
+import '../../appdata.dart';
 import '../widgets/model_list_widgets/modelListTile.dart';
 
 class CategoryModelsList extends StatefulWidget {

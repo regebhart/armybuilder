@@ -1,6 +1,6 @@
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/pages/widgets/product_stat_pages/universalmodelstatpage.dart';
-import 'package:armybuilder/providers/appdata.dart';
+import 'package:armybuilder/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

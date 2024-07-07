@@ -3,7 +3,7 @@ import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/appdata.dart';
+import '../../appdata.dart';
 
 class BrowsingModelsList extends StatefulWidget {
   const BrowsingModelsList({super.key});

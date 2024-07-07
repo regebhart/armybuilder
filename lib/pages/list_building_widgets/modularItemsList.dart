@@ -6,7 +6,7 @@ import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/appdata.dart';
+import '../../appdata.dart';
 
 class ModularOptionList extends StatefulWidget {
   const ModularOptionList({super.key});

@@ -1,4 +1,4 @@
-import 'package:armybuilder/providers/appdata.dart';
+import 'package:armybuilder/appdata.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:cherry_toast/cherry_toast.dart';
 import 'package:cherry_toast/resources/arrays.dart';

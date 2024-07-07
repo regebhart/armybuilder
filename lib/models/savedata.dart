@@ -6,7 +6,7 @@ import 'package:armybuilder/providers/armylist.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../providers/appdata.dart';
+import '../appdata.dart';
 import '../providers/faction.dart';
 import 'armylist.dart';
 

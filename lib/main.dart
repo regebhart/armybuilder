@@ -63,9 +63,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
-    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     String buildlastupdated = '7/5/2024 v1';
 

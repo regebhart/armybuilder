@@ -13,7 +13,7 @@ import '../models/cohort.dart';
 import '../models/modularoptions.dart';
 import '../models/spells.dart';
 import '../models/unit.dart';
-import 'appdata.dart';
+import '../appdata.dart';
 
 class ArmyListNotifier extends ChangeNotifier {
   late ScrollController _listController;

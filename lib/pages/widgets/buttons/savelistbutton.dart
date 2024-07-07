@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/savedata.dart';
-import '../../../providers/appdata.dart';
+import '../../../appdata.dart';
 
 class SaveListButton extends StatelessWidget {
   const SaveListButton({super.key});

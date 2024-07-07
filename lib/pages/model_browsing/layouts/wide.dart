@@ -28,8 +28,8 @@ class _BrowsingWideLayoutState extends State<BrowsingWideLayout> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.0),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 30.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -53,19 +53,19 @@ class _BrowsingWideLayoutState extends State<BrowsingWideLayout> {
                   child: SizedBox(
                     width: 50,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints(maxHeight: 1250),
-                        child: BrowsingCategoryList(),
+                        constraints: const BoxConstraints(maxHeight: 1250),
+                        child: const BrowsingCategoryList(),
                       ),
                     ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   flex: 10,
                   child: BrowsingModelsList(),
                 ),
-                Flexible(
+                const Flexible(
                   flex: 15,
                   child: SingleChildScrollView(
                       child: ProductStatPage(

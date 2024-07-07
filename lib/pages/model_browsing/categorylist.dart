@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/appdata.dart';
+import '../../appdata.dart';
 import '../../providers/faction.dart';
 
 class BrowsingCategoryList extends StatefulWidget {
