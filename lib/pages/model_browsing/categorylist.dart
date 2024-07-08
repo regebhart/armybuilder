@@ -59,8 +59,10 @@ class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
           'assets/Structure_Icon.png',
         ];
     }
-    List<Widget> children = [];
+    list.insert(4, 'Attachments');
 
+    List<Widget> children = [];
+    List<int> indexes = [0, 1, 2, 3, 7, 4, 5];
     children = List.generate(
       list.length,
       (index) => Expanded(
@@ -68,13 +70,7 @@ class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: InkWell(
             onTap: () {
-              faction.setBrowsingCategory(
-                index < 4
-                    ? index
-                    : index == 4
-                        ? 7
-                        : index + 1,
-              );
+              faction.setBrowsingCategory(indexes[index]);
             },
             borderRadius: BorderRadius.circular(5),
             child: ClipRRect(
@@ -83,8 +79,8 @@ class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
                 duration: const Duration(milliseconds: 200),
                 curve: Curves.linear,
                 padding: const EdgeInsets.all(5),
-                color: faction.selectedCategory == index ? Colors.deepPurple[700] : Colors.grey.shade100,
-                child: Image.asset(icons[index], color: faction.selectedCategory == index ? Colors.grey.shade200 : Colors.black),
+                color: faction.selectedCategory == indexes[index] ? Colors.deepPurple[700] : Colors.grey.shade100,
+                child: Image.asset(icons[index], color: faction.selectedCategory == indexes[index] ? Colors.grey.shade200 : Colors.black),
               ),
             ),
           ),

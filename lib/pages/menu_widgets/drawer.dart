@@ -77,7 +77,7 @@ class MenuDrawer extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(6.0),
               child: Image.asset(
-                'discord-mark-blue.png',
+                'assets/discord-mark-blue.png',
               ),
             ),
           ),
@@ -92,7 +92,7 @@ class MenuDrawer extends StatelessWidget {
                 html.window.open('https://ko-fi.com/murvkins', 'new tab');
               },
               child: Image.asset(
-                'kofi.png',
+                'assets/kofi.png',
                 height: 40,
               ),
             ),

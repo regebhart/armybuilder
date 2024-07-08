@@ -1,7 +1,7 @@
 import 'package:armybuilder/pages/model_browsing/categoryModelsList.dart';
 import 'package:armybuilder/pages/model_browsing/categorylist.dart';
 import 'package:armybuilder/pages/model_browsing/widgets/factiondropdown.dart';
-import 'package:armybuilder/pages/widgets/product_stat_pages/productstatpage.dart';
+import 'package:armybuilder/pages/product_stat_pages/productstatpage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

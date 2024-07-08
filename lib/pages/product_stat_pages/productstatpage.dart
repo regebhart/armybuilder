@@ -3,8 +3,8 @@ import 'package:armybuilder/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/cohort.dart';
-import '../../../providers/armylist.dart';
+import '../../models/cohort.dart';
+import '../../providers/armylist.dart';
 import 'universalmodelstatpage.dart';
 
 class ProductStatPage extends StatefulWidget {
@@ -71,6 +71,7 @@ class _ProductStatPageState extends State<ProductStatPage> {
         List<Widget> docheader = [];
 
         if (modelsWidget.isEmpty) {
+          //add the product stats (product name, points, factions, fa, etc..)
           docheader.add(Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Text(
@@ -116,6 +117,8 @@ class _ProductStatPageState extends State<ProductStatPage> {
           docheader.add(const SizedBox(height: 3));
 
           modelsWidget.addAll(docheader);
+        } else {
+          modelsWidget.add(const SizedBox(height: 30));
         }
         modelsWidget.add(modelStats);
       }

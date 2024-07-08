@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
 
-    String buildlastupdated = '7/5/2024 v1';
+    String buildlastupdated = '7/7/2024 v1';
 
     if (faction.allFactions.isEmpty) {
       faction.readAllFactions();

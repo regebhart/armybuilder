@@ -1,6 +1,6 @@
 import 'package:armybuilder/pages/list_building_widgets/categorylist.dart';
 import 'package:armybuilder/pages/list_building_widgets/listpoints.dart';
-import 'package:armybuilder/pages/widgets/product_stat_pages/productstatpage.dart';
+import 'package:armybuilder/pages/product_stat_pages/productstatpage.dart';
 import 'package:armybuilder/pages/list_building_widgets/pointselect.dart';
 import 'package:armybuilder/pages/list_building_widgets/selectedModelsList.dart';
 import 'package:armybuilder/pages/list_building_widgets/categoryModelsList.dart';

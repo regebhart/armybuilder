@@ -1,6 +1,6 @@
 {
     "faction": "Convergence of Cyriss",
-    "updated": "07-05-2024",
+    "updated": "07-07-2024",
     "group": [
         {
             "primary": {
@@ -4976,7 +4976,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -5486,10 +5487,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "mincost": "5",
                             "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "mincost": "5"
                         },
                         "models": [
                             {
@@ -5581,8 +5582,8 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "7",
+                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "12",
                             "maxunit": "Leader and 4 Grunts"
                         },
@@ -5695,10 +5696,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "mincost": "6",
                             "maxcost": "-",
-                            "maxunit": "-"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "-",
+                            "mincost": "6"
                         },
                         "models": [
                             {
@@ -5794,9 +5795,9 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
+                            "mincost": "6",
                             "maxcost": "10",
                             "minunit": "Leader and 5 Grunts",
-                            "mincost": "6",
                             "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
@@ -5873,9 +5874,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "mincost": "3",
-                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "-",
-                            "maxcost": "-"
+                            "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -5938,10 +5939,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "9",
                             "maxunit": "Leader and 4 Grunts",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "15"
+                            "maxcost": "15",
+                            "mincost": "9"
                         },
                         "models": [
                             {
@@ -6169,10 +6170,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts",
                             "maxcost": "11",
-                            "mincost": "6"
+                            "maxunit": "Leader and 9 Grunts",
+                            "mincost": "6",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -6250,10 +6251,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-",
-                            "mincost": "5"
+                            "mincost": "5",
+                            "maxcost": "-",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -7029,7 +7030,8 @@
                             "Llael",
                             "Mercenaries",
                             "Ord",
-                            "Protectorate of Menoth"
+                            "Protectorate of Menoth",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -7710,7 +7712,8 @@
                             "Llael",
                             "Mercenaries",
                             "Ord",
-                            "Protectorate of Menoth"
+                            "Protectorate of Menoth",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -7745,7 +7748,7 @@
                                 ],
                                 "feat": {
                                     "name": "True Grit",
-                                    "description": "Choose 11 friendly Faction non-Leader warrior models currently in MacBain’s Control range. When a chosen model is disabled, it removes 1 damage point and becomes knocked down. True Grit lasts for one round."
+                                    "description": "Choose 11 friendly Faction non-Leader warrior models currently in MacBain's Control range. When a chosen model is disabled, it removes 1 damage point and becomes knocked down. True Grit lasts for one round."
                                 },
                                 "execution": {
                                     "name": "Consummate Professional",
@@ -8059,7 +8062,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -8094,7 +8098,7 @@
                                 ],
                                 "feat": {
                                     "name": "Spread the Net",
-                                    "description": "While in Grim’s Control range, enemy models suffer -3 DEF. Enemy models beginning their activations in Grim’s Control range suffer -3 SPD and cannot charge or make power attacks or special attacks. Spread the Net lasts for one round."
+                                    "description": "While in Grim's Control range, enemy models suffer -3 DEF. Enemy models beginning their activations in Grim's Control range suffer -3 SPD and cannot charge or make power attacks or special attacks. Spread the Net lasts for one round."
                                 },
                                 "execution": {
                                     "name": "Prey",
@@ -8243,7 +8247,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -9392,12 +9397,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -9669,12 +9676,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -9817,12 +9826,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -10160,12 +10171,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -10420,7 +10433,32 @@
                             "Mercenaries"
                         ],
                         "factions": [
-                            "Mercenaries"
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
+                            "Mercenaries",
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -10625,11 +10663,13 @@
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -10780,12 +10820,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -10935,13 +10977,15 @@
                         "primaryfaction": [
                             "Khymaera",
                             "Legion of Everblight",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Grymkin",
                             "Khymaera",
                             "Legion of Everblight",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -11029,11 +11073,13 @@
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -11178,11 +11224,13 @@
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -11328,12 +11376,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Talion Charter",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Talion Charter",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -11990,11 +12040,13 @@
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -12145,12 +12197,14 @@
                         "primaryfaction": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -12326,13 +12380,15 @@
                             "Llael",
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Llael",
                             "Mercenaries",
                             "Ord",
-                            "Talion Charter"
+                            "Talion Charter",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -12498,11 +12554,13 @@
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -12646,11 +12704,13 @@
                         "points": "10",
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Crucible Guard",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -12801,12 +12861,14 @@
                         "points": "8",
                         "category": "Warjacks/Warbeasts/Horrors",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Crucible Guard",
                             "Llael",
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -12977,12 +13039,14 @@
                         "primaryfaction": [
                             "Blindwater Congregation",
                             "Mercenaries",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Blindwater Congregation",
                             "Mercenaries",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "U",
                         "models": [
@@ -13105,8 +13169,32 @@
                             "Thornfall Alliance"
                         ],
                         "factions": [
+                            "Blindwater Congregation",
+                            "Cephalyx",
+                            "Circle Orboros",
+                            "Convergence of Cyriss",
+                            "Crucible Guard",
+                            "Cryx",
+                            "Cygnar",
+                            "Grymkin",
+                            "Infernals",
+                            "Ios",
+                            "Khador",
+                            "Khymaera",
+                            "Legion of Everblight",
+                            "Llael",
                             "Mercenaries",
-                            "Thornfall Alliance"
+                            "Ord",
+                            "Orgoth",
+                            "Protectorate of Menoth",
+                            "Religion of the Twins",
+                            "Searforge Commission",
+                            "Skorne",
+                            "Supernal Coalition",
+                            "Talion Charter",
+                            "Thornfall Alliance",
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -17672,7 +17760,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -17781,7 +17870,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -19029,7 +19119,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -19484,13 +19575,15 @@
                         "primaryfaction": [
                             "Khador",
                             "Mercenaries",
-                            "Protectorate of Menoth"
+                            "Protectorate of Menoth",
+                            "Warriors of the Old Faith"
                         ],
                         "factions": [
                             "Khador",
                             "Llael",
                             "Mercenaries",
-                            "Protectorate of Menoth"
+                            "Protectorate of Menoth",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -21341,7 +21434,8 @@
                             "Ord",
                             "Protectorate of Menoth",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -21446,7 +21540,8 @@
                             "Ord",
                             "Protectorate of Menoth",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "C",
                         "models": [
@@ -23435,10 +23530,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "mincost": "8",
+                            "minunit": "Alexia and 9 Risen Grunts",
                             "maxcost": "-",
-                            "minunit": "Alexia and 9 Risen Grunts"
+                            "mincost": "8",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -23621,10 +23716,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "-",
                             "maxunit": "-",
-                            "mincost": "8",
-                            "minunit": "Leader and 2 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "-",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -23805,8 +23900,8 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "Croe and 9 Grunts",
                             "minunit": "Croe and 5 Grunts",
+                            "maxunit": "Croe and 9 Grunts",
                             "mincost": "8",
                             "maxcost": "14"
                         },
@@ -23989,8 +24084,8 @@
                         "fieldallowance": "C",
                         "unitpoints": {
                             "maxcost": "14",
-                            "mincost": "8",
                             "maxunit": "Raefyll and 9 Grunts",
+                            "mincost": "8",
                             "minunit": "Raefyll and 5 Grunts"
                         },
                         "models": [
@@ -24152,10 +24247,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "-",
-                            "maxunit": "-",
                             "minunit": "Blythe and Bull",
-                            "mincost": "5"
+                            "mincost": "5",
+                            "maxunit": "-",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -24313,10 +24408,10 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
+                            "mincost": "10",
                             "maxunit": "-",
-                            "maxcost": "-",
                             "minunit": "Leader and 5 Grunts",
-                            "mincost": "10"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -24402,9 +24497,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
+                            "maxcost": "-",
                             "mincost": "8",
-                            "maxunit": "-",
-                            "maxcost": "-"
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -24501,10 +24596,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "maxcost": "13",
                             "maxunit": "Leader and 4 Grunts",
-                            "mincost": "8"
+                            "mincost": "8",
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "13"
                         },
                         "models": [
                             {
@@ -24631,10 +24726,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "8",
                             "minunit": "Boomhowler and 5 Grunts",
-                            "maxcost": "12",
-                            "maxunit": "Boomhowler and 9 Grunts"
+                            "maxunit": "Boomhowler and 9 Grunts",
+                            "mincost": "8",
+                            "maxcost": "12"
                         },
                         "models": [
                             {
@@ -24788,10 +24883,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "13",
                             "maxunit": "Leader and 9 Grunts",
-                            "mincost": "7",
-                            "maxcost": "13"
+                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "7"
                         },
                         "models": [
                             {
@@ -24892,10 +24987,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "7",
                             "maxcost": "13",
-                            "minunit": "Leader and 5 Grunts",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxunit": "Leader and 9 Grunts",
+                            "mincost": "7",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -25034,9 +25129,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "13",
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
-                            "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts"
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -25112,10 +25207,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "7",
-                            "minunit": "Leader and 5 Grunts",
+                            "maxunit": "Leader and 9 Grunts",
                             "maxcost": "12",
-                            "maxunit": "Leader and 9 Grunts"
+                            "mincost": "7",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -25204,10 +25299,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "6",
                             "minunit": "Capo and 5 Grunts",
+                            "maxcost": "11",
                             "maxunit": "Capo and 9 Grunts",
-                            "maxcost": "11"
+                            "mincost": "6"
                         },
                         "models": [
                             {
@@ -25288,9 +25383,9 @@
                         "fieldallowance": "C",
                         "unitpoints": {
                             "mincost": "8",
+                            "maxcost": "-",
                             "maxunit": "-",
-                            "minunit": "Lady Aiyana and Master Holt",
-                            "maxcost": "-"
+                            "minunit": "Lady Aiyana and Master Holt"
                         },
                         "models": [
                             {
@@ -25432,8 +25527,8 @@
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "16",
-                            "mincost": "9"
+                            "mincost": "9",
+                            "maxcost": "16"
                         },
                         "models": [
                             {
@@ -25548,10 +25643,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "9",
                             "maxunit": "Leader and 4 Grunts",
+                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "15",
-                            "minunit": "Leader and 2 Grunts"
+                            "mincost": "9"
                         },
                         "models": [
                             {
@@ -25672,10 +25767,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "8",
-                            "maxunit": "Leader and 4 Grunts",
-                            "maxcost": "13"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxcost": "13",
+                            "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -25886,9 +25981,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "mincost": "8",
-                            "maxunit": "-",
                             "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -25977,10 +26072,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Lass and 7 Grunts",
-                            "mincost": "7",
                             "maxcost": "12",
-                            "maxunit": "Lass and 9 Grunts"
+                            "mincost": "7",
+                            "maxunit": "Lass and 9 Grunts",
+                            "minunit": "Lass and 7 Grunts"
                         },
                         "models": [
                             {
@@ -26104,14 +26199,15 @@
                             "Mercenaries",
                             "Ord",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
                             "mincost": "4",
                             "maxunit": "-",
-                            "minunit": "Gunner and 2 Grunts"
+                            "minunit": "Gunner and 2 Grunts",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -26241,14 +26337,15 @@
                             "Mercenaries",
                             "Orgoth",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "-",
                             "mincost": "4",
-                            "maxcost": "-",
-                            "minunit": "Gunner and 2 Grunts"
+                            "maxunit": "-",
+                            "minunit": "Gunner and 2 Grunts",
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -26318,14 +26415,15 @@
                             "Mercenaries",
                             "Ord",
                             "Protectorate of Menoth",
-                            "Religion of the Twins"
+                            "Religion of the Twins",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "12",
                             "maxcost": "18",
+                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "Leader and 4 Grunts",
-                            "minunit": "Leader and 2 Grunts"
+                            "mincost": "12"
                         },
                         "models": [
                             {
@@ -26434,14 +26532,15 @@
                             "Ord",
                             "Protectorate of Menoth",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "-",
                             "minunit": "Gunner and 2 Grunts",
-                            "mincost": "5",
-                            "maxcost": "-"
+                            "maxunit": "-",
+                            "maxcost": "-",
+                            "mincost": "5"
                         },
                         "models": [
                             {
@@ -26571,13 +26670,14 @@
                             "Ord",
                             "Protectorate of Menoth",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
-                            "maxcost": "11",
                             "mincost": "6",
+                            "maxcost": "11",
                             "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
@@ -26656,14 +26756,15 @@
                             "Ord",
                             "Protectorate of Menoth",
                             "Religion of the Twins",
-                            "Searforge Commission"
+                            "Searforge Commission",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "-",
-                            "maxunit": "-",
                             "mincost": "5",
-                            "minunit": "Gunner and 2 Grunts"
+                            "minunit": "Gunner and 2 Grunts",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -26793,9 +26894,9 @@
                         "fieldallowance": "1",
                         "unitpoints": {
                             "maxcost": "-",
+                            "mincost": "2",
                             "maxunit": "-",
-                            "minunit": "Leader and 1 Grunt",
-                            "mincost": "2"
+                            "minunit": "Leader and 1 Grunt"
                         },
                         "models": [
                             {
@@ -26894,10 +26995,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "maxunit": "-",
+                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
-                            "mincost": "8",
-                            "minunit": "Leader and 2 Grunts"
+                            "maxunit": "-",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -27015,10 +27116,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "minunit": "Mar, Morland and Zira",
                             "maxcost": "-",
-                            "mincost": "6"
+                            "mincost": "6",
+                            "minunit": "Mar, Morland and Zira",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -28705,7 +28806,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -28741,16 +28843,16 @@
                                         "description": "This model can make ranged attacks even while in melee and can target models outside of melee."
                                     },
                                     {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    },
+                                    {
                                         "name": "Propelled [12]",
                                         "description": "This model cannot run, aim, charge, or become knocked down. This model can advance up to 12” total during its Normal Movement. If this model advances less than 12” during its Normal Movement, it can advance its remaining movement at the end of its activation."
                                     },
                                     {
                                         "name": "Shooting Gallery",
                                         "description": "This model gains +2 to Ranged accuracy rolls against models within 5” of it."
-                                    },
-                                    {
-                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
-                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -28853,7 +28955,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -28889,6 +28992,10 @@
                                         "description": "This model can make ranged attacks even while in melee and can target models outside of melee."
                                     },
                                     {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    },
+                                    {
                                         "name": "Propelled [12]",
                                         "description": "This model cannot run, aim, charge, or become knocked down. This model can advance up to 12” total during its Normal Movement. If this model advances less than 12” during its Normal Movement, it can advance its remaining movement at the end of its activation."
                                     },
@@ -28899,10 +29006,6 @@
                                     {
                                         "name": "Sky Ladder",
                                         "description": "When this model ends it's Normal Movement, choose one small or medium-based friendly solo model within 2” of it. You can place the chosen model completely within 2” of its current location. A model can be placed as a result of Sky Ladder only once per turn."
-                                    },
-                                    {
-                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
-                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {
@@ -29006,7 +29109,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -29098,7 +29202,8 @@
                             "Supernal Coalition",
                             "Talion Charter",
                             "Thornfall Alliance",
-                            "Trollbloods"
+                            "Trollbloods",
+                            "Warriors of the Old Faith"
                         ],
                         "fieldallowance": "2",
                         "models": [
@@ -29130,16 +29235,16 @@
                                         "description": "The lower level of this structure is considered to be concealing terrain."
                                     },
                                     {
+                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
+                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
+                                    },
+                                    {
                                         "name": "Movement Inside",
                                         "description": "Models/units can use their Normal Movement to be placed on the top floor if they were previously on the lower floor or to be placed on the lower floor if they were on the top floor. Units using their Normal Movement to be placed are considered to have moved. Models cannot otherwise move, warp, or be placed while inside the building."
                                     },
                                     {
                                         "name": "Top Floor: Guard Tower",
                                         "description": "The upper level of this structure is considered to be elevated terrain. Additionally, models on the Top Floor gain Snipe. Spells cast from the Top Floor gain +4 RNG."
-                                    },
-                                    {
-                                        "name": "Mercenary [Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods]",
-                                        "description": "This model will work for Blindwater Congregation, Cephalyx, Circle Orboros, Convergence of Cyriss, Crucible Guard, Cryx, Cygnar, Grymkin, Infernals, Ios, Khador, Khymaera, Legion of Everblight, Llael, Ord, Orgoth, Protectorate of Menoth, Religion of the Twins, Searforge Commission, Skorne, Supernal Coalition, Talion Charter, Thornfall Alliance, Trollbloods."
                                     }
                                 ],
                                 "stats": {

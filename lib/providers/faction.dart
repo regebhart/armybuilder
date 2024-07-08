@@ -176,6 +176,9 @@ class FactionNotifier extends ChangeNotifier {
           } else {
             if (index <= 6) {
               products[g][index].add(thisproduct);
+              if (index == 6) {
+                products[g][7].add(thisproduct);
+              }
             } else {
               products[g][7].add(thisproduct);
               List<String> names = attachname.split(',');

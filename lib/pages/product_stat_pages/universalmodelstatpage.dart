@@ -10,12 +10,12 @@ import 'package:armybuilder/appdata.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/cohort.dart';
-import '../../../models/grid.dart';
-import '../../../models/model.dart';
-import '../../../models/spells.dart';
-import '../../../providers/armylist.dart';
-import '../damage_widgets/web.dart';
+import '../../models/cohort.dart';
+import '../../models/grid.dart';
+import '../../models/model.dart';
+import '../../models/spells.dart';
+import '../../providers/armylist.dart';
+import '../widgets/damage_widgets/web.dart';
 
 class UniversalModelStatPage extends StatefulWidget {
   final bool deployed;
@@ -124,6 +124,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     bool addhp = false;
 
     List<String> listbuildingabilities = [
+      'attached',
       'animosity',
       'attachment',
       'attached',
