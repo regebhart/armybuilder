@@ -1,6 +1,6 @@
 {
     "faction": "Khador",
-    "updated": "07-07-2024",
+    "updated": "07-11-2024",
     "group": [
         {
             "primary": {
@@ -42,7 +42,7 @@
                                 },
                                 "execution": {
                                     "name": "Elite Cadre [Assault Kommandos] [Pathfinder]",
-                                    "description": "Friendly Assault Kommandos models gain Pathfinder."
+                                    "description": "Friendly Assault Kommandos models gain Pathfinder. (a model with Pathfinder ignores the movement penalty of Rough [Forest] and Rough [Rubble] terrain while advancing.)"
                                 },
                                 "stats": {
                                     "basesize": "30mm",
@@ -295,7 +295,7 @@
                                     },
                                     {
                                         "name": "Elite Cadre [Nyss] [Quick Work]",
-                                        "description": "Friendly Nyss models gain Quick Work."
+                                        "description": "Friendly Nyss models gain Quick Work. (When a model with Quick Work destroys one or more enemy models with a melee attack during its Combat Action, immediately after the attack is resolved it can make one basic ranged attack.)"
                                     },
                                     {
                                         "name": "Henchmen [Nyss Hunters]",
@@ -470,7 +470,7 @@
                                     },
                                     {
                                         "name": "Field Marshal [Relentless Charge]",
-                                        "description": "Cohort models in this model's battlegroup gain Relentless Charge."
+                                        "description": "Cohort models in this model's battlegroup gain Relentless Charge. (A model with Relentless Charge gains Pathfinder while advancing as part of a charge.)"
                                     },
                                     {
                                         "name": "Freezer",
@@ -626,7 +626,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Field Marshal [Channeler]",
-                                        "description": "Cohort models in this model's battlegroup gain Channeler."
+                                        "description": "Cohort models in this model's battlegroup gain Channeler. (The controller of a model with Channeler can channel spells through it.)"
                                     },
                                     {
                                         "name": "Long Shadows",
@@ -764,7 +764,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Field Marshal [Pathfinder]",
-                                        "description": "Cohort models in this model's battlegroup gain Pathfinder."
+                                        "description": "Cohort models in this model's battlegroup gain Pathfinder. (a model with Pathfinder ignores the movement penalty of Rough [Forest] and Rough [Rubble] terrain while advancing.)"
                                     },
                                     {
                                         "name": "Prowl",
@@ -913,7 +913,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Field Marshal [Field Penalty [Self] [2]]",
-                                        "description": "Cohort models in this model's battlegroup gain Field Penalty [Self]."
+                                        "description": "Cohort models in this model's battlegroup gain Field Penalty [Self]. (A model with Field Penalty's cost is increased cumulatively by 2 for each same model included in your list beyond the second one.)"
                                     },
                                     {
                                         "name": "Hate Infused",
@@ -1558,7 +1558,7 @@
                                 },
                                 "execution": {
                                     "name": "Field Marshal [Shield Guard]",
-                                    "description": "Cohort models in this model's battlegroup gain Shield Guard."
+                                    "description": "Cohort models in this model's battlegroup gain Shield Guard. (When a friendly model is directly hit by a non-spray ranged attack during your opponent's turn while within 3\" of a model with Shield Guard, you can choose to have the model with Shield Guard directly hit instead. It is automatically hit and suffers all damage and effects. A model can use Shield Guard only once per round and cannot use Shield Guard if it is incorporeal, knocked down, or stationary. The Shield Guard special rule can only trigger once per attack roll.)"
                                 },
                                 "stats": {
                                     "basesize": "30mm",
@@ -1728,7 +1728,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Field Marshal [Flank [Man-o-War]]",
-                                        "description": "Cohort models in this model's battlegroup gain Flank [Man-o-War]."
+                                        "description": "Cohort models in this model's battlegroup gain Flank [Man-o-War]. (When a model with Flank makes a melee attack against an enemy model in the melee range of a friendly Man-o-War model, this model gains +2 to attack rolls and gains an additional damage die.)"
                                     },
                                     {
                                         "name": "Irregulars [Medium Based Man-o-War]",
@@ -1749,7 +1749,7 @@
                                 },
                                 "execution": {
                                     "name": "Elite Cadre [Man-o-War] [Advance Move]",
-                                    "description": "Friendly Man-o-War models gain Advance Move."
+                                    "description": "Friendly Man-o-War models gain Advance Move. (Before the start of the game but after both players have deployed, a model with Advance Move can make a full advance.)"
                                 },
                                 "stats": {
                                     "basesize": "40mm",
@@ -2035,7 +2035,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Field Marshal [Reposition [3\"]]",
-                                        "description": "Cohort models in this model's battlegroup gain Reposition [3\"]."
+                                        "description": "Cohort models in this model's battlegroup gain Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
                                     },
                                     {
                                         "name": "Iron Sentinel",
@@ -2048,7 +2048,7 @@
                                 },
                                 "execution": {
                                     "name": "Leadership [Faction Warrior] [Iron Sentinel]",
-                                    "description": "While in this model's CMD range, friendly faction Faction Warrior gain Iron Sentinel."
+                                    "description": "While in this model's CMD range, friendly faction Faction Warrior gain Iron Sentinel. (While B2B with a friendly Faction warjack, a model with Iron Sentinel gains +2 DEF and ARM and cannot become knocked down.)"
                                 },
                                 "stats": {
                                     "basesize": "30mm",
@@ -3056,7 +3056,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Attached [Kommander Zoktavir The Butcher Unleashed]",
-                                        "description": "Before the start of the game, attach this model to a friendly Faction leader for the rest of the game. Each Leader can have only one model/unit attached to it. The attached model is part of its Leader's Battlegroup."
+                                        "description": "This model is attached to Kommander Zoktavir The Butcher Unleashed. Each Leader can have only one model/unit attached to it."
                                     },
                                     {
                                         "name": "Companion [Kommander Zoktavir The Butcher Unleashed]",
@@ -3287,7 +3287,7 @@
                                     },
                                     {
                                         "name": "Granted [Silence]",
-                                        "description": "While this model is in play, models in its unit gain Silence."
+                                        "description": "While this model is in play, models in its unit gain Silence. (A model hit by this attack cannot cast spells for one round.)"
                                     },
                                     {
                                         "name": "Promote: Doom Reaver",
@@ -3502,7 +3502,7 @@
                                 },
                                 "execution": {
                                     "name": "Elite Cadre [Faction Warrior] [Dying Breath]",
-                                    "description": "Friendly Faction Warrior models gain Dying Breath."
+                                    "description": "Friendly Faction Warrior models gain Dying Breath. (When a model with Dying Breath is boxed by an enemy attack at any time except while it is advancing, it can be immediately make one basic attack.)"
                                 },
                                 "stats": {
                                     "basesize": "30mm",
@@ -3639,7 +3639,7 @@
                                     },
                                     {
                                         "name": "Field Marshal [Apparition]",
-                                        "description": "Cohort models in this model's battlegroup gain Apparition."
+                                        "description": "Cohort models in this model's battlegroup gain Apparition. (During your Control Phase, a model with Appartion can warp anywhere completely within 2\" of its current location.)"
                                     },
                                     {
                                         "name": "Great Power",
@@ -3651,7 +3651,7 @@
                                     },
                                     {
                                         "name": "Soul Taker [Unlimited Tokens]",
-                                        "description": "This model can gain soul tokens. there is no limit to how many tokens it can carry."
+                                        "description": "This model can gain soul tokens. This model can carry up to u soul tokens at any time."
                                     }
                                 ],
                                 "feat": {
@@ -4922,11 +4922,11 @@
                                     },
                                     {
                                         "name": "Chain Attack [War Axe] [Brutalize]",
-                                        "description": "If this model hits the same model with two War Axe intial attacks, after resolving the attacks it can immediately Brutalize."
+                                        "description": "If this model hits the same model with two War Axe intial attacks, after resolving the attacks it can immediately Brutalize. (This model may make one head-butt power attack against that model.)"
                                     },
                                     {
                                         "name": "Imprint [Jury-Rigged [SPD]]",
-                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]."
+                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]. (A model with Jury-Rigged can spend 1 focus point to use Jury-Rigged at the start of its activation. This activation, the model gains +2 SPD. At the end of the activation, the model suffers 1 damage point to its first available Movement system box. The model can't use Jury-Rigged if its Movement system is crippled. Jury-Rigged can only be used once per activation.)"
                                     },
                                     {
                                         "name": "Unstable",
@@ -6723,15 +6723,15 @@
                                     },
                                     {
                                         "name": "Chain Attack [Excutioner Axe] [Brutalize]",
-                                        "description": "If this model hits the same model with two Excutioner Axe intial attacks, after resolving the attacks it can immediately Brutalize."
+                                        "description": "If this model hits the same model with two Excutioner Axe intial attacks, after resolving the attacks it can immediately Brutalize. (This model may make one head-butt power attack against that model.)"
                                     },
                                     {
                                         "name": "Gung-ho",
-                                        "description": "This model can run or charge without spending focus or fury or using the Hurry! 'jack marshal benefit."
+                                        "description": "This model can run or charge without spending focus, fury, Essense or using the Hurry! 'jack marshal benefit."
                                     },
                                     {
                                         "name": "Imprint [Jury-Rigged [SPD]]",
-                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]."
+                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]. (A model with Jury-Rigged can spend 1 focus point to use Jury-Rigged at the start of its activation. This activation, the model gains +2 SPD. At the end of the activation, the model suffers 1 damage point to its first available Movement system box. The model can't use Jury-Rigged if its Movement system is crippled. Jury-Rigged can only be used once per activation.)"
                                     },
                                     {
                                         "name": "Special Issue [Vladimir]",
@@ -6934,7 +6934,7 @@
                                                 "abilities": [
                                                     {
                                                         "name": "Gung-ho",
-                                                        "description": "This model can run or charge without spending focus or fury or using the Hurry! 'jack marshal benefit."
+                                                        "description": "This model can run or charge without spending focus, fury, Essense or using the Hurry! 'jack marshal benefit."
                                                     },
                                                     {
                                                         "name": "Heavy Boiler",
@@ -7482,7 +7482,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Gung-ho",
-                                        "description": "This model can run or charge without spending focus or fury or using the Hurry! 'jack marshal benefit."
+                                        "description": "This model can run or charge without spending focus, fury, Essense or using the Hurry! 'jack marshal benefit."
                                     },
                                     {
                                         "name": "Heavy Boiler",
@@ -7802,11 +7802,11 @@
                                 "characterabilities": [
                                     {
                                         "name": "Chain Attack [Fist] [Smash & Grab]",
-                                        "description": "If this model hits the same model with two Fist intial attacks, after resolving the attacks it can immediately Smash & Grab."
+                                        "description": "If this model hits the same model with two Fist intial attacks, after resolving the attacks it can immediately Smash & Grab. (This model can make a headbutt or throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Gung-ho",
-                                        "description": "This model can run or charge without spending focus or fury or using the Hurry! 'jack marshal benefit."
+                                        "description": "This model can run or charge without spending focus, fury, Essense or using the Hurry! 'jack marshal benefit."
                                     },
                                     {
                                         "name": "Heavy Boiler",
@@ -7967,7 +7967,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Imprint [Jury-Rigged [SPD]]",
-                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]."
+                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged [SPD]. (A model with Jury-Rigged can spend 1 focus point to use Jury-Rigged at the start of its activation. This activation, the model gains +2 SPD. At the end of the activation, the model suffers 1 damage point to its first available Movement system box. The model can't use Jury-Rigged if its Movement system is crippled. Jury-Rigged can only be used once per activation.)"
                                     },
                                     {
                                         "name": "Smasher",
@@ -8918,7 +8918,7 @@
                                     },
                                     {
                                         "name": "Chain Attack [Bear Claw] [Smash & Grab]",
-                                        "description": "If this model hits the same model with two Bear Claw intial attacks, after resolving the attacks it can immediately Smash & Grab."
+                                        "description": "If this model hits the same model with two Bear Claw intial attacks, after resolving the attacks it can immediately Smash & Grab. (This model can make a headbutt or throw power attack against that model.)"
                                     },
                                     {
                                         "name": "Hand of Vengeance",
@@ -9064,7 +9064,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Imprint [Jury-Rigged[SPD]]",
-                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged[SPD]."
+                                        "description": "This model can spend 1 focus point at any time during its activation to gain Jury-Rigged[SPD]. (A model with Jury-Rigged can spend 1 focus point to use Jury-Rigged at the start of its activation. This activation, the model gains +2 SPD. At the end of the activation, the model suffers 1 damage point to its first available Movement system box. The model can't use Jury-Rigged if its Movement system is crippled. Jury-Rigged can only be used once per activation.)"
                                     },
                                     {
                                         "name": "Shield Guard",
@@ -9233,7 +9233,7 @@
                                     },
                                     {
                                         "name": "Soul Taker [5 Tokens]",
-                                        "description": "This model can gain soul tokens. this model can carry up to 5 tokens at any time."
+                                        "description": "This model can gain soul tokens. This model can carry up to 5 soul tokens at any time."
                                     }
                                 ],
                                 "stats": {
@@ -10476,7 +10476,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Leadership [Iron Fang] [Unyielding]",
-                                        "description": "While in this model's CMD range, friendly faction Iron Fang gain Unyielding."
+                                        "description": "While in this model's CMD range, friendly faction Iron Fang gain Unyielding. (A model with Unyielding gains +2 ARM against melee damage rolls.)"
                                     },
                                     {
                                         "name": "No Sleeping on the Job [Iron Fang]",
@@ -10642,7 +10642,7 @@
                                     },
                                     {
                                         "name": "Leadership [Greylords] [Prowl]",
-                                        "description": "While in this model's CMD range, friendly faction Greylords gain Prowl."
+                                        "description": "While in this model's CMD range, friendly faction Greylords gain Prowl. (While a model with Prowl has concealment, it gains Stealth.)"
                                     },
                                     {
                                         "name": "Lore Master [Greylord]",
@@ -11903,7 +11903,7 @@
                                     },
                                     {
                                         "name": "Elite Cadre [Wraiths, Widow Makers] [Hunter]",
-                                        "description": "Friendly Wraiths, Widow Makers models gain Hunter."
+                                        "description": "Friendly Wraiths, Widow Makers models gain Hunter. (A model with Hunter ignores concealment and cover when making ranged attacks.)"
                                     },
                                     {
                                         "name": "Marksman",
@@ -11915,7 +11915,7 @@
                                     },
                                     {
                                         "name": "Soul Taker [3 Tokens]",
-                                        "description": "This model can gain soul tokens. this model can carry up to 3 tokens at any time."
+                                        "description": "This model can gain soul tokens. This model can carry up to 3 soul tokens at any time."
                                     },
                                     {
                                         "name": "Strange Bedfellows",
@@ -12329,7 +12329,7 @@
                                     },
                                     {
                                         "name": "Elite Cadre [Doom Reavers] [Vengeance]",
-                                        "description": "Friendly Doom Reavers models gain Vengeance."
+                                        "description": "Friendly Doom Reavers models gain Vengeance. (During your Maintenance Phase, if one or more models in this unit with Vengeance were damaged by enemy attacks during the last round, each model in the unit can advance 3” and make one basic melee attack.)"
                                     },
                                     {
                                         "name": "Relentless Charge",
@@ -12398,7 +12398,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Leadership [Widowmakers] [Swift Hunter]",
-                                        "description": "While in this model's CMD range, friendly faction Widowmakers gain Swift Hunter."
+                                        "description": "While in this model's CMD range, friendly faction Widowmakers gain Swift Hunter. (When a model with Swift Hunter destroys one or more enemy models with a basic ranged attack, immediately after the attack is resolved it can advance up to 2\".)"
                                     },
                                     {
                                         "name": "Marksman",
@@ -12645,7 +12645,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Elite Cadre [Kossite Woodsmen and Manhunters] [Treewalker]",
-                                        "description": "Friendly Kossite Woodsmen and Manhunters models gain Treewalker."
+                                        "description": "Friendly Kossite Woodsmen and Manhunters models gain Treewalker. (A model with Treewalker ignores forests when determining LOS. While completely within a forest, this model gains +2 DEF against melee attack accuracy rolls.)"
                                     },
                                     {
                                         "name": "Treewalker",
@@ -12781,10 +12781,10 @@
                         ],
                         "fieldallowance": "4",
                         "unitpoints": {
-                            "mincost": "2",
+                            "minunit": "Leader and 3 Grunts",
                             "maxunit": "Leader and 5 Grunts",
-                            "maxcost": "4",
-                            "minunit": "Leader and 3 Grunts"
+                            "mincost": "2",
+                            "maxcost": "4"
                         },
                         "models": [
                             {
@@ -12844,10 +12844,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "8",
-                            "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "12"
+                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "12",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -13017,10 +13017,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "9",
                             "maxunit": "Leader and 9 Grunts",
-                            "minunit": "Leader and 5 Grunts",
-                            "maxcost": "15"
+                            "maxcost": "15",
+                            "mincost": "9",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -13112,8 +13112,8 @@
                         "unitpoints": {
                             "mincost": "10",
                             "maxunit": "-",
-                            "minunit": "Leader and 5 Grunts",
-                            "maxcost": "-"
+                            "maxcost": "-",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -13192,8 +13192,8 @@
                         "fieldallowance": "C",
                         "unitpoints": {
                             "maxcost": "-",
-                            "minunit": "Volkov, Kolsk and Yarovich ",
                             "mincost": "9",
+                            "minunit": "Volkov, Kolsk and Yarovich ",
                             "maxunit": "-"
                         },
                         "models": [
@@ -13422,10 +13422,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
-                            "maxcost": "15",
                             "maxunit": "Leader and 4 Grunts",
-                            "mincost": "8"
+                            "minunit": "Leader and 2 Grunts",
+                            "mincost": "8",
+                            "maxcost": "15"
                         },
                         "models": [
                             {
@@ -13546,10 +13546,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "mincost": "4",
-                            "maxunit": "-",
                             "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "-",
+                            "mincost": "4"
                         },
                         "models": [
                             {
@@ -13635,9 +13635,9 @@
                         ],
                         "fieldallowance": "1",
                         "unitpoints": {
-                            "maxunit": "-",
                             "maxcost": "-",
                             "minunit": "Leader & 3 Grunts",
+                            "maxunit": "-",
                             "mincost": "9"
                         },
                         "models": [
@@ -13730,10 +13730,10 @@
                         ],
                         "fieldallowance": "U",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "7",
                             "minunit": "Leader and 5 Grunts",
-                            "maxcost": "12"
+                            "maxcost": "12",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -13808,8 +13808,8 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxunit": "Leader and 4 Grunts",
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "10",
+                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "17"
                         },
                         "models": [
@@ -13908,8 +13908,8 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "minunit": "Capo and 5 Grunts",
-                            "maxcost": "11",
                             "maxunit": "Capo and 9 Grunts",
+                            "maxcost": "11",
                             "mincost": "6"
                         },
                         "models": [
@@ -13982,9 +13982,9 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "minunit": "Arcondvich and Standard",
                             "maxcost": "-",
+                            "minunit": "Arcondvich and Standard",
+                            "maxunit": "-",
                             "mincost": "5"
                         },
                         "models": [
@@ -14121,10 +14121,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
-                            "mincost": "6",
                             "maxcost": "10",
-                            "minunit": "Leader and 5 Grunts"
+                            "mincost": "6"
                         },
                         "models": [
                             {
@@ -14163,8 +14163,7 @@
                                     "def": "13",
                                     "arm": "11",
                                     "cmd": "7",
-                                    "hp": "1",
-                                    "fury": "7"
+                                    "hp": "1"
                                 },
                                 "weapons": [
                                     {
@@ -14207,9 +14206,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "mincost": "8",
-                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "14",
-                            "maxunit": "Leader and 4 Grunts"
+                            "maxunit": "Leader and 4 Grunts",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -14309,9 +14308,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "mincost": "7",
-                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "Leader and 4 Grunts",
                             "maxcost": "13",
-                            "maxunit": "Leader and 4 Grunts"
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -14398,10 +14397,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "mincost": "8",
+                            "maxunit": "Leader and 4 Grunts",
                             "maxcost": "14",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 4 Grunts"
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -14502,9 +14501,9 @@
                         ],
                         "fieldallowance": "1",
                         "unitpoints": {
-                            "maxunit": "Leader and 5 Grunts",
-                            "maxcost": "20",
                             "minunit": "Leader and 2 Grunts",
+                            "maxcost": "20",
+                            "maxunit": "Leader and 5 Grunts",
                             "mincost": "11"
                         },
                         "models": [
@@ -14616,10 +14615,10 @@
                         ],
                         "fieldallowance": "1",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "Leader and 5 Grunts",
                             "maxcost": "19",
-                            "mincost": "10",
-                            "maxunit": "Leader and 5 Grunts"
+                            "minunit": "Leader and 2 Grunts",
+                            "mincost": "10"
                         },
                         "models": [
                             {
@@ -14740,10 +14739,10 @@
                         ],
                         "fieldallowance": "4",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "-",
-                            "mincost": "7",
-                            "maxunit": "-"
+                            "minunit": "Leader and 2 Grunts",
+                            "maxunit": "-",
+                            "mincost": "7"
                         },
                         "models": [
                             {
@@ -14821,10 +14820,10 @@
                         ],
                         "fieldallowance": "4",
                         "unitpoints": {
-                            "maxunit": "-",
                             "mincost": "7",
+                            "maxcost": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-"
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -14913,10 +14912,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "6",
                             "maxcost": "-",
-                            "maxunit": "-",
-                            "mincost": "6"
+                            "minunit": "Leader and 5 Grunts",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -14989,10 +14988,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "-",
-                            "minunit": "Gunner & 2 Grunts",
                             "maxcost": "-",
-                            "mincost": "4"
+                            "maxunit": "-",
+                            "mincost": "4",
+                            "minunit": "Gunner & 2 Grunts"
                         },
                         "models": [
                             {
@@ -15124,10 +15123,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
-                            "mincost": "4",
                             "maxcost": "9",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "4"
                         },
                         "models": [
                             {
@@ -15197,9 +15196,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "3",
-                            "minunit": "Gunner & 2 Grunts",
                             "maxunit": "-",
+                            "minunit": "Gunner & 2 Grunts",
+                            "mincost": "3",
                             "maxcost": "-"
                         },
                         "models": [
@@ -15330,9 +15329,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "5",
                             "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
+                            "mincost": "5",
                             "maxcost": "9"
                         },
                         "models": [
@@ -15398,8 +15397,8 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "maxunit": "Leader and 5 Grunts",
-                            "maxcost": "12",
                             "mincost": "6",
+                            "maxcost": "12",
                             "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
@@ -15465,9 +15464,9 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "4",
                             "maxcost": "-",
+                            "minunit": "Leader and 2 Grunts",
                             "maxunit": "-"
                         },
                         "models": [
@@ -15722,7 +15721,7 @@
                                     },
                                     {
                                         "name": "Tactics [Side Step]",
-                                        "description": "Models in this unit gain Side Step."
+                                        "description": "Models in this unit gain Side Step. (When a model with Side Step hits an enemy model with an initial melee attack or a melee special attack, it can advance up to 2\" after the attack is resolved.)"
                                     },
                                     {
                                         "name": "True Strike",
@@ -15783,11 +15782,11 @@
                                 "characterabilities": [
                                     {
                                         "name": "Granted [Inspiration]",
-                                        "description": "While this model is in play, models in its unit gain Inspiration."
+                                        "description": "While this model is in play, models in its unit gain Inspiration. (A model with Inspiration gains +1 to attack accuracy rolls.)"
                                     },
                                     {
                                         "name": "Granted [Rise]",
-                                        "description": "While this model is in play, models in its unit gain Rise."
+                                        "description": "While this model is in play, models in its unit gain Rise. (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Take Up",
@@ -15866,7 +15865,7 @@
                                     },
                                     {
                                         "name": "Granted [Silencer]",
-                                        "description": "While this model is in play, models in its unit gain Silencer."
+                                        "description": "While this model is in play, models in its unit gain Silencer. (A model with Silence does not have to make Berserk attacks.)"
                                     },
                                     {
                                         "name": "Requisition [Religion of the Twins]",
@@ -15970,7 +15969,7 @@
                                     },
                                     {
                                         "name": "Tactics [Relentless Charge]",
-                                        "description": "Models in this unit gain Relentless Charge."
+                                        "description": "Models in this unit gain Relentless Charge. (A model with Relentless Charge gains Pathfinder while advancing as part of a charge.)"
                                     }
                                 ],
                                 "stats": {
@@ -16026,11 +16025,11 @@
                                 "characterabilities": [
                                     {
                                         "name": "Granted [Inspiration]",
-                                        "description": "While this model is in play, models in its unit gain Inspiration."
+                                        "description": "While this model is in play, models in its unit gain Inspiration. (A model with Inspiration gains +1 to attack accuracy rolls.)"
                                     },
                                     {
                                         "name": "Granted [Rise]",
-                                        "description": "While this model is in play, models in its unit gain Rise."
+                                        "description": "While this model is in play, models in its unit gain Rise. (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Take Up",
@@ -16115,7 +16114,7 @@
                                     },
                                     {
                                         "name": "Tactics [Quick Work]",
-                                        "description": "Models in this unit gain Quick Work."
+                                        "description": "Models in this unit gain Quick Work. (When a model with Quick Work destroys one or more enemy models with a melee attack during its Combat Action, immediately after the attack is resolved it can make one basic ranged attack.)"
                                     }
                                 ],
                                 "stats": {
@@ -16196,11 +16195,11 @@
                                     },
                                     {
                                         "name": "Tactics [Steady]",
-                                        "description": "Models in this unit gain Steady."
+                                        "description": "Models in this unit gain Steady. (A model with Steady cannot become knocked down.)"
                                     },
                                     {
                                         "name": "Tactics [Sturdy]",
-                                        "description": "Models in this unit gain Sturdy."
+                                        "description": "Models in this unit gain Sturdy. (A model with Sturdy cannot be pushed.)"
                                     }
                                 ],
                                 "stats": {
@@ -16291,7 +16290,7 @@
                                     },
                                     {
                                         "name": "Granted [Clear Cut]",
-                                        "description": "While this model is in play, models in its unit gain Clear Cut."
+                                        "description": "While this model is in play, models in its unit gain Clear Cut. (While this model is in formation, when advancing as part of full advance, models in this unit that are in formation gain Pathfinder.)"
                                     },
                                     {
                                         "name": "Repairable",
@@ -16299,7 +16298,7 @@
                                     },
                                     {
                                         "name": "Tactics [Defensive Line]",
-                                        "description": "Models in this unit gain Defensive Line."
+                                        "description": "Models in this unit gain Defensive Line. (While a model with Defensive Line is B2B with one or more models in its unit, it gains +2 DEF against melee attacks and cannot become knocked down.)"
                                     }
                                 ],
                                 "stats": {
@@ -16375,7 +16374,7 @@
                                     },
                                     {
                                         "name": "Granted [Reposition [3\"]]",
-                                        "description": "While this model is in play, models in its unit gain Reposition [3\"]."
+                                        "description": "While this model is in play, models in its unit gain Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
                                     },
                                     {
                                         "name": "Grapeshot",
@@ -16433,7 +16432,7 @@
                                     },
                                     {
                                         "name": "Granted [Inspiration, Rise]",
-                                        "description": "While this model is in play, models in its unit gain Inspiration, Rise."
+                                        "description": "While this model is in play, models in its unit gain Inspiration and Rise. (A model with Inspiration gains +1 to attack accuracy rolls.) (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Take Up",
@@ -16571,7 +16570,7 @@
                                     },
                                     {
                                         "name": "Granted [Pathfinder, Reposition [3\"]]",
-                                        "description": "While this model is in play, models in its unit gain Pathfinder, Reposition [3\"]."
+                                        "description": "While this model is in play, models in its unit gain Pathfinder and Reposition [3\"]. (a model with Pathfinder ignores the movement penalty of Rough [Forest] and Rough [Rubble] terrain while advancing.) (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
                                     },
                                     {
                                         "name": "Mark Target",
@@ -16877,7 +16876,7 @@
                                     },
                                     {
                                         "name": "Granted [Inspiration, Rise]",
-                                        "description": "While this model is in play, models in its unit gain Inspiration, Rise."
+                                        "description": "While this model is in play, models in its unit gain Inspiration and Rise. (A model with Inspiration gains +1 to attack accuracy rolls.) (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Take Up",
@@ -17292,7 +17291,7 @@
                                 },
                                 "execution": {
                                     "name": "Elite Cadre [Gun Mage] [Feign Death]",
-                                    "description": "Friendly Gun Mage models gain Feign Death."
+                                    "description": "Friendly Gun Mage models gain Feign Death. (A model with Feign Death cannot be targeted by ranged or magic attacks while knocked down.)"
                                 },
                                 "stats": {
                                     "basesize": "30MM",
@@ -17943,7 +17942,7 @@
                                     },
                                     {
                                         "name": "Field Marshal [Overtake]",
-                                        "description": "Cohort models in this model's battlegroup gain Overtake."
+                                        "description": "Cohort models in this model's battlegroup gain Overtake. (When a model with Overtake destroys one or more enemy models with a basic melee attack during its Combat Action, after the attack is resolved it can immediately advance up to 1\".)"
                                     },
                                     {
                                         "name": "Mercenary [Ord, Crucible Guard, Cygnar, Cryx, Khador, Protectorate, Talion Charter]",
@@ -18117,7 +18116,7 @@
                                     },
                                     {
                                         "name": "Soul Taker [Unlimited Tokens]",
-                                        "description": "This model can gain soul tokens. there is no limit to how many tokens it can carry."
+                                        "description": "This model can gain soul tokens. This model can carry up to u soul tokens at any time."
                                     }
                                 ],
                                 "feat": {
@@ -18219,7 +18218,8 @@
                         "points": "30",
                         "category": "Warcasters/Warlocks/Masters",
                         "primaryfaction": [
-                            "Mercenaries"
+                            "Mercenaries",
+                            "Thornfall Alliance"
                         ],
                         "factions": [
                             "Cephalyx",
@@ -18227,20 +18227,20 @@
                             "Crucible Guard",
                             "Legion of Everblight",
                             "Mercenaries",
-                            "Skorne"
+                            "Skorne",
+                            "Thornfall Alliance"
                         ],
                         "fieldallowance": "C",
                         "models": [
                             {
                                 "name": "Arkadius 1",
-                                "title": "Mercenary Warlock",
+                                "title": "Mercenary Thornfall Alliance Warlock",
                                 "modeltype": [
                                     "Warlock"
                                 ],
                                 "keywords": [
                                     "Alchemist",
-                                    "Cygnaran",
-                                    "Thornfall Alliance"
+                                    "Cygnaran"
                                 ],
                                 "characterabilities": [
                                     {
@@ -18249,7 +18249,7 @@
                                     },
                                     {
                                         "name": "Field Marshal [Hyper-Aggressive]",
-                                        "description": "Cohort models in this model's battlegroup gain Hyper-Aggressive."
+                                        "description": "Cohort models in this model's battlegroup gain Hyper-Aggressive. (When a model with Hyper-Aggressive suffers damage from an enemy attack at any time except while it is advancing, after the attack is resolved it can immediately make a full advance directly toward the attacking model.)"
                                     },
                                     {
                                         "name": "Limited Battlegroup [Gorax Ragers and Farrow Warbeasts]",
@@ -18278,7 +18278,7 @@
                                 ],
                                 "feat": {
                                     "name": "Monster Mayhem",
-                                    "description": "Warbeasts in Arkadius’ battlegroup can immediately frenzy. A model can frenzy even if it has already activated this turn, and it can activate later this turn even if it frenzies as a result of Monster Mayhem. When a warbeast is frenzied as a result of Monster Mayhem, you can choose the warbeast’s frenzy target if the target is currently in Arkadius’ Control range."
+                                    "description": "Warbeasts in Arkadius' battlegroup can immediately frenzy. A model can frenzy even if it has already activated this turn, and it can activate later this turn even if it frenzies as a result of Monster Mayhem. When a warbeast is frenzied as a result of Monster Mayhem, you can choose the warbeast's frenzy target if the target is currently in Arkadius' Control range."
                                 },
                                 "execution": {
                                     "name": "Heal [d3+1] (★Action)",
@@ -19119,7 +19119,7 @@
                                     },
                                     {
                                         "name": "Warrant Officer [Reposition [3\"]]",
-                                        "description": "While this model is alive, and not under enemy control, non-cohort models in this model's battlegroup gain Reposition [3\"]."
+                                        "description": "While this model is alive, and not under enemy control, non-cohort models in this model's battlegroup gain Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
                                     }
                                 ],
                                 "stats": {
@@ -19193,7 +19193,7 @@
                                     },
                                     {
                                         "name": "Warrant Officer [Circular Vision]",
-                                        "description": "While this model is alive, and not under enemy control, non-cohort models in this model's battlegroup gain Circular Vision."
+                                        "description": "While this model is alive, and not under enemy control, non-cohort models in this model's battlegroup gain Circular Vision. (Models never gain a back strike bonus against a model with Circular Vision.)"
                                     }
                                 ],
                                 "stats": {
@@ -19444,7 +19444,7 @@
                                     },
                                     {
                                         "name": "Field Marshal [Unyielding]",
-                                        "description": "Cohort models in this model's battlegroup gain Unyielding."
+                                        "description": "Cohort models in this model's battlegroup gain Unyielding. (A model with Unyielding gains +2 ARM against melee damage rolls.)"
                                     },
                                     {
                                         "name": "Mercenary [Crucible Guard, Cryx, Khador, Llael, Ord, Protectorate of Menoth]",
@@ -19968,7 +19968,7 @@
                                     },
                                     {
                                         "name": "Elite Cadre [Steelhead Riflemen] [Advance Move]",
-                                        "description": "Friendly Steelhead Riflemen models gain Advance Move."
+                                        "description": "Friendly Steelhead Riflemen models gain Advance Move. (Before the start of the game but after both players have deployed, a model with Advance Move can make a full advance.)"
                                     },
                                     {
                                         "name": "Mercenary [Crucible, Cryx, Khador, Llael, Ord, Protectorate of Menoth]",
@@ -20554,7 +20554,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Chain Attack [Grab & Smash]",
-                                        "description": "If this model hits the same model with two Grab & Smash intial attacks, after resolving the attacks it can immediately [#tag2]."
+                                        "description": "Missing tag"
                                     },
                                     {
                                         "name": "Jury-Rigged [SPD]",
@@ -21398,7 +21398,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Gung-ho",
-                                        "description": "This model can run or charge without spending focus or fury or using the Hurry! 'jack marshal benefit."
+                                        "description": "This model can run or charge without spending focus, fury, Essense or using the Hurry! 'jack marshal benefit."
                                     },
                                     {
                                         "name": "Heavy Boiler",
@@ -23939,6 +23939,10 @@
                                     {
                                         "name": "Full Boar",
                                         "description": "This model can use Full Boar at the start of its activation. This model gains +2 SPD that activation. At the end of that activation, this model suffers d3 damage points. Full Boar can only be used once per activation."
+                                    },
+                                    {
+                                        "name": "Thick Cut Bacon",
+                                        "description": "When this model is destroyed, each living warbeast within 3” of this model can remove d3+2 points."
                                     }
                                 ],
                                 "stats": {
@@ -24300,7 +24304,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Elite Cadre [Undead Solos] [Shield Guard]",
-                                        "description": "Friendly Undead Solos models gain Shield Guard."
+                                        "description": "Friendly Undead Solos models gain Shield Guard. (When a friendly model is directly hit by a non-spray ranged attack during your opponent's turn while within 3\" of a model with Shield Guard, you can choose to have the model with Shield Guard directly hit instead. It is automatically hit and suffers all damage and effects. A model can use Shield Guard only once per round and cannot use Shield Guard if it is incorporeal, knocked down, or stationary. The Shield Guard special rule can only trigger once per attack roll.)"
                                     },
                                     {
                                         "name": "Flank [Undead]",
@@ -24687,7 +24691,7 @@
                                     },
                                     {
                                         "name": "Soul Taker [3 Tokens]",
-                                        "description": "This model can gain soul tokens. this model can carry up to 3 tokens at any time."
+                                        "description": "This model can gain soul tokens. This model can carry up to 3 soul tokens at any time."
                                     }
                                 ],
                                 "stats": {
@@ -25923,6 +25927,10 @@
                                     {
                                         "name": "Full Boar",
                                         "description": "This model can use Full Boar at the start of its activation. This model gains +2 SPD that activation. At the end of that activation, this model suffers d3 damage points. Full Boar can only be used once per activation."
+                                    },
+                                    {
+                                        "name": "Thick Cut Bacon",
+                                        "description": "When this model is destroyed, each living warbeast within 3” of this model can remove d3+2 points."
                                     }
                                 ],
                                 "stats": {
@@ -26034,7 +26042,7 @@
                                     },
                                     {
                                         "name": "Elite Cadre [BRI] [Dodge]",
-                                        "description": "Friendly BRI models gain Dodge."
+                                        "description": "Friendly BRI models gain Dodge. (A model with Dodge can advance up to 2\" immediately after an enemy attack that missed it is resolved unless it was missed while advancing. It cannot be targeted by free strikes during this movement.)"
                                     },
                                     {
                                         "name": "Mechanikally Adept",
@@ -26142,7 +26150,7 @@
                                     },
                                     {
                                         "name": "Chain Attack [Iron Reapers] [Death Chill]",
-                                        "description": "If this model hits the same model with two Iron Reapers intial attacks, after resolving the attacks it can immediately Death Chill."
+                                        "description": "If this model hits the same model with two Iron Reapers intial attacks, after resolving the attacks it can immediately Death Chill. (The model hit becomes stationary for one round.)"
                                     },
                                     {
                                         "name": "Divine Manifestation",
@@ -27037,7 +27045,7 @@
                                     },
                                     {
                                         "name": "Leadership [Mage Hunter] [Swift Hunter]",
-                                        "description": "While in this model's CMD range, friendly faction Mage Hunter gain Swift Hunter."
+                                        "description": "While in this model's CMD range, friendly faction Mage Hunter gain Swift Hunter. (When a model with Swift Hunter destroys one or more enemy models with a basic ranged attack, immediately after the attack is resolved it can advance up to 2\".)"
                                     },
                                     {
                                         "name": "Partisan [Ios]",
@@ -27385,7 +27393,7 @@
                                     },
                                     {
                                         "name": "Leadership [Doom Reavers] [Rise]",
-                                        "description": "While in this model's CMD range, friendly faction Doom Reavers gain Rise."
+                                        "description": "While in this model's CMD range, friendly faction Doom Reavers gain Rise. (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Mercenary [Khador, Orgoth, Religion of the Twins]",
@@ -27464,7 +27472,7 @@
                                     },
                                     {
                                         "name": "Leadership [Doom Reavers] [Rise]",
-                                        "description": "While in this model's CMD range, friendly faction Doom Reavers gain Rise."
+                                        "description": "While in this model's CMD range, friendly faction Doom Reavers gain Rise. (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Mad Howl",
@@ -27864,7 +27872,7 @@
                                     },
                                     {
                                         "name": "Leadership [Order of Illumination Vigilants] [True Sight]",
-                                        "description": "While in this model's CMD range, friendly faction Order of Illumination Vigilants gain True Sight."
+                                        "description": "While in this model's CMD range, friendly faction Order of Illumination Vigilants gain True Sight. (A model with True Sight ignores cloud effects when determining LOS. This model also ignores Stealth.)"
                                     },
                                     {
                                         "name": "Partisan [Cygnar, Llael]",
@@ -29259,7 +29267,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Field Dress [3 Tokens]",
-                                        "description": "This model can collect corpse tokens from models it destroys. This model can carry up to this model can carry up to 3 tokens at any time corpse tokens at any time."
+                                        "description": "This model can collect corpse tokens from living or undead models it destroys. This model can carry up to 3 corpse tokens at any time."
                                     },
                                     {
                                         "name": "Heart Eater",
@@ -30066,11 +30074,11 @@
                                     },
                                     {
                                         "name": "Leadership [Cygnar] [Reposition [3\"]]",
-                                        "description": "While in this model's CMD range, friendly faction Cygnar gain Reposition [3\"]."
+                                        "description": "While in this model's CMD range, friendly faction Cygnar gain Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
                                     },
                                     {
                                         "name": "Leadership [Llaelese] [Feign Death]",
-                                        "description": "While in this model's CMD range, friendly faction Llaelese gain Feign Death."
+                                        "description": "While in this model's CMD range, friendly faction Llaelese gain Feign Death. (A model with Feign Death cannot be targeted by ranged or magic attacks while knocked down.)"
                                     },
                                     {
                                         "name": "Partisan [Cygnar]",
@@ -30578,7 +30586,7 @@
                                     },
                                     {
                                         "name": "Elite Cadre [Farrow Slaughterhousers] [Unyielding]",
-                                        "description": "Friendly Farrow Slaughterhousers models gain Unyielding."
+                                        "description": "Friendly Farrow Slaughterhousers models gain Unyielding. (A model with Unyielding gains +2 ARM against melee damage rolls.)"
                                     },
                                     {
                                         "name": "Impervious Flesh",
@@ -32277,7 +32285,7 @@
                                     },
                                     {
                                         "name": "Leadership [Steelhead Halberdiers] [Wall of Steel]",
-                                        "description": "While in this model's CMD range, friendly faction Steelhead Halberdiers gain Wall of Steel."
+                                        "description": "While in this model's CMD range, friendly faction Steelhead Halberdiers gain Wall of Steel. (While a model with Wall of Steel is B2B with one or more models in its unit, it gains +2 ARM.)"
                                     },
                                     {
                                         "name": "Mercenary [Cygnar, Crucible Guard, Cyrx, Khador, Cygnar, Protectorate, Ord, Llael, Religion of the Twins, Searforge Commission]",
@@ -32382,7 +32390,7 @@
                                     },
                                     {
                                         "name": "Leadership [Steelhead Heavy Cavalry] [Cleave]",
-                                        "description": "While in this model's CMD range, friendly faction Steelhead Heavy Cavalry gain Cleave."
+                                        "description": "While in this model's CMD range, friendly faction Steelhead Heavy Cavalry gain Cleave. (When a model with Cleave destroys one or more enemy models with a basic melee attack during its Combat Action, immediately after the attack is resolved the model can make one additional melee attack. The model can make only one additional attack as a result of Cleave each activation.)"
                                     },
                                     {
                                         "name": "Mercenary [Cygnar, Crucible Guard, Cyrx, Khador, Cygnar, Protectorate, Ord, Llael, Religion of the Twins or Searforge Commission]",
@@ -34369,10 +34377,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
+                            "maxunit": "-",
                             "minunit": "Alexia and 9 Risen Grunts",
                             "maxcost": "-",
-                            "mincost": "8",
-                            "maxunit": "-"
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -34392,7 +34400,7 @@
                                     },
                                     {
                                         "name": "Granted [Spell Ward]",
-                                        "description": "While this model is in play, models in its unit gain Spell Ward."
+                                        "description": "While this model is in play, models in its unit gain Spell Ward. (A model with Spell Ward cannot be targeted by enemy spells.)"
                                     },
                                     {
                                         "name": "Stir the Dead",
@@ -34555,10 +34563,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
+                            "mincost": "8",
                             "maxunit": "-",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-",
-                            "mincost": "8"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -34739,10 +34747,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "minunit": "Croe and 5 Grunts",
-                            "maxunit": "Croe and 9 Grunts",
+                            "maxcost": "14",
                             "mincost": "8",
-                            "maxcost": "14"
+                            "minunit": "Croe and 5 Grunts",
+                            "maxunit": "Croe and 9 Grunts"
                         },
                         "models": [
                             {
@@ -34922,9 +34930,9 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "14",
                             "maxunit": "Raefyll and 9 Grunts",
                             "mincost": "8",
+                            "maxcost": "14",
                             "minunit": "Raefyll and 5 Grunts"
                         },
                         "models": [
@@ -34953,7 +34961,7 @@
                                     },
                                     {
                                         "name": "Granted [Hunter]",
-                                        "description": "While this model is in play, models in its unit gain Hunter."
+                                        "description": "While this model is in play, models in its unit gain Hunter. (A model with Hunter ignores concealment and cover when making ranged attacks.)"
                                     },
                                     {
                                         "name": "Partisan [Ios]",
@@ -35123,11 +35131,11 @@
                                     },
                                     {
                                         "name": "Tactics [Prey]",
-                                        "description": "Models in this unit gain Prey."
+                                        "description": "Models in this unit gain Prey. (After deployment but before the first player's turn, choose an enemy model/unit to be this model/unit's prey. A model with Prey gains +2 to attack and damage rolls against its prey. When the prey is destroyed or removed from play, choose another model/unit to be the prey.)"
                                     },
                                     {
                                         "name": "Tactics [Take Down]",
-                                        "description": "Models in this unit gain Take Down."
+                                        "description": "Models in this unit gain Take Down. (Models disabled by a melee attack made by a model with Take Down cannot make a Tough roll. Models boxed by a melee attack made by this model are removed from play.)"
                                     }
                                 ],
                                 "stats": {
@@ -35250,10 +35258,10 @@
                         ],
                         "fieldallowance": "3",
                         "unitpoints": {
-                            "minunit": "Leader and 5 Grunts",
+                            "maxunit": "-",
                             "maxcost": "-",
-                            "mincost": "8",
-                            "maxunit": "-"
+                            "minunit": "Leader and 5 Grunts",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -35351,9 +35359,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "maxunit": "Leader and 4 Grunts",
-                            "mincost": "8",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "13"
+                            "maxcost": "13",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -35480,10 +35488,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "minunit": "Boomhowler and 5 Grunts",
+                            "maxcost": "12",
                             "maxunit": "Boomhowler and 9 Grunts",
-                            "mincost": "8",
-                            "maxcost": "12"
+                            "minunit": "Boomhowler and 5 Grunts",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -35638,8 +35646,8 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "13",
-                            "maxunit": "Leader and 9 Grunts",
                             "minunit": "Leader and 5 Grunts",
+                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "7"
                         },
                         "models": [
@@ -35741,10 +35749,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "maxcost": "13",
-                            "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
-                            "minunit": "Leader and 5 Grunts"
+                            "maxunit": "Leader and 9 Grunts",
+                            "maxcost": "13"
                         },
                         "models": [
                             {
@@ -35883,9 +35891,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "maxcost": "13",
-                            "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxunit": "Leader and 9 Grunts",
+                            "minunit": "Leader and 5 Grunts"
                         },
                         "models": [
                             {
@@ -35961,10 +35969,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "Leader and 9 Grunts",
-                            "maxcost": "12",
+                            "minunit": "Leader and 5 Grunts",
                             "mincost": "7",
-                            "minunit": "Leader and 5 Grunts"
+                            "maxcost": "12",
+                            "maxunit": "Leader and 9 Grunts"
                         },
                         "models": [
                             {
@@ -36056,10 +36064,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
-                            "mincost": "8",
                             "maxcost": "-",
-                            "maxunit": "-",
-                            "minunit": "Lady Aiyana and Master Holt"
+                            "minunit": "Lady Aiyana and Master Holt",
+                            "mincost": "8",
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -36076,7 +36084,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Granted [Force Barrier]",
-                                        "description": "While this model is in play, models in its unit gain Force Barrier."
+                                        "description": "While this model is in play, models in its unit gain Force Barrier. (A model with Force Barrier gains +2 DEF against ranged accuracy attack rolls and Resistance: Blast.)"
                                     },
                                     {
                                         "name": "Partisan [Ios]",
@@ -36200,8 +36208,8 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
-                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "9",
+                            "maxunit": "Leader and 9 Grunts",
                             "maxcost": "16"
                         },
                         "models": [
@@ -36317,10 +36325,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxunit": "Leader and 4 Grunts",
-                            "minunit": "Leader and 2 Grunts",
                             "maxcost": "15",
-                            "mincost": "9"
+                            "mincost": "9",
+                            "maxunit": "Leader and 4 Grunts",
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -36441,10 +36449,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "mincost": "8",
+                            "maxunit": "Leader and 4 Grunts",
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "13",
-                            "maxunit": "Leader and 4 Grunts"
+                            "mincost": "8",
+                            "maxcost": "13"
                         },
                         "models": [
                             {
@@ -36558,9 +36566,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "minunit": "Leader and 2 Grunts",
-                            "mincost": "8",
                             "maxunit": "Leader and 4 Grunts",
-                            "maxcost": "12"
+                            "maxcost": "12",
+                            "mincost": "8"
                         },
                         "models": [
                             {
@@ -36654,10 +36662,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "8",
-                            "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts",
-                            "maxunit": "-"
+                            "minunit": "Leader and 5 Grunts",
+                            "maxcost": "14"
                         },
                         "models": [
                             {
@@ -36746,9 +36754,9 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "12",
-                            "mincost": "7",
                             "maxunit": "Lass and 9 Grunts",
+                            "mincost": "7",
+                            "maxcost": "12",
                             "minunit": "Lass and 7 Grunts"
                         },
                         "models": [
@@ -36879,9 +36887,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "mincost": "4",
-                            "maxunit": "-",
+                            "maxcost": "-",
                             "minunit": "Gunner and 2 Grunts",
-                            "maxcost": "-"
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -37017,9 +37025,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "mincost": "4",
-                            "maxunit": "-",
+                            "maxcost": "-",
                             "minunit": "Gunner and 2 Grunts",
-                            "maxcost": "-"
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -37094,10 +37102,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "18",
                             "minunit": "Leader and 2 Grunts",
-                            "maxunit": "Leader and 4 Grunts",
-                            "mincost": "12"
+                            "maxcost": "18",
+                            "mincost": "12",
+                            "maxunit": "Leader and 4 Grunts"
                         },
                         "models": [
                             {
@@ -37211,10 +37219,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "mincost": "5",
                             "minunit": "Gunner and 2 Grunts",
-                            "maxunit": "-",
                             "maxcost": "-",
-                            "mincost": "5"
+                            "maxunit": "-"
                         },
                         "models": [
                             {
@@ -37350,9 +37358,9 @@
                         "fieldallowance": "2",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
+                            "maxunit": "Leader and 9 Grunts",
                             "mincost": "6",
-                            "maxcost": "11",
-                            "maxunit": "Leader and 9 Grunts"
+                            "maxcost": "11"
                         },
                         "models": [
                             {
@@ -37435,10 +37443,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
-                            "maxcost": "-",
                             "mincost": "5",
-                            "minunit": "Gunner and 2 Grunts",
-                            "maxunit": "-"
+                            "maxunit": "-",
+                            "maxcost": "-",
+                            "minunit": "Gunner and 2 Grunts"
                         },
                         "models": [
                             {
@@ -37567,10 +37575,10 @@
                         ],
                         "fieldallowance": "1",
                         "unitpoints": {
-                            "maxcost": "-",
+                            "minunit": "Leader and 1 Grunt",
                             "mincost": "2",
                             "maxunit": "-",
-                            "minunit": "Leader and 1 Grunt"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -37670,9 +37678,9 @@
                         "fieldallowance": "3",
                         "unitpoints": {
                             "minunit": "Leader and 2 Grunts",
-                            "maxcost": "-",
+                            "mincost": "8",
                             "maxunit": "-",
-                            "mincost": "8"
+                            "maxcost": "-"
                         },
                         "models": [
                             {
@@ -37790,10 +37798,10 @@
                         ],
                         "fieldallowance": "C",
                         "unitpoints": {
+                            "maxunit": "-",
                             "maxcost": "-",
                             "mincost": "6",
-                            "minunit": "Mar, Morland and Zira",
-                            "maxunit": "-"
+                            "minunit": "Mar, Morland and Zira"
                         },
                         "models": [
                             {
@@ -38014,10 +38022,10 @@
                         ],
                         "fieldallowance": "2",
                         "unitpoints": {
+                            "maxunit": "-",
                             "maxcost": "-",
-                            "minunit": "Leader and 2 Grunts",
                             "mincost": "8",
-                            "maxunit": "-"
+                            "minunit": "Leader and 2 Grunts"
                         },
                         "models": [
                             {
@@ -38259,11 +38267,11 @@
                                     },
                                     {
                                         "name": "Granted [Inspiration]",
-                                        "description": "While this model is in play, models in its unit gain Inspiration."
+                                        "description": "While this model is in play, models in its unit gain Inspiration. (A model with Inspiration gains +1 to attack accuracy rolls.)"
                                     },
                                     {
                                         "name": "Granted [Rise]",
-                                        "description": "While this model is in play, models in its unit gain Rise."
+                                        "description": "While this model is in play, models in its unit gain Rise. (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Take Up",
@@ -38360,7 +38368,7 @@
                                     },
                                     {
                                         "name": "Tactics [Reposition [3\"]]",
-                                        "description": "Models in this unit gain Reposition [3\"]."
+                                        "description": "Models in this unit gain Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition 3\" can advance up to 3\", then it's activation ends.)"
                                     }
                                 ],
                                 "stats": {
@@ -38423,11 +38431,11 @@
                                 "characterabilities": [
                                     {
                                         "name": "Granted [Prey]",
-                                        "description": "While this model is in play, models in its unit gain Prey."
+                                        "description": "While this model is in play, models in its unit gain Prey. (After deployment but before the first player's turn, choose an enemy model/unit to be this model/unit's prey. A model with Prey gains +2 to attack and damage rolls against its prey. When the prey is destroyed or removed from play, choose another model/unit to be the prey.)"
                                     },
                                     {
                                         "name": "Granted [Prowl]",
-                                        "description": "While this model is in play, models in its unit gain Prowl."
+                                        "description": "While this model is in play, models in its unit gain Prowl. (While a model with Prowl has concealment, it gains Stealth.)"
                                     },
                                     {
                                         "name": "Mercenary [Circle Orboros, Protectorate of Menoth, Skorne, Trollbloods]",
@@ -38530,7 +38538,7 @@
                                     },
                                     {
                                         "name": "Tactics [Shadow Dance]",
-                                        "description": "Models in this unit gain Shadow Dance."
+                                        "description": "Models in this unit gain Shadow Dance. (When a model with Shadow Dance hits an enemy model with a melee attack, immediately after the attack is resolved you can warp another model in its unit completely within 3” of the warped model’s current position. A model can be placed by Shadow Dance only one per turn.)"
                                     },
                                     {
                                         "name": "Ventilate",
@@ -38807,7 +38815,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Granted [Rise]",
-                                        "description": "While this model is in play, models in its unit gain Rise."
+                                        "description": "While this model is in play, models in its unit gain Rise. (If a model with Rise is knocked down at the beginning of your Maintenance Phase, it stands up.)"
                                     },
                                     {
                                         "name": "Mercenary [Crucible Guard, Cygnar, Khador, Llael, Ord, Religion of the Twins]",
@@ -38921,7 +38929,7 @@
                                     },
                                     {
                                         "name": "Tactics [Last Rites]",
-                                        "description": "Models in this unit gain Last Rites."
+                                        "description": "Models in this unit gain Last Rites. (Enemy models cannot gain corpse tokens from models destroyed within 5\" of a model with Last Rites.)"
                                     }
                                 ],
                                 "stats": {
@@ -38978,7 +38986,7 @@
                                 "characterabilities": [
                                     {
                                         "name": "Granted [Inspiration]",
-                                        "description": "While this model is in play, models in its unit gain Inspiration."
+                                        "description": "While this model is in play, models in its unit gain Inspiration. (A model with Inspiration gains +1 to attack accuracy rolls.)"
                                     },
                                     {
                                         "name": "Heal [D3] (★Action)",
@@ -39152,7 +39160,7 @@
                                     },
                                     {
                                         "name": "Granted [Cleave]",
-                                        "description": "While this model is in play, models in its unit gain Cleave."
+                                        "description": "While this model is in play, models in its unit gain Cleave. (When a model with Cleave destroys one or more enemy models with a basic melee attack during its Combat Action, immediately after the attack is resolved the model can make one additional melee attack. The model can make only one additional attack as a result of Cleave each activation.)"
                                     },
                                     {
                                         "name": "Mercenary [Cygnar, Crucible Guard, Ord. Llael. Protectorate or Searforge Commission]",

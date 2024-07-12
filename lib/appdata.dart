@@ -25,6 +25,7 @@ class AppData {
     {'name': 'Talion Charter', 'list': 'warmachine', 'file': 'talion.json'},
     {'name': 'Thornfall Alliance', 'list': 'hordes', 'file': 'thornfall.json'},
     {'name': 'Trollbloods', 'list': 'hordes', 'file': 'trollbloods.json'},
+    {'name': 'Warriors of the Old Faith', 'list': 'warmachine', 'file': 'warriors.json'},
   ];
   final List<String> _productCategories = [
     'Warcasters/Warlocks/Masters',

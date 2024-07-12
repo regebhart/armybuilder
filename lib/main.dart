@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Warmachine MK 3.5 Army Builder',
+        title: 'WM MK 3.5 Army Builder',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: const ColorScheme.dark(),
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
 
-    String buildlastupdated = '7/7/2024 v1';
+    String buildlastupdated = '7/12/2024 v1';
 
     if (faction.allFactions.isEmpty) {
       faction.readAllFactions();

@@ -41,7 +41,7 @@ class DeployedListCohortItem extends StatelessWidget {
       hp: m.stats.hp,
       mat: m.stats.mat,
       rat: m.stats.rat,
-      spd: m.stats.rat,
+      spd: m.stats.spd,
       str: m.stats.str,
       thr: m.stats.thr,
     );

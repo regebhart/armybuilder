@@ -277,25 +277,19 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: hpbar.sublist(index * 5, (index * 5) + 5 > hpbar.length ? hpbar.length : (index * 5) + 5),
                 ));
-        hp = Padding(
-          padding: const EdgeInsets.all(5),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 0),
-                child: Text('${m.modelname} HP: ${m.stats.hp!}'),
-              ),
-              Wrap(
-                alignment: WrapAlignment.start,
-                runSpacing: 0,
-                direction: Axis.horizontal,
-                children: hpbarrow,
-              ),
-            ],
-          ),
+        hp = Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('${m.modelname} HP: ${m.stats.hp!}'),
+            Wrap(
+              alignment: WrapAlignment.start,
+              runSpacing: 0,
+              direction: Axis.horizontal,
+              children: hpbarrow,
+            ),
+          ],
         );
       }
     }
@@ -330,10 +324,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
             bars.add(const SizedBox(height: 3));
           }
           bars.add(
-            Padding(
-              padding: const EdgeInsets.only(top: 0),
-              child: Text('${hp.name} HP: ${hp.hp}'),
-            ),
+            Text('${hp.name} HP: ${hp.hp}'),
           );
           bars.add(
             Row(
@@ -347,14 +338,11 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         hpbarnum++;
       }
 
-      hp = Padding(
-        padding: const EdgeInsets.only(left: 5, bottom: 5),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: bars,
-        ),
+      hp = Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: bars,
       );
     }
 
@@ -376,8 +364,8 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
             index,
             bordercolor,
             army,
-            widget.listindex!,
-            widget.listmodelindex!,
+            widget.listindex,
+            widget.listmodelindex,
             barnum,
           ),
         );
@@ -389,7 +377,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 0, right: 5),
+                padding: const EdgeInsets.only(right: 5),
                 child: Text('${cb.name}:'),
               ),
               ...bar,
@@ -399,14 +387,11 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         barnum++;
       }
 
-      custombar = Padding(
-        padding: const EdgeInsets.only(left: 5, bottom: 5),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: bars,
-        ),
+      custombar = Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: bars,
       );
     }
 
@@ -2315,7 +2300,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     if (addhp) {
       modeldoc.add(Container(
         width: width,
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         decoration: const BoxDecoration(
           border: Border(
             left: BorderSide(width: 1, color: bordercolor),
@@ -2327,7 +2312,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
 
       modeldoc.add(Container(
         width: width,
-        padding: const EdgeInsets.only(right: 5, bottom: 10),
+        padding: const EdgeInsets.all(5),
         decoration: const BoxDecoration(
           border: Border(
             left: BorderSide(width: 1, color: bordercolor),
@@ -2341,7 +2326,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
 
     modeldoc.add(Container(
       width: width,
-      padding: const EdgeInsets.only(right: 5, bottom: 10),
+      padding: const EdgeInsets.all(5),
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(width: 1, color: bordercolor),
@@ -2854,18 +2839,18 @@ Widget hpbox(int boxindex, Color bordercolor, ArmyListNotifier army, int? listin
   );
 }
 
-Widget custombarbox(int boxindex, Color bordercolor, ArmyListNotifier army, int listindex, int modelindex, int barindex) {
+Widget custombarbox(int boxindex, Color bordercolor, ArmyListNotifier army, int? listindex, int? modelindex, int barindex) {
   Color boxfillcolor = Colors.white;
   if ((boxindex + 1) % 5 == 0) boxfillcolor = Colors.grey;
   if (army.custombartracking.isNotEmpty) {
-    if (army.custombartracking[listindex][modelindex]['value'] >= boxindex + 1) {
+    if (army.custombartracking[listindex!][modelindex!]['value'] >= boxindex + 1) {
       boxfillcolor = Colors.green.shade600;
     }
   }
 
   return GestureDetector(
     onTap: () {
-      army.adjustCustomBar(listindex, modelindex, boxindex + 1, barindex);
+      army.adjustCustomBar(listindex!, modelindex!, boxindex + 1, barindex);
     },
     child: Container(
       decoration: BoxDecoration(
