@@ -2,9 +2,9 @@ import 'package:armybuilder/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../appdata.dart';
-import '../../../providers/armylist.dart';
-import '../../../providers/navigation.dart';
+import '../../../../appdata.dart';
+import '../../../../providers/armylist.dart';
+import '../../../../providers/navigation.dart';
 
 class ArmyListUnitItem extends StatelessWidget {
   final Product product;
@@ -29,13 +29,13 @@ class ArmyListUnitItem extends StatelessWidget {
     final bool unit = product.category == 'Units' && product.unitPoints!['maxunit'] != '-';
 
     return Padding(
-      padding: EdgeInsets.only(left: displayradio ? 0 : 50, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: displayradio ? 0 : AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           if (displayradio)
             SizedBox(
-              width: 50,
+              width: AppData().selectedListLeftWidth,
               child: GestureDetector(
                   onTap: () => army.updateSelectedCaster(
                         casterindex,

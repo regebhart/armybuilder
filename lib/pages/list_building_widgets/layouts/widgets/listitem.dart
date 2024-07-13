@@ -2,10 +2,10 @@ import 'package:armybuilder/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../appdata.dart';
-import '../../../providers/armylist.dart';
-import '../../../providers/faction.dart';
-import '../../../providers/navigation.dart';
+import '../../../../appdata.dart';
+import '../../../../providers/armylist.dart';
+import '../../../../providers/faction.dart';
+import '../../../../providers/navigation.dart';
 
 class ArmyListItem extends StatelessWidget {
   final Product product;
@@ -18,7 +18,7 @@ class ArmyListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
+
     String cost = product.points!;
     String type = '';
     bool displayradio = false;
@@ -42,13 +42,14 @@ class ArmyListItem extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.only(left: displayradio ? 0 : 50, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(
+          left: displayradio ? 0 : AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           if (displayradio)
             SizedBox(
-              width: 50,
+              width: AppData().selectedListLeftWidth,
               child: GestureDetector(
                   onTap: () => army.updateSelectedCaster(
                         index,

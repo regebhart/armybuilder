@@ -2,10 +2,10 @@ import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../models/cohort.dart';
-import '../../../appdata.dart';
-import '../../../providers/armylist.dart';
-import '../../../providers/navigation.dart';
+import '../../../../models/cohort.dart';
+import '../../../../appdata.dart';
+import '../../../../providers/armylist.dart';
+import '../../../../providers/navigation.dart';
 
 class CohortListItem extends StatelessWidget {
   final Cohort cohort;
@@ -22,7 +22,7 @@ class CohortListItem extends StatelessWidget {
     String cost = cohort.product.points!;
 
     return Padding(
-      padding: EdgeInsets.only(left: cohort.product.models[0].modularoptions!.isNotEmpty ? 0 : 80, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: cohort.product.models[0].modularoptions!.isNotEmpty ? 0 : 80 - AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [

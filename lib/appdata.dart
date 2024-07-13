@@ -86,6 +86,8 @@ class AppData {
   final double _listButtonSpacing = 8;
   final double _listItemSpacing = 4;
 
+  final double _selectedListLeftWidth = 35;
+
   List<String> get productCategories => _productCategories;
   List<Map<String, String>> get factionList => _factionList;
   List<String> get warmachine => _warmachine;
@@ -95,6 +97,8 @@ class AppData {
 
   double get listButtonSpacing => _listButtonSpacing;
   double get listItemSpacing => _listItemSpacing;
+
+  double get selectedListLeftWidth => _selectedListLeftWidth;
 
   AppData();
 }

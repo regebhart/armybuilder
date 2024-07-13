@@ -1,8 +1,8 @@
-import 'package:armybuilder/pages/widgets/model_list_widgets/listcohort.dart';
-import 'package:armybuilder/pages/widgets/model_list_widgets/listitem.dart';
+import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listcohort.dart';
+import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listitem.dart';
 import 'package:armybuilder/providers/faction.dart';
-import 'package:armybuilder/pages/widgets/model_list_widgets/listmodularoption.dart';
-import 'package:armybuilder/pages/widgets/model_list_widgets/listunit.dart';
+import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listmodularoption.dart';
+import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listunit.dart';
 import 'package:armybuilder/pages/widgets/model_list_widgets/spellracklistitem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,8 +33,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
-    const EdgeInsets buttonInsets = EdgeInsets.only(top: 4, bottom: 4, left: 50);
-    const EdgeInsets itemInsets = EdgeInsets.only(left: 30);
+    EdgeInsets buttonInsets = EdgeInsets.only(top: 4, bottom: 4, left: AppData().selectedListLeftWidth);
+    EdgeInsets itemInsets = EdgeInsets.only(left: AppData().selectedListLeftWidth - 25);
     double buttonHeight = AppData().fontsize + 16;
     // int casternum = 0;
 
