@@ -555,8 +555,16 @@ class ArmyListNotifier extends ChangeNotifier {
     return bgp;
   }
 
+  String faName(String name) {
+    String faname = name;
+    if (int.tryParse(faname.substring(faname.length)) != null) {
+      faname = name.substring(0, name.length - 2);
+    }
+    return name;
+  }
+
   bool atFALimit(ArmyList army, Product product) {
-    String productname = product.models[0].modelname.substring(0, product.models[0].modelname.length - 2);
+    String productname = faName(product.models[0].modelname);
     int limit = 0;
     String modelname = '';
     switch (product.fa) {
@@ -571,8 +579,10 @@ class ArmyListNotifier extends ChangeNotifier {
 
     for (LeaderGroup lg in army.leadergroup.reversed) {
       if (lg.leader.name != '') {
-        modelname = lg.leader.models[0].modelname.substring(0, lg.leader.models[0].modelname.length - 2);
-        if (lg.leader.name == product.name || lg.leader.models[0].modelname.contains(productname) || product.models[0].modelname.contains(modelname)) {
+        modelname = faName(lg.leader.models[0].modelname);
+        if (lg.leader.name == product.name ||
+            lg.leader.models[0].modelname.contains(productname) ||
+            product.models[0].modelname.contains(modelname)) {
           return lg.leader.fanum >= limit;
         }
       }
@@ -580,20 +590,24 @@ class ArmyListNotifier extends ChangeNotifier {
         return lg.leaderattachment.fanum >= limit;
       }
       for (var c in lg.cohort.reversed) {
-        modelname = c.product.models[0].modelname.substring(0, c.product.models[0].modelname.length - 2);
-        if (c.product.name == product.name || c.product.models[0].modelname.contains(productname) || product.models[0].modelname.contains(modelname)) {
+        modelname = faName(lg.leader.models[0].modelname);
+        if (c.product.name == product.name ||
+            c.product.models[0].modelname.contains(productname) ||
+            product.models[0].modelname.contains(modelname)) {
           return c.product.fanum >= limit;
         }
       }
     }
     for (var jr in army.jrcasters.reversed) {
-      modelname = jr.leader.models[0].modelname.substring(0, jr.leader.models[0].modelname.length - 2);
+      modelname = faName(jr.leader.models[0].modelname);
       if (jr.leader.name == product.name || jr.leader.models[0].modelname.contains(productname) || product.models[0].modelname.contains(modelname)) {
         return jr.leader.fanum >= limit;
       }
       for (var c in jr.cohort.reversed) {
-        modelname = c.product.models[0].modelname.substring(0, c.product.models[0].modelname.length - 2);
-        if (c.product.name == product.name || c.product.models[0].modelname.contains(productname) || product.models[0].modelname.contains(modelname)) {
+        modelname = faName(c.product.models[0].modelname);
+        if (c.product.name == product.name ||
+            c.product.models[0].modelname.contains(productname) ||
+            product.models[0].modelname.contains(modelname)) {
           return c.product.fanum >= limit;
         }
       }
@@ -1175,7 +1189,9 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   addUnitWeaponAttachment(Product product) {
-    int walimit = _armyList.units[_addToIndex].minsize ? _armyList.units[_addToIndex].weaponattachmentlimits[0] : _armyList.units[_addToIndex].weaponattachmentlimits[1];
+    int walimit = _armyList.units[_addToIndex].minsize
+        ? _armyList.units[_addToIndex].weaponattachmentlimits[0]
+        : _armyList.units[_addToIndex].weaponattachmentlimits[1];
     if (_armyList.units[_addToIndex].weaponattachments.length < walimit) {
       _armyList.units[_addToIndex].weaponattachments.add(Product.copyProduct(product));
     }
@@ -1313,7 +1329,8 @@ class ArmyListNotifier extends ChangeNotifier {
     if (list.units.isNotEmpty) {
       export = '$export\n';
       for (var u in list.units) {
-        export = '$export\n${u.unit.name} - ${u.unit.unitPoints![u.minsize ? 'minunit' : 'maxunit']} - PC: ${u.unit.unitPoints![u.minsize ? 'mincost' : 'maxcost']}';
+        export =
+            '$export\n${u.unit.name} - ${u.unit.unitPoints![u.minsize ? 'minunit' : 'maxunit']} - PC: ${u.unit.unitPoints![u.minsize ? 'mincost' : 'maxcost']}';
         if (u.commandattachment.name != '') {
           export = '$export\n- ${u.commandattachment.name} - PC: ${u.commandattachment.points!}';
         }

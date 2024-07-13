@@ -111,7 +111,7 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                                       color: Colors.white,
                                       child: TextButton(
                                         onPressed: () async {
-                                          nav.pageController.jumpToPage(1);
+                                          nav.pageController.jumpToPage(2);
                                         },
                                         child: const Text(
                                           'Start a New List',
@@ -138,7 +138,7 @@ class _SavedArmyListsState extends State<SavedArmyLists> {
                                       color: Colors.white,
                                       child: TextButton(
                                         onPressed: () async {
-                                          nav.pageController.jumpToPage(4);
+                                          nav.pageController.jumpToPage(5);
                                         },
                                         child: const Text(
                                           'Import a List',
