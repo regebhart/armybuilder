@@ -31,7 +31,7 @@ class _ArmyBuildingWideLayoutState extends State<ArmyBuildingWideLayout> {
   Widget build(BuildContext context) {
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
+
     nav.setSwiping(false);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -68,7 +68,7 @@ class _ArmyBuildingWideLayoutState extends State<ArmyBuildingWideLayout> {
                   child: !faction.showingoptions ? const CategoryModelsList() : const ModularOptionList(),
                 ),
                 const Expanded(
-                  flex: 20,
+                  flex: 22,
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
                     child: SingleChildScrollView(
@@ -97,7 +97,7 @@ class _ArmyBuildingWideLayoutState extends State<ArmyBuildingWideLayout> {
                   ),
                 ),
                 const Expanded(
-                  flex: 25,
+                  flex: 22,
                   child: SingleChildScrollView(
                       child: ProductStatPage(
                     deployed: false,

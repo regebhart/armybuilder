@@ -33,8 +33,8 @@ class _PagesContainerState extends State<PagesContainer> {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
-    const double maxwidth = 800;
+
+    const double minwidth = 1080;  //minimum width to display wide layout
     nav.setPageController(pageController);
 
     return PageView(
@@ -46,7 +46,7 @@ class _PagesContainerState extends State<PagesContainer> {
 
         //2:model browsing
         LayoutBuilder(builder: (context, constraints) {
-          bool swiping = constraints.maxWidth < maxwidth;
+          bool swiping = constraints.maxWidth < minwidth;
           nav.setSwiping(swiping);
           if (swiping) {
             return SwipingBrowsingNarrowLayout(status: army.status);
@@ -57,14 +57,14 @@ class _PagesContainerState extends State<PagesContainer> {
 
         //3:faction selection
         LayoutBuilder(builder: (context, constraints) {
-          bool swiping = constraints.maxWidth < maxwidth;
+          bool swiping = constraints.maxWidth < minwidth;
           nav.setSwiping(swiping);
           return FactionSelection(swiping: swiping);
         }),
 
         //3:list building
         LayoutBuilder(builder: (context, constraints) {
-          if (constraints.maxWidth < maxwidth) {
+          if (constraints.maxWidth < minwidth) {
             return SwipingArmyBuildingNarrowLayout(status: army.status);
           } else {
             return const ArmyBuildingWideLayout();

@@ -938,6 +938,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                     ),
                   ],
                 );
+
                 break;
               case 'ranged':
                 type = 'Ranged Weapon';
@@ -1233,8 +1234,8 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                SizedBox(
-                                  width: 115,
+                                Expanded(
+                                  flex: 4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
@@ -1257,9 +1258,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: 10),
-                                SizedBox(
-                                  width: 200,
+                                const Spacer(flex: 1),
+                                Flexible(
+                                  flex: 8,
                                   child: weaponstats,
                                 ),
                               ],
@@ -1971,8 +1972,8 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      SizedBox(
-                                        width: 115,
+                                      Expanded(
+                                        flex: 4,
                                         child: Column(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           mainAxisSize: MainAxisSize.min,
@@ -1995,9 +1996,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                                           ],
                                         ),
                                       ),
-                                      const SizedBox(width: 10),
-                                      SizedBox(
-                                        width: 200,
+                                      const Spacer(flex: 1),
+                                      Flexible(
+                                        flex: 8,
                                         child: weaponstats,
                                       ),
                                     ],
