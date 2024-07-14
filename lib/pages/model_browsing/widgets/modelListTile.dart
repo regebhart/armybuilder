@@ -16,7 +16,7 @@ class ModelListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
+
     Color normaltextcolor = Colors.grey.shade100;
     Color tilecolor = Colors.deepPurple.shade700;
     Color hovercolor = Colors.purple;
@@ -49,7 +49,7 @@ class ModelListTile extends StatelessWidget {
               onTap: () {
                 army.setSelectedProduct(p);
                 if (nav.swiping) {
-                  nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                  nav.builderPageController.animateToPage(1, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                 }
               }),
         ),

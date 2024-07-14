@@ -472,7 +472,6 @@ class FactionNotifier extends ChangeNotifier {
     if (unit.commandattachment.name != '') {
       for (var m in unit.commandattachment.models) {
         if (m.keywords != null) {
-          bool test = m.keywords.toString().toLowerCase().contains('jack marshal');
           if (m.keywords.toString().toLowerCase().contains('jack marshal')) return true;
         }
       }

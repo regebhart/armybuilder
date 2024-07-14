@@ -71,9 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
-
-    String buildlastupdated = '7/12/2024 v1';
+    String buildlastupdated = '7/14/2024 v1';
 
     return SafeArea(
       child: Scaffold(

@@ -18,7 +18,10 @@ class CategoryModelsList extends StatefulWidget {
   State<CategoryModelsList> createState() => _CategoryModelsListState();
 }
 
-class _CategoryModelsListState extends State<CategoryModelsList> {
+class _CategoryModelsListState extends State<CategoryModelsList> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void dispose() {
     super.dispose();
@@ -26,6 +29,7 @@ class _CategoryModelsListState extends State<CategoryModelsList> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
     List<String> groups = [

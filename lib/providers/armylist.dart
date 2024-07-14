@@ -17,7 +17,6 @@ import '../models/unit.dart';
 import '../appdata.dart';
 
 class ArmyListNotifier extends ChangeNotifier {
-  late ScrollController _listController;
   late TextEditingController _listnameController;
   late List<Product> _categoryProductsList;
   late int _addToIndex;
@@ -92,7 +91,6 @@ class ArmyListNotifier extends ChangeNotifier {
     rng: '',
   );
 
-  ScrollController get listController => _listController;
   TextEditingController get listnameController => _listnameController;
   List<Product> get categoryProductsList => _categoryProductsList;
   int get addToIndex => _addToIndex;
