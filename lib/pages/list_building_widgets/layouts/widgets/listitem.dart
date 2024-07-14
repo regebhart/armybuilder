@@ -22,6 +22,9 @@ class ArmyListItem extends StatelessWidget {
     String cost = product.points!;
     String type = '';
     bool displayradio = false;
+
+    double buttonWidth = 30;
+
     switch (product.category) {
       case 'Warcasters/Warlocks/Masters':
         type = 'warcaster';
@@ -42,14 +45,13 @@ class ArmyListItem extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.only(
-          left: displayradio ? 0 : AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: displayradio ? 0 : buttonWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           if (displayradio)
             SizedBox(
-              width: AppData().selectedListLeftWidth,
+              width: buttonWidth,
               child: GestureDetector(
                   onTap: () => army.updateSelectedCaster(
                         index,
@@ -60,6 +62,7 @@ class ArmyListItem extends StatelessWidget {
                     size: AppData().fontsize + 5,
                   )),
             ),
+          SizedBox(width: AppData().selectedListLeftWidth - buttonWidth),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,

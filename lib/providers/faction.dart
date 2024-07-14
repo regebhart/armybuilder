@@ -41,24 +41,12 @@ class FactionNotifier extends ChangeNotifier {
     _allFactions = [];
     _factionUpdateDates = {};
     _showingoptions = false;
-    // _factionProducts = [[], [], []]; //1 list of faction models, 1 list of allys, 1 of mercs
     _selectedCategory = 0;
-    // _unitAttachments = [
-    //   [{}, {}],
-    //   [{}, {}],
-    //   [{}, {}]
-    // ];
-    // _sortedProducts = [
-    //   [[], [], [], [], [], [], []],
-    //   [[], [], [], [], [], [], []],
-    //   [[], [], [], [], [], [], []],
-    // ];
     _selectedFactionIndex = 0;
     _filteredProducts = [[], [], []]; //selected model type, 1 list of faction models, 1 list of allys, 1 of mercs
     _modularOptions = [];
     _groupname = '';
     _modeloptions = [];
-    // _factionHasCasterAttachments = [false, false, false];
   }
 
   readAllFactions() async {
@@ -204,57 +192,14 @@ class FactionNotifier extends ChangeNotifier {
     }
   }
 
-  // readFactionProducts(String filename) async {
-  //   String data = await rootBundle.loadString('json/${filename.toLowerCase()}');
-  //   var decodeddata = jsonDecode(data);
-  //   // print('loading $faction');
-  //   _factionProducts = [[], [], []];
-  //   _factionHasCasterAttachments = [false, false, false];
-  //   List<String> groups = [
-  //     'primary',
-  //     'allies',
-  //     'mercenaries',
-  //   ];
-
-  //   for (var g = 0; g < groups.length; g++) {
-  //     for (var p in decodeddata['group'][g][groups[g]]['products']) {
-  //       _factionProducts[g].add(Product.fromJson(p));
-  //     }
-  //   }
-  // }
-
   resetLists() {
     _filteredProducts.clear();
-    // _unitAttachments.clear();
-    // _sortedProducts.clear();
     _filteredProducts = [[], [], []];
-    // _factionHasCasterAttachments = [false, false, false];
-    // _unitAttachments = [
-    //   [{}, {}],
-    //   [{}, {}],
-    //   [{}, {}]
-    // ];
-    // _sortedProducts = [
-    //   [[], [], [], [], [], [], []],
-    //   [[], [], [], [], [], [], []],
-    //   [[], [], [], [], [], [], []],
-    // ];
   }
 
   setSelectedFactionIndex(int value) {
     _selectedFactionIndex = value;
   }
-
-  // sortFactionProducts() async {
-  //   resetLists();
-
-  //   for (var f in _allFactions) {
-  //     int index = 0;
-  //     for (var g = 0; g < 3; g++) {}
-  //     f['sortedproducts'] = products;
-  //     f['unitattachments'] = ua;
-  //   }
-  // }
 
   setBrowsingFaction(int index) {
     if (_selectedFactionIndex != index) {
@@ -327,7 +272,33 @@ class FactionNotifier extends ChangeNotifier {
       }
       _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
       _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
+
+      if (index == 1 && selectedCaster != null) {
+        //remove invalid cohorts
+        String castertype = '';
+        if (selectedCaster.models[0].title.toLowerCase().contains('warcaster')) castertype = 'warcaster';
+        if (selectedCaster.models[0].title.toLowerCase().contains('warlock')) castertype = 'warlock';
+        if (selectedCaster.models[0].title.toLowerCase().contains('master')) castertype = 'master';
+        switch (castertype) {
+          case 'warcaster':
+            _filteredProducts[0].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warjack'));
+            _filteredProducts[1].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warjack'));
+            _filteredProducts[2].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warjack'));
+            break;
+          case 'warlock':
+            _filteredProducts[0].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warbeast'));
+            _filteredProducts[1].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warbeast'));
+            _filteredProducts[2].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warbeast'));
+            break;
+          case 'master':
+            _filteredProducts[0].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('horror'));
+            _filteredProducts[1].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('horror'));
+            _filteredProducts[2].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('horror'));
+            break;
+        }
+      }
     } else if (unitname != null) {
+      //unit attachments
       if (_allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7].containsKey(unitname)) {
         _filteredProducts[0] = _allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7][unitname]!;
       }
@@ -339,6 +310,9 @@ class FactionNotifier extends ChangeNotifier {
       }
     }
     _showingoptions = false;
+    _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    _filteredProducts[1].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    _filteredProducts[2].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     notifyListeners();
   }
 

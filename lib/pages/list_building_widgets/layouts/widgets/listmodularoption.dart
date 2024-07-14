@@ -25,7 +25,7 @@ class ModularOptionListItem extends StatelessWidget {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
 
     return Padding(
-      padding: EdgeInsets.only(left: 100 - AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: AppData().selectedListLeftWidth + 30, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [

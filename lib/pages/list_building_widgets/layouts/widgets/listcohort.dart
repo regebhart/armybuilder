@@ -22,7 +22,10 @@ class CohortListItem extends StatelessWidget {
     String cost = cohort.product.points!;
 
     return Padding(
-      padding: EdgeInsets.only(left: cohort.product.models[0].modularoptions!.isNotEmpty ? 0 : 80 - AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(
+          left: cohort.product.models[0].modularoptions!.isNotEmpty ? 0 : AppData().selectedListLeftWidth + 20,
+          top: AppData().listItemSpacing,
+          bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -32,31 +35,28 @@ class CohortListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (cohort.product.models[0].modularoptions!.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        int leaderindex = army.getSelectedCasterIndex();
-                        army.setCohortVals(leaderindex, cohortindex, army.selectedcastertype);
-                        faction.setShowModularGroupOptions(cohort.product);
-                        if (nav.swiping) {
-                          nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-                        }
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: Container(
-                          decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.grey)),
-                          child: Icon(
-                            Icons.settings,
-                            color: Colors.grey,
-                            size: AppData().fontsize + 10,
-                          ),
+                  GestureDetector(
+                    onTap: () {
+                      int leaderindex = army.getSelectedCasterIndex();
+                      army.setCohortVals(leaderindex, cohortindex, army.selectedcastertype);
+                      faction.setShowModularGroupOptions(cohort.product);
+                      if (nav.swiping) {
+                        nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                      }
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.grey)),
+                        child: Icon(
+                          Icons.settings,
+                          color: Colors.grey,
+                          size: AppData().fontsize + 10,
                         ),
                       ),
                     ),
                   ),
-                if (cohort.product.models[0].modularoptions!.isNotEmpty) const SizedBox(width: 40),
+                if (cohort.product.models[0].modularoptions!.isNotEmpty) SizedBox(width: AppData().listButtonSpacing + 27),
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,

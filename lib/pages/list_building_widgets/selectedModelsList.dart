@@ -122,6 +122,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
         if (army.armyList.leadergroup[a].leader.name != '') {
           if (army.armyList.leadergroup[a].leader.models.length > 1) {
             for (var m in army.armyList.leadergroup[a].leader.models) {
+              //check if caster has a preset attached model
               for (var ab in m.characterabilities!) {
                 if (ab.name.contains('Attach')) {
                   hasAttachment = true;
@@ -443,7 +444,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
               ),
               child: FilledButton(
                   onPressed: () async {
-                    _showResetDialog(context, army);
+                    _showResetDialog(context, faction, army);
                   },
                   child: Text(
                     'Reset',
@@ -456,7 +457,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
   }
 }
 
-Future<void> _showResetDialog(context, ArmyListNotifier army) async {
+Future<void> _showResetDialog(context, FactionNotifier faction, ArmyListNotifier army) async {
   return showDialog<void>(
     context: context,
     barrierDismissible: false, // user must tap button!
@@ -473,6 +474,7 @@ Future<void> _showResetDialog(context, ArmyListNotifier army) async {
           TextButton(
             child: const Text('Reset'),
             onPressed: () {
+              faction.setSelectedCategory(0, null, null, null);
               army.resetList();
               Navigator.of(context).pop();
             },
@@ -494,7 +496,7 @@ Widget emptyModuleOption(int leaderindex, int cohortindex, int groupindex, Cohor
   return Align(
     alignment: Alignment.centerLeft,
     child: Padding(
-      padding: const EdgeInsets.only(top: 4, bottom: 4, left: 80),
+      padding: EdgeInsets.only(top: 4, bottom: 4, left: AppData().selectedListLeftWidth + 20),
       child: SizedBox(
         height: buttonHeight,
         child: Row(

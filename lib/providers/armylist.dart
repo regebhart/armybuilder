@@ -2,6 +2,7 @@
 
 import 'package:armybuilder/models/activearmylist.dart';
 import 'package:armybuilder/models/armylist.dart';
+import 'package:armybuilder/models/model.dart';
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/models/spiral.dart';
 import 'package:armybuilder/models/stat_mods.dart';
@@ -557,14 +558,18 @@ class ArmyListNotifier extends ChangeNotifier {
 
   String faName(String name) {
     String faname = name;
-    if (int.tryParse(faname.substring(faname.length)) != null) {
+
+    if (int.tryParse(faname.substring(faname.length - 1)) != null) {
       faname = name.substring(0, name.length - 2);
     }
-    return name;
+    return faname;
   }
 
   bool atFALimit(ArmyList army, Product product) {
-    String productname = faName(product.models[0].modelname);
+    List<String> FALimitNames = [];
+    for (var m in product.models) {
+      FALimitNames.add(faName(m.modelname));
+    }
     int limit = 0;
     String modelname = '';
     switch (product.fa) {
@@ -576,70 +581,124 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         limit = int.parse(product.fa);
     }
+    //all lists are looped through in reverse to find the last item of the selected products to get the highest fanum value
+    //fanum is equal to it's FA count when it's added, so the first one is 1, second is 2, etc...
+    //looping through every model because of cases like Black 13th and Caine and Hellslingers
+    for (String fa in FALimitNames) {
+      //leaders (warcasters/warlocks/masters)
+      for (LeaderGroup lg in army.leadergroup.reversed) {
+        if (lg.leader.name == product.name) return lg.leader.fanum >= limit;
 
-    for (LeaderGroup lg in army.leadergroup.reversed) {
-      if (lg.leader.name != '') {
-        modelname = faName(lg.leader.models[0].modelname);
-        if (lg.leader.name == product.name ||
-            lg.leader.models[0].modelname.contains(productname) ||
-            product.models[0].modelname.contains(modelname)) {
-          return lg.leader.fanum >= limit;
+        if (lg.leader.name != '') {
+          for (Model m in lg.leader.models) {
+            modelname = faName(m.modelname);
+            //the whole model name contains the Product model's name or the FA name contains the model's shortened name (Caine 3 contains Caine or Caine contains Caine)
+            if (m.modelname.contains(fa) || fa.contains(modelname)) {
+              return lg.leader.fanum >= limit;
+            }
+          }
         }
-      }
-      if (lg.leaderattachment.name == product.name) {
-        return lg.leaderattachment.fanum >= limit;
-      }
-      for (var c in lg.cohort.reversed) {
-        modelname = faName(lg.leader.models[0].modelname);
-        if (c.product.name == product.name ||
-            c.product.models[0].modelname.contains(productname) ||
-            product.models[0].modelname.contains(modelname)) {
-          return c.product.fanum >= limit;
+
+        if (lg.leaderattachment.name != '') {
+          if (lg.leaderattachment.name == fa) {
+            return lg.leaderattachment.fanum >= limit;
+          }
+          for (var m in lg.leaderattachment.models) {
+            modelname = faName(m.modelname);
+            //the whole model name contains the Product model's name or the FA name contains the model's shortened name (Caine 3 contains Caine or Caine contains Caine)
+            if (m.modelname.contains(fa) || fa.contains(modelname)) {
+              return lg.leaderattachment.fanum >= limit;
+            }
+          }
         }
-      }
-    }
-    for (var jr in army.jrcasters.reversed) {
-      modelname = faName(jr.leader.models[0].modelname);
-      if (jr.leader.name == product.name || jr.leader.models[0].modelname.contains(productname) || product.models[0].modelname.contains(modelname)) {
-        return jr.leader.fanum >= limit;
-      }
-      for (var c in jr.cohort.reversed) {
-        modelname = faName(c.product.models[0].modelname);
-        if (c.product.name == product.name ||
-            c.product.models[0].modelname.contains(productname) ||
-            product.models[0].modelname.contains(modelname)) {
-          return c.product.fanum >= limit;
-        }
-      }
-    }
-    for (var s in army.solos.reversed) {
-      if (s.name == product.name) {
-        return s.fanum >= limit;
-      }
-    }
-    for (var u in army.units.reversed) {
-      if (u.unit.name == product.name) {
-        return u.unit.fanum >= limit;
-      }
-      if (u.commandattachment.name == product.name) {
-        return u.commandattachment.fanum >= limit;
-      }
-      if (u.weaponattachments.isNotEmpty) {
-        for (var wa in u.weaponattachments.reversed) {
-          if (wa.name == product.name) {
-            return wa.fanum >= limit;
+
+        for (Cohort c in lg.cohort.reversed) {
+          if (c.product.name == product.name) return c.product.fanum >= limit;
+
+          for (Model cohort in c.product.models) {
+            modelname = faName(cohort.modelname);
+            if (cohort.modelname.contains(fa) || fa.contains(modelname)) {
+              return c.product.fanum >= limit;
+            }
           }
         }
       }
-    }
-    for (var be in army.battleengines.reversed) {
-      if (be.name == product.name) {
-        return be.fanum >= limit;
+
+      //jr casters
+      for (JrCasterGroup jr in army.jrcasters.reversed) {
+        if (jr.leader.name == product.name) return jr.leader.fanum >= limit;
+
+        for (Model m in jr.leader.models) {
+          modelname = faName(m.modelname);
+          if (m.modelname.contains(fa) || fa.contains(modelname)) {
+            return jr.leader.fanum >= limit;
+          }
+          for (Cohort c in jr.cohort.reversed) {
+            if (c.product.name == product.name) return c.product.fanum >= limit;
+
+            for (Model m in c.product.models) {
+              modelname = faName(m.modelname);
+              if (m.modelname.contains(fa) || fa.contains(modelname)) {
+                return c.product.fanum >= limit;
+              }
+            }
+          }
+        }
       }
-    }
-    for (var st in army.structures.reversed) {
-      if (st.name == product.name) {
-        return st.fanum >= limit;
+
+      //solos
+      for (var s in army.solos.reversed) {
+        //solos should only be one model so no need to loop through all the models
+        modelname = faName(s.models[0].modelname);
+        if (s.name == product.name || s.models[0].modelname.contains(fa) || fa.contains(modelname)) {
+          return s.fanum >= limit;
+        }
+      }
+
+      //units
+      for (var u in army.units.reversed) {
+        if (u.unit.name == product.name) return u.unit.fanum >= limit;
+        if (u.unit.fa == 'C') {
+          //character unit with named models like Black 13th
+          for (Model m in u.unit.models) {
+            modelname = faName(m.modelname);
+            if (m.modelname.contains(fa) || fa.contains(modelname)) {
+              return u.unit.fanum >= limit;
+            }
+          }
+        }
+
+        if (u.commandattachment.name == product.name) return u.commandattachment.fanum >= limit;
+        if (u.commandattachment.fa == 'C') {
+          //character with named models
+          for (Model m in u.commandattachment.models) {
+            modelname = faName(m.modelname);
+            if (m.modelname.contains(fa) || fa.contains(modelname)) {
+              return u.commandattachment.fanum >= limit;
+            }
+          }
+        }
+
+        if (u.weaponattachments.isNotEmpty) {
+          for (var wa in u.weaponattachments.reversed) {
+            if (wa.name == fa) return wa.fanum >= limit;
+            if (wa.fa == 'C') {
+              //character with named models
+              for (Model m in wa.models) {
+                modelname = faName(m.modelname);
+                if (m.modelname.contains(fa) || fa.contains(modelname)) {
+                  return u.commandattachment.fanum >= limit;
+                }
+              }
+            }
+          }
+        }
+      }
+      for (var be in army.battleengines.reversed) {
+        if (be.name == fa) return be.fanum >= limit;
+      }
+      for (var st in army.structures.reversed) {
+        if (st.name == fa) return st.fanum >= limit;
       }
     }
     return false;
@@ -648,6 +707,7 @@ class ArmyListNotifier extends ChangeNotifier {
   int calculateFA(ArmyList army, Product product) {
     int count = 0;
     String modelname = product.models[0].modelname.substring(0, product.models[0].modelname.length - 2);
+
     switch (product.category) {
       case 'Warcasters/Warlocks/Masters':
         for (LeaderGroup lg in army.leadergroup) {
@@ -1391,6 +1451,9 @@ class ArmyListNotifier extends ChangeNotifier {
     );
     _castercount = 0;
 
+    int firstcasterindex = -1;
+    String firstcastertype = '';
+
     setFactionSelected(army.listfaction);
     setEncounterLevel(AppData().encounterlevels.firstWhere((element) => element['armypoints'].toString() == army.pointtarget));
     _armyList.name = army.name;
@@ -1398,7 +1461,10 @@ class ArmyListNotifier extends ChangeNotifier {
       _addToIndex = g;
       LeaderGroup group = army.leadergroup[g];
       addLeaderandSelect(group.leader);
-      // if (g == 0) _selectedModel = group.leader;
+      if (firstcasterindex == -1) {
+        firstcasterindex = g;
+        firstcastertype = 'warcaster';
+      }
       if (group.leaderattachment.name != '') setLeaderAttachment(group.leaderattachment);
       for (var c in group.cohort) {
         addCohort(c, g);
@@ -1408,6 +1474,10 @@ class ArmyListNotifier extends ChangeNotifier {
       _addToIndex = g + army.leadergroup.length;
       JrCasterGroup group = army.jrcasters[g];
       addJrCaster(group.leader);
+      if (firstcasterindex == -1) {
+        firstcasterindex = g;
+        firstcastertype = 'jrcaster';
+      }
       for (var c in group.cohort) {
         addCohort(c, g);
       }
@@ -1416,6 +1486,12 @@ class ArmyListNotifier extends ChangeNotifier {
       _addToIndex = g;
       Unit group = army.units[g];
       addUnit(group);
+      if (group.hasMarshal) {
+        if (firstcasterindex == -1) {
+          firstcasterindex = g;
+          firstcastertype = 'unit';
+        }
+      }
     }
     for (var g = 0; g < army.solos.length; g++) {
       _addToIndex = g;
@@ -1429,6 +1505,7 @@ class ArmyListNotifier extends ChangeNotifier {
       _addToIndex = g;
       addModelToList(army.structures[g]);
     }
+    updateSelectedCaster(firstcasterindex, firstcastertype);
     notifyListeners();
   }
 

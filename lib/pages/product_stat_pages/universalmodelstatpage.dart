@@ -132,6 +132,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       'caster adept',
       'command attachment',
       'companion',
+      'dispensation',
       'faithful',
       'flames in the darkness',
       'garrison troops',
