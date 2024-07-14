@@ -705,120 +705,285 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   int calculateFA(ArmyList army, Product product) {
-    int count = 0;
-    String modelname = product.models[0].modelname.substring(0, product.models[0].modelname.length - 2);
+    //if product is FA C, compare model to model with other FA C in the list
+    //else only compare product names
 
-    switch (product.category) {
-      case 'Warcasters/Warlocks/Masters':
-        for (LeaderGroup lg in army.leadergroup) {
-          if (lg.leader.name == product.name || lg.leader.models[0].modelname.contains(modelname)) {
-            count += 1;
-          }
-          for (var c in lg.cohort) {
-            if (c.product.models[0].modelname.contains(modelname)) {
+    int count = 0;
+
+    if (product.fa == 'C') {
+      for (LeaderGroup lg in army.leadergroup) {
+        //loop through each caster in the army list
+        for (Model m in lg.leader.models) {
+          //loop through each model of the caster to compare names
+          bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+          for (Model productmodel in product.models) {
+            //loop through the product names to calculate
+            String searchName = faName(productmodel.modelname);
+            if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
               count += 1;
+              found = true;
+              break; //stop searching the current product
             }
           }
+          if (found) break; //go to next caster product
         }
-        for (var jr in army.jrcasters) {
-          if (jr.leader.name == product.name || jr.leader.models[0].modelname.contains(modelname)) {
-            count += 1;
-          }
-          for (var c in jr.cohort) {
-            if (c.product.models[0].modelname.contains(modelname)) {
-              count += 1;
-            }
-          }
-        }
-        break;
-      case 'Warjacks/Warbeasts/Horrors':
-        for (LeaderGroup lg in army.leadergroup) {
-          if (lg.leader.name == product.name || lg.leader.models[0].modelname.contains(modelname)) {
-            count += 1;
-          }
-          for (var c in lg.cohort) {
-            if (c.product.models[0].modelname.contains(modelname)) {
-              count += 1;
-            }
-          }
-        }
-        for (var jr in army.jrcasters) {
-          if (jr.leader.name == product.name || jr.leader.models[0].modelname.contains(modelname)) {
-            count += 1;
-          }
-          for (var c in jr.cohort) {
-            if (c.product.models[0].modelname.contains(modelname)) {
-              count += 1;
-            }
-          }
-        }
-        for (var u in army.units) {
-          for (var c in u.cohort) {
-            if (c.product.models[0].modelname.contains(modelname)) {
-              count += 1;
-            }
-          }
-        }
-        break;
-      case 'Solos':
-        if (product.models[0].title.toLowerCase().contains('warcaster') ||
-            product.models[0].title.toLowerCase().contains('warlock') ||
-            product.models[0].keywords!.toString().contains('Jack Marshal')) {
-          for (var jr in army.jrcasters) {
-            if (jr.leader.name == product.name || jr.leader.models[0].modelname.contains(modelname)) {
-              count += 1;
-            }
-          }
-        } else {
-          for (var s in army.solos) {
-            if (s.name == product.name || s.models[0].modelname.contains(modelname)) {
-              count += 1;
-            }
-          }
-        }
-        break;
-      case 'Units':
-        for (var u in army.units) {
-          if (u.unit.name == product.name) {
-            count += 1;
-          }
-        }
-        break;
-      case 'Attachments':
-        if (army.leadergroup.isNotEmpty) {
-          for (LeaderGroup army in army.leadergroup) {
-            if (army.leaderattachment.name == product.name) {
-              count += 1;
-            }
-          }
-        }
-        for (var u in army.units) {
-          if (u.commandattachment.name == product.name) {
-            count += 1;
-          }
-          if (u.weaponattachments.isNotEmpty) {
-            for (var wa in u.weaponattachments) {
-              if (wa.name == product.name) {
+
+        //loop through each model of the caster attachment if there is one if it is FA C
+        if (lg.leaderattachment.name != '' && lg.leaderattachment.fa == 'C') {
+          for (Model m in lg.leaderattachment.models) {
+            bool found = false;
+            for (Model productmodel in product.models) {
+              String searchName = faName(productmodel.modelname);
+              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
                 count += 1;
+                found = true;
+                break; //stop searching the current product
               }
             }
+            if (found) break;
           }
         }
-        break;
-      case 'Battle Engines':
-        for (var be in army.battleengines) {
-          if (be.name == product.name) {
-            count += 1;
+
+        //loop through each FA C cohort model
+        for (Cohort c in lg.cohort) {
+          if (c.product.fa == 'C') {
+            for (var m in c.product.models) {
+              bool found = false;
+              for (Model productmodel in product.models) {
+                String searchName = faName(productmodel.modelname);
+                if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                  count += 1;
+                  found = true;
+                  break; //stop searching the current product
+                }
+              }
+              if (found) break;
+            }
           }
         }
-        break;
-      case 'Structures':
-        for (var st in army.structures) {
-          if (st.name == product.name) {
-            count += 1;
+      }
+
+      //repeat for each jr caster
+      for (JrCasterGroup jr in army.jrcasters) {
+        //loop through each jr caster in the army list
+        if (jr.leader.fa == 'C') {
+          for (Model m in jr.leader.models) {
+            //loop through each model of the jr caster to compare names
+            bool found = false;
+            for (Model productmodel in product.models) {
+              //loop through the product names to calculate
+              String searchName = faName(productmodel.modelname);
+              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                count += 1;
+                found = true;
+                break; //stop searching the current product
+              }
+            }
+            if (found) break;
           }
         }
-        break;
+
+        //loop through each FA C cohort model
+        for (Cohort c in jr.cohort) {
+          if (c.product.fa == 'C') {
+            for (var m in c.product.models) {
+              bool found = false;
+              for (Model productmodel in product.models) {
+                String searchName = faName(productmodel.modelname);
+                if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                  count += 1;
+                  found = true;
+                  break; //stop searching the current product
+                }
+              }
+              if (found) break;
+            }
+          }
+        }
+      }
+
+      //loop through each FA C solo
+      for (Product s in army.solos) {
+        //loop through each solo in the army list
+        if (s.fa == 'C') {
+          for (Model m in s.models) {
+            //loop through each model of the solo to compare names....there shouldn't be more than 1 model in a solo but testing anyway
+            bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+            for (Model productmodel in product.models) {
+              //loop through the product names to calculate
+              String searchName = faName(productmodel.modelname);
+              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                count += 1;
+                found = true;
+                break; //stop searching the current product
+              }
+            }
+            if (found) break; //go to next caster product
+          }
+        }
+      }
+
+      //loop through each FA C unit
+      for (Unit u in army.units) {
+        //loop through each unit in the army list
+        if (u.unit.fa == 'C') {
+          Iterable<Model> searchresults = u.unit.models.where((element) => element.modelname.toLowerCase().contains('leader'));
+          if (searchresults.isEmpty) {
+            //no model with leader in the name so assume the unit contains a named model
+            for (Model m in u.unit.models) {
+              //loop through each model of the unit to compare names. for units most are Leader and Grunts such is the need for FA C.  Silverline Stormguard are an exception though
+              bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+              for (Model productmodel in product.models) {
+                //loop through the product names to calculate
+                String searchName = faName(productmodel.modelname);
+                if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                  count += 1;
+                  found = true;
+                  break; //stop searching the current product
+                }
+              }
+              if (found) break; //go to next caster product
+            }
+          } else {
+            //FA C unit with no named models, instead compare the product names
+            if (u.unit.name == product.name) {
+              count += 1;
+            }
+          }
+        }
+
+        if (u.commandattachment.fa == 'C') {
+          for (Model m in u.commandattachment.models) {
+            bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+            for (Model productmodel in product.models) {
+              //loop through the product names to calculate
+              String searchName = faName(productmodel.modelname);
+              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                count += 1;
+                found = true;
+                break; //stop searching the current product
+              }
+            }
+            if (found) break; //stop search models of the CA
+          }
+        }
+
+        for (Product wa in u.weaponattachments) {
+          if (wa.fa == 'C') {
+            for (Model m in wa.models) {
+              //loop through each model of the solo to compare names....there shouldn't be more than 1 model in a solo but testing anyway
+              bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+              for (Model productmodel in product.models) {
+                //loop through the product names to calculate
+                String searchName = faName(productmodel.modelname);
+                if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                  count += 1;
+                  found = true;
+                  break; //stop searching the current product
+                }
+              }
+              if (found) break; //go to next caster product
+            }
+          }
+        }
+
+        //loop through unit cohort (jack marshals)
+        for (Cohort c in u.cohort) {
+          if (c.product.fa == 'C') {
+            for (var m in c.product.models) {
+              bool found = false;
+              for (Model productmodel in product.models) {
+                String searchName = faName(productmodel.modelname);
+                if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                  count += 1;
+                  found = true;
+                  break; //stop searching the current product
+                }
+              }
+              if (found) break;
+            }
+          }
+        }
+      }
+
+      //loop through each FA C battle engine
+      for (Product be in army.battleengines) {
+        if (be.fa == 'C') {
+          for (Model m in be.models) {
+            bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+            for (Model productmodel in product.models) {
+              //loop through the product names to calculate
+              String searchName = faName(productmodel.modelname);
+              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                count += 1;
+                found = true;
+                break; //stop searching the current product
+              }
+            }
+            if (found) break; //go to next caster product
+          }
+        }
+      }
+
+      //loop through each FA C structure
+      for (Product st in army.battleengines) {
+        if (st.fa == 'C') {
+          for (Model m in st.models) {
+            bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
+            for (Model productmodel in product.models) {
+              //loop through the product names to calculate
+              String searchName = faName(productmodel.modelname);
+              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                count += 1;
+                found = true;
+                break; //stop searching the current product
+              }
+            }
+            if (found) break; //go to next caster product
+          }
+        }
+      }
+    } else {
+      for (LeaderGroup lg in army.leadergroup) {
+        //skip looping through casters, they are all FA C
+        if (lg.leaderattachment.name == product.name) count += 1; //check leader attachment
+        for (Cohort c in lg.cohort) {
+          //loop through each no C cohort
+          if (c.product.fa != 'C' && c.product.name == product.name) count += 1;
+        }
+      }
+
+      for (JrCasterGroup jr in army.jrcasters) {
+        if (jr.leader.name == product.name) count += 1;
+        for (Cohort c in jr.cohort) {
+          if (c.product.fa != 'C' && c.product.name == product.name) count += 1;
+        }
+      }
+
+      for (Product s in army.solos) {
+        if (s.fa != 'C' && s.name == product.name) count += 1;
+      }
+
+      for (Unit u in army.units) {
+        if (u.unit.fa != 'C') {
+          if (u.unit.name == product.name) count += 1;
+        }
+        if (u.commandattachment.fa != 'C' && u.commandattachment.name == product.name) count += 1;
+        for (Product wa in u.weaponattachments) {
+          if (wa.fa != 'C' && wa.name == product.name) count += 1;
+        }
+        for (Cohort c in u.cohort) {
+          if (c.product.fa != 'C' && c.product.name == product.name) count += 1;
+        }
+      }
+
+      for (Product be in army.battleengines) {
+        if (be.fa != 'C' && be.name == product.name) count += 1;
+      }
+
+      for (Product st in army.structures) {
+        if (st.fa != 'C' && st.name == product.name) count += 1;
+      }
     }
     return count;
   }

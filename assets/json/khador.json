@@ -13015,7 +13015,7 @@
                         "factions": [
                             "Khador"
                         ],
-                        "fieldallowance": "C",
+                        "fieldallowance": "2",
                         "unitpoints": {
                             "maxunit": "Leader and 9 Grunts",
                             "minunit": "Leader and 5 Grunts",

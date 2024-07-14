@@ -14051,7 +14051,7 @@
                         ]
                     },
                     {
-                        "name": "Silverline Stormguard",
+                        "name": "Silver Line Stormguard",
                         "category": "Units",
                         "primaryfaction": [
                             "Cygnar"
@@ -14059,7 +14059,7 @@
                         "factions": [
                             "Cygnar"
                         ],
-                        "fieldallowance": "C",
+                        "fieldallowance": "2",
                         "unitpoints": {
                             "minunit": "Leader and 5 Grunts",
                             "maxunit": "Leader and 9 Grunts",
