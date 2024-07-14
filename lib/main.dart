@@ -62,14 +62,18 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await context.read<FactionNotifier>().readAllFactions();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
 
     String buildlastupdated = '7/12/2024 v1';
-
-    if (faction.allFactions.isEmpty) {
-      faction.readAllFactions();
-    }
 
     return SafeArea(
       child: Scaffold(

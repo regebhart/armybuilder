@@ -2,10 +2,10 @@ import 'package:armybuilder/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../appdata.dart';
-import '../../../../providers/armylist.dart';
-import '../../../../providers/faction.dart';
-import '../../../../providers/navigation.dart';
+import '../../../appdata.dart';
+import '../../../providers/armylist.dart';
+import '../../../providers/faction.dart';
+import '../../../providers/navigation.dart';
 
 class ArmyListItem extends StatelessWidget {
   final Product product;
@@ -17,13 +17,14 @@ class ArmyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     String cost = product.points!;
     String type = '';
     bool displayradio = false;
 
-    double buttonWidth = 30;
+    double radioWidth = 30;
 
     switch (product.category) {
       case 'Warcasters/Warlocks/Masters':
@@ -45,24 +46,26 @@ class ArmyListItem extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.only(left: displayradio ? 0 : buttonWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: displayradio ? 0 : radioWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
           if (displayradio)
             SizedBox(
-              width: buttonWidth,
+              width: radioWidth,
               child: GestureDetector(
-                  onTap: () => army.updateSelectedCaster(
-                        index,
-                        type,
-                      ),
+                  onTap: () {
+                    army.updateSelectedCaster(index, type);
+                    if (faction.selectedCategory == 1) {
+                      faction.setSelectedCategory(1, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes);
+                    }
+                  },
                   child: Icon(
                     army.selectedcaster == index ? Icons.radio_button_on : Icons.radio_button_off,
                     size: AppData().fontsize + 5,
                   )),
             ),
-          SizedBox(width: AppData().selectedListLeftWidth - buttonWidth),
+          SizedBox(width: AppData().selectedListLeftWidth - radioWidth),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,

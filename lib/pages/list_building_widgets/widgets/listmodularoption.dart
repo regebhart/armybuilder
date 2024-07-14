@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../appdata.dart';
-import '../../../../providers/armylist.dart';
+import '../../../appdata.dart';
+import '../../../providers/armylist.dart';
 
 class ModularOptionListItem extends StatelessWidget {
   final String title;

@@ -1,8 +1,8 @@
-import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listcohort.dart';
-import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listitem.dart';
+import 'package:armybuilder/pages/list_building_widgets/widgets/listcohort.dart';
+import 'package:armybuilder/pages/list_building_widgets/widgets/listitem.dart';
 import 'package:armybuilder/providers/faction.dart';
-import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listmodularoption.dart';
-import 'package:armybuilder/pages/list_building_widgets/layouts/widgets/listunit.dart';
+import 'package:armybuilder/pages/list_building_widgets/widgets/listmodularoption.dart';
+import 'package:armybuilder/pages/list_building_widgets/widgets/listunit.dart';
 import 'package:armybuilder/pages/widgets/model_list_widgets/spellracklistitem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

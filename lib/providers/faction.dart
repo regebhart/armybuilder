@@ -279,21 +279,45 @@ class FactionNotifier extends ChangeNotifier {
         if (selectedCaster.models[0].title.toLowerCase().contains('warcaster')) castertype = 'warcaster';
         if (selectedCaster.models[0].title.toLowerCase().contains('warlock')) castertype = 'warlock';
         if (selectedCaster.models[0].title.toLowerCase().contains('master')) castertype = 'master';
+        if (!selectedCaster.name.toLowerCase().contains('magnus')) _filteredProducts[0].removeWhere((element) => element.name == 'Invictus');
+        if (!selectedCaster.name.toLowerCase().contains('carver')) _filteredProducts[0].removeWhere((element) => element.name == 'War Boar MMD47');
+        if (!selectedCaster.name.toLowerCase().contains('magnus')) _filteredProducts[1].removeWhere((element) => element.name == 'Invictus');
+        if (!selectedCaster.name.toLowerCase().contains('carver')) _filteredProducts[1].removeWhere((element) => element.name == 'War Boar MMD47');
+        if (!selectedCaster.name.toLowerCase().contains('magnus')) _filteredProducts[2].removeWhere((element) => element.name == 'Invictus');
+        if (!selectedCaster.name.toLowerCase().contains('carver')) _filteredProducts[2].removeWhere((element) => element.name == 'War Boar MMD47');
         switch (castertype) {
           case 'warcaster':
-            _filteredProducts[0].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warjack'));
-            _filteredProducts[1].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warjack'));
-            _filteredProducts[2].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warjack'));
+            _filteredProducts[0].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('warjack') &&
+                !element.models[0].title.toString().toLowerCase().contains('colossal'));
+            _filteredProducts[1].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('warjack') &&
+                !element.models[0].title.toString().toLowerCase().contains('colossal'));
+            _filteredProducts[2].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('warjack') &&
+                !element.models[0].title.toString().toLowerCase().contains('colossal'));
             break;
           case 'warlock':
-            _filteredProducts[0].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warbeast'));
-            _filteredProducts[1].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warbeast'));
-            _filteredProducts[2].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('warbeast'));
+            _filteredProducts[0].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('warbeast') &&
+                !element.models[0].title.toString().toLowerCase().contains('gargantuan'));
+            _filteredProducts[1].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('warbeast') &&
+                !element.models[0].title.toString().toLowerCase().contains('gargantuan'));
+            _filteredProducts[2].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('warbeast') &&
+                !element.models[0].title.toString().toLowerCase().contains('gargantuan'));
             break;
           case 'master':
-            _filteredProducts[0].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('horror'));
-            _filteredProducts[1].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('horror'));
-            _filteredProducts[2].removeWhere((element) => !element.models[0].title.toString().toLowerCase().contains('horror'));
+            _filteredProducts[0].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('horror') &&
+                !element.models[0].title.toString().toLowerCase().contains('colossal'));
+            _filteredProducts[1].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('horror') &&
+                !element.models[0].title.toString().toLowerCase().contains('colossal'));
+            _filteredProducts[2].removeWhere((element) =>
+                !element.models[0].title.toString().toLowerCase().contains('horror') &&
+                !element.models[0].title.toString().toLowerCase().contains('colossal'));
             break;
         }
       }
@@ -448,6 +472,7 @@ class FactionNotifier extends ChangeNotifier {
     if (unit.commandattachment.name != '') {
       for (var m in unit.commandattachment.models) {
         if (m.keywords != null) {
+          bool test = m.keywords.toString().toLowerCase().contains('jack marshal');
           if (m.keywords.toString().toLowerCase().contains('jack marshal')) return true;
         }
       }

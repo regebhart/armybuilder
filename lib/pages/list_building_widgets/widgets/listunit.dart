@@ -1,72 +1,77 @@
-import 'package:armybuilder/providers/faction.dart';
+import 'package:armybuilder/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../models/cohort.dart';
-import '../../../../appdata.dart';
-import '../../../../providers/armylist.dart';
-import '../../../../providers/navigation.dart';
+import '../../../appdata.dart';
+import '../../../providers/armylist.dart';
+import '../../../providers/faction.dart';
+import '../../../providers/navigation.dart';
 
-class CohortListItem extends StatelessWidget {
-  final Cohort cohort;
+class ArmyListUnitItem extends StatelessWidget {
+  final Product product;
+  final int index;
+  final void Function() onTap;
+  final bool minsize;
+  final bool hasmarshal;
   final int casterindex;
-  final int cohortindex;
-  final String type;
-  const CohortListItem({required this.cohort, required this.casterindex, required this.cohortindex, required this.type, super.key});
+  const ArmyListUnitItem(
+      {required this.product,
+      required this.index,
+      required this.onTap,
+      required this.minsize,
+      required this.hasmarshal,
+      required this.casterindex,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    String cost = cohort.product.points!;
+
+    String cost = product.points!;
+    bool displayradio = hasmarshal;
+
+    double radioWidth = 30;
+
+    if (product.unitPoints!['maxunit'] == '-') {
+      cost = product.unitPoints!['mincost'];
+    }
+    final bool unit = product.category == 'Units' && product.unitPoints!['maxunit'] != '-';
 
     return Padding(
-      padding: EdgeInsets.only(
-          left: cohort.product.models[0].modularoptions!.isNotEmpty ? 0 : AppData().selectedListLeftWidth + 20,
-          top: AppData().listItemSpacing,
-          bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: displayradio ? 0 : radioWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
+          if (displayradio)
+            SizedBox(
+              width: radioWidth,
+              child: GestureDetector(
+                  onTap: () {
+                    army.updateSelectedCaster(casterindex, 'unit');
+                    if (faction.selectedCategory == 1) {
+                      faction.setSelectedCategory(1, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes);
+                    }
+                  },
+                  child: Icon(
+                    army.selectedcaster == casterindex ? Icons.radio_button_on : Icons.radio_button_off,
+                    size: AppData().fontsize + 5,
+                  )),
+            ),
+          SizedBox(width: AppData().selectedListLeftWidth - radioWidth),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (cohort.product.models[0].modularoptions!.isNotEmpty)
-                  GestureDetector(
-                    onTap: () {
-                      int leaderindex = army.getSelectedCasterIndex();
-                      army.setCohortVals(leaderindex, cohortindex, army.selectedcastertype);
-                      faction.setShowModularGroupOptions(cohort.product);
-                      if (nav.swiping) {
-                        nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-                      }
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: Container(
-                        decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.grey)),
-                        child: Icon(
-                          Icons.settings,
-                          color: Colors.grey,
-                          size: AppData().fontsize + 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                if (cohort.product.models[0].modularoptions!.isNotEmpty) SizedBox(width: AppData().listButtonSpacing + 27),
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          army.removeCohort(casterindex, cohortindex, type);
-                          faction.setShowingOptions(false);
-                        },
+                        onTap: onTap,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Container(
@@ -93,11 +98,7 @@ class CohortListItem extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            if (cohort.product.models[0].modularoptions!.isEmpty) {
-                              army.setSelectedProduct(cohort.product);
-                            } else {
-                              army.setSelectedCohortWithOptions(cohort);
-                            }
+                            army.setSelectedProduct(product);
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -106,11 +107,7 @@ class CohortListItem extends StatelessWidget {
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
-                            if (cohort.product.models[0].modularoptions!.isEmpty) {
-                              army.setSelectedProduct(cohort.product);
-                            } else {
-                              army.setSelectedCohortWithOptions(cohort);
-                            }
+                            army.setSelectedProduct(product);
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -123,17 +120,31 @@ class CohortListItem extends StatelessWidget {
                                 maxHeight: AppData().fontsize * 2 + 25,
                               ),
                               child: Text(
-                                cohort.product.name,
-                                style: TextStyle(fontSize: AppData().fontsize - 2),
-                                textAlign: TextAlign.left,
+                                '${product.name} - ${product.unitPoints![minsize ? 'minunit' : 'maxunit']}',
                                 overflow: TextOverflow.fade,
                                 maxLines: 2,
                                 softWrap: true,
+                                style: TextStyle(fontSize: AppData().fontsize - 2),
+                                textAlign: TextAlign.left,
                               ),
                             ),
                           ),
                         ),
                       ),
+                      if (unit && product.unitPoints!['maxcost'] != '-')
+                        Padding(
+                          padding: const EdgeInsets.only(left: 3.0, right: 5.0),
+                          child: InkWell(
+                            onTap: () {
+                              army.updateUnitSize(index);
+                            },
+                            child: Icon(
+                              minsize ? Icons.add_circle : Icons.remove_circle,
+                              size: AppData().fontsize + 10,
+                              // color: Colors.white,
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -154,14 +165,14 @@ class CohortListItem extends StatelessWidget {
                   // ),
                   children: [
                     TextSpan(
-                      text: cohort.product.fanum.toString(),
+                      text: product.fanum.toString(),
                       style: TextStyle(
-                        color: army.checkFALimit(cohort.product),
+                        color: army.checkFALimit(product),
                         fontSize: AppData().fontsize - 2,
                       ),
                     ),
                     TextSpan(
-                      text: '/${cohort.product.fa}',
+                      text: '/${product.fa}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: AppData().fontsize - 2,
@@ -173,7 +184,7 @@ class CohortListItem extends StatelessWidget {
               SizedBox(
                 width: 50,
                 child: Text(
-                  cost,
+                  !unit ? cost : product.unitPoints![minsize ? 'mincost' : 'maxcost'],
                   style: TextStyle(fontSize: AppData().fontsize - 2),
                   textAlign: TextAlign.right,
                 ),

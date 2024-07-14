@@ -1,63 +1,72 @@
-import 'package:armybuilder/models/product.dart';
+import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../appdata.dart';
-import '../../../../providers/armylist.dart';
-import '../../../../providers/navigation.dart';
+import '../../../models/cohort.dart';
+import '../../../appdata.dart';
+import '../../../providers/armylist.dart';
+import '../../../providers/navigation.dart';
 
-class ArmyListUnitItem extends StatelessWidget {
-  final Product product;
-  final int index;
-  final void Function() onTap;
-  final bool minsize;
-  final bool hasmarshal;
+class CohortListItem extends StatelessWidget {
+  final Cohort cohort;
   final int casterindex;
-  const ArmyListUnitItem({required this.product, required this.index, required this.onTap, required this.minsize, required this.hasmarshal, required this.casterindex, super.key});
+  final int cohortindex;
+  final String type;
+  const CohortListItem({required this.cohort, required this.casterindex, required this.cohortindex, required this.type, super.key});
 
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
-    String cost = product.points!;
-    bool displayradio = hasmarshal;
-
-    if (product.unitPoints!['maxunit'] == '-') {
-      cost = product.unitPoints!['mincost'];
-    }
-    final bool unit = product.category == 'Units' && product.unitPoints!['maxunit'] != '-';
+    String cost = cohort.product.points!;
 
     return Padding(
-      padding: EdgeInsets.only(left: displayradio ? 0 : AppData().selectedListLeftWidth, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(
+          left: cohort.product.models[0].modularoptions!.isNotEmpty ? 0 : AppData().selectedListLeftWidth + 20,
+          top: AppData().listItemSpacing,
+          bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          if (displayradio)
-            SizedBox(
-              width: AppData().selectedListLeftWidth,
-              child: GestureDetector(
-                  onTap: () => army.updateSelectedCaster(
-                        casterindex,
-                        'unit',
-                      ),
-                  child: Icon(
-                    army.selectedcaster == casterindex ? Icons.radio_button_on : Icons.radio_button_off,
-                    size: AppData().fontsize + 5,
-                  )),
-            ),
           Expanded(
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                if (cohort.product.models[0].modularoptions!.isNotEmpty)
+                  GestureDetector(
+                    onTap: () {
+                      int leaderindex = army.getSelectedCasterIndex();
+                      army.setCohortVals(leaderindex, cohortindex, army.selectedcastertype);
+                      faction.setShowModularGroupOptions(cohort.product);
+                      if (nav.swiping) {
+                        nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                      }
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Container(
+                        decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.grey)),
+                        child: Icon(
+                          Icons.settings,
+                          color: Colors.grey,
+                          size: AppData().fontsize + 10,
+                        ),
+                      ),
+                    ),
+                  ),
+                if (cohort.product.models[0].modularoptions!.isNotEmpty) SizedBox(width: AppData().listButtonSpacing + 27),
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       GestureDetector(
-                        onTap: onTap,
+                        onTap: () {
+                          army.removeCohort(casterindex, cohortindex, type);
+                          faction.setShowingOptions(false);
+                        },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Container(
@@ -84,7 +93,11 @@ class ArmyListUnitItem extends StatelessWidget {
                             ),
                           ),
                           onTap: () {
-                            army.setSelectedProduct(product);
+                            if (cohort.product.models[0].modularoptions!.isEmpty) {
+                              army.setSelectedProduct(cohort.product);
+                            } else {
+                              army.setSelectedCohortWithOptions(cohort);
+                            }
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -93,7 +106,11 @@ class ArmyListUnitItem extends StatelessWidget {
                       Flexible(
                         child: GestureDetector(
                           onTap: () {
-                            army.setSelectedProduct(product);
+                            if (cohort.product.models[0].modularoptions!.isEmpty) {
+                              army.setSelectedProduct(cohort.product);
+                            } else {
+                              army.setSelectedCohortWithOptions(cohort);
+                            }
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -106,31 +123,20 @@ class ArmyListUnitItem extends StatelessWidget {
                                 maxHeight: AppData().fontsize * 2 + 25,
                               ),
                               child: Text(
-                                '${product.name} - ${product.unitPoints![minsize ? 'minunit' : 'maxunit']}',
+                                cohort.product.name,
+                                style: TextStyle(
+                                  color: army.checkFALimit(cohort.product),
+                                  fontSize: AppData().fontsize - 2,
+                                ),
+                                textAlign: TextAlign.left,
                                 overflow: TextOverflow.fade,
                                 maxLines: 2,
                                 softWrap: true,
-                                style: TextStyle(fontSize: AppData().fontsize - 2),
-                                textAlign: TextAlign.left,
                               ),
                             ),
                           ),
                         ),
                       ),
-                      if (unit && product.unitPoints!['maxcost'] != '-')
-                        Padding(
-                          padding: const EdgeInsets.only(left: 3.0, right: 5.0),
-                          child: InkWell(
-                            onTap: () {
-                              army.updateUnitSize(index);
-                            },
-                            child: Icon(
-                              minsize ? Icons.add_circle : Icons.remove_circle,
-                              size: AppData().fontsize + 10,
-                              // color: Colors.white,
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ),
@@ -144,21 +150,16 @@ class ArmyListUnitItem extends StatelessWidget {
               RichText(
                 textAlign: TextAlign.right,
                 text: TextSpan(
-                  // text: 'FA: ',
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  //   fontSize: AppData().fontsize,
-                  // ),
                   children: [
                     TextSpan(
-                      text: product.fanum.toString(),
+                      text: cohort.product.fanum.toString(),
                       style: TextStyle(
-                        color: army.checkFALimit(product),
+                        color: army.checkFALimit(cohort.product),
                         fontSize: AppData().fontsize - 2,
                       ),
                     ),
                     TextSpan(
-                      text: '/${product.fa}',
+                      text: '/${cohort.product.fa}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: AppData().fontsize - 2,
@@ -170,7 +171,7 @@ class ArmyListUnitItem extends StatelessWidget {
               SizedBox(
                 width: 50,
                 child: Text(
-                  !unit ? cost : product.unitPoints![minsize ? 'mincost' : 'maxcost'],
+                  cost,
                   style: TextStyle(fontSize: AppData().fontsize - 2),
                   textAlign: TextAlign.right,
                 ),

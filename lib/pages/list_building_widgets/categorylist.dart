@@ -20,7 +20,7 @@ class _CategoryListState extends State<CategoryList> {
 
   @override
   Widget build(BuildContext context) {
-    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: true);
 
     Map<String, String> f = AppData().factionList.firstWhere((element) => element['name'] == army.factionSelected);

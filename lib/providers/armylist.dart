@@ -42,7 +42,6 @@ class ArmyListNotifier extends ChangeNotifier {
   late String _armylistFactionFilter;
   late int _cohortleaderindex;
   late int _cohortindex;
-  // late int _groupindex;
   late String _leadertype;
 
   List<List<dynamic>> _hptracking = [];
@@ -115,9 +114,6 @@ class ArmyListNotifier extends ChangeNotifier {
   String get status => _status;
   int get armylistindex => _armylistindex;
   String get armylistFactionFilter => _armylistFactionFilter;
-  // int get cohortcasterindex => _cohortcasterindex;
-  // int get cohortindex => _cohortindex;
-  // int get groupindex => _groupindex;
 
   List<List<dynamic>> get hptracking => _hptracking;
   List<List<dynamic>> get custombartracking => _custombartracking;
@@ -160,7 +156,6 @@ class ArmyListNotifier extends ChangeNotifier {
     _hptracking = [];
     _custombartracking = [];
     _cohortindex = 0;
-    // _groupindex = 0;
     _leadertype = 'warcaster';
     _castergroupindex = [0];
   }
@@ -170,6 +165,7 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   setStatus(String value) {
+    //status of the list, new or updating existing list
     _status = value;
   }
 
@@ -189,6 +185,7 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   setAddtoIndex(int index) {
+    //used to set which unit the UA is being added to
     _addToIndex = index;
   }
 
@@ -310,7 +307,7 @@ class ArmyListNotifier extends ChangeNotifier {
 
       default:
         break;
-    }
+    }    
     notifyListeners();
     return found;
   }
@@ -343,7 +340,8 @@ class ArmyListNotifier extends ChangeNotifier {
         _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == _armyList.listfaction));
       }
       if (ab.name.toLowerCase().contains('partisan')) {
-        if (_armyList.listfaction != "Mercenaries") {
+        if (_armyList.listfaction != "Mercenaries" && ab.name.toLowerCase().contains(_armyList.listfaction)) {
+          //change the model to a faction model
           _selectedcasterFactionIndexes.clear();
           _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == _armyList.listfaction));
         }
@@ -353,7 +351,6 @@ class ArmyListNotifier extends ChangeNotifier {
           _selectedcasterFactionIndexes.remove("Infernals");
         }
       }
-
       // case "strange bedfellows":
       //   //no changes
       //   break;
@@ -369,11 +366,6 @@ class ArmyListNotifier extends ChangeNotifier {
       // case "garrison"
       //   break;
     }
-    // if (_selectedcasterProduct.primaryFaction.length > 1) {
-    //   primaryfactionindex = _selectedcasterProduct.primaryFaction.indexWhere((element) => element == _armyList.listfaction);
-    //   _selectedcasterFactionIndex =
-    //       AppData().factionList.indexWhere((element) => element == _selectedcasterProduct.primaryFaction[primaryfactionindex]);
-    // }
     notifyListeners();
   }
 
@@ -383,22 +375,13 @@ class ArmyListNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  // setCasterGroupIndex(int casterindex, int value) {
-  //   _castergroupindex[casterindex] = value;
-  // }
-
   addModelToList(Product product) {
     switch (product.category) {
       case 'Warcasters/Warlocks/Masters':
         addLeaderandSelect(product);
         break;
-      // case 'Warjacks/Warbeasts/Horrors':
-      // if (_selectedcaster <= _armyList.leadergroup.length - 1) {
-      //   addCohort(product);
-      // } else {
-      //   addJrCohort(product);
-      // }
-      // break;
+      case 'Warjacks/Warbeasts/Horrors':
+        break; //handled by addCohort
       case 'Solos':
         if (FactionNotifier().checkSoloForJourneyman(product) || FactionNotifier().checkProductForMashal(product)) {
           addJrCaster(product);
@@ -422,12 +405,7 @@ class ArmyListNotifier extends ChangeNotifier {
         removeSelectedLeader(groupnum);
         break;
       case 'Warjacks/Warbeasts/Horrors':
-      // if (groupnum <= _armyList.leadergroup.length - 1) {
-      //   // removeCohort(product, groupnum);
-      // } else {
-      //   removeJrCohort(product, groupnum - _armyList.leadergroup.length);
-      // }
-      // break;
+        break; //handled by removeCohort
       case 'Solos':
         if (product.models[0].title.toLowerCase().contains('warcaster') || product.models[0].title.toLowerCase().contains('warlock')) {
           _castercount -= 1;
@@ -444,13 +422,310 @@ class ArmyListNotifier extends ChangeNotifier {
         }
         break;
       case 'Battle Engines':
-        removeBattleEnging(product);
+        removeBattleEngine(product);
         break;
       case 'Structures':
         removeStructure(product);
         break;
     }
     updateEverything();
+  }
+
+  addLeaderandSelect(Product leader) {
+    int index = 0;
+    bool factionchange = true;
+    for (var a = 0; a < _armyList.leadergroup.length; a++) {
+      if (_armyList.leadergroup[a].leader.name == '') {
+        index = a;
+        updateCasterCount(1);
+        break;
+      }
+    }
+    if (_armyList.leadergroup[index].leader.name != '') {
+      //check if the faction changed between leaders, if so clear cohort/invalid models
+      for (var f in _armyList.leadergroup[index].leader.primaryFaction) {
+        for (var nf in leader.primaryFaction) {
+          if (f == nf) {
+            factionchange = false;
+            break;
+          }
+          if (factionchange == false) break;
+        }
+      }
+      if ((_armyList.leadergroup[index].leader.models[0].title.toLowerCase().contains('warcaster') &&
+              !leader.models[0].title.toLowerCase().contains('warcaster')) ||
+          (_armyList.leadergroup[index].leader.models[0].title.toLowerCase().contains('warlock') &&
+              !leader.models[0].title.toLowerCase().contains('warlock')) ||
+          (_armyList.leadergroup[index].leader.models[0].title.toLowerCase().contains('master') &&
+              !leader.models[0].title.toLowerCase().contains('master')) ||
+          (factionchange)) {
+        _armyList.leadergroup[index].cohort.clear(); //clear cohort list if caster type changed ie warcaster to warlock
+      }
+    }
+    _armyList.leadergroup[index].leader = leader;
+    _armyList.leadergroup[index].spellrack!.clear();
+    int spellcount = FactionNotifier().casterHasSpellRack(leader);
+    if (spellcount > 0) {
+      for (var s = 0; s < spellcount; s++) {
+        _armyList.leadergroup[index].spellrack!.add(blankspell);
+      }
+    }
+    updateSelectedCaster(index, 'warcaster');
+  }
+
+  removeSelectedLeader(int groupnum) {
+    _armyList.leadergroup[groupnum].leader = blankproduct;
+    _armyList.leadergroup[groupnum].spellrack!.clear();
+    updateCasterCount(-1);
+  }
+
+  addCohort(Cohort cohort, int leaderindex) {
+    if (_selectedcastertype == 'warcaster') {
+      _armyList.leadergroup[leaderindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product), selectedOptions: cohort.selectedOptions));
+      if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
+        if (cohort.product.models[0].modularoptions!.isNotEmpty) {
+          for (var element in cohort.product.models[0].modularoptions!) {
+            _armyList.leadergroup[leaderindex].cohort.last.selectedOptions!.add(blankOption);
+          }
+        }
+      }
+      _armyList.leadergroup[leaderindex].cohort.sort(
+        (a, b) => a.product.name.compareTo(b.product.name),
+      );
+    }
+    if (_selectedcastertype == 'jrcaster') {
+      if (FactionNotifier().checkProductForMashal(_armyList.jrcasters[leaderindex].leader)) {
+        _armyList.jrcasters[leaderindex].cohort.clear();
+      }
+      _armyList.jrcasters[leaderindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product), selectedOptions: cohort.selectedOptions));
+      if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
+        if (cohort.product.models[0].modularoptions!.isNotEmpty) {
+          for (var element in cohort.product.models[0].modularoptions!) {
+            _armyList.jrcasters[leaderindex].cohort.last.selectedOptions!.add(blankOption);
+          }
+        }
+      }
+      _armyList.jrcasters[leaderindex].cohort.sort(
+        (a, b) => a.product.name.compareTo(b.product.name),
+      );
+    }
+    if (_selectedcastertype == 'unit') {
+      if (FactionNotifier().checkUnitForMashal(_armyList.units[leaderindex])) {
+        _armyList.units[leaderindex].cohort.clear();
+      }
+      _armyList.units[leaderindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product), selectedOptions: cohort.selectedOptions));
+      if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
+        if (cohort.product.models[0].modularoptions!.isNotEmpty) {
+          for (var element in cohort.product.models[0].modularoptions!) {
+            _armyList.units[leaderindex].cohort.last.selectedOptions!.add(blankOption);
+          }
+        }
+        _armyList.units[leaderindex].cohort.sort(
+          (a, b) => a.product.name.compareTo(b.product.name),
+        );
+      }
+    }
+    updateEverything();
+  }
+
+  removeCohort(int index, int cohortindex, String type) {
+    switch (type) {
+      case 'warcaster':
+        _armyList.leadergroup[index].cohort.removeAt(cohortindex);
+        break;
+      case 'jrcaster':
+        _armyList.jrcasters[index].cohort.removeAt(cohortindex);
+        break;
+      case 'unit':
+        _armyList.units[index].cohort.removeAt(cohortindex);
+        break;
+      default:
+        break;
+    }
+    updateEverything();
+  }
+
+  setCohortOption(Option option, int groupindex) {
+    switch (_leadertype) {
+      case 'warcaster':
+        _armyList.leadergroup[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
+        break;
+      case 'jrcaster':
+        _armyList.jrcasters[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
+        break;
+      case 'unit':
+        _armyList.units[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
+        break;
+      default:
+        break;
+    }
+
+    notifyListeners();
+  }
+
+  removeCohortOption(int index, int cohortindex, int optionindex, String type) {
+    switch (type) {
+      case 'warcaster':
+        _armyList.leadergroup[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
+        break;
+      case 'jrcaster':
+        _armyList.jrcasters[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
+        break;
+      case 'unit':
+        _armyList.units[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
+        break;
+      default:
+        break;
+    }
+    notifyListeners();
+  }
+
+  addSolo(Product product) {
+    _armyList.solos.add(Product.copyProduct(product));
+    _armyList.solos.sort(
+      (a, b) => a.name.compareTo(b.name),
+    );
+    updateEverything();
+  }
+
+  removeSolo(Product product) {
+    _armyList.solos.remove(product);
+    updateEverything();
+  }
+
+  addUnit(Unit unit) {
+    _armyList.units.add(unit);
+    _armyList.units.last.hasMarshal = FactionNotifier().checkUnitForMashal(unit);
+    _armyList.units.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(unit.unit.name);
+    if (_armyList.units.last.hasMarshal) {
+      updateCasterCount(1);
+      updateSelectedCaster(_castercount, 'unit');
+    }
+    _armyList.units.sort(
+      (a, b) => a.unit.name.compareTo(b.unit.name),
+    );
+    updateEverything();
+  }
+
+  removeUnit(int unitnum) {
+    if (FactionNotifier().checkUnitForMashal(_armyList.units[unitnum])) {
+      //unit had jack marshal so reduce caster count
+      updateCasterCount(-1);
+    }
+    _armyList.units.removeAt(unitnum);
+    updateEverything();
+  }
+
+  updateUnitSize(int unitnum) {
+    _armyList.units[unitnum].minsize = !_armyList.units[unitnum].minsize;
+    calculatePoints();
+    notifyListeners();
+  }
+
+  setUnitCommandAttachment(Product product) {
+    _armyList.units[_addToIndex].commandattachment = Product.copyProduct(product);
+    _armyList.units[_addToIndex].hasMarshal = FactionNotifier().checkUnitForMashal(_armyList.units[_addToIndex]);
+    if (_armyList.units[_addToIndex].hasMarshal) {
+      updateCasterCount(1);
+      updateSelectedCaster(_castercount, 'unit');
+    }
+    updateEverything();
+  }
+
+  removeUnitCommandAttachment(int unitnum) {
+    if (FactionNotifier().checkProductForMashal(_armyList.units[unitnum].commandattachment) &&
+        !FactionNotifier().checkProductForMashal(_armyList.units[unitnum].unit)) {
+      //command attachment had marshal but the unit itself does not so reduce caster count
+      updateCasterCount(-1);
+    }
+    _armyList.units[unitnum].commandattachment = blankproduct;
+    updateEverything();
+  }
+
+  addUnitWeaponAttachment(Product product) {
+    int walimit = _armyList.units[_addToIndex].minsize
+        ? _armyList.units[_addToIndex].weaponattachmentlimits[0]
+        : _armyList.units[_addToIndex].weaponattachmentlimits[1];
+    if (_armyList.units[_addToIndex].weaponattachments.length < walimit) {
+      _armyList.units[_addToIndex].weaponattachments.add(Product.copyProduct(product));
+    }
+    updateEverything();
+  }
+
+  removeUnitWeaponAttachment(Product product, int unitnum) {
+    _armyList.units[unitnum].weaponattachments.remove(product);
+    updateEverything();
+  }
+
+  addBattleEngine(Product product) {
+    _armyList.battleengines.add(Product.copyProduct(product));
+    _armyList.battleengines.sort(
+      (a, b) => a.name.compareTo(b.name),
+    );
+    updateEverything();
+  }
+
+  removeBattleEngine(Product product) {
+    _armyList.battleengines.remove(product);
+    updateEverything();
+  }
+
+  addStructure(Product product) {
+    _armyList.structures.add(Product.copyProduct(product));
+    _armyList.structures.sort(
+      (a, b) => a.name.compareTo(b.name),
+    );
+    updateEverything();
+  }
+
+  removeStructure(Product product) {
+    _armyList.structures.remove(product);
+    updateEverything();
+  }
+
+  addJrCaster(Product product) {
+    _armyList.jrcasters.add(JrCasterGroup(leader: Product.copyProduct(product), cohort: []));
+    _armyList.jrcasters.sort((a, b) => a.leader.name.compareTo(b.leader.name));
+    updateCasterCount(1);
+    updateSelectedCaster(_castercount, 'jrcaster');
+    updateEverything();
+  }
+
+  removeJrCaster(int productnum) {
+    JrCasterGroup jrgroup = _armyList.jrcasters[productnum];
+    _armyList.jrcasters.remove(jrgroup);
+    updateCasterCount(-1);
+    updateEverything();
+  }
+
+  removeJrCohort(Cohort cohort, int groupnum) {
+    _armyList.jrcasters[groupnum].cohort.remove(cohort);
+    updateEverything();
+  }
+
+  removeUnitCohort(Cohort cohort, int groupnum) {
+    _armyList.units[groupnum].cohort.remove(cohort);
+    updateEverything();
+  }
+
+  setLeaderAttachment(Product product) {
+    if (_armyList.leadergroup.isNotEmpty && _armyList.leadergroup.length - 1 >= _selectedcaster) {
+      if (_armyList.leadergroup[_selectedcaster].leader.name != '') {
+        _armyList.leadergroup[_selectedcaster].leaderattachment = Product.copyProduct(product);
+      }
+    }
+    updateEverything();
+  }
+
+  removeLeaderAttachment(int groupnum) {
+    _armyList.leadergroup[groupnum].leaderattachment = blankproduct;
+    updateEverything();
+  }
+
+  setCohortVals(int casterindex, int cohortindex, String type) {
+    _cohortleaderindex = casterindex;
+    _cohortindex = cohortindex;
+    _leadertype = type;
   }
 
   calculatePoints() {
@@ -584,6 +859,7 @@ class ArmyListNotifier extends ChangeNotifier {
     //all lists are looped through in reverse to find the last item of the selected products to get the highest fanum value
     //fanum is equal to it's FA count when it's added, so the first one is 1, second is 2, etc...
     //looping through every model because of cases like Black 13th and Caine and Hellslingers
+
     for (String fa in FALimitNames) {
       //leaders (warcasters/warlocks/masters)
       for (LeaderGroup lg in army.leadergroup.reversed) {
@@ -1128,46 +1404,6 @@ class ArmyListNotifier extends ChangeNotifier {
     return Colors.white;
   }
 
-  addLeaderandSelect(Product leader) {
-    int index = 0;
-    for (var a = 0; a < _armyList.leadergroup.length; a++) {
-      if (_armyList.leadergroup[a].leader.name == '') {
-        index = a;
-        updateCasterCount(1);
-        break;
-      }
-    }
-    _armyList.leadergroup[index].leader = leader;
-    _armyList.leadergroup[index].spellrack!.clear();
-    int spellcount = FactionNotifier().casterHasSpellRack(leader);
-    if (spellcount > 0) {
-      for (var s = 0; s < spellcount; s++) {
-        _armyList.leadergroup[index].spellrack!.add(blankspell);
-      }
-    }
-    updateSelectedCaster(index, 'warcaster');
-  }
-
-  removeSelectedLeader(int groupnum) {
-    _armyList.leadergroup[groupnum].leader = blankproduct;
-    _armyList.leadergroup[groupnum].spellrack!.clear();
-    updateCasterCount(-1);
-  }
-
-  setLeaderAttachment(Product product) {
-    if (_armyList.leadergroup.isNotEmpty && _armyList.leadergroup.length - 1 >= _selectedcaster) {
-      if (_armyList.leadergroup[_selectedcaster].leader.name != '') {
-        _armyList.leadergroup[_selectedcaster].leaderattachment = Product.copyProduct(product);
-      }
-    }
-    updateEverything();
-  }
-
-  removeLeaderAttachment(int groupnum) {
-    _armyList.leadergroup[groupnum].leaderattachment = blankproduct;
-    updateEverything();
-  }
-
   int getSelectedCasterIndex() {
     int index = -1;
     switch (_selectedcastertype) {
@@ -1192,82 +1428,6 @@ class ArmyListNotifier extends ChangeNotifier {
 
   removeSpellFromSpellRack(int leaderindex, int spellindex) {
     _armyList.leadergroup[leaderindex].spellrack!.removeAt(spellindex);
-  }
-
-  addCohort(Cohort cohort, int leaderindex) {
-    if (_selectedcastertype == 'warcaster') {
-      _armyList.leadergroup[leaderindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product), selectedOptions: cohort.selectedOptions));
-      if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-        if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-          for (var element in cohort.product.models[0].modularoptions!) {
-            _armyList.leadergroup[leaderindex].cohort.last.selectedOptions!.add(blankOption);
-          }
-        }
-      }
-      _armyList.leadergroup[leaderindex].cohort.sort(
-        (a, b) => a.product.name.compareTo(b.product.name),
-      );
-    }
-    if (_selectedcastertype == 'jrcaster') {
-      // int index = selectedcaster - _armyList.leadergroup.length;
-      _armyList.jrcasters[leaderindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product), selectedOptions: cohort.selectedOptions));
-      if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-        if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-          for (var element in cohort.product.models[0].modularoptions!) {
-            _armyList.jrcasters[leaderindex].cohort.last.selectedOptions!.add(blankOption);
-          }
-        }
-      }
-      _armyList.jrcasters[leaderindex].cohort.sort(
-        (a, b) => a.product.name.compareTo(b.product.name),
-      );
-    }
-    if (_selectedcastertype == 'unit') {
-      int marshals = 0;
-      // for (int u = 0; u < _armyList.units.length; u++) {
-      // if (_armyList.units[u].hasMarshal) {  //&& (_selectedcaster == marshals + _armyList.leadergroup.length + _armyList.jrcasters.length)) {
-      _armyList.units[leaderindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product), selectedOptions: cohort.selectedOptions));
-      if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-        if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-          for (var element in cohort.product.models[0].modularoptions!) {
-            _armyList.units[leaderindex].cohort.last.selectedOptions!.add(blankOption);
-          }
-        }
-        _armyList.units[leaderindex].cohort.sort(
-          (a, b) => a.product.name.compareTo(b.product.name),
-        );
-        // break;
-        // }
-        // }
-        marshals++;
-      }
-    }
-    updateEverything();
-  }
-
-  setCohortVals(int casterindex, int cohortindex, String type) {
-    _cohortleaderindex = casterindex;
-    _cohortindex = cohortindex;
-    // _groupindex = groupindex;
-    _leadertype = type;
-  }
-
-  setCohortOption(Option option, int groupindex) {
-    switch (_leadertype) {
-      case 'warcaster':
-        _armyList.leadergroup[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
-        break;
-      case 'jrcaster':
-        _armyList.jrcasters[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
-        break;
-      case 'unit':
-        _armyList.units[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
-        break;
-      default:
-        break;
-    }
-
-    notifyListeners();
   }
 
   bool checkIfOptionSelected(Option option, int groupindex) {
@@ -1329,154 +1489,6 @@ class ArmyListNotifier extends ChangeNotifier {
         return false;
     }
     return false;
-  }
-
-  removeCohortOption(int index, int cohortindex, int optionindex, String type) {
-    switch (type) {
-      case 'warcaster':
-        _armyList.leadergroup[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
-        break;
-      case 'jrcaster':
-        _armyList.jrcasters[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
-        break;
-      case 'unit':
-        _armyList.units[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
-        break;
-      default:
-        break;
-    }
-    notifyListeners();
-  }
-
-  removeCohort(int index, int cohortindex, String type) {
-    switch (type) {
-      case 'warcaster':
-        _armyList.leadergroup[index].cohort.removeAt(cohortindex);
-        break;
-      case 'jrcaster':
-        _armyList.jrcasters[index].cohort.removeAt(cohortindex);
-        break;
-      case 'unit':
-        _armyList.units[index].cohort.removeAt(cohortindex);
-        break;
-      default:
-        break;
-    }
-    updateEverything();
-  }
-
-  addSolo(Product product) {
-    _armyList.solos.add(Product.copyProduct(product));
-    _armyList.solos.sort(
-      (a, b) => a.name.compareTo(b.name),
-    );
-    updateEverything();
-  }
-
-  removeSolo(Product product) {
-    _armyList.solos.remove(product);
-    updateEverything();
-  }
-
-  addUnit(Unit unit) {
-    _armyList.units.add(unit);
-    _armyList.units.last.hasMarshal = FactionNotifier().checkUnitForMashal(unit);
-    _armyList.units.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(unit.unit.name);
-    if (_armyList.units.last.hasMarshal) {
-      updateCasterCount(1);
-      updateSelectedCaster(_castercount, 'unit');
-    }
-    _armyList.units.sort(
-      (a, b) => a.unit.name.compareTo(b.unit.name),
-    );
-    updateEverything();
-  }
-
-  removeUnit(int unitnum) {
-    _armyList.units.removeAt(unitnum);
-    updateEverything();
-  }
-
-  updateUnitSize(int unitnum) {
-    _armyList.units[unitnum].minsize = !_armyList.units[unitnum].minsize;
-    calculatePoints();
-    notifyListeners();
-  }
-
-  setUnitCommandAttachment(Product product) {
-    _armyList.units[_addToIndex].commandattachment = Product.copyProduct(product);
-    updateEverything();
-  }
-
-  removeUnitCommandAttachment(int unitnum) {
-    _armyList.units[unitnum].commandattachment = blankproduct;
-    updateEverything();
-  }
-
-  addUnitWeaponAttachment(Product product) {
-    int walimit = _armyList.units[_addToIndex].minsize
-        ? _armyList.units[_addToIndex].weaponattachmentlimits[0]
-        : _armyList.units[_addToIndex].weaponattachmentlimits[1];
-    if (_armyList.units[_addToIndex].weaponattachments.length < walimit) {
-      _armyList.units[_addToIndex].weaponattachments.add(Product.copyProduct(product));
-    }
-    updateEverything();
-  }
-
-  removeUnitWeaponAttachment(Product product, int unitnum) {
-    _armyList.units[unitnum].weaponattachments.remove(product);
-    updateEverything();
-  }
-
-  addBattleEngine(Product product) {
-    _armyList.battleengines.add(Product.copyProduct(product));
-    _armyList.battleengines.sort(
-      (a, b) => a.name.compareTo(b.name),
-    );
-    updateEverything();
-  }
-
-  removeBattleEnging(Product product) {
-    _armyList.battleengines.remove(product);
-    updateEverything();
-  }
-
-  addStructure(Product product) {
-    _armyList.structures.add(Product.copyProduct(product));
-    _armyList.structures.sort(
-      (a, b) => a.name.compareTo(b.name),
-    );
-    updateEverything();
-  }
-
-  removeStructure(Product product) {
-    _armyList.structures.remove(product);
-    updateEverything();
-  }
-
-  addJrCaster(Product product) {
-    _armyList.jrcasters.add(JrCasterGroup(leader: Product.copyProduct(product), cohort: []));
-    _armyList.jrcasters.sort((a, b) => a.leader.name.compareTo(b.leader.name));
-    updateCasterCount(1);
-    updateSelectedCaster(_castercount, 'jrcaster');
-    updateEverything();
-  }
-
-  removeJrCaster(int productnum) {
-    JrCasterGroup jrgroup = _armyList.jrcasters[productnum];
-    _armyList.jrcasters.remove(jrgroup);
-    updateCasterCount(-1);
-    updateEverything();
-  }
-
-  removeJrCohort(Cohort cohort, int groupnum) {
-    _armyList.jrcasters[groupnum].cohort.remove(cohort);
-    updateEverything();
-  }
-
-  removeUnitCohort(Cohort cohort, int groupnum) {
-    _armyList.units[groupnum].cohort.remove(cohort);
-    updateEverything();
   }
 
   resetList() {
