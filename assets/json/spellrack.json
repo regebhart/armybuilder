@@ -1,0 +1,570 @@
+{
+    "updated": "08-10-2024",
+    "spellrack": [
+        {
+            "name": "Arcane Bolt",
+            "cost": "2",
+            "rng": "12",
+            "aoe": "-",
+            "pow": "11",
+            "dur": "-",
+            "off": true,
+            "description": "Magical bolts of energy streak toward the target model.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Flashing Blade",
+            "cost": "1",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "The spellcaster immediately makes one basic attack with one of its melee weapons against each enemy model in its LOS that is in the weapon's melee range. These attacks are simultaneous.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Jackhammer",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Target model in the spellcaster's battlegroup immediately makes one basic melee attack.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Jumpstart",
+            "cost": "1",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Models in the spellcaster's battlegroup that are currently in its Control Range stand up and are no longer stationary. Affected models can turn to face any direction. Models that were knocked down this turn are not affected by Jumpstart.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Open Fire",
+            "cost": "1",
+            "rng": "CTRL",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": true,
+            "description": "Target Cohort model in this model's battlegroup that is in its Control Range can immediately make one basic ranged attack. A model can be targeted by open fire only once per turn.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Explosivo",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model's ranged weapons gain Damage Type: Arcane. If the affected model directly hits and boxes an enemy model with an attack from a ranged weapon, center a 3\" AOE on the boxed model, then remove that model from play. Models in the AOE are hit and suffer an unboostable POW 10 magical blast damage roll.",
+            "poolcost": "1",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Return Fire",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "When target friendly Faction model is targeted by an enemy ranged attack, after the attack is resolved the affected model can make one basic melee or ranged attack, then Return fire expires. Return Fire lasts for one round.",
+            "poolcost": "1",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Banishing Ward",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Enemy upkeep spells and animi on target friendly model/unit expire. Affected models cannot be targeted by enemy spells or animi.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Countermeasure",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "While within 5\" of target friendly Faction model/unit, enemy models cannot make ranged attacks.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Deadeye",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains an additional die on each model's first non-spray tanged attack roll this turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Energizer",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Each model in the spellcaster's battlegroup that is currently in its Control Range can immediately advance up to 2\". Energizer can be cast only once per activation.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Escort",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range gain +2' movement when advancing as part of their Normal Movement. The spellcaster gains +2 ARM while one or more warjacks in its battlegroup are within 3' of it.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Lightning Tendrils",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Resistance: Electricity. Affected models' melee weapons become RNG 2 and gain Electro Leap. Models are not affected while out of formation.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Mage Sight",
+            "cost": "2",
+            "rng": "CTRL",
+            "aoe": "5",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Place a 5\" AOE completely within the spellcaster's Control Range. While a model is within the AOE, models in the spellcaster's battlegroup ignore forests and cloud effects when drawing LOS to it and ignore Stealth when attacking it.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Onslaught",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "The spellcaster and friendly Faction models beginning their activations in its Control Range gain Relentless Charge for one turn. (While advancing as part of a charge, a model with Relentless Charge gains Pathfinder.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Razor Wind",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Redline",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target warjack in the spellcaster's battlegroup gains +2 SPD and +2 to melee attack damage rolls and can run, charge, or make slam or trample power attacks without spending focus. At the end of each of its activations, the affected warjack suffers d3 damage points.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Repudiate",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": true,
+            "description": "Enemy upkeep spells and animi on the model/unit directly hit by Repudiate immediately expires. When an upkeep spell expires as a result of Repudiate, the model maintaining the spell suffers d3 damage points.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Superiority",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction Warjack gains +2 SPD, MAT and DEF and cannot become knocked down.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Arcane Blast",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "4",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "A magical energy blast radiates from a single point to strike all models in the AOE.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Arcane Shield",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +3 ARM. Models are not affected while out of formation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Bullet Dodger",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model gains +2 DEF and Dodge. (A model with Dodge can advance up to 2\" immediately after an enemy attack that missed it is resolved unless it was missed while advancing. It cannot be targeted by free strikes during this movement.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Death March",
+            "cost": "3",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction unit gains +2 MAT and Vengeance. (During your Maintenance Phase, if one or more models in a unit with Vengeance were damaged by enemy attacks during the last round, each model in the unit can advance 3\" and make one basic melee attack.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Deceleration",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "While in the spellcaster's Control Range, friendly faction models gain +2 ARM against ranged and magic attack damage rolls. Deceleration lasts for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Electrical Blast",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "3",
+            "pow": "13",
+            "dur": "RND",
+            "off": true,
+            "description": "Electrical Blast causes electrical damage. Warjacks damaged by Electrical Blast suffer Disruption.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Fire For Effect",
+            "cost": "3",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Boost the attack and damage rolls of target friendly Faction model's first ranged attack each activation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Fog of War",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Models gain concealment while in the spellcaster's Control Range.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Full Throttle",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range can run, charge, or make slam or trample power attacks without spending focus that activation. While in the spellcaster's Control Range, models in its battlegroup gain boosted melee attack rolls. Full Throttle lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Gallows",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "When an enemy model is hit by this attack, it can be pushed d6\" directly toward Gallows' point of origin.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Gravity Bomb",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "4",
+            "pow": "12",
+            "dur": "RND",
+            "off": true,
+            "description": "If the target model is directly hit by Gravity Bomb it suffers -2 SPD and DEF for one round. Enemy models entering the AOE, or beginning their activation in the AOE suffer -1 SPD. The AOE is a hazard that stays in play for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Hand of Fate",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains an additional die on attack and damage rolls. Discard the lowest die in each roll.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Hex Blast",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "3",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "Enemy upkeep spells and animi on the model/unit directly hit by Hex Blast immediately expire.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Positive Charge",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Target friendly Faction warjack gains +2 to melee attack and melee damage rolls. While within 3\" of the affected warjack, friendly Faction non-warjack models gain +2 on melee attack and melee damage rolls. Positive Charge lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Rift",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "4",
+            "pow": "13",
+            "dur": "RND",
+            "off": true,
+            "description": "The AoE is rough terrain and remains in play for one round. While within the AoE models lose and cannot gain pathfinder.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Spellpiercer",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "While in the spellcaster's Control Range, the weapons of friendly Faction models/units gain Blessed and Damage Type: Arcane. Spellpiercer lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Tactical Supremacy",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition [3\"] can advance up to 3\", then its activation ends.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Wind Rush",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "The spellcaster can immediately make a full advance and gains +2 DEF for one round. Wind Rush can be cast only once per activation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Wind Wall",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": true,
+            "description": "The spellcaster cannot make ranged attacks after casting this spell, and non-magical ranged attacks targeting it automatically miss. While completely within 3\" of the spellcaster, models cannot make ranged attacks and non-magical ranged attacks targeting them automatically miss. Wind Wall lasts for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Blur",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +3 DEF against ranged and magic attack rolls. Models are not affected while out of formation.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Force Hammer",
+            "cost": "4",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "Instead of suffering a normal damage roll, a non-Incorporeal model Force Hammer hits is slammed d6\" directly away from the spell's point of origin and suffers a POW 12 damage roll. Collateral damage from this slam is POW 12.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        }
+    ]
+}
