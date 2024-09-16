@@ -54,4 +54,17 @@ class Animus {
       description: description,
     );
   }
+
+  factory Animus.copy(Animus animus) {
+    return Animus(
+      name: animus.name,
+      cost: animus.cost,
+      rng: animus.rng,
+      aoe: animus.aoe,
+      pow: animus.pow,
+      dur: animus.dur,
+      off: animus.off,
+      description: animus.description,
+    );
+  }
 }

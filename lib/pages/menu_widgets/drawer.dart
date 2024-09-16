@@ -33,6 +33,7 @@ class MenuDrawer extends StatelessWidget {
             faction.setBrowsingCategory(0);
             army.setSelectedProduct(army.blankproduct);
             nav.pageController.jumpToPage(1);
+            army.cancelDeployment();
           },
         ),
         ListTile(
@@ -41,7 +42,9 @@ class MenuDrawer extends StatelessWidget {
             Navigator.of(context).pop();
             army.resetEncounterLevel();
             army.resetList();
+            army.setlistname('');
             nav.pageController.jumpToPage(2);
+            army.cancelDeployment();
           },
         ),
         ListTile(
@@ -49,6 +52,7 @@ class MenuDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             nav.pageController.jumpToPage(4);
+            army.cancelDeployment();
           },
         ),
         ListTile(
@@ -64,7 +68,7 @@ class MenuDrawer extends StatelessWidget {
             html.window.open('https://www.legacymachine.online/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         ListTile(
@@ -98,7 +102,7 @@ class MenuDrawer extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         ListTile(

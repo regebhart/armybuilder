@@ -43,7 +43,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
-
+    print('hptracking: ${army.hptracking.length}');
     final double width = MediaQuery.of(context).size.width * 0.95;
     Color textcolor = Colors.grey[200]!;
     const Color bordercolor = Colors.grey;
@@ -78,7 +78,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     List<Widget> modelsWidget = [];
     List<String> keywordlist = [];
     List<Ability> abilitylist = [];
-    List<SpecialAbility> nestedabilities = [];
+    List<NestedAbility> nestedabilities = [];
     List<Weapon> weaponlist = [];
     List<Animus> animilist = [];
     BaseStats moddedStats = BaseStats(
@@ -445,7 +445,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
           Color boxborder = bordercolor;
           Color fillColor;
           bool filled = false;
-          if (army.hptracking.isNotEmpty) {
+          if (army.hptracking.isNotEmpty && army.deploying) {
             filled = army.hptracking[widget.listindex!][widget.listmodelindex!]['grid'][c][rownum];
           }
           if (r.system == '-') {
@@ -1332,8 +1332,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         if (animi.isEmpty) {
           animi.add(spellHeaders(width, fontsize, bordercolor, textcolor, false));
         }
-        Spell thisSpell = Spell(name: sp.name, cost: sp.cost, rng: sp.rng, off: sp.off, description: sp.description);
-        animi.add(spellStats(thisSpell, width, fontsize, bordercolor, textcolor, false));
+        animi.add(animusStats(sp, width, fontsize, bordercolor, textcolor, false));
         animi.add(spellDescription(sp.description, width, fontsize, bordercolor, textcolor, false));
       }
     }
@@ -2688,7 +2687,7 @@ Widget spellStats(Spell sp, double width, double fontsize, Color bordercolor, Co
                   color: textcolor,
                   fontSize: fontsize,
                 )),
-            Text(dur,
+            Text(dur.toUpperCase(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: textcolor,
@@ -2791,7 +2790,7 @@ Widget animusStats(Animus sp, double width, double fontsize, Color bordercolor, 
                   color: textcolor,
                   fontSize: fontsize,
                 )),
-            Text(dur,
+            Text(dur.toUpperCase(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: textcolor,

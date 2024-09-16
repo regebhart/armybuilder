@@ -25,101 +25,106 @@ class _SingleModelStatPageState extends State<SingleModelStatPage> {
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     Color textcolor = Colors.grey[200]!;
-    Product p = army.deployedLists[widget.listindex].selectedProduct;
-    Cohort c = army.deployedLists[widget.listindex].selectedCohort;
-    int index = army.deployedLists[widget.listindex].selectedModelIndex;
-    int listmodelindex = army.deployedLists[widget.listindex].selectedListModelIndex;
-    double fontsize = AppData().fontsize - 4;
     List<Widget> modelsWidget = [];
-    String cost = 'PC: ${p.points!}';
+    if (army.deployedLists.isNotEmpty) {
+      Product p = army.deployedLists[widget.listindex].selectedProduct;
+      Cohort c = army.deployedLists[widget.listindex].selectedCohort;
+      int index = army.deployedLists[widget.listindex].selectedModelIndex;
+      int listmodelindex = army.deployedLists[widget.listindex].selectedListModelIndex;
+      double fontsize = AppData().fontsize - 4;
 
-    if (!army.viewingcohort[widget.listindex]) {
-      p = army.deployedLists[widget.listindex].selectedProduct;
-    } else {
-      c = army.deployedLists[widget.listindex].selectedCohort;
-      p = c.product;
-    }
+      String cost = 'PC: ${p.points!}';
 
-    if (p.name == '') {
-      modelsWidget.add(
-        const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Center(
-            child: Text(
-              "Select a model to view its stats",
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      );
-    } else {
-      if (p.points == '') {
-        cost = '${p.unitPoints!['minunit']} PC: ${p.unitPoints!['mincost']}';
-        if (p.unitPoints!['maxcost'] != '-') {
-          cost = '$cost\n${p.unitPoints!['maxunit']} PC: ${p.unitPoints!['maxcost']}';
-        }
-      } else if (p.category.contains('Warcaster')) {
-        cost = 'BGP: +${p.points}';
+      if (!army.viewingcohort[widget.listindex]) {
+        p = army.deployedLists[widget.listindex].selectedProduct;
+      } else {
+        c = army.deployedLists[widget.listindex].selectedCohort;
+        p = c.product;
       }
 
-      String factions = 'Factions: ${p.factions.toString().replaceAll('[', '').replaceAll(']', '')}';
-
-      // Model m = p.models[index];
-      Widget modelStats = UniversalModelStatPage(
-        deployed: true,
-        modelindex: index,
-        listindex: widget.listindex,
-        listmodelindex: listmodelindex,
-      );
-
-      List<Widget> docheader = [];
-
-      if (modelsWidget.isEmpty) {
-        docheader.add(Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(
-              p.name,
-              style: TextStyle(
-                color: textcolor,
-                fontWeight: FontWeight.bold,
-                fontSize: fontsize + 4,
-              ),
-            )));
-        docheader.add(
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
-              child: Text(factions,
-                  style: TextStyle(
-                    color: textcolor,
-                    fontSize: fontsize,
-                  ))),
-        );
-        docheader.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(
-              cost,
-              style: TextStyle(
-                color: textcolor,
-                fontSize: fontsize,
+      if (p.name == '') {
+        modelsWidget.add(
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Center(
+              child: Text(
+                "Select a model to view its stats",
+                textAlign: TextAlign.center,
               ),
             ),
           ),
         );
+      } else {
+        if (p.points == '') {
+          cost = '${p.unitPoints!['minunit']} PC: ${p.unitPoints!['mincost']}';
+          if (p.unitPoints!['maxcost'] != '-') {
+            cost = '$cost\n${p.unitPoints!['maxunit']} PC: ${p.unitPoints!['maxcost']}';
+          }
+        } else if (p.category.contains('Warcaster')) {
+          cost = 'BGP: +${p.points}';
+        }
 
-        docheader.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text('Field Allowance: ${p.fa}',
+        String factions = 'Factions: ${p.factions.toString().replaceAll('[', '').replaceAll(']', '')}';
+
+        // Model m = p.models[index];
+        Widget modelStats = UniversalModelStatPage(
+          deployed: true,
+          modelindex: index,
+          listindex: widget.listindex,
+          listmodelindex: listmodelindex,
+        );
+
+        List<Widget> docheader = [];
+
+        if (modelsWidget.isEmpty) {
+          docheader.add(Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                p.name,
+                style: TextStyle(
+                  color: textcolor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: fontsize + 4,
+                ),
+              )));
+          docheader.add(
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(factions,
+                    style: TextStyle(
+                      color: textcolor,
+                      fontSize: fontsize,
+                    ))),
+          );
+          docheader.add(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text(
+                cost,
                 style: TextStyle(
                   color: textcolor,
                   fontSize: fontsize,
-                )),
-          ),
-        );
-        modelsWidget.addAll(docheader);
+                ),
+              ),
+            ),
+          );
+
+          docheader.add(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Text('Field Allowance: ${p.fa}',
+                  style: TextStyle(
+                    color: textcolor,
+                    fontSize: fontsize,
+                  )),
+            ),
+          );
+          modelsWidget.addAll(docheader);
+        }
+        modelsWidget.add(modelStats);
       }
-      modelsWidget.add(modelStats);
+    } else {
+      modelsWidget.add(const SizedBox());
     }
 
     return Padding(

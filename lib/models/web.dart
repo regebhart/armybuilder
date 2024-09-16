@@ -27,4 +27,11 @@ class Web {
       dots: dots,
     );
   }
+  
+  factory Web.copy(Web web) {
+    return Web(
+      values: web.values,
+      dots: web.dots,
+    );
+  }
 }

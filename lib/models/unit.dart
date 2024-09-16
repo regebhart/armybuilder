@@ -59,4 +59,25 @@ class Unit {
       weaponattachmentlimits: weaponattachmentlimits,
     );
   }
+
+  factory Unit.copy(Unit unit, bool copy) {
+    return Unit(
+      unit: Product.copyProduct(unit.unit, copy),
+      minsize: unit.minsize,
+      hasMarshal: unit.hasMarshal,
+      commandattachment: Product.copyProduct(unit.commandattachment, copy),
+      weaponattachments: List.generate(
+        unit.weaponattachments.length,
+        (index) => unit.weaponattachments[index],
+      ),
+      cohort: List.generate(
+        unit.cohort.length,
+        (index) => unit.cohort[index],
+      ),
+      weaponattachmentlimits: List.generate(
+        unit.weaponattachmentlimits.length,
+        (index) => unit.weaponattachmentlimits[index],
+      ),
+    );
+  }
 }

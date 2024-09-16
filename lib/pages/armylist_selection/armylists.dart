@@ -223,7 +223,7 @@ class SavedArmyListTile extends StatelessWidget {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 5),
       child: ListTile(
@@ -270,7 +270,7 @@ class SavedArmyListTile extends StatelessWidget {
                   onTap: () async {
                     await army.setArmyList(await faction.convertJsonStringToArmyList(armyjson), index, 'edit');
                     faction.setSelectedFactionIndex(AppData().factionList.indexWhere((element) => element['name'] == army.armyList.listfaction));
-                    faction.setSelectedCategory(0, null, null, null);
+                    faction.setSelectedCategory(0, null, null, null, false, null);
                     nav.pageController.jumpToPage(3);
                     army.setDeploying(false);
                   },

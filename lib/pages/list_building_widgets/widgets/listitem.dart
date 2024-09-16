@@ -9,10 +9,12 @@ import '../../../providers/navigation.dart';
 
 class ArmyListItem extends StatelessWidget {
   final Product product;
-  final int index;
+  final int? index;
   final void Function() onTap;
   final bool? minsize;
-  const ArmyListItem({required this.product, required this.index, required this.onTap, this.minsize, super.key});
+  final bool hod;
+  final int? leaderindex;
+  const ArmyListItem({required this.product, required this.index, required this.onTap, this.minsize, required this.hod, this.leaderindex, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +34,18 @@ class ArmyListItem extends StatelessWidget {
         displayradio = true;
         break;
       case 'Solos':
-        if (FactionNotifier().checkSoloForJourneyman(product) || FactionNotifier().checkProductForMashal(product)) {
-          type = 'jrcaster';
-          displayradio = true;
+        if (FactionNotifier().checkSoloForJourneyman(product) || FactionNotifier().checkProductForMarshal(product)) {
+          if (product.selectable) {
+            type = !hod ? 'jrcaster' : 'oofjrcaster';
+            displayradio = true;
+          }
         }
         break;
       default:
         break;
     }
     if (product.category.contains('Warcaster')) {
-      int bgptotal = army.calculateBGP(index);
+      int bgptotal = army.calculateBGP(index!);
       cost = '$bgptotal/$cost';
     }
 
@@ -55,13 +59,19 @@ class ArmyListItem extends StatelessWidget {
               width: radioWidth,
               child: GestureDetector(
                   onTap: () {
-                    army.updateSelectedCaster(index, type);
+                    int factionindex = -1;
+                    if (hod) {
+                      factionindex = AppData().factionList.indexWhere((element) =>
+                          element['name']!.toLowerCase() == army.armyList.leadergroup[army.hodleaderindex].heartofdarknessfaction!.toLowerCase());
+                    }
+                    army.updateSelectedCaster(type, product);
+                    if (leaderindex != null) army.setHoDLeaderIndex(leaderindex!);
                     if (faction.selectedCategory == 1) {
-                      faction.setSelectedCategory(1, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes);
+                      faction.setSelectedCategory(1, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes, hod, factionindex);
                     }
                   },
                   child: Icon(
-                    army.selectedcaster == index ? Icons.radio_button_on : Icons.radio_button_off,
+                    army.selectedcaster == index && army.selectedcastertype == type ? Icons.radio_button_on : Icons.radio_button_off,
                     size: AppData().fontsize + 5,
                   )),
             ),
@@ -142,7 +152,7 @@ class ArmyListItem extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 3.0, right: 5.0),
                           child: InkWell(
                             onTap: () {
-                              army.updateUnitSize(index);
+                              army.updateUnitSize(index!, hod, leaderindex);
                             },
                             child: Icon(
                               minsize! ? Icons.add_circle : Icons.remove_circle,

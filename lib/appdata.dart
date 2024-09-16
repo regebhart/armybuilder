@@ -9,7 +9,7 @@ class AppData {
     {'name': 'Cygnar', 'list': 'warmachine', 'file': 'cygnar.json'},
     {'name': 'Grymkin', 'list': 'hordes', 'file': 'grymkin.json'},
     {'name': 'Infernals', 'list': 'hordes', 'file': 'infernals.json'},
-    {'name': 'Ios', 'list': 'warmachine', 'file': 'ios.json'},
+    {'name': 'Ios', 'list': 'hordes', 'file': 'ios.json'},
     {'name': 'Khador', 'list': 'warmachine', 'file': 'khador.json'},
     {'name': 'Khymaera', 'list': 'hordes', 'file': 'khymaera.json'},
     {'name': 'Legion of Everblight', 'list': 'hordes', 'file': 'everblight.json'},
@@ -23,9 +23,11 @@ class AppData {
     {'name': 'Skorne', 'list': 'hordes', 'file': 'skorne.json'},
     {'name': 'Supernal Coalition', 'list': 'warmachine', 'file': 'supernal.json'},
     {'name': 'Talion Charter', 'list': 'warmachine', 'file': 'talion.json'},
+    {'name': 'The Broken Pact', 'list': 'hordes', 'file': 'brokenpact.json'},
     {'name': 'Thornfall Alliance', 'list': 'hordes', 'file': 'thornfall.json'},
     {'name': 'Trollbloods', 'list': 'hordes', 'file': 'trollbloods.json'},
     {'name': 'Warriors of the Old Faith', 'list': 'warmachine', 'file': 'warriors.json'},
+    {'name': 'Vengeance of Dhunia', 'list': 'hordes', 'file': 'vengeance.json'},
   ];
   final List<String> _productCategories = [
     'Warcasters/Warlocks/Masters',
@@ -73,13 +75,14 @@ class AppData {
     {'name': 'Open War', 'level': '16', 'armypoints': 400, 'options': 10, 'castercount': 5},
   ];
 
-  final List<String> limitedBattlegroup = [
-    'archnumen aurora',
-    'carver ultimus',
-    'dr. egan arkadius',
-    'magnus the unstoppable',
-    'una the falconer',
-  ];
+  // final List<String> limitedBattlegroup = [
+  //   'archnumen aurora',
+  //   'carver ultimus',
+  //   'dr. egan arkadius',
+  //   'magnus the unstoppable',
+  //   'una the falconer',
+  //   'dhalia hallyr & skarath',
+  // ];
 
   final double _fontsize = 16;
   final double _iconsize = 28;

@@ -26,7 +26,7 @@ class SaveListButton extends StatelessWidget {
           }
         }
         {
-          if (army.armyList.name != '') {
+          if (army.status == 'edit') {
             if (army.armyList.name != army.listnameController.text) {
               if (context.mounted) {
                 await _showSaveDialog(context, army);
@@ -36,7 +36,7 @@ class SaveListButton extends StatelessWidget {
             }
           } else {
             army.setStatus('edit');
-            army.setlistname();
+            army.setlistname(army.listnameController.text);
             saveNewList(army.armyList);
           }
 
@@ -96,7 +96,7 @@ Future<void> _showSaveDialog(context, ArmyListNotifier army) async {
           TextButton(
             child: const Text('New List'),
             onPressed: () {
-              army.setlistname();
+              army.setlistname(army.listnameController.text);
               saveNewList(army.armyList);
               Navigator.of(context).pop();
             },
@@ -104,7 +104,7 @@ Future<void> _showSaveDialog(context, ArmyListNotifier army) async {
           TextButton(
             child: const Text('Update List'),
             onPressed: () {
-              army.setlistname();
+              army.setlistname(army.listnameController.text);
               updateExisitingList(army.armyList, army.armylistindex);
               Navigator.of(context).pop();
             },

@@ -17,6 +17,7 @@ class ArmyList {
   List<Product> battleengines;
   List<Product> structures;
   List<JrCasterGroup> jrcasters;
+  bool heartofdarkness;
 
   ArmyList({
     required this.name,
@@ -30,6 +31,7 @@ class ArmyList {
     required this.battleengines,
     required this.structures,
     required this.jrcasters,
+    required this.heartofdarkness,
   });
 
   factory ArmyList.fromJson(Map<String, dynamic> json) {
@@ -78,6 +80,11 @@ class ArmyList {
       favorite = json['favorite'];
     }
 
+    bool heartofdarkness = false;
+    if (json.containsKey('heartofdarkness')) {
+      heartofdarkness = json['heartofdarkness'];
+    }
+
     return ArmyList(
       name: json['name'],
       listfaction: json['faction'],
@@ -90,6 +97,7 @@ class ArmyList {
       battleengines: battleengines,
       structures: structures,
       jrcasters: jrs,
+      heartofdarkness: heartofdarkness,
     );
   }
 
@@ -142,6 +150,68 @@ class ArmyList {
             }
           }
           group['cohort'] = cohort;
+        }
+        if (lg.oofjrcasters.isNotEmpty) {
+          List<Map<String, dynamic>> jrs = [];
+          for (var j in lg.oofjrcasters) {
+            Map<String, dynamic> jrgroup = {};
+            jrgroup['leader'] = j.leader.name;
+            List<Map<String, dynamic>> cohort = [];
+            if (j.cohort.isNotEmpty) {
+              for (var c in j.cohort) {
+                cohort.add({'product': c.product.name});
+                if (c.selectedOptions!.isNotEmpty) {
+                  List<String> options = [];
+                  for (var m in c.selectedOptions!) {
+                    options.add(m.name);
+                  }
+                  cohort.last['modularoptions'] = options;
+                }
+              }
+              jrgroup['cohort'] = cohort;
+            }
+            jrs.add(jrgroup);
+          }
+          group['oofjrcasters'] = jrs;
+        }
+        if (lg.oofsolos.isNotEmpty) {
+          List<String> ss = [];
+          for (var s in lg.oofsolos) {
+            ss.add(s.name);
+          }
+          group['oofsolos'] = ss;
+        }
+        if (lg.oofunits.isNotEmpty) {
+          List<Map<String, dynamic>> us = [];
+          for (var u in lg.oofunits) {
+            Map<String, dynamic> unit = {};
+            unit['unit'] = u.unit.name;
+            unit['minsize'] = u.minsize;
+            if (u.commandattachment.name != '') unit['commandattachment'] = u.commandattachment.name;
+            if (u.weaponattachments.isNotEmpty) {
+              List<String> weaponattachments = [];
+              for (var wa in u.weaponattachments) {
+                weaponattachments.add(wa.name);
+              }
+              unit['weaponattachments'] = weaponattachments;
+            }
+            if (u.hasMarshal && u.cohort.isNotEmpty) {
+              List<Map<String, dynamic>> cohort = [];
+              for (var c in u.cohort) {
+                cohort.add({'product': c.product.name});
+                if (c.selectedOptions!.isNotEmpty) {
+                  List<String> options = [];
+                  for (var m in c.selectedOptions!) {
+                    options.add(m.name);
+                  }
+                  cohort.last['modularoptions'] = options;
+                }
+              }
+              unit['cohort'] = cohort;
+            }
+            us.add(unit);
+          }
+          group['oofunits'] = us;
         }
         leadergroups.add(group);
       }
@@ -232,15 +302,26 @@ class LeaderGroup {
   Product leaderattachment;
   List<Cohort> cohort;
   List<Spell>? spellrack;
+  bool? heartofdarkness;
+  String? heartofdarknessfaction;
+  List<JrCasterGroup> oofjrcasters;
+  List<Unit> oofunits;
+  List<Product> oofsolos;
 
   LeaderGroup({
     required this.leader,
     required this.leaderattachment,
     required this.cohort,
     this.spellrack,
+    this.heartofdarkness,
+    this.heartofdarknessfaction,
+    required this.oofjrcasters,
+    required this.oofunits,
+    required this.oofsolos,
   });
 
   factory LeaderGroup.fromJson(Map<String, dynamic> json) {
+    Product leader = Product.fromJson(json['leader']);
     Product attachment = ArmyListNotifier().blankproduct;
     List<Cohort> cohort = [];
     List<Spell> spellrack = [];
@@ -261,11 +342,37 @@ class LeaderGroup {
       }
     }
 
+    List<JrCasterGroup> oofjrs = [];
+    if (json.containsKey('oofjrcasters')) {
+      for (var jr in json['oofjrcasters']) {
+        oofjrs.add(JrCasterGroup.fromJson(jr));
+      }
+    }
+
+    List<Product> oofsolos = [];
+    if (json.containsKey('oofsolos')) {
+      for (var s in json['oofsolos']) {
+        oofsolos.add(Product.fromJson(s));
+      }
+    }
+
+    List<Unit> oofunits = [];
+    if (json.containsKey('oofunits')) {
+      for (var u in json['oofunits']) {
+        oofunits.add(Unit.fromJson(u));
+      }
+    }
+
     return LeaderGroup(
-      leader: Product.fromJson(json['leader']),
+      leader: leader,
       leaderattachment: attachment,
       cohort: cohort,
       spellrack: spellrack,
+      heartofdarkness: false,
+      heartofdarknessfaction: '',
+      oofjrcasters: oofjrs,
+      oofsolos: oofsolos,
+      oofunits: oofunits,
     );
   }
 

@@ -48,4 +48,24 @@ class StatMods {
 
     return stats;
   }
+
+  factory StatMods.copy(StatMods mods) {
+    var stats = StatMods();
+
+    if (mods.spd != null) stats.spd = mods.spd;
+    if (mods.str != null) stats.str = mods.str;
+    if (mods.aat != null) stats.aat = mods.aat;
+    if (mods.mat != null) stats.mat = mods.mat;
+    if (mods.rat != null) stats.rat = mods.rat;
+    if (mods.def != null) stats.def = mods.def;
+    if (mods.arm != null) stats.arm = mods.arm;
+    if (mods.arc != null) stats.arc = mods.arc;
+    if (mods.cmd != null) stats.cmd = mods.cmd;
+    if (mods.fury != null) stats.fury = mods.fury;
+    if (mods.thr != null) stats.thr = mods.thr;
+    if (mods.ess != null) stats.ess = mods.ess;
+    if (mods.ctrl != null) stats.ctrl = mods.ctrl;
+
+    return stats;
+  }
 }

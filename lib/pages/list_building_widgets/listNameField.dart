@@ -1,6 +1,6 @@
-import 'package:armybuilder/pages/widgets/buttons/savelistbutton.dart';
+import 'package:armybuilder/pages/list_building_widgets/buttons/savelistbutton.dart';
 import 'package:flutter/material.dart';
-import 'package:armybuilder/pages/widgets/buttons/copytoclipboardbutton.dart';
+import 'package:armybuilder/pages/list_building_widgets/buttons/copytoclipboardbutton.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -26,13 +26,7 @@ class _ListNameFieldState extends State<ListNameField> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
-    army.setlistnameController(con);
-    if (army.armyList.name != '') {
-      con.text = army.armyList.name;
-    }
-    if (con.text == '') {
-      con.text = 'New ${army.factionSelected} Army';
-    }
+    army.setlistnameController(con);    
 
     return Row(
       mainAxisSize: MainAxisSize.min,

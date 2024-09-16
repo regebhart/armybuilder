@@ -1,3 +1,4 @@
+import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +11,22 @@ import '../../../providers/navigation.dart';
 class CohortListItem extends StatelessWidget {
   final Cohort cohort;
   final int casterindex;
+  final int groupindex;
   final int cohortindex;
   final String type;
-  const CohortListItem({required this.cohort, required this.casterindex, required this.cohortindex, required this.type, super.key});
+  final bool oof;
+  final int? leaderindex;
+  final Product? leader;
+  const CohortListItem(
+      {required this.cohort,
+      required this.casterindex,
+      required this.groupindex,
+      required this.cohortindex,
+      required this.type,
+      required this.oof,
+      this.leaderindex,
+      this.leader,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +51,9 @@ class CohortListItem extends StatelessWidget {
                 if (cohort.product.models[0].modularoptions!.isNotEmpty)
                   GestureDetector(
                     onTap: () {
-                      int leaderindex = army.getSelectedCasterIndex();
-                      army.setCohortVals(leaderindex, cohortindex, army.selectedcastertype);
+                      army.updateSelectedCaster(type, leader!);
+                      if (leaderindex != null) army.setHoDLeaderIndex(leaderindex!);
+                      army.setCohortVals(groupindex, cohortindex, army.selectedcastertype);
                       faction.setShowModularGroupOptions(cohort.product);
                       if (nav.swiping) {
                         nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
@@ -62,23 +77,33 @@ class CohortListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          army.removeCohort(casterindex, cohortindex, type);
-                          faction.setShowingOptions(false);
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Container(
-                            decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.red)),
-                            child: Icon(
-                              Icons.clear,
-                              color: Colors.red,
-                              size: AppData().fontsize + 10,
+                      cohort.product.removable
+                          ? GestureDetector(
+                              onTap: () {
+                                army.removeCohort(
+                                  groupindex,
+                                  cohortindex,
+                                  type,
+                                  oof,
+                                  leaderindex,
+                                );
+                                faction.setShowingOptions(false);
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5),
+                                child: Container(
+                                  decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.red)),
+                                  child: Icon(
+                                    Icons.clear,
+                                    color: Colors.red,
+                                    size: AppData().fontsize + 10,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : SizedBox(
+                              width: AppData().fontsize + 15,
                             ),
-                          ),
-                        ),
-                      ),
                       SizedBox(width: AppData().listButtonSpacing),
                       GestureDetector(
                           child: ClipRRect(

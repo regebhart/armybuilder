@@ -1,4 +1,4 @@
-import 'package:armybuilder/pages/widgets/buttons/copytoclipboardbutton.dart';
+import 'package:armybuilder/pages/list_building_widgets/buttons/copytoclipboardbutton.dart';
 import 'package:armybuilder/pages/deployed_list/deployedlist.dart';
 import 'package:armybuilder/pages/product_stat_pages/singlemodelstatpage.dart';
 import 'package:armybuilder/pages/import_export/importfield.dart';
@@ -83,9 +83,9 @@ class ArmyDeployment extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(army.deployedLists[0].list.name),
-                              Text('Faction: ${army.deployedLists[0].list.listfaction}'),
-                              Text('Points: ${army.deployedLists[0].list.totalpoints} / ${army.deployedLists[0].list.pointtarget}'),
+                              Text(army.deployedLists.isNotEmpty ? army.deployedLists[0].list.name : ''),
+                              Text('Faction: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.listfaction : ''}'),
+                              Text('Points: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.totalpoints : ''} / ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.pointtarget : ''}'),
                             ],
                           ),
                         ),

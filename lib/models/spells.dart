@@ -67,4 +67,19 @@ class Spell {
       poolcost: poolcost,
     );
   }
+
+  factory Spell.copy(Spell spell) {
+    return Spell(
+      name: spell.name,
+      cost: spell.cost,
+      rng: spell.rng,
+      aoe: spell.aoe,
+      pow: spell.pow,
+      dur: spell.dur,
+      off: spell.off,
+      description: spell.description,
+      poolfactions: spell.poolfactions,
+      poolcost: spell.poolcost,
+    );
+  }
 }

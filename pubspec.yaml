@@ -44,6 +44,7 @@ dependencies:
   firebase_core: ^2.31.1
   http: ^1.2.1
   universal_html: ^2.2.4
+  uuid: ^4.4.2
 
 dev_dependencies:
   flutter_test:

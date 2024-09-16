@@ -38,7 +38,7 @@ class ModularOptionListItem extends StatelessWidget {
                   flex: 1,
                   child: GestureDetector(
                     onTap: () {
-                      army.removeCohortOption(casterindex, cohortindex, groupindex, leadertype);
+                      army.removeCohortOption(casterindex, cohortindex, groupindex, leadertype, army.hodleaderindex);
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),

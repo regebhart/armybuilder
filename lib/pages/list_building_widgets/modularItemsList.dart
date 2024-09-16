@@ -85,14 +85,14 @@ class _ModularOptionListState extends State<ModularOptionList> {
                                 textAlign: TextAlign.right,
                               ),
                               dense: true,
-                              tileColor: army.checkIfAnyOptionSelected(i)
-                                  ? army.checkIfOptionSelected(op, i)
+                              tileColor: army.checkIfAnyOptionSelected(i, army.hodleaderindex)
+                                  ? army.checkIfOptionSelected(op, i, army.hodleaderindex)
                                       ? Colors.deepPurple[700]
                                       : Colors.grey.shade800
                                   : Colors.deepPurple[700],
                               hoverColor: Colors.purple,
                               onTap: () {
-                                army.setCohortOption(op, i);
+                                army.setCohortOption(op, i, army.hodleaderindex);
                                 toast.show(context);
                               },
                             ),

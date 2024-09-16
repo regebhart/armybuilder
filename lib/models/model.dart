@@ -24,7 +24,7 @@ class Model {
   List<hpbar>? hpbars;
   List<CustomBar>? custombars;
   Ability? execution;
-  List<SpecialAbility>? nestedabilities;
+  List<NestedAbility>? nestedabilities;
   List<Weapon>? weapons;
   List<ModularOption>? modularoptions;
   Feat? feat;
@@ -36,6 +36,9 @@ class Model {
   Web? web;
   int? displayOrderIndex;
   List<Animus>? animi;
+  bool? hasMarshal;
+  String? heartofdarknessfaction;
+  String? casteradeptfaction;
 
   Model({
     required this.modelname,
@@ -59,6 +62,9 @@ class Model {
     this.web,
     this.displayOrderIndex,
     this.animi,
+    this.hasMarshal,
+    this.heartofdarknessfaction,
+    this.casteradeptfaction,
   });
 
   factory Model.fromJson(Map<String, dynamic> json) {
@@ -88,9 +94,13 @@ class Model {
     }
     // print("keywords");
     List<String> keywords = [];
+    bool hasMarshal = false;
     if (json.containsKey('keywords')) {
-      for (var a in json['keywords']) {
+      for (String a in json['keywords']) {
         keywords.add(a);
+        if (a.toLowerCase().contains('jack marshal')) {
+          hasMarshal = true;
+        }
       }
     }
 
@@ -133,9 +143,18 @@ class Model {
 
     // print("character abilities");
     List<Ability> characterabilities = [];
+    String heartofdarknessfaction = '';
+    String casteradeptfaction = '';
     if (json.containsKey('characterabilities')) {
       for (var ab in json['characterabilities']) {
         characterabilities.add(Ability.fromJson(ab));
+        String abname = characterabilities.last.name.toLowerCase();
+        if (abname.contains('heart of darkness')) {
+          heartofdarknessfaction = abname.substring(abname.indexOf('[') + 1, abname.length - 1);
+        }
+        if (abname.contains('caster adept')) {
+          casteradeptfaction = abname.substring(abname.indexOf('[') + 1, abname.length - 1);
+        }
       }
     }
 
@@ -156,10 +175,10 @@ class Model {
       arcana = TrumpArcana.fromJson(json['arcana']);
     }
 
-    List<SpecialAbility> nestedabilities = [];
+    List<NestedAbility> nestedabilities = [];
     if (json.containsKey('nestedabilities')) {
       for (var n in json['nestedabilities']) {
-        nestedabilities.add(SpecialAbility.fromJson(n));
+        nestedabilities.add(NestedAbility.fromJson(n));
       }
     }
 
@@ -214,6 +233,9 @@ class Model {
       web: web,
       displayOrderIndex: displayorder,
       animi: animi,
+      hasMarshal: hasMarshal,
+      heartofdarknessfaction: heartofdarknessfaction,
+      casteradeptfaction: casteradeptfaction,
     );
   }
 
@@ -223,9 +245,12 @@ class Model {
       title: model.title,
       modeltype: model.modeltype,
       keywords: model.keywords,
-      characterabilities: model.characterabilities,
-      execution: model.execution,
-      stats: model.stats,
+      characterabilities: List.generate(
+        model.characterabilities!.length,
+        (index) => Ability.copy(model.characterabilities![index]),
+      ),
+      execution: Ability.copy(model.execution!),
+      stats: BaseStats.copy(model.stats),
       hpbars: List.generate(
         model.hpbars!.length,
         (index) => hpbar.copy(model.hpbars![index]),
@@ -234,18 +259,36 @@ class Model {
         model.custombars!.length,
         (index) => CustomBar.copy(model.custombars![index]),
       ),
-      nestedabilities: model.nestedabilities,
-      weapons: model.weapons,
-      modularoptions: model.modularoptions,
-      feat: model.feat,
-      arcana: model.arcana,
-      spells: model.spells,
-      grid: model.grid,
+      nestedabilities: List.generate(
+        model.nestedabilities!.length,
+        (index) => NestedAbility.copy(model.nestedabilities![index]),
+      ),
+      weapons: List.generate(
+        model.weapons!.length,
+        (index) => Weapon.copy(model.weapons![index]),
+      ),
+      modularoptions: List.generate(
+        model.modularoptions!.length,
+        (index) => ModularOption.copy(model.modularoptions![index]),
+      ),
+      feat: Feat.copy(model.feat!),
+      arcana: TrumpArcana.copy(model.arcana!),
+      spells: List.generate(
+        model.spells!.length,
+        (index) => Spell.copy(model.spells![index]),
+      ),
+      grid: Grid.copy(model.grid!),
       shield: model.shield,
-      spiral: model.spiral,
-      web: model.web,
+      spiral: Spiral.copy(model.spiral!),
+      web: Web.copy(model.web!),
       displayOrderIndex: model.displayOrderIndex,
-      animi: model.animi,
+      animi: List.generate(
+        model.animi!.length,
+        (index) => Animus.copy(model.animi![index]),
+      ),
+      hasMarshal: model.hasMarshal,
+      heartofdarknessfaction: model.heartofdarknessfaction!,
+      casteradeptfaction: model.casteradeptfaction!,
     );
     return newcopy;
   }

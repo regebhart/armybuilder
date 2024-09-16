@@ -14,10 +14,17 @@ class Feat {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> data = {};
-    data['name'] = name;
-    data['description'] = description;
-    return data;
+  // Map<String, dynamic> toJson() {
+  //   Map<String, dynamic> data = {};
+  //   data['name'] = name;
+  //   data['description'] = description;
+  //   return data;
+  // }
+
+  factory Feat.copy(Feat feat) {
+    return Feat(
+      name: feat.name,
+      description: feat.description,
+    );
   }
 }

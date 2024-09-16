@@ -2,7 +2,7 @@ import 'package:armybuilder/pages/deployed_list/deploymainview.dart';
 import 'package:armybuilder/pages/import_export/importexport.dart';
 import 'package:armybuilder/pages/list_building_widgets/layouts/wide.dart';
 import 'package:armybuilder/pages/menu_widgets/factionselection.dart';
-import 'package:armybuilder/pages/list_selection/lists.dart';
+import 'package:armybuilder/pages/armylist_selection/armylists.dart';
 import 'package:armybuilder/pages/menu_widgets/mainmenu.dart';
 import 'package:armybuilder/pages/list_building_widgets/layouts/narrow-swiping.dart';
 import 'package:armybuilder/pages/model_browsing/layouts/narrow-swiping.dart';
@@ -34,7 +34,7 @@ class _PagesContainerState extends State<PagesContainer> {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
-    const double minwidth = 1080;  //minimum width to display wide layout
+    const double minwidth = 1080; //minimum width to display wide layout
     nav.setPageController(pageController);
 
     return PageView(

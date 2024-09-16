@@ -181,6 +181,9 @@ Future<bool> importPastedList(String text, bool opponent, ArmyListNotifier army)
       if (name.indexOf('-') == 0) {
         name = name.substring(1).trim();
       }
+      if (name.indexOf('*-') == 0) {
+        name = name.substring(2).trim();
+      }
       productNames.add(name.trim());
     }
     if (factionselected == '') {
@@ -218,7 +221,8 @@ Future<bool> importPastedList(String text, bool opponent, ArmyListNotifier army)
     solos: [],
     battleengines: [],
     structures: [],
-    jrcasters: [],
+    jrcasters: [],    
+    heartofdarkness: false,
   );
 
   int factionindex = AppData().factionList.indexWhere((element) => element['name'] == factionselected);

@@ -14,6 +14,8 @@ class ArmyListUnitItem extends StatelessWidget {
   final bool minsize;
   final bool hasmarshal;
   final int casterindex;
+  final bool oof;
+  final int? leaderindex;
   const ArmyListUnitItem(
       {required this.product,
       required this.index,
@@ -21,6 +23,8 @@ class ArmyListUnitItem extends StatelessWidget {
       required this.minsize,
       required this.hasmarshal,
       required this.casterindex,
+      required this.oof,
+      this.leaderindex,
       super.key});
 
   @override
@@ -49,9 +53,13 @@ class ArmyListUnitItem extends StatelessWidget {
               width: radioWidth,
               child: GestureDetector(
                   onTap: () {
-                    army.updateSelectedCaster(casterindex, 'unit');
+                    if (leaderindex != null) army.setHoDLeaderIndex(leaderindex!);
+                    army.updateSelectedCaster(!oof ? 'unit' : 'oofunit', product);
+                    int factionindex = AppData()
+                        .factionList
+                        .indexWhere((element) => element['name']!.toLowerCase() == army.armyList.leadergroup[leaderindex!].heartofdarknessfaction);
                     if (faction.selectedCategory == 1) {
-                      faction.setSelectedCategory(1, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes);
+                      faction.setSelectedCategory(1, army.selectedcasterProduct, product.name, army.selectedcasterFactionIndexes, oof, factionindex);
                     }
                   },
                   child: Icon(
@@ -136,7 +144,7 @@ class ArmyListUnitItem extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 3.0, right: 5.0),
                           child: InkWell(
                             onTap: () {
-                              army.updateUnitSize(index);
+                              army.updateUnitSize(index, oof, leaderindex);
                             },
                             child: Icon(
                               minsize ? Icons.add_circle : Icons.remove_circle,

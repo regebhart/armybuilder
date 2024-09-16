@@ -28,13 +28,22 @@ class ModularOption {
       options: options,
     );
   }
-  
+
+  factory ModularOption.copy(ModularOption option) {
+    return ModularOption(
+      groupname: option.groupname,
+      options: List.generate(
+        option.options!.length,
+        (index) => Option.copy(option.options![index]),
+      ),
+    );
+  }
 }
 
 class Option {
   List<String>? keywords;
   List<Ability>? abilities;
-  List<SpecialAbility>? nestedabilities;
+  List<NestedAbility>? nestedabilities;
   List<Weapon>? weapons;
   List<Animus>? animi;
   StatMods? statmods;
@@ -55,7 +64,7 @@ class Option {
   factory Option.fromJson(Map<String, dynamic> json) {
     List<String> keywords = [];
     List<Ability> abilities = [];
-    List<SpecialAbility> nestedabilities = [];
+    List<NestedAbility> nestedabilities = [];
     List<Weapon> weapons = [];
     List<Animus> animi = [];
     StatMods stats = StatMods();
@@ -74,7 +83,7 @@ class Option {
 
     if (json.containsKey('nestedabilities')) {
       for (var n in json['nestedabilities']) {
-        nestedabilities.add(SpecialAbility.fromJson(n));
+        nestedabilities.add(NestedAbility.fromJson(n));
       }
     }
 
@@ -106,5 +115,28 @@ class Option {
     );
   }
 
-  
+  factory Option.copy(Option option) {
+    return Option(
+      cost: option.cost,
+      name: option.name,
+      keywords: option.keywords,
+      abilities: List.generate(
+        option.abilities!.length,
+        (index) => Ability.copy(option.abilities![index]),
+      ),
+      nestedabilities: List.generate(
+        option.nestedabilities!.length,
+        (index) => NestedAbility.copy(option.nestedabilities![index]),
+      ),
+      weapons: List.generate(
+        option.weapons!.length,
+        (index) => Weapon.copy(option.weapons![index]),
+      ),
+      animi: List.generate(
+        option.animi!.length,
+        (index) => option.animi![index],
+      ),
+      statmods: StatMods.copy(option.statmods!),
+    );
+  }
 }

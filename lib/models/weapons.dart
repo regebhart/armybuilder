@@ -10,7 +10,7 @@ class Weapon {
   String? aoe;
   String pow;
   String? system;
-  List<SpecialAbility>? nestedabilities;
+  List<NestedAbility>? nestedabilities;
   List<String>? damagetype;
   List<Ability>? abilities;
   List<String>? presetabilities;
@@ -48,10 +48,10 @@ class Weapon {
       }
     }
 
-    List<SpecialAbility> nestedabilities = [];
+    List<NestedAbility> nestedabilities = [];
     if (json.containsKey('nestedabilities')) {
       for (var n in json['nestedabilities']) {
-        nestedabilities.add(SpecialAbility.fromJson(n));
+        nestedabilities.add(NestedAbility.fromJson(n));
       }
     }
 
@@ -76,6 +76,30 @@ class Weapon {
       damagetype: damagetypes,
       abilities: abilities,
       presetabilities: presetabilities,
+    );
+  }
+
+  factory Weapon.copy(Weapon weapon) {
+    return Weapon(
+      name: weapon.name,
+      type: weapon.type,
+      fieldoffire: weapon.fieldoffire,
+      rng: weapon.rng,
+      rof: weapon.rof,
+      aoe: weapon.aoe,
+      pow: weapon.pow,
+      system: weapon.system,
+      count: weapon.count,
+      nestedabilities: List.generate(
+        weapon.nestedabilities!.length,
+        (index) => NestedAbility.copy(weapon.nestedabilities![index]),
+      ),
+      damagetype: weapon.damagetype!,
+      abilities: List.generate(
+        weapon.abilities!.length,
+        (index) => Ability.copy(weapon.abilities![index]),
+      ),
+      presetabilities: weapon.presetabilities!
     );
   }
 }

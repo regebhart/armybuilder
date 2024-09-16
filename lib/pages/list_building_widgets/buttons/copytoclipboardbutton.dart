@@ -15,8 +15,7 @@ class CopyToClipboardButton extends StatelessWidget {
     return InkWell(
       onTap: () async {
         if (!army.deploying) {
-          // String export = 'WM3.5 Army\n\n$factionSelected - ${_listnameController.text}\n\n$_currentpoints / ${_encounterLevelSelected['armypoints']}\n';
-          army.setlistname();
+          army.setlistname(army.listnameController.text);
         }
         String export = army.copytListToClipboard();
         await Clipboard.setData(ClipboardData(text: export));

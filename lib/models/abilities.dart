@@ -13,4 +13,11 @@ class Ability {
       description: json['description'],
     );
   }
+
+  factory Ability.copy(Ability ability) {
+    return Ability(
+      name: ability.name,
+      description: ability.description,
+    );
+  }
 }

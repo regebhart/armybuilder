@@ -67,15 +67,16 @@ class _CategoryListState extends State<CategoryList> {
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: InkWell(
             onTap: () {
-              faction.setSelectedCategory(
+              if ((index == 1 && army.selectedcasterFactionIndexes.isNotEmpty) || index != 1) {
+                faction.setSelectedCategory(
                   index,
-                  index == 1 ? army.selectedcasterProduct : null,
+                  army.selectedcasterProduct,
                   null,
-                  index == 1
-                      ? army.selectedcasterFactionIndexes.isNotEmpty
-                          ? army.selectedcasterFactionIndexes
-                          : null
-                      : null);
+                  index == 1 ? army.selectedcasterFactionIndexes : null,
+                  army.armyList.heartofdarkness,
+                  null,
+                );
+              }
             },
             borderRadius: BorderRadius.circular(5),
             child: ClipRRect(

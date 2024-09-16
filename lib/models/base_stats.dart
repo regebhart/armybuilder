@@ -85,4 +85,24 @@ class BaseStats with ChangeNotifier {
       ess: ess,
     );
   }
+
+  factory BaseStats.copy(BaseStats stats) {
+    return BaseStats(
+      base: stats.base,
+      spd: stats.spd,
+      str: stats.str,
+      aat: stats.aat,
+      mat: stats.mat,
+      rat: stats.rat,
+      def: stats.def,
+      arm: stats.arm,
+      arc: stats.arc,
+      cmd: stats.cmd,
+      ctrl: stats.ctrl,
+      hp: stats.hp,
+      fury: stats.fury,
+      thr: stats.thr,
+      ess: stats.ess,
+    );
+  }
 }

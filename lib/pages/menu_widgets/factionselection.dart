@@ -16,7 +16,7 @@ class FactionSelection extends StatelessWidget {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
-    
+
     // double width = MediaQuery.of(context).size.width;
     // List<Widget> grid = buttonGrid(width, faction, army, context);
     List<Map<String, String>> factionlist = AppData().factionList;
@@ -67,8 +67,9 @@ class FactionSelection extends StatelessWidget {
                                   child: TextButton(
                                     onPressed: () async {
                                       army.setFactionSelected(factionlist[index]['name']!);
+                                      army.setlistname('New ${army.factionSelected} Army');
                                       faction.setSelectedFactionIndex(index);
-                                      faction.setSelectedCategory(0, null, null, null);
+                                      faction.setSelectedCategory(0, null, null, null, false, null);
                                       nav.pageController.jumpToPage(3);
                                       army.setDeploying(false);
                                       await FirebaseAnalytics.instance.logEvent(

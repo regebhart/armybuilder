@@ -14,7 +14,7 @@ class ModelListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     Color normaltextcolor = Colors.grey.shade100;

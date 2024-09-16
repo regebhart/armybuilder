@@ -28,8 +28,10 @@ class Spiral {
     );
   }
 
-  factory Spiral.copy(Spiral s) {
-    Spiral newcopy = Spiral(values: s.values, dots: s.dots);
-    return newcopy;
+  factory Spiral.copy(Spiral spiral) {
+    return Spiral(
+      values: spiral.values,
+      dots: spiral.dots,
+    );
   }
 }

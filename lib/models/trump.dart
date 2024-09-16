@@ -13,4 +13,11 @@ class TrumpArcana {
       description: json['description'],
     );
   }
+
+  factory TrumpArcana.copy(TrumpArcana ta) {
+    return TrumpArcana(
+      name: ta.name,
+      description: ta.description,
+    );
+  }
 }

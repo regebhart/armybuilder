@@ -1,3 +1,6 @@
+import 'package:armybuilder/models/cohort.dart';
+import 'package:uuid/uuid.dart';
+
 import 'model.dart';
 
 class Product {
@@ -11,6 +14,10 @@ class Product {
   String category;
   Map<String, dynamic>? unitPoints;
   int fanum;
+  bool selectable;
+  bool removable;
+  List<ValidCohortList>? validcohortmodels;
+  String uuid;
 
   Product({
     required this.primaryFaction,
@@ -23,6 +30,10 @@ class Product {
     required this.models,
     this.unitPoints,
     required this.fanum,
+    required this.selectable,
+    required this.removable,
+    this.validcohortmodels,
+    required this.uuid,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -85,6 +96,13 @@ class Product {
       unitpoints = json['unitpoints'];
     }
 
+    List<ValidCohortList> validcohort = [];
+    if (json.containsKey('validcohortmodels')) {
+      for (var c in json['validcohortmodels']) {
+        validcohort.add(ValidCohortList.fromJson(c));
+      }
+    }
+
     return Product(
       primaryFaction: primaryfaction,
       factions: factions,
@@ -96,10 +114,14 @@ class Product {
       models: models,
       unitPoints: unitpoints,
       fanum: 0,
+      selectable: true,
+      removable: true,
+      validcohortmodels: validcohort,
+      uuid: const Uuid().v1(),
     );
   }
 
-  factory Product.copyProduct(Product product) {
+  factory Product.copyProduct(Product product, bool copy) {
     Product newcopy = Product(
       primaryFaction: product.primaryFaction,
       factions: product.factions,
@@ -108,6 +130,8 @@ class Product {
       fa: product.fa,
       attachlimit: product.attachlimit,
       points: product.points,
+      selectable: product.selectable,
+      removable: product.removable,
       models: List.generate(
         product.models.length,
         (index) => Model.copy(
@@ -116,6 +140,8 @@ class Product {
       ),
       unitPoints: product.unitPoints,
       fanum: product.fanum,
+      validcohortmodels: product.validcohortmodels,
+      uuid: copy ? product.uuid == '' ? const Uuid().v1() : product.uuid : const Uuid().v1(),
     );
     return newcopy;
   }
