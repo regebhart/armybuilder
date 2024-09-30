@@ -311,23 +311,23 @@ class ArmyListNotifier extends ChangeNotifier {
         }
         break;
       case 'jrcaster':
-        int castercount = _armyList.leadergroup.length - 1;
-        int index = castercount;
+        // int castercount = _armyList.leadergroup.length - 1;
+        // int index = castercount;
         for (int jr = 0; jr < _armyList.jrcasters.length; jr++) {
-          index++;
+          // index++;
           if (_armyList.jrcasters[jr].leader.uuid == product.uuid) {
-            foundindex = index;
+            foundindex = jr;
             break;
           }
         }
         break;
       case 'unit':
-        int castercount = _armyList.leadergroup.length + _armyList.jrcasters.length - 1;
-        int index = castercount;
+        // int castercount = _armyList.leadergroup.length + _armyList.jrcasters.length - 1;
+        // int index = castercount;
         for (int u = 0; u < _armyList.units.length; u++) {
-          if (_armyList.units[u].hasMarshal) index++;
+          // if (_armyList.units[u].hasMarshal) index++;
           if (_armyList.units[u].unit.uuid == product.uuid) {
-            foundindex = index;
+            foundindex = u;
             break;
           }
         }
@@ -453,7 +453,7 @@ class ArmyListNotifier extends ChangeNotifier {
 
         break;
       case 'jrcaster':
-        int totalcasters = _armyList.leadergroup.length;
+        int totalcasters = _armyList.leadergroup.where((element) => element.leader.name.isNotEmpty).length;
         int index = totalcasters - 1;
         for (var a = 0; a < _armyList.jrcasters.length; a++) {
           index++;
@@ -755,7 +755,8 @@ class ArmyListNotifier extends ChangeNotifier {
   addCohort(Cohort cohort, int casterindex, bool oof, int? leaderindex) {
     switch (_selectedcastertype) {
       case 'warcaster':
-        _armyList.leadergroup[casterindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
+        _armyList.leadergroup[casterindex].cohort
+            .add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
         if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
           if (cohort.product.models[0].modularoptions!.isNotEmpty) {
             for (var element in cohort.product.models[0].modularoptions!) {
@@ -771,7 +772,8 @@ class ArmyListNotifier extends ChangeNotifier {
         if (FactionNotifier().checkProductForMarshal(_armyList.jrcasters[casterindex].leader)) {
           _armyList.jrcasters[casterindex].cohort.clear();
         }
-        _armyList.jrcasters[casterindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
+        _armyList.jrcasters[casterindex].cohort
+            .add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
         if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
           if (cohort.product.models[0].modularoptions!.isNotEmpty) {
             for (var element in cohort.product.models[0].modularoptions!) {
@@ -1057,8 +1059,8 @@ class ArmyListNotifier extends ChangeNotifier {
               Product.copyProduct(FactionNotifier().changeModelFactionInTitles(_armyList.units[_addToIndex].unit, "Cephalyx", "Mercenary"), true);
           break;
         case 'Doctor Alejandro Mosby':
-          _armyList.units[_addToIndex].unit =
-              Product.copyProduct(FactionNotifier().changeModelFactionInTitles(_armyList.units[_addToIndex].unit, "Crucible Guard", "Mercenary"), true);
+          _armyList.units[_addToIndex].unit = Product.copyProduct(
+              FactionNotifier().changeModelFactionInTitles(_armyList.units[_addToIndex].unit, "Crucible Guard", "Mercenary"), true);
           break;
         default:
           break;
@@ -1081,11 +1083,13 @@ class ArmyListNotifier extends ChangeNotifier {
           break;
         case 'Cephalyx Dominator':
           _armyList.units[_addToIndex].unit = Product.copyProduct(
-              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Cephalyx", "Mercenary"), true);
+              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Cephalyx", "Mercenary"),
+              true);
           break;
         case 'Doctor Alejandro Mosby':
-          _armyList.units[_addToIndex].unit = Product.copyProduct(FactionNotifier()
-              .changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Crucible Guard", "Mercenary"), true);
+          _armyList.units[_addToIndex].unit = Product.copyProduct(
+              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Crucible Guard", "Mercenary"),
+              true);
           break;
         default:
           break;
@@ -1158,15 +1162,16 @@ class ArmyListNotifier extends ChangeNotifier {
 
   addJrCaster(Product product, bool oof, int? leaderindex) async {
     Product addedProduct = blankproduct;
-    for (var ab in product.models[0].characterabilities!) {
-      if (ab.name.toLowerCase().contains('limited battlegroup')) {
-        product.selectable = false;
-      }
-    }
+    // for (var ab in product.models[0].characterabilities!) {
+    //   if (ab.name.toLowerCase().contains('limited battlegroup')) {
+    //     product.selectable = false;
+    //   }
+    // }
 
     if (product.models.length > 1) {
       //has cohorts
       Product caster = Product.copyProduct(product, false);
+      addedProduct = caster;
       caster.models.removeRange(1, caster.models.length);
 
       if (!oof) {
@@ -1206,6 +1211,7 @@ class ArmyListNotifier extends ChangeNotifier {
     } else {
       if (!oof) {
         _armyList.jrcasters.add(JrCasterGroup(leader: Product.copyProduct(product, false), cohort: []));
+        addedProduct = _armyList.jrcasters.last.leader;
       } else {
         if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex!].oofsolos.length >= 3) {
           if (_armyList.leadergroup[leaderindex].oofsolos.isNotEmpty) {
@@ -2009,27 +2015,6 @@ class ArmyListNotifier extends ChangeNotifier {
         }
       }
 
-      //loop through each FA C solo
-      for (Product s in army.solos) {
-        //loop through each solo in the army list
-        if (s.fa == 'C') {
-          for (Model m in s.models) {
-            //loop through each model of the solo to compare names....there shouldn't be more than 1 model in a solo but testing anyway
-            bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers
-            for (Model productmodel in product.models) {
-              //loop through the product names to calculate
-              String searchName = faName(productmodel.modelname);
-              if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
-                count += 1;
-                found = true;
-                break; //stop searching the current product
-              }
-            }
-            if (found) break; //go to next caster product
-          }
-        }
-      }
-
       //loop through each FA C battle engine
       for (Product be in army.battleengines) {
         if (be.fa == 'C') {
@@ -2180,7 +2165,8 @@ class ArmyListNotifier extends ChangeNotifier {
         newarmy.leadergroup.last.oofjrcasters.last.leader = Product.copyProduct(jr.leader, true);
         newarmy.leadergroup.last.oofjrcasters.last.leader.fanum = calculateFA(newarmy, jr.leader);
         for (var c in jr.cohort) {
-          newarmy.leadergroup.last.oofjrcasters.last.cohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
+          newarmy.leadergroup.last.oofjrcasters.last.cohort
+              .add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
           newarmy.leadergroup.last.oofjrcasters.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
         }
       }
@@ -2211,7 +2197,8 @@ class ArmyListNotifier extends ChangeNotifier {
         newarmy.leadergroup.last.oofunits.last.hasMarshal = FactionNotifier().checkUnitForMashal(newarmy.leadergroup.last.oofunits.last);
         if (newarmy.leadergroup.last.oofunits.last.hasMarshal) {
           for (var c in u.cohort) {
-            newarmy.leadergroup.last.oofunits.last.cohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
+            newarmy.leadergroup.last.oofunits.last.cohort
+                .add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
             newarmy.leadergroup.last.oofunits.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
           }
         }

@@ -104,6 +104,7 @@ class _CategoryModelsListState extends State<CategoryModelsList> with AutomaticK
               army.addModelToList(p, true, army.hodleaderindex);
               toast.show(context);
             };
+            break;
           case 667:
             //HoD units
             onTap = () {
@@ -123,24 +124,10 @@ class _CategoryModelsListState extends State<CategoryModelsList> with AutomaticK
               toast.show(context);
             };
             cost = 'Min: ${p.unitPoints!['mincost']}';
-              onTap = () {
-                army.addUnit(
-                  Unit(
-                      unit: Product.copyProduct(p, false),
-                      minsize: true,
-                      hasMarshal: false,
-                      commandattachment: army.blankproduct,
-                      weaponattachments: [],
-                      cohort: [],
-                      weaponattachmentlimits: faction.getUnitWeaponAttachLimit(p.name)),
-                  false,
-                  null,
-                );
-                toast.show(context);
-              };
-              if (p.unitPoints!['maxcost'] != '-') {
-                cost = '$cost\nMax: ${p.unitPoints!['maxcost']}';
-              }
+            if (p.unitPoints!['maxcost'] != '-') {
+              cost = '$cost\nMax: ${p.unitPoints!['maxcost']}';
+            }
+            break;
           case 668:
             onTap = () {
               army.setUnitCommandAttachment(p, true, army.hodleaderindex);

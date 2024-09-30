@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String buildlastupdated = '9/15/2024 testing';
+    String buildlastupdated = '9/27/2024';
 
     return SafeArea(
       child: Scaffold(

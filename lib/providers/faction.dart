@@ -355,13 +355,20 @@ class FactionNotifier extends ChangeNotifier {
               if (infernalslist && heartofdarkness) {
                 //include only non-C cohort
                 for (Product p in _filteredProducts[0]) {
-                  if (p.fa != 'C') {
+                  if (p.fa != 'C' && p.models[0].title.toLowerCase().contains('warjack')) {
                     p.models[0].characterabilities!.add(Ability(
                       name: 'Accumulator [Soulless]',
                       description:
                           'When it begins its activation within 3" of one or more other friendly Soulless models, this model gains 1 focus point.',
                     ));
                   }
+                  // if (p.models[0].title.toLowerCase().contains('horror')) {
+                  //   p.models[0].characterabilities!.add(Ability(
+                  //     name: 'Serenity',
+                  //     description:
+                  //         'At the beginning of your Control Phase, before leeching, you can remove 1 fury point from a friendly Faction warbeast within 1" of this model.',
+                  //   ));
+                  // }
                   p.models[0].characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
                 }
               }
@@ -454,7 +461,7 @@ class FactionNotifier extends ChangeNotifier {
         case 666:
           //HoD solos
           for (Product p in _allFactions[oofFactionindex!]['sortedproducts'][0][2]) {
-            if (p.fa != 'C') {
+            if (validHeartofDarknessModel(p, oofFactionindex)) {
               Product product = Product.copyProduct(p, false);
               _filteredProducts[0].add(product);
             }
@@ -463,7 +470,7 @@ class FactionNotifier extends ChangeNotifier {
         case 667:
           //HOD units
           for (Product p in _allFactions[oofFactionindex!]['sortedproducts'][0][3]) {
-            if (p.fa != 'C') {
+            if (validHeartofDarknessModel(p, oofFactionindex)) {
               Product product = Product.copyProduct(p, false);
               _filteredProducts[0].add(product);
             }
@@ -481,18 +488,32 @@ class FactionNotifier extends ChangeNotifier {
       //unit attachments
       if (!hod) {
         if (_allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7].containsKey(unitname)) {
-          _filteredProducts[0] = _allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7][unitname]!;
+          for (var p in _allFactions[_selectedFactionIndex]['unitattachments'][0][index - 7][unitname]!) {
+            Product product = Product.copyProduct(p, true);
+            _filteredProducts[0].add(product);
+          }
         }
         if (_allFactions[_selectedFactionIndex]['unitattachments'][1][index - 7].containsKey(unitname)) {
-          _filteredProducts[1] = _allFactions[_selectedFactionIndex]['unitattachments'][1][index - 7][unitname]!;
+          for (var p in _allFactions[_selectedFactionIndex]['unitattachments'][1][index - 7][unitname]!) {
+            Product product = Product.copyProduct(p, true);
+            _filteredProducts[1].add(product);
+          }
         }
         if (_allFactions[_selectedFactionIndex]['unitattachments'][2][index - 7].containsKey(unitname)) {
-          _filteredProducts[2] = _allFactions[_selectedFactionIndex]['unitattachments'][2][index - 7][unitname]!;
+          for (var p in _allFactions[_selectedFactionIndex]['unitattachments'][2][index - 7][unitname]!) {
+            Product product = Product.copyProduct(p, true);
+            _filteredProducts[2].add(product);
+          }
         }
       } else {
         //index would be either 668 or 669 here
         if (_allFactions[oofFactionindex!]['unitattachments'][0][index - 668].containsKey(unitname)) {
-          _filteredProducts[0] = _allFactions[oofFactionindex]['unitattachments'][0][index - 668][unitname]!;
+          for (var p in _allFactions[oofFactionindex]['unitattachments'][0][index - 668][unitname]!) {
+            if (validHeartofDarknessModel(p, oofFactionindex)) {
+              Product product = Product.copyProduct(p, true);
+              _filteredProducts[0].add(product);
+            }
+          }
         }
       }
     }
@@ -646,6 +667,22 @@ class FactionNotifier extends ChangeNotifier {
       }
     }
     return false;
+  }
+
+  bool validHeartofDarknessModel(Product p, int oofFactionindex) {
+    bool partisan = false;
+    bool archon = p.name.toLowerCase().contains('archon');
+    bool morrowan = false;
+    for (var k in p.models[0].keywords!) {
+      if (k.toLowerCase() == 'morrowan') morrowan = true;
+    }
+    for (var ab in p.models[0].characterabilities!) {
+      if (ab.name.toLowerCase().contains('partisan') &&
+          ab.name.toLowerCase().contains(AppData().factionList[oofFactionindex]['name']!.toLowerCase())) {
+        partisan = true;
+      }
+    }
+    return !partisan && !archon && !morrowan;
   }
 
   Product findByName(String name) {

@@ -58,6 +58,7 @@ class AppData {
     {'name': 'Duel', 'level': '0', 'armypoints': 0, 'options': 0, 'castercount': 1},
     {'name': 'Demo', 'level': '0.5', 'armypoints': 15, 'options': 0, 'castercount': 1},
     {'name': 'Brawl', 'level': '1', 'armypoints': 25, 'options': 1, 'castercount': 1},
+    {'name': 'Brawl', 'level': '1', 'armypoints': 35, 'options': 1, 'castercount': 1},
     {'name': 'Clash', 'level': '2', 'armypoints': 50, 'options': 2, 'castercount': 1},
     {'name': 'Pitched Battle', 'level': '3', 'armypoints': 75, 'options': 3, 'castercount': 1},
     {'name': 'Grand Melee', 'level': '4', 'armypoints': 100, 'options': 4, 'castercount': 1},
@@ -74,15 +75,6 @@ class AppData {
     {'name': 'Open War', 'level': '15', 'armypoints': 375, 'options': 10, 'castercount': 5},
     {'name': 'Open War', 'level': '16', 'armypoints': 400, 'options': 10, 'castercount': 5},
   ];
-
-  // final List<String> limitedBattlegroup = [
-  //   'archnumen aurora',
-  //   'carver ultimus',
-  //   'dr. egan arkadius',
-  //   'magnus the unstoppable',
-  //   'una the falconer',
-  //   'dhalia hallyr & skarath',
-  // ];
 
   final double _fontsize = 16;
   final double _iconsize = 28;
