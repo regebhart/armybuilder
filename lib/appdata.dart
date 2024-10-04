@@ -58,7 +58,7 @@ class AppData {
     {'name': 'Duel', 'level': '0', 'armypoints': 0, 'options': 0, 'castercount': 1},
     {'name': 'Demo', 'level': '0.5', 'armypoints': 15, 'options': 0, 'castercount': 1},
     {'name': 'Brawl', 'level': '1', 'armypoints': 25, 'options': 1, 'castercount': 1},
-    {'name': 'Brawl', 'level': '1', 'armypoints': 35, 'options': 1, 'castercount': 1},
+    {'name': 'Brawl (Classic)', 'level': '1', 'armypoints': 35, 'options': 1, 'castercount': 1},
     {'name': 'Clash', 'level': '2', 'armypoints': 50, 'options': 2, 'castercount': 1},
     {'name': 'Pitched Battle', 'level': '3', 'armypoints': 75, 'options': 3, 'castercount': 1},
     {'name': 'Grand Melee', 'level': '4', 'armypoints': 100, 'options': 4, 'castercount': 1},

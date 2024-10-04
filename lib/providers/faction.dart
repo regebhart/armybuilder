@@ -93,7 +93,7 @@ class FactionNotifier extends ChangeNotifier {
               if (ab.name.toLowerCase().contains('command attachment')) {
                 index = 7;
                 switch (p['name']) {
-                  case 'Captain Jonas Murdoch' || 'Doctor Alejandro Mosby':
+                  case 'Doctor Alejandro Mosby':
                     //small or medium based mercenary - Cygnar
                     attachname =
                         'Alexia Ciannor & the Risen,Captain Sam Machorne & the Devil Dogs,Croe\'s Cutthroats,Cylena Raefyll & Nyss Hunters,Dannon Blythe & Bull,Doom Reaver Swordsmen,Farrow Slaughterhousers,Gatorman Posse,Greygore Boomhowler & Co,Hammerfall High Shield Gun Corps,Herne & Jonne,Horgenhold Forge Guard,Idrian Skirmishers,Kayazy Assailers,Kayazy Assassins,Lady Aiyana & Master Holt,Ogrun Assault Corps,Press Gangers,Steelhead Cannon Crew,Steelhead Halberdiers,Steelhead Mortal Crew,Steelhead Riflemen,Steelhead Volley Gun Crew,Swamp Gobber Bellows Crew,Tactical Arcanist Corps,The Devil\'s Shadow Mutineers,Thorn Gun Mages';
@@ -1060,64 +1060,47 @@ class FactionNotifier extends ChangeNotifier {
     if (_allFactions.isEmpty) {
       await readAllFactions();
     }
-
+    bool infernalslist = list.listfaction == 'Infernals';
     Product blankproduct = ArmyListNotifier().blankproduct;
-    int leadergroup = -1;
-    int jrgroup = -1;
-    int unitgroup = -1;
+
     String lastleader = '';
     for (var p in products) {
       if (p.contains('+ ')) {
         //for modular parts
         String optionname = p.replaceFirst('+', '').trim();
+        Cohort thiscohort;
         switch (lastleader) {
           case 'warcaster':
-            if (list.leadergroup[leadergroup].cohort.last.selectedOptions == null) list.leadergroup[leadergroup].cohort.last.selectedOptions = [];
-            Cohort thiscohort = list.leadergroup[leadergroup].cohort.last;
-            for (var g in thiscohort.product.models[0].modularoptions!) {
-              bool found = false;
-              for (var op in g.options!) {
-                if (op.name == optionname) {
-                  list.leadergroup[leadergroup].cohort.last.selectedOptions!.add(op);
-                  found = true;
-                  break;
-                }
-              }
-              if (found) break;
-            }
+            thiscohort = list.leadergroup.last.cohort.last;
             break;
           case 'jrcaster':
-            if (list.jrcasters[jrgroup].cohort.last.selectedOptions == null) list.jrcasters[jrgroup].cohort.last.selectedOptions = [];
-            Cohort thiscohort = list.jrcasters[jrgroup].cohort.last;
-            for (var g in thiscohort.product.models[0].modularoptions!) {
-              bool found = false;
-              for (var op in g.options!) {
-                if (op.name == optionname) {
-                  list.jrcasters[jrgroup].cohort.last.selectedOptions!.add(op);
-                  found = true;
-                  break;
-                }
-              }
-              if (found) break;
-            }
+            thiscohort = list.jrcasters.last.cohort.last;
             break;
           case 'unit':
-            if (list.units[unitgroup].cohort.last.selectedOptions == null) list.units[unitgroup].cohort.last.selectedOptions = [];
-            Cohort thiscohort = list.units[unitgroup].cohort.last;
-            for (var g in thiscohort.product.models[0].modularoptions!) {
-              bool found = false;
-              for (var op in g.options!) {
-                if (op.name == optionname) {
-                  list.units[unitgroup].cohort.last.selectedOptions!.add(op);
-                  found = true;
-                  break;
-                }
-              }
-              if (found) break;
-            }
+            thiscohort = list.units.last.cohort.last;
+            break;
+          case 'oofjrcaster':
+            thiscohort = list.leadergroup.last.oofjrcasters.last.cohort.last;
+            break;
+          case 'oofunit':
+            thiscohort = list.leadergroup.last.oofunits.last.cohort.last;
             break;
           default:
-            break;
+            thiscohort = Cohort(product: blankproduct);
+        }
+        if (thiscohort.product.name != '') {
+          thiscohort.selectedOptions ??= [];
+          for (var g in thiscohort.product.models[0].modularoptions!) {
+            bool found = false;
+            for (var op in g.options!) {
+              if (op.name == optionname) {
+                thiscohort.selectedOptions!.add(Option.copy(op));
+                found = true;
+                break;
+              }
+            }
+            if (found) break;
+          }
         }
       } else {
         String unitsize = '';
@@ -1128,8 +1111,17 @@ class FactionNotifier extends ChangeNotifier {
         }
         Product thisproduct = findByName(p); //factionProducts.firstWhere((element) => element.name == p, orElse: () => blankproduct);
         if (thisproduct.name != '') {
+          bool infaction = thisproduct.primaryFaction.contains(list.listfaction);
           switch (thisproduct.category) {
             case 'Warcasters/Warlocks/Masters':
+              bool heartofdarkness = false;
+              String heartofdarknessfaction = '';
+              for (var ab in thisproduct.models[0].characterabilities!) {
+                if (ab.name.toLowerCase().contains('heart of darkness')) {
+                  heartofdarkness = true;
+                  heartofdarknessfaction = ab.name.substring(ab.name.indexOf('[') + 1, ab.name.length - 1);
+                }
+              }
               list.leadergroup.add(LeaderGroup(
                 leader: thisproduct,
                 leaderattachment: blankproduct,
@@ -1138,65 +1130,115 @@ class FactionNotifier extends ChangeNotifier {
                 oofjrcasters: [],
                 oofsolos: [],
                 oofunits: [],
+                heartofdarkness: heartofdarkness,
+                heartofdarknessfaction: heartofdarknessfaction,
               ));
-              leadergroup += 1;
               lastleader = 'warcaster';
               break;
             case 'Warjacks/Warbeasts/Horrors':
-              if (lastleader == 'warcaster') {
-                list.leadergroup[leadergroup].cohort.add(Cohort(product: thisproduct, selectedOptions: []));
-              }
-              if (lastleader == 'jrcaster') {
-                list.jrcasters[jrgroup].cohort.add(Cohort(product: thisproduct, selectedOptions: []));
-              }
-              if (lastleader == 'unit') {
-                list.units[unitgroup].cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+              switch (lastleader) {
+                case 'warcaster':
+                  list.leadergroup.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                  break;
+                case 'jrcaster':
+                  list.jrcasters.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                  break;
+                case 'unit':
+                  list.units.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                  break;
+                case 'oofjrcaster':
+                  list.leadergroup.last.oofjrcasters.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                  break;
+                case 'oofunit':
+                  list.leadergroup.last.oofunits.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                  break;
               }
               break;
             case 'Solos':
-              if (checkSoloForJourneyman(thisproduct) || checkProductForMarshal(thisproduct)) {
-                list.jrcasters.add(JrCasterGroup(leader: thisproduct, cohort: []));
-                jrgroup += 1;
-                lastleader = 'jrcaster';
+              if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                if (checkSoloForJourneyman(thisproduct) || checkProductForMarshal(thisproduct)) {
+                  list.jrcasters.add(JrCasterGroup(leader: thisproduct, cohort: []));
+                  lastleader = 'jrcaster';
+                } else {
+                  list.solos.add(thisproduct);
+                }
               } else {
-                list.solos.add(thisproduct);
+                if (checkSoloForJourneyman(thisproduct) || checkProductForMarshal(thisproduct)) {
+                  list.leadergroup.last.oofjrcasters.add(JrCasterGroup(leader: thisproduct, cohort: []));
+                  lastleader = 'oofjrcaster';
+                } else {
+                  list.leadergroup.last.oofsolos.add(thisproduct);
+                }
               }
               break;
             case 'Units':
               bool min = true;
-              if (thisproduct.unitPoints!['maxunit'] == unitsize) min = false;
-              list.units.add(Unit(
-                unit: thisproduct,
-                minsize: min,
-                hasMarshal: false,
-                commandattachment: blankproduct,
-                weaponattachments: [],
-                cohort: [],
-                weaponattachmentlimits: [],
-              ));
-              unitgroup += 1;
-              list.units.last.hasMarshal = checkUnitForMashal(list.units.last);
-              if (list.units.last.hasMarshal) {
-                lastleader = 'unit';
+              if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                if (thisproduct.unitPoints!['maxunit'] == unitsize) min = false;
+                list.units.add(Unit(
+                  unit: thisproduct,
+                  minsize: min,
+                  hasMarshal: false,
+                  commandattachment: blankproduct,
+                  weaponattachments: [],
+                  cohort: [],
+                  weaponattachmentlimits: [],
+                ));
+                list.units.last.hasMarshal = checkUnitForMashal(list.units.last);
+                if (list.units.last.hasMarshal) {
+                  lastleader = 'unit';
+                }
+                list.units.last.weaponattachmentlimits = getUnitWeaponAttachLimit(list.units.last.unit.name);
+                break;
+              } else {
+                if (thisproduct.unitPoints!['maxunit'] == unitsize) min = false;
+                list.leadergroup.last.oofunits.add(Unit(
+                  unit: thisproduct,
+                  minsize: min,
+                  hasMarshal: false,
+                  commandattachment: blankproduct,
+                  weaponattachments: [],
+                  cohort: [],
+                  weaponattachmentlimits: [],
+                ));
+                list.leadergroup.last.oofunits.last.hasMarshal = checkUnitForMashal(list.leadergroup.last.oofunits.last);
+                if (list.leadergroup.last.oofunits.last.hasMarshal) {
+                  lastleader = 'oofunit';
+                }
+                list.leadergroup.last.oofunits.last.weaponattachmentlimits = getUnitWeaponAttachLimit(list.leadergroup.last.oofunits.last.unit.name);
+                break;
               }
-              list.units.last.weaponattachmentlimits = getUnitWeaponAttachLimit(list.units.last.unit.name);
-              break;
             case 'Attachments':
               for (var ab in thisproduct.models[0].characterabilities!) {
                 if (ab.name == "Attached") {
-                  list.leadergroup[leadergroup].leaderattachment = thisproduct;
+                  list.leadergroup.last.leaderattachment = thisproduct;
                   break;
                 }
                 if (ab.name.toLowerCase().contains('command') && ab.name.toLowerCase().contains('attachment')) {
-                  list.units[unitgroup].commandattachment = thisproduct;
-                  break;
+                  if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                    list.units.last.commandattachment = thisproduct;
+                    break;
+                  } else {
+                    list.leadergroup.last.oofunits.last.commandattachment = thisproduct;
+                    list.leadergroup.last.oofunits.last.hasMarshal = checkUnitForMashal(list.leadergroup.last.oofunits.last);
+                    if (list.leadergroup.last.oofunits.last.hasMarshal) {
+                      lastleader = 'oofunit';
+                    }
+                    break;
+                  }
                 }
                 if (ab.name.toLowerCase().contains('weapon') && ab.name.toLowerCase().contains('attachment')) {
-                  list.units[unitgroup].weaponattachments.add(thisproduct);
-                  break;
+                  if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                    list.units.last.weaponattachments.add(thisproduct);
+                    break;
+                  } else {
+                    list.leadergroup.last.oofunits.last.weaponattachments.add(thisproduct);
+                    break;
+                  }
                 }
               }
               break;
+
             case 'Battle Engines':
               list.battleengines.add(thisproduct);
               break;

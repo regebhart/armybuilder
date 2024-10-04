@@ -195,6 +195,7 @@ class ArmyList {
               }
               unit['weaponattachments'] = weaponattachments;
             }
+            
             if (u.hasMarshal && u.cohort.isNotEmpty) {
               List<Map<String, dynamic>> cohort = [];
               for (var c in u.cohort) {
@@ -254,6 +255,7 @@ class ArmyList {
           }
           unit['weaponattachments'] = weaponattachments;
         }
+
         if (u.hasMarshal && u.cohort.isNotEmpty) {
           List<Map<String, dynamic>> cohort = [];
           for (var c in u.cohort) {

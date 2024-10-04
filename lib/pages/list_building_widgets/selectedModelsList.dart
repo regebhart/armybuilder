@@ -417,8 +417,32 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
     if (army.armyList.listfaction == 'Infernals' && army.armyList.heartofdarkness) {
       for (var a = 0; a < army.armyList.leadergroup.length; a++) {
         if (army.armyList.leadergroup[a].heartofdarknessfaction != '') {
-          oofwidgets.add(Text(
-              'Heart of Darkness - ${AppData().factionList.firstWhere((element) => element['name']!.toLowerCase() == army.armyList.leadergroup[a].heartofdarknessfaction!)['name']} Options'));
+          oofwidgets.add(Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.white, width: 2),
+                        color: Colors.black,
+                      ),
+                      child: Text(
+                        'Heart of Darkness - ${AppData().factionList.firstWhere((element) => element['name']!.toLowerCase() == army.armyList.leadergroup[a].heartofdarknessfaction!)['name']} Options',
+                        style: const TextStyle(fontSize: 14),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ));
           if (army.armyList.leadergroup[a].oofjrcasters.isNotEmpty) {
             for (var jr = 0; jr < army.armyList.leadergroup[a].oofjrcasters.length; jr++) {
               JrCasterGroup jrcastergroup = army.armyList.leadergroup[a].oofjrcasters[jr];

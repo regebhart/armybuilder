@@ -2496,8 +2496,10 @@ class ArmyListNotifier extends ChangeNotifier {
       list = _armyList;
     }
     String export = 'WM3.5 Army\n\n${list.listfaction} - ${list.name}\n\n${list.totalpoints} / ${list.pointtarget}\n';
+    bool first = true;
 
     for (var g in list.leadergroup) {
+      if (!first) export = '$export\n';
       if (g.leader.name != '') {
         export = '$export\n${g.leader.name} - BGP: +${g.leader.points}';
       }
@@ -2515,9 +2517,9 @@ class ArmyListNotifier extends ChangeNotifier {
       if (g.oofjrcasters.isNotEmpty) {
         export = '$export\n';
         for (var jr in g.oofjrcasters) {
-          export = '$export\n* ${jr.leader.name} - PC: ${jr.leader.points}';
+          export = '$export\n ${jr.leader.name} - PC: ${jr.leader.points}';
           for (var c in jr.cohort) {
-            export = '$export\n*- ${c.product.name} - PC: ${c.product.points}';
+            export = '$export\n- ${c.product.name} - PC: ${c.product.points}';
             if (c.selectedOptions!.isNotEmpty) {
               for (var op in c.selectedOptions!) {
                 export = '$export \n + ${op.name} - PC: ${op.cost}';
@@ -2530,16 +2532,16 @@ class ArmyListNotifier extends ChangeNotifier {
         export = '$export\n';
         for (var u in g.oofunits) {
           export =
-              '$export\n* ${u.unit.name} - ${u.unit.unitPoints![u.minsize ? 'minunit' : 'maxunit']} - PC: ${u.unit.unitPoints![u.minsize ? 'mincost' : 'maxcost']}';
+              '$export\n ${u.unit.name} - ${u.unit.unitPoints![u.minsize ? 'minunit' : 'maxunit']} - PC: ${u.unit.unitPoints![u.minsize ? 'mincost' : 'maxcost']}';
           if (u.commandattachment.name != '') {
-            export = '$export\n*- ${u.commandattachment.name} - PC: ${u.commandattachment.points!}';
+            export = '$export\n- ${u.commandattachment.name} - PC: ${u.commandattachment.points!}';
           }
           for (var wa in u.weaponattachments) {
-            export = '$export\n*- ${wa.name} - PC: ${wa.points}';
+            export = '$export\n- ${wa.name} - PC: ${wa.points}';
           }
           if (u.hasMarshal) {
             for (var c in u.cohort) {
-              export = '$export\n*- ${c.product.name} - PC: ${c.product.points}';
+              export = '$export\n- ${c.product.name} - PC: ${c.product.points}';
               if (c.selectedOptions!.isNotEmpty) {
                 for (var op in c.selectedOptions!) {
                   export = '$export \n + ${op.name} - PC: ${op.cost}';
@@ -2552,10 +2554,12 @@ class ArmyListNotifier extends ChangeNotifier {
       if (g.oofsolos.isNotEmpty) {
         export = '$export\n';
         for (var s in g.oofsolos) {
-          export = '$export\n* ${s.name} - PC: ${s.points}';
+          export = '$export\n ${s.name} - PC: ${s.points}';
         }
       }
+      first = false;
     }
+
     if (list.jrcasters.isNotEmpty) {
       export = '$export\n';
       for (var jr in list.jrcasters) {
@@ -2693,6 +2697,9 @@ class ArmyListNotifier extends ChangeNotifier {
           firstcaster = group.unit;
         }
       }
+    }
+    for (var s = 0; s < army.solos.length; s++) {
+      addModelToList(army.solos[s], false, null);
     }
     for (var be = 0; be < army.battleengines.length; be++) {
       _addToIndex = be;
