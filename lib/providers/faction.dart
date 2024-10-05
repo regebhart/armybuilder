@@ -754,15 +754,19 @@ class FactionNotifier extends ChangeNotifier {
         bool heartofdarkness = false; //should only be checked if true if it's an infernal list
         String heartofdarknessfaction = '';
 
-        for (var ab in group.leader.models[0].characterabilities!) {
-          if (ab.name.toLowerCase().contains('caster adept') || ab.name.toLowerCase().contains('warlock adept')) {
-            adeptfaction = ab.name.substring(ab.name.indexOf('[') + 1, ab.name.length - 1);
-            casteradept = true;
-          }
-          if (ab.name.toLowerCase().contains('heart of darkness')) {
-            heartofdarknessfaction = ab.name.substring(ab.name.indexOf('[') + 1, ab.name.length - 1);
-            heartofdarkness = true;
-            army.heartofdarkness = true;
+        if (group.leader.models.isNotEmpty) {
+          if (group.leader.models[0].characterabilities!.isNotEmpty) {
+            for (var ab in group.leader.models[0].characterabilities!) {
+              if (ab.name.toLowerCase().contains('caster adept') || ab.name.toLowerCase().contains('warlock adept')) {
+                adeptfaction = ab.name.substring(ab.name.indexOf('[') + 1, ab.name.length - 1);
+                casteradept = true;
+              }
+              if (ab.name.toLowerCase().contains('heart of darkness')) {
+                heartofdarknessfaction = ab.name.substring(ab.name.indexOf('[') + 1, ab.name.length - 1);
+                heartofdarkness = true;
+                army.heartofdarkness = true;
+              }
+            }
           }
         }
 

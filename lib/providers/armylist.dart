@@ -425,6 +425,7 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   bool updateSelectedCaster(String type, Product product) {
+    if (_armyList.leadergroup[0].leader.name == '') return false;
     bool found = false;
     // _hodleaderindex = -1;
     _selectedcastertype = type;
@@ -535,70 +536,72 @@ class ArmyListNotifier extends ChangeNotifier {
 
   setcasterfactionindex() {
     //sets faction indexes to show the appropriate cohort models that the caster can take
-    int primaryfactionindex = 0;
-    bool merc = false;
-    bool partisan = false;
-    _selectedcasterFactionIndexes.clear();
-    for (var f in _selectedcasterProduct.primaryFaction) {
-      _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == f));
-    }
-    for (var ab in _selectedcasterProduct.models[0].characterabilities!) {
-      // Partisan - not mercenary, faction of selected faction
-      // Mercenary
-      // Strange Bedfellows - faction of caster
-      // Attachment
-      // Attached
-      // Requisition - gains tagged faction
-      // Military Atache - mercenary model for tagged faction
-      // Split Loyalties - two primary factions, selected faction is valid
-      // Animosity - can not be in army that includes tag
-      // Faithful - is a Religion of the Twins model as well as primary faction ///should be primary faction
-      // Garrison Troops - is Ord or Llael - //////should be primary
-      // Flames in the Darkness - faction of the caster
-      // Heart of Darkness - faction of the caster - /////should be primary
-      // Special Issue - can be included in any list with character listed
-      if (ab.name.toLowerCase().contains('mercenary')) {
-        merc = true;
+    if (_selectedcasterProduct.name != '') {
+      int primaryfactionindex = 0;
+      bool merc = false;
+      bool partisan = false;
+      _selectedcasterFactionIndexes.clear();
+      for (var f in _selectedcasterProduct.primaryFaction) {
+        _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'] == f));
       }
-      if (ab.name.toLowerCase().contains("split loyalties")) {
-        _selectedcasterFactionIndexes.clear();
-        _selectedcasterFactionIndexes
-            .add(AppData().factionList.indexWhere((element) => element['name'].toString().toLowerCase() == _armyList.listfaction.toLowerCase()));
-      }
-      if (ab.name.toLowerCase().contains('partisan')) {
-        if (_armyList.listfaction != "Mercenaries" && ab.name.toLowerCase().contains(_armyList.listfaction.toLowerCase())) {
-          //change the model to a faction model
-          partisan = true;
+      for (var ab in _selectedcasterProduct.models[0].characterabilities!) {
+        // Partisan - not mercenary, faction of selected faction
+        // Mercenary
+        // Strange Bedfellows - faction of caster
+        // Attachment
+        // Attached
+        // Requisition - gains tagged faction
+        // Military Atache - mercenary model for tagged faction
+        // Split Loyalties - two primary factions, selected faction is valid
+        // Animosity - can not be in army that includes tag
+        // Faithful - is a Religion of the Twins model as well as primary faction ///should be primary faction
+        // Garrison Troops - is Ord or Llael - //////should be primary
+        // Flames in the Darkness - faction of the caster
+        // Heart of Darkness - faction of the caster - /////should be primary
+        // Special Issue - can be included in any list with character listed
+        if (ab.name.toLowerCase().contains('mercenary')) {
+          merc = true;
+        }
+        if (ab.name.toLowerCase().contains("split loyalties")) {
           _selectedcasterFactionIndexes.clear();
           _selectedcasterFactionIndexes
               .add(AppData().factionList.indexWhere((element) => element['name'].toString().toLowerCase() == _armyList.listfaction.toLowerCase()));
         }
-      }
-      if (ab.name.toLowerCase().contains('heart of darkness')) {
-        if (_armyList.listfaction == "Infernals") {
-          _selectedcasterFactionIndexes.remove("Infernals");
+        if (ab.name.toLowerCase().contains('partisan')) {
+          if (_armyList.listfaction != "Mercenaries" && ab.name.toLowerCase().contains(_armyList.listfaction.toLowerCase())) {
+            //change the model to a faction model
+            partisan = true;
+            _selectedcasterFactionIndexes.clear();
+            _selectedcasterFactionIndexes
+                .add(AppData().factionList.indexWhere((element) => element['name'].toString().toLowerCase() == _armyList.listfaction.toLowerCase()));
+          }
         }
+        if (ab.name.toLowerCase().contains('heart of darkness')) {
+          if (_armyList.listfaction == "Infernals") {
+            _selectedcasterFactionIndexes.remove("Infernals");
+          }
+        }
+        // case "strange bedfellows":
+        //   //no changes
+        //   break;
+        // case "requisition":
+        //   //should be primary faction
+        //   break;
+        // case "faitful":
+        //   //should be primary faction
+        //   break;
+        // case "mercenary atache":
+        //   //becomes mercenary for llael, cohort
+        //   break;
+        // case "garrison"
+        //   break;
       }
-      // case "strange bedfellows":
-      //   //no changes
-      //   break;
-      // case "requisition":
-      //   //should be primary faction
-      //   break;
-      // case "faitful":
-      //   //should be primary faction
-      //   break;
-      // case "mercenary atache":
-      //   //becomes mercenary for llael, cohort
-      //   break;
-      // case "garrison"
-      //   break;
+      if (merc && !partisan) {
+        _selectedcasterFactionIndexes.clear();
+        _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'].toString().toLowerCase() == 'mercenaries'));
+      }
+      notifyListeners();
     }
-    if (merc && !partisan) {
-      _selectedcasterFactionIndexes.clear();
-      _selectedcasterFactionIndexes.add(AppData().factionList.indexWhere((element) => element['name'].toString().toLowerCase() == 'mercenaries'));
-    }
-    notifyListeners();
   }
 
   updateEverything() {
