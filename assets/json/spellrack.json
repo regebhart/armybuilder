@@ -1,1 +1,1691 @@
-{"updated": "09-29-2024", "spellrack": [{"name":"Arcane Bolt","cost":"2","rng":"12","aoe":"-","pow":"11","dur":"-","off":true,"description":"Magical bolts of energy streak toward the target model.","poolcost":"0","poolfactions":["Cygnar"]},{"name":"Flashing Blade","cost":"1","rng":"SELF","aoe":"-","pow":"-","dur":"-","off":false,"description":"The spellcaster immediately makes one basic attack with one of its melee weapons against each enemy model in its LOS that is in the weapon's melee range. These attacks are simultaneous.","poolcost":"0","poolfactions":["Cygnar","Ios","Khador"]},{"name":"Jackhammer","cost":"1","rng":"6","aoe":"-","pow":"-","dur":"-","off":false,"description":"Target model in the spellcaster's battlegroup immediately makes one basic melee attack.","poolcost":"0","poolfactions":["Cygnar","Trollbloods"]},{"name":"Jumpstart","cost":"1","rng":"SELF","aoe":"CTRL","pow":"-","dur":"-","off":false,"description":"Models in the spellcaster's battlegroup that are currently in its Control Range stand up and are no longer stationary. Affected models can turn to face any direction. Models that were knocked down this turn are not affected by Jumpstart.","poolcost":"0","poolfactions":["Khador"]},{"name":"Open Fire","cost":"1","rng":"CTRL","aoe":"-","pow":"-","dur":"-","off":true,"description":"Target Cohort model in this model's battlegroup that is in its Control Range can immediately make one basic ranged attack. A model can be targeted by open fire only once per turn.","poolcost":"0","poolfactions":["Blindwater Congregation","Khador","Trollbloods"]},{"name":"Arcane Blast","cost":"3","rng":"10","aoe":"4","pow":"13","dur":"-","off":true,"description":"A magical energy blast radiates from a single point to strike all models in the AOE.","poolcost":"1","poolfactions":["Cygnar"]},{"name":"Earth's Sanctuary","cost":"1","rng":"6","aoe":"-","pow":"-","dur":"*","off":false,"description":"Target friendly Faction model becomes dug in. (while dug in, a model gains cover, Blast Resistance, and does not block LOS. The model remains dug in until it moves, is placed, engaged.)","poolcost":"1","poolfactions":["Vengeance of Dhunia"]},{"name":"Explosivo","cost":"1","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model's ranged weapons gain Damage Type: Arcane. If the affected model directly hits and boxes an enemy model with an attack from a ranged weapon, center a 3\" AOE on the boxed model, then remove that model from play. Models in the AOE are hit and suffer an unboostable POW 10 magical blast damage roll.","poolcost":"1","poolfactions":["Cygnar","Trollbloods"]},{"name":"Return Fire","cost":"1","rng":"6","aoe":"-","pow":"-","dur":"RND","off":false,"description":"When target friendly Faction model is targeted by an enemy ranged attack, after the attack is resolved the affected model can make one basic melee or ranged attack, then Return fire expires. Return Fire lasts for one round.","poolcost":"1","poolfactions":["Khador"]},{"name":"Admonition","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"When an enemy model advances and ends its movement or is warped within 6\" of target model in this spellcaster's battlegroup, the affected model can immediately advance up to 3\", then Admonition expires.","poolcost":"2","poolfactions":["Cryx","Ios","Trollbloods"]},{"name":"Arcantrik Bolt","cost":"2","rng":"10","aoe":"-","pow":"12","dur":"-","off":true,"description":"A warjack damaged by this attack becomes stationary for one round.","poolcost":"2","poolfactions":["Ios"]},{"name":"Banishing Ward","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Enemy upkeep spells and animi on target friendly model/unit expire. Affected models cannot be targeted by enemy spells or animi.","poolcost":"2","poolfactions":["Khador"]},{"name":"Battle Host","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"UP","off":false,"description":"Warbeasts in the spellcaster's battlegroup beginning their activations in it's Control Range gain +2\" movement when advancing as part of their Normal Movement. The spellcaster gains +2 ARM while one or more warbeasts in it's battlegroup are within 3\" of it.","poolcost":"2","poolfactions":["Blindwater Congregation"]},{"name":"Bleed","cost":"2","rng":"8","aoe":"-","pow":"10","dur":"-","off":true,"description":"When Bleed damages a living enemy model, this model can remove d3 damage points.","poolcost":"2","poolfactions":["Cryx"]},{"name":"Bone Shaker","cost":"2","rng":"8","aoe":"-","pow":"12","dur":"-","off":true,"description":"When Bone Shaker boxes a living or undead non-Leader enemy warrior model, you can immediately take Control of the model and make a full advance with the enemy model followed by a basic melee attack, then the boxed model is removed from play. The boxed model cannot be targeted by free strikes during this movement.","poolcost":"2","poolfactions":["Blindwater Congregation"]},{"name":"Boundless Charge","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"During it's activation, target friendly faction model can charge without spending focus or being forced and gains +2 SPD and Pathfinder when it charges. Boundless Charge lasts for one turn.","poolcost":"2","poolfactions":["Blindwater Congregation"]},{"name":"Carnage","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"Friendly Faction models gain +2 to melee attack rolls against enemy models in the spellcaster's Control Range. Carnage lasts for one turn.","poolcost":"2","poolfactions":["Cryx"]},{"name":"Carnivore","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +2 to melee attack rolls against living models. When an affected model destroys a living model with a melee attack, the destroyed model is removed from play and the spellcaster can remove d3 damage points.","poolcost":"2","poolfactions":["Blindwater Congregation","Khymaera"]},{"name":"Caustic Mist","cost":"2","rng":"CTRL","aoe":"3","pow":"-","dur":"RND","off":false,"description":"Place a 3\" AOE cloud effect completely within the spellcaster's Control Range. A model entering or ending its activation in the AOE suffers the Corrosion continuous effect. Caustic Mist lasts for one round.","poolcost":"2","poolfactions":["Cryx"]},{"name":"Chain Blast","cost":"3","rng":"10","aoe":"3","pow":"12","dur":"-","off":true,"description":"After determining the point of impact for this attack, roll deviation for an additional 3\" AOE from that point. Models in that AOE are hit and suffer a POW 6 blast damage roll.","poolcost":"2","poolfactions":["Ios"]},{"name":"Chosen Ground","cost":"2","rng":"Self","aoe":"Ctrl","pow":"-","dur":"UP","off":false,"description":"While in the spellcaster's Control range, models in its battlegroup gain Pathfinder and Steady. (A model with Steady cannot be knocked down.)","poolcost":"2","poolfactions":["Trollbloods"]},{"name":"Convection","cost":"2","rng":"10","aoe":"-","pow":"12","dur":"-","off":true,"description":"When Convection destroys a living enemy model, you can give 1 focus point to a warjack in the spellcaster's battlegroup that is in its Control Range.","poolcost":"2","poolfactions":["Ios"]},{"name":"Countermeasure","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"While within 5\" of target friendly Faction model/unit, enemy models cannot make ranged attacks.","poolcost":"2","poolfactions":["Cygnar","Ios"]},{"name":"Dash","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"The spellcaster and friendly Faction warrior models activating in its Control Range gain +1 SPD. While in the spellcaster's Control Range, friendly Faction warrior models gain Unstoppable. Dash lasts for one turn.","poolcost":"2","poolfactions":["Khymaera"]},{"name":"Deadeye","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"Target friendly Faction model/unit gains an additional die on each model's first non-spray tanged attack roll this turn.","poolcost":"2","poolfactions":["Cygnar"]},{"name":"Deadweight","cost":"2","rng":"8","aoe":"-","pow":"12","dur":"-","off":true,"description":"When Deadweight destroys an enemy living or undead model, choose an enemy model within 2\" of it. The chose model must forfeit either its Normal Movement or its Combat Action during its next activation, as its controller chooses.","poolcost":"2","poolfactions":["Blindwater Congregation","Cryx"]},{"name":"Death Ward","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +2 ARM. If an affected warjack is damaged, choose which column suffers the damage. Models are not affected while out of formation.","poolcost":"2","poolfactions":["Cryx"]},{"name":"Dragon's Blood","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +2 ARM. When an affected model is disabled by a melee attack, the attacker suffers the Corrosion continuous effect. Models are not affected while out of formation.","poolcost":"2","poolfactions":["Khymaera"]},{"name":"Electrical Blast","cost":"3","rng":"8","aoe":"3","pow":"13","dur":"RND","off":true,"description":"Electrical Blast causes electrical damage. Warjacks damaged by Electrical Blast suffer Disruption.","poolcost":"2","poolfactions":["Cygnar"]},{"name":"Energizer","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"-","off":false,"description":"Each model in the spellcaster's battlegroup that is currently in its Control Range can immediately advance up to 2\". Energizer can be cast only once per activation.","poolcost":"2","poolfactions":["Cygnar"]},{"name":"Escort","cost":"2","rng":"SELF","aoe":"-","pow":"-","dur":"UP","off":true,"description":"Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range gain +2' movement when advancing as part of their Normal Movement. The spellcaster gains +2 ARM while one or more warjacks in its battlegroup are within 3' of it.","poolcost":"2","poolfactions":["Cryx","Khador"]},{"name":"Execration of Blackest Night","cost":"2","rng":"SELF","aoe":"-","pow":"-","dur":"RND","off":false,"description":"While in the spellcaster's command range, enemy models suffer -2 to their accuracy rolls. Execration of Blackest Night lasts for one round.","poolcost":"2","poolfactions":["Khymaera"]},{"name":"Fortify","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target model in the spellcaster's battlegroup gains +2 ARM. That model and any friendly model B2B with it cannot become knocked down, be pushed, or moved by a slam.","poolcost":"2","poolfactions":["Blindwater Congregation","Trollbloods"]},{"name":"Fortune","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit can reroll its missed attack rolls. Each attack roll can be rerolled only once as a result of Fortune.","poolcost":"2","poolfactions":["Blindwater Congregation","Trollbloods"]},{"name":"Fury","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +3 to melee damage rolls but suffers -1 DEF.","poolcost":"2","poolfactions":["Blindwater Congregation"]},{"name":"Fury's Strength","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"Target friendly Faction warrior model/unit gains +2 to it's melee attack damage rolls for one turn.","poolcost":"2","poolfactions":["Blindwater Congregation","Trollbloods"]},{"name":"Ghost Walk","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"Target friendly Faction model/unit gains Ghostly for one turn. (A model with Ghostly can advance through terrain and obstacles without penalty and can advance through obstructions if it has enough movement to move completely past them. It cannot be targeted by free strikes).","poolcost":"2","poolfactions":["Cryx","Ios"]},{"name":"Grave Wind","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model gains +2 DEF and Poltergeist. (When an enemy model misses a model with Poltergeist with an attack, immediately after the attack is resolved you can choose to push the enemy model d3\" directly away from the model with Poltergeist.).","poolcost":"2","poolfactions":["Blindwater Congregation"]},{"name":"Hallowed Avenger","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction Cohort model gains Righteous Vengeance. (If one or more friendly Faction warrior models were destroyed or removed from play by enemy attacks while within 5\" of a model with Righteous Vengeance during the last round, during your Maintenance Phase the model with Righteous Vengeance can advance up to 3\" and make one basic attack.).","poolcost":"2","poolfactions":["Ios"]},{"name":"Hellwrought","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target warjack in the spellcaster's battlegroup gains +2 ARM and Retaliation. (If a model with Retaliation was damaged by an enemy attack during the last round, during your Maintenance Phase it can advance up to 3\" and make one basic melee attack.).","poolcost":"2","poolfactions":["Cryx"]},{"name":"Host of Shadows","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"While in the spellcaster's Control Range, models in its battlegroup gain Ghostly. Host of Shadows lasts for one turn. (A model with Ghostly can advance through terrain and obstacles without penalty and can advance through obstructions if it has enough movement to move completely past them. It cannot be targeted by free strikes.).","poolcost":"2","poolfactions":["Khymaera"]},{"name":"Hunter's Mark","cost":"2","rng":"10","aoe":"-","pow":"-","dur":"TURN","off":true,"description":"Friendly models can charge or make a slam power attack against target enemy model hit by Hunter's Mark without being forced or spending focus. A friendly model charging an enemy model hit by Hunter's Mark gains +2\" of movement. Hunter's Mark lasts for one turn.","poolcost":"2","poolfactions":["Blindwater Congregation","Trollbloods"]},{"name":"Inviolable Resolve","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +2 ARM and cannot be moved by a push or a slam, and have Steady. (A model with Steady cannot become knocked down)","poolcost":"2","poolfactions":["Ios","Trollbloods"]},{"name":"Lightning Tendrils","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains Resistance: Electricity. Affected models' melee weapons become RNG 2 and gain Electro Leap. Models are not affected while out of formation.","poolcost":"2","poolfactions":["Cygnar"]},{"name":"Mage Sight","cost":"2","rng":"CTRL","aoe":"5","pow":"-","dur":"UP","off":false,"description":"Place a 5\" AOE completely within the spellcaster's Control Range. While a model is within the AOE, models in the spellcaster's battlegroup ignore forests and cloud effects when drawing LOS to it and ignore Stealth when attacking it.","poolcost":"2","poolfactions":["Cygnar","Ios"]},{"name":"Mirage","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains Apparition. (During your Control Phase, place models with Apparition anywhere completely within 2\" of their current locations.).","poolcost":"2","poolfactions":["Ios"]},{"name":"Onslaught","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"UP","off":false,"description":"The spellcaster and friendly Faction models beginning their activations in its Control Range gain Relentless Charge for one turn. (While advancing as part of a charge, a model with Relentless Charge gains Pathfinder.","poolcost":"2","poolfactions":["Blindwater Congregation","Cygnar","Ios"]},{"name":"Perdition","cost":"2","rng":"10","aoe":"-","pow":"10","dur":"-","off":true,"description":"When an enemy model is damaged by Perdition, immediately after the attack is resolved one warjack in the spellcaster's battlegroup that is currently in it's Control range can make a full advance toward the nearest enemy model. A model can advance as a result of perdition only once per turn.","poolcost":"2","poolfactions":["Blindwater Congregation","Trollbloods"]},{"name":"Polarity Shield","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains Polarity Field. Models are not affected while out of formation. (A model with Polarity Field cannot be charged or slam power attacked by a model beginning the charge or slam in its front arc.).","poolcost":"2","poolfactions":["Ios"]},{"name":"Razor Wind","cost":"2","rng":"10","aoe":"-","pow":"12","dur":"-","off":true,"description":"On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged.","poolcost":"2","poolfactions":["Khador"]},{"name":"Rebuke","cost":"2","rng":"10","aoe":"-","pow":"-","dur":"UP","off":true,"description":"Target model/unit cannot give orders, receive orders, or make power attacks or special attacks.","poolcost":"2","poolfactions":["Blindwater Congregation"]},{"name":"Redline","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target warjack in the spellcaster's battlegroup gains +2 SPD and +2 to melee damage rolls and can run, charge, or make slam or trample power attacks without spending focus. At the end of each of its activations, the affected warjack suffers d3 damage points.","poolcost":"2","poolfactions":["Khador"]},{"name":"Repudiate","cost":"2","rng":"10","aoe":"-","pow":"-","dur":"-","off":true,"description":"Enemy upkeep spells and animi on the model/unit directly hit by Repudiate immediately expires. When an upkeep spell expires as a result of Repudiate, the model maintaining the spell suffers d3 damage points.","poolcost":"2","poolfactions":["Cygnar"]},{"name":"Revive","cost":"2","rng":"8","aoe":"-","pow":"-","dur":"-","off":false,"description":"Return one destroyed Grunt to a friendly Faction unit with one unmarked damage box. Place the returned Grunt in the spellcaster's Control Range, in formation, and completely within 3\" of another model in its unit. The Grunt must forfeit its Combat Action the turn it is put into play.","poolcost":"2","poolfactions":["Blindwater Congregation","Ios"]},{"name":"Scything Touch","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model gains Dark Shroud. (While in the melee range of a model with Dark Shroud, enemy models suffer -2 ARM.).","poolcost":"2","poolfactions":["Cryx"]},{"name":"Shatter Storm","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains Detonator. (When a model with Detonator directly hits and boxes an enemy model with a ranged or melee attack, center a 3\" AOE on the boxed model, then remove that model from play. Models in the AOE are hit and suffer an unboostable POW 8 Magical Blast Damage roll.).","poolcost":"2","poolfactions":["Ios"]},{"name":"Silence of Death","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"Up","off":false,"description":"Target friendly Faction model/unit gains +2 to it's melee attack damage rolls and Takedown.","poolcost":"2","poolfactions":["Khymaera"]},{"name":"Stranglehold","cost":"2","rng":"10","aoe":"-","pow":"11","dur":"-","off":true,"description":"A model damaged by Stranglehold forfeits either its Normal Movement or its Combat Action during it's next activation as its Controller chooses.","poolcost":"2","poolfactions":["Ios","Trollbloods"]},{"name":"Sunder Spirit","cost":"2","rng":"10","aoe":"-","pow":"12","dur":"RND","off":true,"description":"An enemy warbeast damaged by Sunder Spirit loses its animus for one round.","poolcost":"2","poolfactions":["Trollbloods"]},{"name":"Tactical Supremacy","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition [3\"] can advance up to 3\", then its activation ends.).","poolcost":"2","poolfactions":["Cygnar","Trollbloods"]},{"name":"Teleport","cost":"2","rng":"SELF","aoe":"-","pow":"-","dur":"-","off":false,"description":"Warp the spellcaster anywhere completely within 6\" of its current location, then its activation ends.","poolcost":"2","poolfactions":["Cryx"]},{"name":"Tide Pool","cost":"2","rng":"CTRL","aoe":"-","pow":"-","dur":"RND","off":false,"description":"Place a 3\" template anywhere completely within the spellcaster's control range. The template is shallow water terrain that remains in play for one round. While in the template models gain Resistance: Fire.","poolcost":"2","poolfactions":["Trollbloods"]},{"name":"Tides of War","cost":"2","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"While in the spellcaster's Control Range, models in it's battlegroup gain Reposition [3\"]. Tides of War lasts for one turn. (At the end of an activation in which it did not run or fail a charge, a model with Reposition [3\"] can advance up to 3\", then its activation ends.).","poolcost":"2","poolfactions":["Trollbloods"]},{"name":"Veil of Mists","cost":"2","rng":"Ctrl","aoe":"4","pow":"-","dur":"UP","off":false,"description":"Place a 4” AOE cloud effect anywhere completely within the spellcaster's Control range. This AOE does not block friendly Faction models' LOS while in the AOE friendly Faction models gain Pathfinder and can move through obstructions and other models if they have enough movement to move completely past them.","poolcost":"2","poolfactions":["Blindwater Congregation","Khymaera"]},{"name":"Venom","cost":"2","rng":"SP10","aoe":"-","pow":"10","dur":"-","off":true,"description":"Venom causes corrosion damage. Models hit suffer the Continuous Corrosion effect.","poolcost":"2","poolfactions":["Blindwater Congregation","Cryx"]},{"name":"Watcher","cost":"2","rng":"SELF","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Once per turn when an enemy model advances and ends its movement within 6\" of the spellcaster, you can choose a Cohort model in the spellcaster's battlegroup that is in its Control Range. That Cohort model can immediately make a full advance toward the enemy model and then can make one basic attack targeting the enemy model.","poolcost":"2","poolfactions":["Khymaera"]},{"name":"Winter's Tide","cost":"2","rng":"SP10","aoe":"-","pow":"12","dur":"*","off":true,"description":"Winter's Tide causes Cold damage. On a critical hit, the model hit becomes stationary for one round unless it has Resistance: Cold.","poolcost":"2","poolfactions":["Trollbloods"]},{"name":"Abyssal Gate","cost":"3","rng":"8","aoe":"-","pow":"12","dur":"-","off":true,"description":"When Abyssal Gate damages an enemy non-Leader model, after the attack is resolved you can place the enemy model anywhere completely within 3\" of its current location. A model can be placed by Abyssal Gate only once per turn.","poolcost":"3","poolfactions":["Ios"]},{"name":"Arcane Shield","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +3 ARM. Models are not affected while out of formation.","poolcost":"3","poolfactions":["Cygnar"]},{"name":"Backlash","cost":"3","rng":"8","aoe":"-","pow":"-","dur":"UP","off":true,"description":"When target enemy warjack that is part of a battlegroup is damaged, its controller suffers 1 damage point.","poolcost":"3","poolfactions":["Cryx","Ios"]},{"name":"Battle Lust","cost":"3","rng":"6","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"Target friendly Faction warrior model/unit gains an additional die on melee damage rolls. Battle lust lasts for one turn.","poolcost":"3","poolfactions":["Ios"]},{"name":"Black Spot","cost":"3","rng":"8","aoe":"-","pow":"-","dur":"UP","off":true,"description":"Target enemy warrior model/unit suffers -2 DEF. When a friendly Faction model destroys one or more affected models with a basic melee or ranged attack during its Combat Action, immediately after the attack is resolved it can make one additional melee or ranged attack. Attacks gained from Black Spot cannot generate additional attacks from Black Spot.","poolcost":"3","poolfactions":["Blindwater Congregation","Cryx"]},{"name":"Black Talons","cost":"3","rng":"10","aoe":"3","pow":"15","dur":"*","off":true,"description":"Models damaged by this spell suffer Shadow Bind. (A model suffering Shadow Bind suffers -3 DEF, and for one round when it advances it cannot move except to change facing. Shadow Bind can be shaken.)","poolcost":"3","poolfactions":["Ios"]},{"name":"Blood Rain","cost":"3","rng":"8","aoe":"3","pow":"12","dur":"-","off":true,"description":"Blood Rain causes corrosion damage. Models hit suffer the Corrosion continuous effect.","poolcost":"3","poolfactions":["Blindwater Congregation","Cryx"]},{"name":"Breath of Corruption","cost":"3","rng":"8","aoe":"3","pow":"12","dur":"RND","off":true,"description":"Models hit suffer a POW 12 corrosion damage roll. This spell's AOE is a cloud effect and hazard that remains in play for one round. Models entering or ending their activations in the AOE suffer 1 point of corrosion damage.","poolcost":"3","poolfactions":["Cryx"]},{"name":"Bullet Dodger","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model gains +2 DEF and Dodge. (A model with Dodge can advance up to 2\" immediately after an enemy attack that missed it is resolved unless it was missed while advancing. It cannot be targeted by free strikes during this movement.).","poolcost":"3","poolfactions":["Cygnar","Trollbloods"]},{"name":"Calamity","cost":"3","rng":"10","aoe":"-","pow":"-","dur":"UP","off":true,"description":"Target model/unit suffers -2 DEF and -2 ARM.","poolcost":"3","poolfactions":["Cryx"]},{"name":"Chain Lightning","cost":"3","rng":"10","aoe":"-","pow":"10","dur":"-","off":true,"description":"A model hit by Chain Lightning suffers a POW 10 electrical damage roll, and lightning arcs from the model hit to d3 consecutive additional models unless that model has resistance: electricity. The lightning arcs to the nearest model it has not already arced to within 4\" of the last model it arced to ignoring models with resistance: electricity ignoring this model. Each model the lightning arcs to suffers an unboostable POW 10 electrical damage roll. Lightning arc damage rolls are not considered to have been caused by an attack. Chain Lightning damage rolls are simultaneous.","poolcost":"3","poolfactions":["Thornfall Alliance"]},{"name":"Consuming Flames","cost":"3","rng":"10","aoe":"4","pow":"12","dur":"-","off":true,"description":"Consuming Flames causes fire damage. Models hit suffer the Continuous Fire effect.","poolcost":"3","poolfactions":["Thornfall Alliance"]},{"name":"Curse of Shadows","cost":"3","rng":"8","aoe":"-","pow":"-","dur":"UP","off":true,"description":"Target model/unit suffers -2 ARM. A model can advance through an affected model if it has enough movement to move completely past its base.","poolcost":"3","poolfactions":["Cryx","Ios","Khymaera"]},{"name":"Death March","cost":"3","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction unit gains +2 MAT and Vengeance. (During your Maintenance Phase, if one or more models in a unit with Vengeance were damaged by enemy attacks during the last round, each model in the unit can advance 3\" and make one basic melee attack.).","poolcost":"3","poolfactions":["Blindwater Congregation"]},{"name":"Death Pact","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"RND","off":false,"description":"While in the spellcaster's Control range, friendly Faction warrior models gain +2 ARM and Undead. Models are not affected while out of formation. Death Pact lasts for one turn.","poolcost":"3","poolfactions":["Blindwater Congregation"]},{"name":"Deceleration","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"While in the spellcaster's Control Range, friendly faction models gain +2 ARM against ranged and magic attack damage rolls. Deceleration lasts for one round.","poolcost":"3","poolfactions":["Cygnar","Ios"]},{"name":"Excarnate","cost":"3","rng":"10","aoe":"-","pow":"13","dur":"-","off":true,"description":"When a living enemy warrior model is boxed by Excarnate, remove it from play. You can then add one Grunt to a friendly Faction small-based undead unit in the spellcaster's Control Range. Place the Grunt in formation and completely within 3\" of the spellcaster. The Grunt must forfeit its Combat Action the turn it is put into play.","poolcost":"3","poolfactions":["Cryx"]},{"name":"Fire For Effect","cost":"3","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Boost the attack and damage rolls of target friendly Faction model's first ranged attack each activation.","poolcost":"3","poolfactions":["Cygnar"]},{"name":"Fog of War","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"UP","off":false,"description":"Models gain concealment while in the spellcaster's Control Range.","poolcost":"3","poolfactions":["Khador","Trollbloods"]},{"name":"Force Blast","cost":"3","rng":"CTRL","aoe":"*","pow":"-","dur":"-","off":false,"description":"Target a model in the spellcaster's battleroup that is in its control range. Enemy models currently within 2” of the target model are pushed 4” directly away from it in the order you choose.","poolcost":"3","poolfactions":["Ios"]},{"name":"Full Throttle","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range can run, charge, or make slam or trample power attacks without spending focus that activation. While in the spellcaster's Control Range, models in its battlegroup gain boosted melee attack rolls. Full Throttle lasts for one turn.","poolcost":"3","poolfactions":["Khador"]},{"name":"Gallows","cost":"3","rng":"10","aoe":"-","pow":"13","dur":"-","off":true,"description":"When an enemy model is hit by this attack, it can be pushed d6\" directly toward Gallows' point of origin.","poolcost":"3","poolfactions":["Khador"]},{"name":"Gravity Bomb","cost":"3","rng":"10","aoe":"4","pow":"12","dur":"RND","off":true,"description":"If the target model is directly hit by Gravity Bomb it suffers -2 SPD and DEF for one round. Enemy models entering the AOE, or beginning their activation in the AOE suffer -1 SPD. The AOE is a hazard that stays in play for one round.","poolcost":"3","poolfactions":["Ios"]},{"name":"Hand of Fate","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains an additional die on attack and damage rolls. Discard the lowest die in each roll.","poolcost":"3","poolfactions":["Cygnar","Khador"]},{"name":"Hellfire","cost":"3","rng":"10","aoe":"-","pow":"14","dur":"-","off":true,"description":"Models disabled by Hellfire cannot make a Tough roll. Models boxed by Hellfire are removed from play.","poolcost":"3","poolfactions":["Cryx"]},{"name":"Hex Blast","cost":"3","rng":"10","aoe":"3","pow":"13","dur":"-","off":true,"description":"Enemy upkeep spells and animi on the model/unit directly hit by Hex Blast immediately expire.","poolcost":"3","poolfactions":["Blindwater Congregation","Cryx","Khador","Trollbloods"]},{"name":"Infernal Machine","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target warjack in the spellcaster's battlegroup gains Murderous and +2 SPD. (A model with Murderous gains an additional die on melee accuracy rolls against warrior models).","poolcost":"3","poolfactions":["Cryx"]},{"name":"Mobility","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"TURN","off":false,"description":"Models in the spellcaster's battlegroup currently in its Control Range gain +2 SPD and Pathfinder for one turn.","poolcost":"3","poolfactions":["Ios"]},{"name":"Mortality","cost":"3","rng":"10","aoe":"-","pow":"-","dur":"RND","off":true,"description":"Target model/unit suffers -2 DEF and ARM, loses Tough, and cannot have damage removed from it. Mortality lasts for one round.","poolcost":"3","poolfactions":["Blindwater Congregation"]},{"name":"Occultation","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction Model/Unit gains Stealth. Models are not affected while out of formation.","poolcost":"3","poolfactions":["Blindwater Congregation","Cryx","Khymaera"]},{"name":"Parasite","cost":"3","rng":"8","aoe":"-","pow":"-","dur":"UP","off":true,"description":"Target model/unit suffers -3 ARM and the spellcaster gains +1 ARM.","poolcost":"3","poolfactions":["Blindwater Congregation","Cryx"]},{"name":"Positive Charge","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"Target friendly Faction warjack gains +2 to melee attack and melee damage rolls. While within 3\" of the affected warjack, friendly Faction non-warjack models gain +2 on melee attack and melee damage rolls. Positive Charge lasts for one turn.","poolcost":"3","poolfactions":["Cygnar"]},{"name":"Powder Keg","cost":"3","rng":"8","aoe":"3","pow":"14","dur":"*","off":true,"description":"On a critical hit, models hit lose their initial attacks and cannot make power attacks or special attacks for one round.","poolcost":"3","poolfactions":["Blindwater Congregation","Trollbloods"]},{"name":"Quicken","cost":"3","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +2 SPD and DEF against ranged and magic attack rolls.","poolcost":"3","poolfactions":["Trollbloods"]},{"name":"Rift","cost":"3","rng":"8","aoe":"4","pow":"13","dur":"RND","off":true,"description":"The AoE is rough terrain and remains in play for one round. While within the AoE models lose and cannot gain pathfinder.","poolcost":"3","poolfactions":["Cygnar"]},{"name":"Rough Seas","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"RND","off":false,"description":"When a friendly model in the spellcaster's Control Range is targeted with a ranged attack, the attacking model rolls an additional die on its attack roll. Discard the highest die of each roll. Rough Seas lasts for one round.","poolcost":"3","poolfactions":["Blindwater Congregation","Cryx","Trollbloods"]},{"name":"Snipe","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model's/unit's non spray ranged weapons gain +4 RNG.","poolcost":"3","poolfactions":["Ios"]},{"name":"Spellpiercer","cost":"2","rng":"SELF","aoe":"-","pow":"-","dur":"TURN","off":false,"description":"While in the spellcaster's Control Range, the weapons of friendly Faction models/units gain Blessed and Damage Type: Arcane. Spellpiercer lasts for one turn.","poolcost":"3","poolfactions":["Khador"]},{"name":"Stygian Abyss","cost":"3","rng":"10","aoe":"-","pow":"12","dur":"*","off":true,"description":"On a critical hit, the model hit suffers blind for one round. (A model suffering Blind cannot make ranged or magic attacks, suffers -4 MAT and DEF, and cannot run, charge, grab, throw or make slam or trample power attacks. It must forfeit either its Normal Movement or Combat Action during its next activation. Blind can be shaken.).","poolcost":"3","poolfactions":["Cryx"]},{"name":"Warpath","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"UP","off":false,"description":"When a friendly Faction model in the spellcaster's Control Range destroys one or more enemy models with a melee or ranged attack during its activation, immediately after the attack is resolved one warbeast in the spellcaster's battlegroup that is in its Control Range can advance up to 3\". A warbeast can advance as a result of Warpath only once per turn.","poolcost":"3","poolfactions":["Blindwater Congregation"]},{"name":"Weald Secrets","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains Pathfinder and Hunter. (A model with Hunter ignores concealment and cover when making a ranged attack.).","poolcost":"3","poolfactions":["Trollbloods"]},{"name":"White Squall","cost":"3","rng":"8","aoe":"-","pow":"12","dur":"-","off":true,"description":"Instead of suffering a normal damage roll, a non-incorporeal model hit by White Squall is thrown d6\" directly away from the spell's point of origin and suffers a POW 12 damage roll. The model thrown does not deviate. Collateral damage from this throw is POW 12.","poolcost":"3","poolfactions":["Cryx"]},{"name":"Wind Rush","cost":"2","rng":"SELF","aoe":"-","pow":"-","dur":"-","off":false,"description":"The spellcaster can immediately make a full advance and gains +2 DEF for one round. Wind Rush can be cast only once per activation.","poolcost":"3","poolfactions":["Khador"]},{"name":"Wind Wall","cost":"3","rng":"SELF","aoe":"-","pow":"-","dur":"RND","off":true,"description":"The spellcaster cannot make ranged attacks after casting this spell, and non-magical ranged attacks targeting it automatically miss. While completely within 3\" of the spellcaster, models cannot make ranged attacks and non-magical ranged attacks targeting them automatically miss. Wind Wall lasts for one round.","poolcost":"3","poolfactions":["Khador"]},{"name":"Blur","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction model/unit gains +3 DEF against ranged and magic attack rolls. Models are not affected while out of formation.","poolcost":"4","poolfactions":["Cygnar","Ios"]},{"name":"Death's Dominion","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"UP","off":false,"description":"While in the Spellcaster's control range, friendly Undead models gain Resistance: Blast and Rise.","poolcost":"4","poolfactions":["Cryx"]},{"name":"Force Hammer","cost":"4","rng":"10","aoe":"-","pow":"12","dur":"-","off":true,"description":"Instead of suffering a normal damage roll, a non-Incorporeal model Force Hammer hits is slammed d6\" directly away from the spell's point of origin and suffers a POW 12 damage roll. Collateral damage from this slam is POW 12.","poolcost":"4","poolfactions":["Cygnar","Ios"]},{"name":"Lamentation","cost":"3","rng":"SELF","aoe":"CTRL","pow":"-","dur":"UP","off":false,"description":"When an enemy model casts a spell while in the spellcaster's Control Range, double the COST of the spell. Additionally, enemy models must pay double to upkeep spells on models/units in the spellcaster's Control Range.","poolcost":"4","poolfactions":["Cryx"]},{"name":"Obliteration","cost":"4","rng":"10","aoe":"5","pow":"15","dur":"-","off":true,"description":"The force of this attack blasts apart the earth itself. All models hit suffer an unboostable POW 15 Arcane damage roll.","poolcost":"4","poolfactions":["Ios"]},{"name":"Superiority","cost":"2","rng":"6","aoe":"-","pow":"-","dur":"UP","off":false,"description":"Target friendly Faction Warjack gains +2 SPD, MAT and DEF and cannot become knocked down.","poolcost":"4","poolfactions":["Cygnar","Khador"]}]}
+{
+    "updated": "09-29-2024",
+    "spellrack": [
+        {
+            "name": "Arcane Bolt",
+            "cost": "2",
+            "rng": "12",
+            "aoe": "-",
+            "pow": "11",
+            "dur": "-",
+            "off": true,
+            "description": "Magical bolts of energy streak toward the target model.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Flashing Blade",
+            "cost": "1",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "The spellcaster immediately makes one basic attack with one of its melee weapons against each enemy model in its LOS that is in the weapon's melee range. These attacks are simultaneous.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar",
+                "Ios",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Jackhammer",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Target model in the spellcaster's battlegroup immediately makes one basic melee attack.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Cygnar",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Jumpstart",
+            "cost": "1",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Models in the spellcaster's battlegroup that are currently in its Control Range stand up and are no longer stationary. Affected models can turn to face any direction. Models that were knocked down this turn are not affected by Jumpstart.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Open Fire",
+            "cost": "1",
+            "rng": "CTRL",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": true,
+            "description": "Target Cohort model in this model's battlegroup that is in its Control Range can immediately make one basic ranged attack. A model can be targeted by open fire only once per turn.",
+            "poolcost": "0",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Khador",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Arcane Blast",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "4",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "A magical energy blast radiates from a single point to strike all models in the AOE.",
+            "poolcost": "1",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Earth's Sanctuary",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "*",
+            "off": false,
+            "description": "Target friendly Faction model becomes dug in. (while dug in, a model gains cover, Blast Resistance, and does not block LOS. The model remains dug in until it moves, is placed, engaged.)",
+            "poolcost": "1",
+            "poolfactions": [
+                "Vengeance of Dhunia"
+            ]
+        },
+        {
+            "name": "Explosivo",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model's ranged weapons gain Damage Type: Arcane. If the affected model directly hits and boxes an enemy model with an attack from a ranged weapon, center a 3\" AOE on the boxed model, then remove that model from play. Models in the AOE are hit and suffer an unboostable POW 10 magical blast damage roll.",
+            "poolcost": "1",
+            "poolfactions": [
+                "Cygnar",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Return Fire",
+            "cost": "1",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "When target friendly Faction model is targeted by an enemy ranged attack, after the attack is resolved the affected model can make one basic melee or ranged attack, then Return fire expires. Return Fire lasts for one round.",
+            "poolcost": "1",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Admonition",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "When an enemy model advances and ends its movement or is warped within 6\" of target model in this spellcaster's battlegroup, the affected model can immediately advance up to 3\", then Admonition expires.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx",
+                "Ios",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Arcantrik Bolt",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "A warjack damaged by this attack becomes stationary for one round.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Banishing Ward",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Enemy upkeep spells and animi on target friendly model/unit expire. Affected models cannot be targeted by enemy spells or animi.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Battle Host",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Warbeasts in the spellcaster's battlegroup beginning their activations in it's Control Range gain +2\" movement when advancing as part of their Normal Movement. The spellcaster gains +2 ARM while one or more warbeasts in it's battlegroup are within 3\" of it.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Bleed",
+            "cost": "2",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "10",
+            "dur": "-",
+            "off": true,
+            "description": "When Bleed damages a living enemy model, this model can remove d3 damage points.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Bone Shaker",
+            "cost": "2",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "When Bone Shaker boxes a living or undead non-Leader enemy warrior model, you can immediately take Control of the model and make a full advance with the enemy model followed by a basic melee attack, then the boxed model is removed from play. The boxed model cannot be targeted by free strikes during this movement.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Boundless Charge",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "During it's activation, target friendly faction model can charge without spending focus or being forced and gains +2 SPD and Pathfinder when it charges. Boundless Charge lasts for one turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Carnage",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Friendly Faction models gain +2 to melee attack rolls against enemy models in the spellcaster's Control Range. Carnage lasts for one turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Carnivore",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +2 to melee attack rolls against living models. When an affected model destroys a living model with a melee attack, the destroyed model is removed from play and the spellcaster can remove d3 damage points.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Caustic Mist",
+            "cost": "2",
+            "rng": "CTRL",
+            "aoe": "3",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "Place a 3\" AOE cloud effect completely within the spellcaster's Control Range. A model entering or ending its activation in the AOE suffers the Corrosion continuous effect. Caustic Mist lasts for one round.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Chain Blast",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "3",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "After determining the point of impact for this attack, roll deviation for an additional 3\" AOE from that point. Models in that AOE are hit and suffer a POW 6 blast damage roll.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Chosen Ground",
+            "cost": "2",
+            "rng": "Self",
+            "aoe": "Ctrl",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "While in the spellcaster's Control range, models in its battlegroup gain Pathfinder and Steady. (A model with Steady cannot be knocked down.)",
+            "poolcost": "2",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Convection",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "When Convection destroys a living enemy model, you can give 1 focus point to a warjack in the spellcaster's battlegroup that is in its Control Range.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Countermeasure",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "While within 5\" of target friendly Faction model/unit, enemy models cannot make ranged attacks.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Dash",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "The spellcaster and friendly Faction warrior models activating in its Control Range gain +1 SPD. While in the spellcaster's Control Range, friendly Faction warrior models gain Unstoppable. Dash lasts for one turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Deadeye",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains an additional die on each model's first non-spray tanged attack roll this turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Deadweight",
+            "cost": "2",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "When Deadweight destroys an enemy living or undead model, choose an enemy model within 2\" of it. The chose model must forfeit either its Normal Movement or its Combat Action during its next activation, as its controller chooses.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Death Ward",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +2 ARM. If an affected warjack is damaged, choose which column suffers the damage. Models are not affected while out of formation.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Dragon's Blood",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +2 ARM. When an affected model is disabled by a melee attack, the attacker suffers the Corrosion continuous effect. Models are not affected while out of formation.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Electrical Blast",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "3",
+            "pow": "13",
+            "dur": "RND",
+            "off": true,
+            "description": "Electrical Blast causes electrical damage. Warjacks damaged by Electrical Blast suffer Disruption.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Energizer",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Each model in the spellcaster's battlegroup that is currently in its Control Range can immediately advance up to 2\". Energizer can be cast only once per activation.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Escort",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range gain +2' movement when advancing as part of their Normal Movement. The spellcaster gains +2 ARM while one or more warjacks in its battlegroup are within 3' of it.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Execration of Blackest Night",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "While in the spellcaster's command range, enemy models suffer -2 to their accuracy rolls. Execration of Blackest Night lasts for one round.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Fortify",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target model in the spellcaster's battlegroup gains +2 ARM. That model and any friendly model B2B with it cannot become knocked down, be pushed, or moved by a slam.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Fortune",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit can reroll its missed attack rolls. Each attack roll can be rerolled only once as a result of Fortune.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Fury",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +3 to melee damage rolls but suffers -1 DEF.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Fury's Strength",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Target friendly Faction warrior model/unit gains +2 to it's melee attack damage rolls for one turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Ghost Walk",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Ghostly for one turn. (A model with Ghostly can advance through terrain and obstacles without penalty and can advance through obstructions if it has enough movement to move completely past them. It cannot be targeted by free strikes).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Grave Wind",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model gains +2 DEF and Poltergeist. (When an enemy model misses a model with Poltergeist with an attack, immediately after the attack is resolved you can choose to push the enemy model d3\" directly away from the model with Poltergeist.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Hallowed Avenger",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction Cohort model gains Righteous Vengeance. (If one or more friendly Faction warrior models were destroyed or removed from play by enemy attacks while within 5\" of a model with Righteous Vengeance during the last round, during your Maintenance Phase the model with Righteous Vengeance can advance up to 3\" and make one basic attack.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Hellwrought",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target warjack in the spellcaster's battlegroup gains +2 ARM and Retaliation. (If a model with Retaliation was damaged by an enemy attack during the last round, during your Maintenance Phase it can advance up to 3\" and make one basic melee attack.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Host of Shadows",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "While in the spellcaster's Control Range, models in its battlegroup gain Ghostly. Host of Shadows lasts for one turn. (A model with Ghostly can advance through terrain and obstacles without penalty and can advance through obstructions if it has enough movement to move completely past them. It cannot be targeted by free strikes.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Hunter's Mark",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": true,
+            "description": "Friendly models can charge or make a slam power attack against target enemy model hit by Hunter's Mark without being forced or spending focus. A friendly model charging an enemy model hit by Hunter's Mark gains +2\" of movement. Hunter's Mark lasts for one turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Inviolable Resolve",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +2 ARM and cannot be moved by a push or a slam, and have Steady. (A model with Steady cannot become knocked down)",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Lightning Tendrils",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Resistance: Electricity. Affected models' melee weapons become RNG 2 and gain Electro Leap. Models are not affected while out of formation.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Mage Sight",
+            "cost": "2",
+            "rng": "CTRL",
+            "aoe": "5",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Place a 5\" AOE completely within the spellcaster's Control Range. While a model is within the AOE, models in the spellcaster's battlegroup ignore forests and cloud effects when drawing LOS to it and ignore Stealth when attacking it.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Mirage",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Apparition. (During your Control Phase, place models with Apparition anywhere completely within 2\" of their current locations.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Onslaught",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "The spellcaster and friendly Faction models beginning their activations in its Control Range gain Relentless Charge for one turn. (While advancing as part of a charge, a model with Relentless Charge gains Pathfinder.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cygnar",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Perdition",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "10",
+            "dur": "-",
+            "off": true,
+            "description": "When an enemy model is damaged by Perdition, immediately after the attack is resolved one warjack in the spellcaster's battlegroup that is currently in it's Control range can make a full advance toward the nearest enemy model. A model can advance as a result of perdition only once per turn.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Polarity Shield",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Polarity Field. Models are not affected while out of formation. (A model with Polarity Field cannot be charged or slam power attacked by a model beginning the charge or slam in its front arc.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Razor Wind",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "On a critical hit on a warjack or warbeast, fill in the unmarked damage boxes or circles on the last column or branch damaged.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Rebuke",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Target model/unit cannot give orders, receive orders, or make power attacks or special attacks.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Redline",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target warjack in the spellcaster's battlegroup gains +2 SPD and +2 to melee damage rolls and can run, charge, or make slam or trample power attacks without spending focus. At the end of each of its activations, the affected warjack suffers d3 damage points.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Repudiate",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": true,
+            "description": "Enemy upkeep spells and animi on the model/unit directly hit by Repudiate immediately expires. When an upkeep spell expires as a result of Repudiate, the model maintaining the spell suffers d3 damage points.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Revive",
+            "cost": "2",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Return one destroyed Grunt to a friendly Faction unit with one unmarked damage box. Place the returned Grunt in the spellcaster's Control Range, in formation, and completely within 3\" of another model in its unit. The Grunt must forfeit its Combat Action the turn it is put into play.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Scything Touch",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model gains Dark Shroud. (While in the melee range of a model with Dark Shroud, enemy models suffer -2 ARM.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Shatter Storm",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Detonator. (When a model with Detonator directly hits and boxes an enemy model with a ranged or melee attack, center a 3\" AOE on the boxed model, then remove that model from play. Models in the AOE are hit and suffer an unboostable POW 8 Magical Blast Damage roll.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Silence of Death",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "Up",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +2 to it's melee attack damage rolls and Takedown.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Stranglehold",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "11",
+            "dur": "-",
+            "off": true,
+            "description": "A model damaged by Stranglehold forfeits either its Normal Movement or its Combat Action during it's next activation as its Controller chooses.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Ios",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Sunder Spirit",
+            "cost": "2",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "RND",
+            "off": true,
+            "description": "An enemy warbeast damaged by Sunder Spirit loses its animus for one round.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Tactical Supremacy",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Reposition [3\"]. (At the end of an activation in which it did not run or fail a charge, a model with Reposition [3\"] can advance up to 3\", then its activation ends.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cygnar",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Teleport",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Warp the spellcaster anywhere completely within 6\" of its current location, then its activation ends.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Tide Pool",
+            "cost": "2",
+            "rng": "CTRL",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "Place a 3\" template anywhere completely within the spellcaster's control range. The template is shallow water terrain that remains in play for one round. While in the template models gain Resistance: Fire.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Tides of War",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "While in the spellcaster's Control Range, models in it's battlegroup gain Reposition [3\"]. Tides of War lasts for one turn. (At the end of an activation in which it did not run or fail a charge, a model with Reposition [3\"] can advance up to 3\", then its activation ends.).",
+            "poolcost": "2",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Veil of Mists",
+            "cost": "2",
+            "rng": "Ctrl",
+            "aoe": "4",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Place a 4” AOE cloud effect anywhere completely within the spellcaster's Control range. This AOE does not block friendly Faction models' LOS while in the AOE friendly Faction models gain Pathfinder and can move through obstructions and other models if they have enough movement to move completely past them.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Venom",
+            "cost": "2",
+            "rng": "SP10",
+            "aoe": "-",
+            "pow": "10",
+            "dur": "-",
+            "off": true,
+            "description": "Venom causes corrosion damage. Models hit suffer the Continuous Corrosion effect.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Watcher",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Once per turn when an enemy model advances and ends its movement within 6\" of the spellcaster, you can choose a Cohort model in the spellcaster's battlegroup that is in its Control Range. That Cohort model can immediately make a full advance toward the enemy model and then can make one basic attack targeting the enemy model.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Winter's Tide",
+            "cost": "2",
+            "rng": "SP10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "*",
+            "off": true,
+            "description": "Winter's Tide causes Cold damage. On a critical hit, the model hit becomes stationary for one round unless it has Resistance: Cold.",
+            "poolcost": "2",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Abyssal Gate",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "When Abyssal Gate damages an enemy non-Leader model, after the attack is resolved you can place the enemy model anywhere completely within 3\" of its current location. A model can be placed by Abyssal Gate only once per turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Arcane Shield",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +3 ARM. Models are not affected while out of formation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Backlash",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "When target enemy warjack that is part of a battlegroup is damaged, its controller suffers 1 damage point.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Battle Lust",
+            "cost": "3",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Target friendly Faction warrior model/unit gains an additional die on melee damage rolls. Battle lust lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Black Spot",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Target enemy warrior model/unit suffers -2 DEF. When a friendly Faction model destroys one or more affected models with a basic melee or ranged attack during its Combat Action, immediately after the attack is resolved it can make one additional melee or ranged attack. Attacks gained from Black Spot cannot generate additional attacks from Black Spot.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Black Talons",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "3",
+            "pow": "15",
+            "dur": "*",
+            "off": true,
+            "description": "Models damaged by this spell suffer Shadow Bind. (A model suffering Shadow Bind suffers -3 DEF, and for one round when it advances it cannot move except to change facing. Shadow Bind can be shaken.)",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Blood Rain",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "3",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "Blood Rain causes corrosion damage. Models hit suffer the Corrosion continuous effect.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Breath of Corruption",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "3",
+            "pow": "12",
+            "dur": "RND",
+            "off": true,
+            "description": "Models hit suffer a POW 12 corrosion damage roll. This spell's AOE is a cloud effect and hazard that remains in play for one round. Models entering or ending their activations in the AOE suffer 1 point of corrosion damage.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Bullet Dodger",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model gains +2 DEF and Dodge. (A model with Dodge can advance up to 2\" immediately after an enemy attack that missed it is resolved unless it was missed while advancing. It cannot be targeted by free strikes during this movement.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Calamity",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Target model/unit suffers -2 DEF and -2 ARM.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Chain Lightning",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "10",
+            "dur": "-",
+            "off": true,
+            "description": "A model hit by Chain Lightning suffers a POW 10 electrical damage roll, and lightning arcs from the model hit to d3 consecutive additional models unless that model has resistance: electricity. The lightning arcs to the nearest model it has not already arced to within 4\" of the last model it arced to ignoring models with resistance: electricity ignoring this model. Each model the lightning arcs to suffers an unboostable POW 10 electrical damage roll. Lightning arc damage rolls are not considered to have been caused by an attack. Chain Lightning damage rolls are simultaneous.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Thornfall Alliance"
+            ]
+        },
+        {
+            "name": "Consuming Flames",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "4",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "Consuming Flames causes fire damage. Models hit suffer the Continuous Fire effect.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Thornfall Alliance"
+            ]
+        },
+        {
+            "name": "Curse of Shadows",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Target model/unit suffers -2 ARM. A model can advance through an affected model if it has enough movement to move completely past its base.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx",
+                "Ios",
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Death March",
+            "cost": "3",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction unit gains +2 MAT and Vengeance. (During your Maintenance Phase, if one or more models in a unit with Vengeance were damaged by enemy attacks during the last round, each model in the unit can advance 3\" and make one basic melee attack.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Death Pact",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "While in the spellcaster's Control range, friendly Faction warrior models gain +2 ARM and Undead. Models are not affected while out of formation. Death Pact lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Deceleration",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "While in the spellcaster's Control Range, friendly faction models gain +2 ARM against ranged and magic attack damage rolls. Deceleration lasts for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Excarnate",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "When a living enemy warrior model is boxed by Excarnate, remove it from play. You can then add one Grunt to a friendly Faction small-based undead unit in the spellcaster's Control Range. Place the Grunt in formation and completely within 3\" of the spellcaster. The Grunt must forfeit its Combat Action the turn it is put into play.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Fire For Effect",
+            "cost": "3",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Boost the attack and damage rolls of target friendly Faction model's first ranged attack each activation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Fog of War",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Models gain concealment while in the spellcaster's Control Range.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Force Blast",
+            "cost": "3",
+            "rng": "CTRL",
+            "aoe": "*",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "Target a model in the spellcaster's battleroup that is in its control range. Enemy models currently within 2” of the target model are pushed 4” directly away from it in the order you choose.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Full Throttle",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Warjacks in the spellcaster's battlegroup beginning their activations in its Control Range can run, charge, or make slam or trample power attacks without spending focus that activation. While in the spellcaster's Control Range, models in its battlegroup gain boosted melee attack rolls. Full Throttle lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Gallows",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "When an enemy model is hit by this attack, it can be pushed d6\" directly toward Gallows' point of origin.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Gravity Bomb",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "4",
+            "pow": "12",
+            "dur": "RND",
+            "off": true,
+            "description": "If the target model is directly hit by Gravity Bomb it suffers -2 SPD and DEF for one round. Enemy models entering the AOE, or beginning their activation in the AOE suffer -1 SPD. The AOE is a hazard that stays in play for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Hand of Fate",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains an additional die on attack and damage rolls. Discard the lowest die in each roll.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        },
+        {
+            "name": "Hellfire",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "14",
+            "dur": "-",
+            "off": true,
+            "description": "Models disabled by Hellfire cannot make a Tough roll. Models boxed by Hellfire are removed from play.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Hex Blast",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "3",
+            "pow": "13",
+            "dur": "-",
+            "off": true,
+            "description": "Enemy upkeep spells and animi on the model/unit directly hit by Hex Blast immediately expire.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx",
+                "Khador",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Infernal Machine",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target warjack in the spellcaster's battlegroup gains Murderous and +2 SPD. (A model with Murderous gains an additional die on melee accuracy rolls against warrior models).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Mobility",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Models in the spellcaster's battlegroup currently in its Control Range gain +2 SPD and Pathfinder for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Mortality",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": true,
+            "description": "Target model/unit suffers -2 DEF and ARM, loses Tough, and cannot have damage removed from it. Mortality lasts for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Occultation",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction Model/Unit gains Stealth. Models are not affected while out of formation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx",
+                "Khymaera"
+            ]
+        },
+        {
+            "name": "Parasite",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": true,
+            "description": "Target model/unit suffers -3 ARM and the spellcaster gains +1 ARM.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Positive Charge",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "Target friendly Faction warjack gains +2 to melee attack and melee damage rolls. While within 3\" of the affected warjack, friendly Faction non-warjack models gain +2 on melee attack and melee damage rolls. Positive Charge lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Powder Keg",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "3",
+            "pow": "14",
+            "dur": "*",
+            "off": true,
+            "description": "On a critical hit, models hit lose their initial attacks and cannot make power attacks or special attacks for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Quicken",
+            "cost": "3",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +2 SPD and DEF against ranged and magic attack rolls.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Rift",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "4",
+            "pow": "13",
+            "dur": "RND",
+            "off": true,
+            "description": "The AoE is rough terrain and remains in play for one round. While within the AoE models lose and cannot gain pathfinder.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cygnar"
+            ]
+        },
+        {
+            "name": "Rough Seas",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "RND",
+            "off": false,
+            "description": "When a friendly model in the spellcaster's Control Range is targeted with a ranged attack, the attacking model rolls an additional die on its attack roll. Discard the highest die of each roll. Rough Seas lasts for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation",
+                "Cryx",
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "Snipe",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model's/unit's non spray ranged weapons gain +4 RNG.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Spellpiercer",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "TURN",
+            "off": false,
+            "description": "While in the spellcaster's Control Range, the weapons of friendly Faction models/units gain Blessed and Damage Type: Arcane. Spellpiercer lasts for one turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Stygian Abyss",
+            "cost": "3",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "*",
+            "off": true,
+            "description": "On a critical hit, the model hit suffers blind for one round. (A model suffering Blind cannot make ranged or magic attacks, suffers -4 MAT and DEF, and cannot run, charge, grab, throw or make slam or trample power attacks. It must forfeit either its Normal Movement or Combat Action during its next activation. Blind can be shaken.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Warpath",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "When a friendly Faction model in the spellcaster's Control Range destroys one or more enemy models with a melee or ranged attack during its activation, immediately after the attack is resolved one warbeast in the spellcaster's battlegroup that is in its Control Range can advance up to 3\". A warbeast can advance as a result of Warpath only once per turn.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Blindwater Congregation"
+            ]
+        },
+        {
+            "name": "Weald Secrets",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains Pathfinder and Hunter. (A model with Hunter ignores concealment and cover when making a ranged attack.).",
+            "poolcost": "3",
+            "poolfactions": [
+                "Trollbloods"
+            ]
+        },
+        {
+            "name": "White Squall",
+            "cost": "3",
+            "rng": "8",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "Instead of suffering a normal damage roll, a non-incorporeal model hit by White Squall is thrown d6\" directly away from the spell's point of origin and suffers a POW 12 damage roll. The model thrown does not deviate. Collateral damage from this throw is POW 12.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Wind Rush",
+            "cost": "2",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "-",
+            "off": false,
+            "description": "The spellcaster can immediately make a full advance and gains +2 DEF for one round. Wind Rush can be cast only once per activation.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Wind Wall",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "RND",
+            "off": true,
+            "description": "The spellcaster cannot make ranged attacks after casting this spell, and non-magical ranged attacks targeting it automatically miss. While completely within 3\" of the spellcaster, models cannot make ranged attacks and non-magical ranged attacks targeting them automatically miss. Wind Wall lasts for one round.",
+            "poolcost": "3",
+            "poolfactions": [
+                "Khador"
+            ]
+        },
+        {
+            "name": "Blur",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction model/unit gains +3 DEF against ranged and magic attack rolls. Models are not affected while out of formation.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cygnar",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Death's Dominion",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "While in the Spellcaster's control range, friendly Undead models gain Resistance: Blast and Rise.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Force Hammer",
+            "cost": "4",
+            "rng": "10",
+            "aoe": "-",
+            "pow": "12",
+            "dur": "-",
+            "off": true,
+            "description": "Instead of suffering a normal damage roll, a non-Incorporeal model Force Hammer hits is slammed d6\" directly away from the spell's point of origin and suffers a POW 12 damage roll. Collateral damage from this slam is POW 12.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cygnar",
+                "Ios"
+            ]
+        },
+        {
+            "name": "Lamentation",
+            "cost": "3",
+            "rng": "SELF",
+            "aoe": "CTRL",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "When an enemy model casts a spell while in the spellcaster's Control Range, double the COST of the spell. Additionally, enemy models must pay double to upkeep spells on models/units in the spellcaster's Control Range.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cryx"
+            ]
+        },
+        {
+            "name": "Obliteration",
+            "cost": "4",
+            "rng": "10",
+            "aoe": "5",
+            "pow": "15",
+            "dur": "-",
+            "off": true,
+            "description": "The force of this attack blasts apart the earth itself. All models hit suffer an unboostable POW 15 Arcane damage roll.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Ios"
+            ]
+        },
+        {
+            "name": "Superiority",
+            "cost": "2",
+            "rng": "6",
+            "aoe": "-",
+            "pow": "-",
+            "dur": "UP",
+            "off": false,
+            "description": "Target friendly Faction Warjack gains +2 SPD, MAT and DEF and cannot become knocked down.",
+            "poolcost": "4",
+            "poolfactions": [
+                "Cygnar",
+                "Khador"
+            ]
+        }
+    ]
+}

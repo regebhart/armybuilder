@@ -24,6 +24,7 @@ class Spell {
   });
 
   factory Spell.fromJson(Map<String, dynamic> json) {
+    String name = '';
     String cost = '';
     String rng = '';
     String aoe = '';
@@ -34,6 +35,7 @@ class Spell {
     String poolcost = '';
     List<String> poolfactions = [];
 
+    if (json.containsKey('name')) name = json['name'];
     if (json.containsKey('cost')) cost = json['cost'];
     if (json.containsKey('rng')) rng = json['rng'];
     if (json.containsKey('aoe')) aoe = json['aoe'];
@@ -55,7 +57,7 @@ class Spell {
     }
 
     return Spell(
-      name: json['name'],
+      name: name,
       cost: cost,
       rng: rng,
       aoe: aoe,

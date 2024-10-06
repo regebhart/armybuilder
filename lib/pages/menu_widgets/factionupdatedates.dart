@@ -24,6 +24,11 @@ class _FactionDatesListTileState extends State<FactionDatesListTile> {
         dates = '$dates${f['name']}: ${faction.factionUpdateDates[f['name']]}';
       }
     }
+    if (faction.spellsUpdateDate != '') {
+      if (dates != '') dates = '$dates\n';
+      dates = '${dates}Spell Rack: ${faction.spellsUpdateDate}';
+    }
+
     return ListTile(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

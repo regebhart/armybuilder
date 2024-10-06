@@ -135,6 +135,7 @@ class ArmyList {
           for (var sp in lg.spellrack!) {
             spellrack.add(sp.name);
           }
+          group['spellrack'] = spellrack;
         }
         if (lg.leaderattachment.name != '') group['leaderattachment'] = lg.leaderattachment.name;
         List<Map<String, dynamic>> cohort = [];
@@ -195,7 +196,7 @@ class ArmyList {
               }
               unit['weaponattachments'] = weaponattachments;
             }
-            
+
             if (u.hasMarshal && u.cohort.isNotEmpty) {
               List<Map<String, dynamic>> cohort = [];
               for (var c in u.cohort) {
@@ -304,6 +305,7 @@ class LeaderGroup {
   Product leaderattachment;
   List<Cohort> cohort;
   List<Spell>? spellrack;
+  int? spellracklimit;
   bool? heartofdarkness;
   String? heartofdarknessfaction;
   List<JrCasterGroup> oofjrcasters;
@@ -315,6 +317,7 @@ class LeaderGroup {
     required this.leaderattachment,
     required this.cohort,
     this.spellrack,
+    this.spellracklimit,
     this.heartofdarkness,
     this.heartofdarknessfaction,
     required this.oofjrcasters,
@@ -335,6 +338,20 @@ class LeaderGroup {
     if (json.containsKey('cohort')) {
       for (var c in json['cohort']) {
         cohort.add(Cohort.fromJson(c));
+      }
+    }
+
+    int spellracklimit = 0;
+    if (json.containsKey('spellracklimit')) {
+      for (var m in leader.models) {
+        for (var ab in m.characterabilities!) {
+          if (ab.name.toLowerCase().contains('spell rack')) {
+            if (int.tryParse(ab.name[ab.name.indexOf('[') + 1]) != null) {
+              spellracklimit = int.parse(ab.name[ab.name.indexOf('[') + 1]);
+              break;
+            }
+          }
+        }
       }
     }
 
@@ -370,6 +387,7 @@ class LeaderGroup {
       leaderattachment: attachment,
       cohort: cohort,
       spellrack: spellrack,
+      spellracklimit: spellracklimit,
       heartofdarkness: false,
       heartofdarknessfaction: '',
       oofjrcasters: oofjrs,

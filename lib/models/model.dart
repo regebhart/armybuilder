@@ -38,7 +38,6 @@ class Model {
   List<Animus>? animi;
   bool? hasMarshal;
   String? heartofdarknessfaction;
-  String? casteradeptfaction;
 
   Model({
     required this.modelname,
@@ -64,7 +63,6 @@ class Model {
     this.animi,
     this.hasMarshal,
     this.heartofdarknessfaction,
-    this.casteradeptfaction,
   });
 
   factory Model.fromJson(Map<String, dynamic> json) {
@@ -144,16 +142,12 @@ class Model {
     // print("character abilities");
     List<Ability> characterabilities = [];
     String heartofdarknessfaction = '';
-    String casteradeptfaction = '';
     if (json.containsKey('characterabilities')) {
       for (var ab in json['characterabilities']) {
         characterabilities.add(Ability.fromJson(ab));
         String abname = characterabilities.last.name.toLowerCase();
         if (abname.contains('heart of darkness')) {
           heartofdarknessfaction = abname.substring(abname.indexOf('[') + 1, abname.length - 1);
-        }
-        if (abname.contains('caster adept')) {
-          casteradeptfaction = abname.substring(abname.indexOf('[') + 1, abname.length - 1);
         }
       }
     }
@@ -235,7 +229,6 @@ class Model {
       animi: animi,
       hasMarshal: hasMarshal,
       heartofdarknessfaction: heartofdarknessfaction,
-      casteradeptfaction: casteradeptfaction,
     );
   }
 
@@ -288,7 +281,6 @@ class Model {
       ),
       hasMarshal: model.hasMarshal,
       heartofdarknessfaction: model.heartofdarknessfaction!,
-      casteradeptfaction: model.casteradeptfaction!,
     );
     return newcopy;
   }

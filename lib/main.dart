@@ -67,6 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await context.read<FactionNotifier>().readAllFactions();
     });
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await context.read<FactionNotifier>().readAllSpells();
+    });
   }
 
   @override

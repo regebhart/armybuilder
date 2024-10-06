@@ -154,6 +154,7 @@ class ArmyListNotifier extends ChangeNotifier {
           leaderattachment: blankproduct,
           cohort: [],
           spellrack: [],
+          spellracklimit: 0,
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
@@ -278,6 +279,7 @@ class ArmyListNotifier extends ChangeNotifier {
           leaderattachment: blankproduct,
           cohort: [],
           spellrack: [],
+          spellracklimit: 0,
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
@@ -700,12 +702,7 @@ class ArmyListNotifier extends ChangeNotifier {
     _armyList.leadergroup[index].leader = leader;
     _armyList.leadergroup[index].leader.uuid = const Uuid().v1();
     _armyList.leadergroup[index].spellrack!.clear();
-    int spellcount = FactionNotifier().casterHasSpellRack(leader);
-    if (spellcount > 0) {
-      for (var s = 0; s < spellcount; s++) {
-        _armyList.leadergroup[index].spellrack!.add(blankspell);
-      }
-    }
+    _armyList.leadergroup[index].spellracklimit = FactionNotifier().casterHasSpellRack(leader);
 
     //sort casters then find new index of caster that was just added
     _armyList.leadergroup.sort((a, b) => a.leader.name.toLowerCase().compareTo(b.leader.name != "" ? b.leader.name.toLowerCase() : "zzzzzzzzz"));
@@ -1309,6 +1306,11 @@ class ArmyListNotifier extends ChangeNotifier {
       int leaderpoints = int.parse(_armyList.leadergroup[a].leader.points!);
       if (_armyList.leadergroup[a].leaderattachment.name != '') {
         _currentpoints += int.parse(_armyList.leadergroup[a].leaderattachment.points!);
+      }
+      if (_armyList.leadergroup[a].spellrack!.isNotEmpty) {
+        for (var sp in _armyList.leadergroup[a].spellrack!) {
+          _currentpoints += int.parse(sp.poolcost!);
+        }
       }
       for (var c in _armyList.leadergroup[a].cohort) {
         if (bgp < leaderpoints) {
@@ -2145,6 +2147,7 @@ class ArmyListNotifier extends ChangeNotifier {
         leaderattachment: blankproduct,
         cohort: [],
         spellrack: g.spellrack!,
+        spellracklimit: g.spellracklimit!,
         oofjrcasters: [],
         oofsolos: [],
         oofunits: [],
@@ -2268,6 +2271,11 @@ class ArmyListNotifier extends ChangeNotifier {
       if (g.leader.name != '') {
         list.add(g.leader.name);
       }
+      if (g.spellrack!.isNotEmpty) {
+        for (var sp in g.spellrack!) {
+          list.add('-Spell Rack: ${sp.name}');
+        }
+      }
       if (g.leaderattachment.name != '') {
         list.add('-${g.leaderattachment.name}');
       }
@@ -2344,12 +2352,49 @@ class ArmyListNotifier extends ChangeNotifier {
     return Colors.white;
   }
 
-  addSpellToSpellRack(Spell spell, int leaderindex, int spellindex) {
-    _armyList.leadergroup[leaderindex].spellrack![spellindex] = spell;
+  addSpellToSpellRack(Spell spell) {
+    //check if the spell is already in the list
+    if (_armyList.leadergroup[_selectedcaster].spellrack!.indexWhere((element) => element.name == spell.name) == -1) {
+      if (_armyList.leadergroup[_selectedcaster].spellrack!.length < _armyList.leadergroup[_selectedcaster].spellracklimit!) {
+        _armyList.leadergroup[_selectedcaster].spellrack!.add(spell);
+        for (var m in _armyList.leadergroup[_selectedcaster].leader.models) {
+          for (var ab in m.characterabilities!) {
+            if (ab.name.contains('Spell Rack')) {
+              m.spells!.add(spell);
+              m.spells!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+              break;
+            }
+          }
+        }
+      } else {
+        for (var m in _armyList.leadergroup[_selectedcaster].leader.models) {
+          for (var ab in m.characterabilities!) {
+            if (ab.name.contains('Spell Rack')) {
+              m.spells!.remove(_armyList.leadergroup[_selectedcaster].spellrack!.last);
+              m.spells!.add(spell);
+              m.spells!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+              break;
+            }
+          }
+        }
+        _armyList.leadergroup[_selectedcaster].spellrack!.last = spell;
+      }
+      _armyList.leadergroup[_selectedcaster].spellrack!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+      updateEverything();
+    }
   }
 
-  removeSpellFromSpellRack(int leaderindex, int spellindex) {
-    _armyList.leadergroup[leaderindex].spellrack!.removeAt(spellindex);
+  removeSpellFromSpellRack(int leaderindex, String spellname) {
+    _armyList.leadergroup[leaderindex].spellrack!.removeWhere((element) => element.name == spellname);
+    for (var m in _armyList.leadergroup[leaderindex].leader.models) {
+      for (var ab in m.characterabilities!) {
+        if (ab.name.contains('Spell Rack')) {
+          m.spells!.removeWhere((element) => element.name == spellname);
+          break;
+        }
+      }
+    }
+    notifyListeners();
   }
 
   bool checkIfOptionSelected(Option option, int groupindex, int? leaderindex) {
@@ -2458,6 +2503,7 @@ class ArmyListNotifier extends ChangeNotifier {
           leaderattachment: blankproduct,
           cohort: [],
           spellrack: [],
+          spellracklimit: 0,
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
@@ -2505,6 +2551,11 @@ class ArmyListNotifier extends ChangeNotifier {
       if (!first) export = '$export\n';
       if (g.leader.name != '') {
         export = '$export\n${g.leader.name} - BGP: +${g.leader.points}';
+      }
+      if (g.spellrack!.isNotEmpty) {
+        for (var sp in g.spellrack!) {
+          export = '$export\n- Spell Rack: ${sp.name} - PC: ${sp.poolcost!}';
+        }
       }
       if (g.leaderattachment.name != '') {
         export = '$export\n- ${g.leaderattachment.name} - PC: ${g.leaderattachment.points}';
@@ -2640,6 +2691,7 @@ class ArmyListNotifier extends ChangeNotifier {
           leaderattachment: blankproduct,
           cohort: [],
           spellrack: [],
+          spellracklimit: 0,
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
@@ -2670,6 +2722,12 @@ class ArmyListNotifier extends ChangeNotifier {
         firstcasterindex = g;
         firstcastertype = 'warcaster';
         firstcaster = army.leadergroup[g].leader;
+      }
+      army.leadergroup[g].spellracklimit = FactionNotifier().casterHasSpellRack(army.leadergroup[g].leader);
+      if (army.leadergroup[g].spellrack != null) {
+        for (var sp in army.leadergroup[g].spellrack!) {
+          addSpellToSpellRack(sp);
+        }
       }
       if (group.leaderattachment.name != '') setLeaderAttachment(group.leaderattachment);
       for (var c in group.cohort) {
@@ -2904,5 +2962,12 @@ class ArmyListNotifier extends ChangeNotifier {
     resetDeployedLists();
     resetHPListTracking();
     notifyListeners();
+  }
+
+  bool spellAtLimit(String spellname) {
+    for (var sp in _armyList.leadergroup[_selectedcaster].spellrack!) {
+      if (sp.name == spellname) return true;
+    }
+    return false;
   }
 }

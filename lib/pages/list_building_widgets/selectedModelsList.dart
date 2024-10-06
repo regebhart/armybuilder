@@ -3,7 +3,7 @@ import 'package:armybuilder/pages/list_building_widgets/widgets/listitem.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:armybuilder/pages/list_building_widgets/widgets/listmodularoption.dart';
 import 'package:armybuilder/pages/list_building_widgets/widgets/listunit.dart';
-import 'package:armybuilder/pages/widgets/model_list_widgets/spellracklistitem.dart';
+import 'package:armybuilder/pages/list_building_widgets/widgets/spellracklistitem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -72,12 +72,13 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
           ),
         ));
       }
-      if (army.armyList.leadergroup[a].spellrack!.isNotEmpty) {
-        int spellindex = 0;
-        for (var sp in army.armyList.leadergroup[a].spellrack!) {
-          if (sp.name != '') {
-            leaders.add(SpellRackListItem(title: sp.name, cost: sp.cost, casterindex: a, spellindex: spellindex));
-          } else {
+
+      if (army.armyList.leadergroup[a].spellracklimit != null) {
+        if (army.armyList.leadergroup[a].spellracklimit! > 0) {
+          for (var sp in army.armyList.leadergroup[a].spellrack!) {
+            leaders.add(SpellRackListItem(title: sp.name, cost: sp.cost, casterindex: a));
+          }
+          for (int s = army.armyList.leadergroup[a].spellrack!.length; s < army.armyList.leadergroup[a].spellracklimit!; s++) {
             leaders.add(Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -90,10 +91,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () async {
-                            //faction.setSelectedCategory(6, null);
-                            // if (army.swiping) {
-                            //   army.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-                            // }
+                            faction.setSelectedCategory(999, army.selectedcasterProduct, null, null, false, null);
                           },
                           child: Text(
                             'Select a Spell',
@@ -107,9 +105,9 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
               ),
             ));
           }
-          spellindex++;
         }
       }
+
       if (army.armyList.leadergroup[a].leaderattachment.name != '') {
         leaders.add(Padding(
           padding: itemInsets,

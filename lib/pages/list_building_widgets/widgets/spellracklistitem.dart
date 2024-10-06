@@ -8,15 +8,14 @@ class SpellRackListItem extends StatelessWidget {
   final String title;
   final String cost;
   final int casterindex;
-  final int spellindex;
-  const SpellRackListItem({required this.title, required this.cost, required this.casterindex, required this.spellindex, super.key});
+  const SpellRackListItem({required this.title, required this.cost, required this.casterindex, super.key});
 
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
 
     return Padding(
-      padding: EdgeInsets.only(left: 50, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
+      padding: EdgeInsets.only(left: AppData().selectedListLeftWidth + 20, top: AppData().listItemSpacing, bottom: AppData().listItemSpacing),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -29,7 +28,7 @@ class SpellRackListItem extends StatelessWidget {
                   flex: 1,
                   child: GestureDetector(
                     onTap: () {
-                      army.removeSpellFromSpellRack(casterindex, spellindex);
+                      army.removeSpellFromSpellRack(casterindex, title);
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
