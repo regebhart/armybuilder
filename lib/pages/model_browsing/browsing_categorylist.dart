@@ -35,6 +35,7 @@ class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
           'assets/attachment_icon.png',
           'assets/Battle_Engine_Icon.png',
           'assets/Structure_Icon.png',
+          'assets/spells.png',
         ];
       case 'hordes':
         list = AppData().hordes.toList();
@@ -46,6 +47,7 @@ class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
           'assets/attachment_icon.png',
           'assets/Battle_Engine_Icon.png',
           'assets/Structure_Icon.png',
+          'assets/spells.png',
         ];
       default:
         list = AppData().warmachine.toList();
@@ -57,12 +59,14 @@ class _BrowsingCategoryListState extends State<BrowsingCategoryList> {
           'assets/attachment_icon.png',
           'assets/Battle_Engine_Icon.png',
           'assets/Structure_Icon.png',
+          'assets/spells.png',
         ];
     }
     list.insert(4, 'Attachments');
+    list.add('Spells');
 
     List<Widget> children = [];
-    List<int> indexes = [0, 1, 2, 3, 7, 4, 5];
+    List<int> indexes = [0, 1, 2, 3, 7, 4, 5, 999];
     children = List.generate(
       list.length,
       (index) => Expanded(

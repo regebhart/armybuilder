@@ -1,5 +1,4 @@
-import 'package:armybuilder/pages/list_building_widgets/widgets/spellracklistitem.dart';
-import 'package:armybuilder/pages/widgets/model_list_widgets/spellListTile.dart';
+import 'package:armybuilder/pages/list_building_widgets/widgets/spellListTile.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:cherry_toast/cherry_toast.dart';
@@ -11,7 +10,7 @@ import '../../models/cohort.dart';
 import '../../models/product.dart';
 import '../../models/unit.dart';
 import '../../appdata.dart';
-import '../widgets/model_list_widgets/modelListTile.dart';
+import 'widgets/modelListTile.dart';
 
 class CategoryModelsList extends StatefulWidget {
   const CategoryModelsList({super.key});

@@ -1,11 +1,11 @@
 import 'package:armybuilder/pages/model_browsing/widgets/browsing_modelListTile.dart';
-import 'package:armybuilder/pages/model_browsing/widgets/browsing_spellListTile.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../appdata.dart';
 import '../../models/spells.dart';
+import 'widgets/browsing_spellListTile.dart';
 
 class BrowsingModelsList extends StatefulWidget {
   const BrowsingModelsList({super.key});

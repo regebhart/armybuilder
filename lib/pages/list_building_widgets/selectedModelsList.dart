@@ -91,7 +91,11 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () async {
-                            faction.setSelectedCategory(999, army.selectedcasterProduct, null, null, false, null);
+                            army.updateSelectedCaster('warcaster', army.armyList.leadergroup[a].leader);
+                            faction.setSelectedCategory(999, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes, false, null);
+                            if (nav.swiping) {
+                              nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                            }
                           },
                           child: Text(
                             'Select a Spell',

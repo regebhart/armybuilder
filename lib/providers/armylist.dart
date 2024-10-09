@@ -1309,7 +1309,15 @@ class ArmyListNotifier extends ChangeNotifier {
       }
       if (_armyList.leadergroup[a].spellrack!.isNotEmpty) {
         for (var sp in _armyList.leadergroup[a].spellrack!) {
-          _currentpoints += int.parse(sp.poolcost!);
+          int cost = int.parse(sp.poolcost!);
+          if (bgp < leaderpoints) {
+            bgp += cost;
+            if (bgp > leaderpoints) {
+              _currentpoints = _currentpoints + (bgp - leaderpoints);
+            }
+          } else {
+            _currentpoints += cost;
+          }
         }
       }
       for (var c in _armyList.leadergroup[a].cohort) {
@@ -1434,6 +1442,11 @@ class ArmyListNotifier extends ChangeNotifier {
   int calculateBGP(int groupnum) {
     int bgp = 0;
     if (_armyList.leadergroup.length > groupnum) {
+      if (_armyList.leadergroup[groupnum].spellrack!.isNotEmpty) {
+        for (var sp in _armyList.leadergroup[groupnum].spellrack!) {
+          bgp += int.parse(sp.poolcost!);
+        }
+      }
       for (var c in _armyList.leadergroup[groupnum].cohort) {
         if (c.product.points != '*') {
           bgp += int.parse(c.product.points!);

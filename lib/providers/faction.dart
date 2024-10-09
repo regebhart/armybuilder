@@ -235,12 +235,17 @@ class FactionNotifier extends ChangeNotifier {
 
   setBrowsingCategory(int index) {
     _selectedCategory = index;
-    _filteredProducts.clear();
-    _filteredProducts = [[], [], []];
-
-    _filteredProducts[0] = _allFactions[_selectedFactionIndex]['sortedproducts'][0][index];
-    _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
-    _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
+    if (index != 999) {
+      _filteredProducts.clear();
+      _filteredProducts = [[], [], []];
+      _filteredProducts[0] = _allFactions[_selectedFactionIndex]['sortedproducts'][0][index];
+      _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
+      _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
+    } else {
+      _filteredSpells.clear();
+      _filteredSpells.addAll(getFactionSpells(AppData().factionList[_selectedFactionIndex]['name']!));
+      _filteredSpells.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    }
     notifyListeners();
   }
 
@@ -761,15 +766,14 @@ class FactionNotifier extends ChangeNotifier {
     if (list.containsKey('leadergroups')) {
       for (Map<String, dynamic> lg in list['leadergroups']) {
         LeaderGroup group = LeaderGroup(
-          leader: ArmyListNotifier().blankproduct,
-          leaderattachment: ArmyListNotifier().blankproduct,
-          cohort: [],
-          spellrack: [],
-          oofjrcasters: [],
-          oofsolos: [],
-          oofunits: [],
-          spellracklimit: 0                    
-        );
+            leader: ArmyListNotifier().blankproduct,
+            leaderattachment: ArmyListNotifier().blankproduct,
+            cohort: [],
+            spellrack: [],
+            oofjrcasters: [],
+            oofsolos: [],
+            oofunits: [],
+            spellracklimit: 0);
         group.leader = trimTitleToSingleFaction(findByName(lg['leader']), list['faction']);
 
         bool casteradept = false;
@@ -1417,6 +1421,7 @@ class FactionNotifier extends ChangeNotifier {
   List<Spell> getFactionSpells(String faction) {
     List<Spell> spells = [];
     spells.addAll(_allSpells.where((element) => element.poolfactions!.contains(faction)));
+    spells.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     return spells;
   }
 }
