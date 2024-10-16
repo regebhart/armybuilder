@@ -240,7 +240,6 @@ class SavedArmyListTile extends StatelessWidget {
         ),
         leading: GestureDetector(
           onTap: () async {
-            // armylist['favorite'] = !armylist['favorite'];
             ArmyList updatedlist = await faction.convertJsonStringToArmyList(armyjson);
             updatedlist.favorite = !armylist['favorite'];
             updateExisitingList(updatedlist, index);
@@ -270,7 +269,7 @@ class SavedArmyListTile extends StatelessWidget {
                   onTap: () async {
                     await army.setArmyList(await faction.convertJsonStringToArmyList(armyjson), index, 'edit');
                     faction.setSelectedFactionIndex(AppData().factionList.indexWhere((element) => element['name'] == army.armyList.listfaction));
-                    faction.setSelectedCategory(0, null, null, null, false, null);
+                    faction.setSelectedCategory(0, null, null, null, false, null, false, army.armyList.listfaction);
                     nav.pageController.jumpToPage(3);
                     army.setDeploying(false);
                   },

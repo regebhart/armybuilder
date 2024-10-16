@@ -18,6 +18,7 @@ class ArmyList {
   List<Product> structures;
   List<JrCasterGroup> jrcasters;
   bool heartofdarkness;
+  bool flamesinthedarkness;
 
   ArmyList({
     required this.name,
@@ -32,6 +33,7 @@ class ArmyList {
     required this.structures,
     required this.jrcasters,
     required this.heartofdarkness,
+    required this.flamesinthedarkness,
   });
 
   factory ArmyList.fromJson(Map<String, dynamic> json) {
@@ -85,6 +87,11 @@ class ArmyList {
       heartofdarkness = json['heartofdarkness'];
     }
 
+    bool flamesinthedarkness = false;
+    if (json.containsKey('flamesinthedarkness')) {
+      heartofdarkness = json['flamesinthedarkness'];
+    }
+
     return ArmyList(
       name: json['name'],
       listfaction: json['faction'],
@@ -98,6 +105,7 @@ class ArmyList {
       structures: structures,
       jrcasters: jrs,
       heartofdarkness: heartofdarkness,
+      flamesinthedarkness: flamesinthedarkness,
     );
   }
 
@@ -125,6 +133,8 @@ class ArmyList {
     data['totalpoints'] = totalpoints;
     data['pointtarget'] = pointtarget;
     data['favorite'] = favorite;
+    data['heartofdarkness'] = heartofdarkness;
+    data['flamesinthedarkness'] = flamesinthedarkness;
     if (leadergroup.isNotEmpty) {
       List<Map<String, dynamic>> leadergroups = [];
       for (var lg in leadergroup) {
@@ -151,6 +161,20 @@ class ArmyList {
             }
           }
           group['cohort'] = cohort;
+        }
+        List<Map<String, dynamic>> oofcohort = [];
+        if (lg.oofcohort.isNotEmpty) {
+          for (var c in lg.oofcohort) {
+            oofcohort.add({'product': c.product.name});
+            if (c.selectedOptions!.isNotEmpty) {
+              List<String> options = [];
+              for (var m in c.selectedOptions!) {
+                options.add(m.name);
+              }
+              oofcohort.last['modularoptions'] = options;
+            }
+          }
+          group['oofcohort'] = oofcohort;
         }
         if (lg.oofjrcasters.isNotEmpty) {
           List<Map<String, dynamic>> jrs = [];
@@ -306,8 +330,10 @@ class LeaderGroup {
   List<Cohort> cohort;
   List<Spell>? spellrack;
   int? spellracklimit;
-  bool? heartofdarkness;
+  bool heartofdarkness;
+  bool flamesinthedarkness;
   String? heartofdarknessfaction;
+  List<Cohort> oofcohort;
   List<JrCasterGroup> oofjrcasters;
   List<Unit> oofunits;
   List<Product> oofsolos;
@@ -318,8 +344,10 @@ class LeaderGroup {
     required this.cohort,
     this.spellrack,
     this.spellracklimit,
-    this.heartofdarkness,
+    required this.heartofdarkness,
+    required this.flamesinthedarkness,
     this.heartofdarknessfaction,
+    required this.oofcohort,
     required this.oofjrcasters,
     required this.oofunits,
     required this.oofsolos,
@@ -329,7 +357,19 @@ class LeaderGroup {
     Product leader = Product.fromJson(json['leader']);
     Product attachment = ArmyListNotifier().blankproduct;
     List<Cohort> cohort = [];
+    List<Cohort> oofcohort = [];
     List<Spell> spellrack = [];
+    bool hod = false;
+    bool fitd = false;
+
+    for (var m in leader.models) {
+      if (m.characterabilities!.isNotEmpty) {
+        for (var ab in m.characterabilities!) {
+          if (ab.name.toLowerCase().contains('heart of darkness')) hod = true;
+          if (ab.name.toLowerCase().contains('flames in the darkness')) fitd = true;
+        }
+      }
+    }
 
     if (json.containsKey('attachment')) {
       attachment = Product.fromJson(json['attachment']);
@@ -338,6 +378,12 @@ class LeaderGroup {
     if (json.containsKey('cohort')) {
       for (var c in json['cohort']) {
         cohort.add(Cohort.fromJson(c));
+      }
+    }
+
+    if (json.containsKey('oofcohort')) {
+      for (var c in json['oofcohort']) {
+        oofcohort.add(Cohort.fromJson(c));
       }
     }
 
@@ -388,8 +434,10 @@ class LeaderGroup {
       cohort: cohort,
       spellrack: spellrack,
       spellracklimit: spellracklimit,
-      heartofdarkness: false,
+      heartofdarkness: hod,
+      flamesinthedarkness: fitd,
       heartofdarknessfaction: '',
+      oofcohort: oofcohort,
       oofjrcasters: oofjrs,
       oofsolos: oofsolos,
       oofunits: oofunits,

@@ -67,11 +67,23 @@ class ArmyListItem extends StatelessWidget {
                     army.updateSelectedCaster(type, product);
                     if (leaderindex != null) army.setHoDLeaderIndex(leaderindex!);
                     if (faction.selectedCategory == 1) {
-                      faction.setSelectedCategory(1, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes, hod, factionindex);
+                      faction.setSelectedCategory(
+                        1,
+                        army.selectedcasterProduct,
+                        null,
+                        army.selectedcasterFactionIndexes,
+                        hod,
+                        factionindex,
+                        false,
+                        army.armyList.listfaction,
+                      );
                     }
                   },
                   child: Icon(
-                    army.selectedcaster == index && army.selectedcastertype == type ? Icons.radio_button_on : Icons.radio_button_off,
+                    army.selectedcaster == index &&
+                            (army.selectedcastertype == type || (army.selectedcastertype == 'oofcohort' && type == 'warcaster'))
+                        ? Icons.radio_button_on
+                        : Icons.radio_button_off,
                     size: AppData().fontsize + 5,
                   )),
             ),

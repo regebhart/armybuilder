@@ -1,4 +1,5 @@
 import 'package:armybuilder/models/model.dart';
+import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,11 +16,13 @@ class DeployedListCohortItem extends StatelessWidget {
   final Cohort cohort;
   final int modelindex;
   final bool minsize;
-  const DeployedListCohortItem({required this.listindex, required this.listmodelindex, required this.cohort, required this.modelindex, required this.minsize, super.key});
+  const DeployedListCohortItem(
+      {required this.listindex, required this.listmodelindex, required this.cohort, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
     final Color textcolor = Colors.grey.shade200;
     const Color bordercolor = Colors.grey;
     List<List<Widget>> statrow = [];
@@ -128,9 +131,9 @@ class DeployedListCohortItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           army.setDeployedListSelectedCohort(listindex, cohort, modelindex, listmodelindex, unitmodelcount);
-          // if (army.swiping) {
-          // army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-          // }
+          if (nav.swiping) {
+            nav.builderPageController.animateToPage(1, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+          }
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),

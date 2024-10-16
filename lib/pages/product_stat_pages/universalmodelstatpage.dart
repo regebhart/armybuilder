@@ -43,7 +43,6 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
-    print('hptracking: ${army.hptracking.length}');
     final double width = MediaQuery.of(context).size.width * 0.95;
     Color textcolor = Colors.grey[200]!;
     const Color bordercolor = Colors.grey;

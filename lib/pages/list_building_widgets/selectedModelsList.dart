@@ -73,6 +73,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
         ));
       }
 
+      //spell rack
       if (army.armyList.leadergroup[a].spellracklimit != null) {
         if (army.armyList.leadergroup[a].spellracklimit! > 0) {
           for (var sp in army.armyList.leadergroup[a].spellrack!) {
@@ -92,7 +93,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                         child: OutlinedButton(
                           onPressed: () async {
                             army.updateSelectedCaster('warcaster', army.armyList.leadergroup[a].leader);
-                            faction.setSelectedCategory(999, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes, false, null);
+                            faction.setSelectedCategory(999, army.selectedcasterProduct, null, army.selectedcasterFactionIndexes, false, null, false,
+                                army.armyList.listfaction);
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -112,6 +114,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
         }
       }
 
+      //leader attachment
       if (army.armyList.leadergroup[a].leaderattachment.name != '') {
         leaders.add(Padding(
           padding: itemInsets,
@@ -148,7 +151,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () async {
-                            faction.setSelectedCategory(6, null, null, null, false, null);
+                            faction.setSelectedCategory(6, null, null, null, false, null, false, army.armyList.listfaction);
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -168,6 +171,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
         }
       }
 
+      //leader's cohort
       int cohortindex = 0;
       for (var c in army.armyList.leadergroup[a].cohort) {
         leaders.add(
@@ -203,6 +207,105 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
         cohortindex++;
         showclearbutton = true;
       }
+
+      if (army.armyList.listfaction == 'Religion of the Twins' && army.armyList.leadergroup[a].flamesinthedarkness) {
+        leaders.add(Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 2),
+                      color: Colors.black,
+                    ),
+                    child: const Text(
+                      'Flames in the Darkness Options',
+                      style: TextStyle(fontSize: 14),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+        int oofcohort = 0;
+        if (army.armyList.leadergroup[a].oofcohort.isNotEmpty) {
+          for (var c in army.armyList.leadergroup[a].oofcohort) {
+            leaders.add(
+              CohortListItem(
+                  cohort: c,
+                  casterindex: castercount,
+                  groupindex: a,
+                  cohortindex: oofcohort,
+                  type: 'oofcohort',
+                  oof: true,
+                  leader: army.armyList.leadergroup[a].leader),
+            );
+
+            if (c.product.models[0].modularoptions!.isNotEmpty) {
+              for (int groupindex = 0; groupindex < c.product.models[0].modularoptions!.length; groupindex++) {
+                if (c.selectedOptions![groupindex].name == '') {
+                  leaders.add(emptyModuleOption(a, oofcohort, groupindex, c, army, faction, nav, 'oofcohort', buttonHeight));
+                } else {
+                  leaders.add(
+                    ModularOptionListItem(
+                      title: '${c.product.models[0].modularoptions![groupindex].groupname} - ${c.selectedOptions![groupindex].name}',
+                      cost: c.selectedOptions![groupindex].cost,
+                      casterindex: castercount,
+                      cohortindex: oofcohort,
+                      groupindex: groupindex,
+                      leadertype: 'oofcohort',
+                    ),
+                  );
+                }
+              }
+            }
+            oofcohort++;
+            showclearbutton = true;
+          }
+        }
+
+        for (int o = oofcohort; o < 2; o++) {
+          leaders.add(Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              child: SizedBox(
+                height: buttonHeight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        onPressed: () async {
+                          army.updateSelectedCaster('oofcohort', army.armyList.leadergroup[a].leader);
+                          faction.setSelectedCategory(
+                              1, army.armyList.leadergroup[a].leader, null, null, true, null, true, army.armyList.listfaction);
+                          if (nav.swiping) {
+                            nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                          }
+                        },
+                        child: Text(
+                          'Select a Cygnar/Khador Warjack',
+                          style: TextStyle(fontSize: AppData().fontsize - 4, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ));
+        }
+      }
+
       if (army.armyList.leadergroup[a].leader.name != '') {
         // casternum += 1;
         showclearbutton = true;
@@ -299,7 +402,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                           child: OutlinedButton(
                             onPressed: () async {
                               army.setAddtoIndex(u);
-                              faction.setSelectedCategory(7, null, thisunit.unit.name, null, false, null);
+                              faction.setSelectedCategory(7, null, thisunit.unit.name, null, false, null, false, army.armyList.listfaction);
                               if (nav.swiping) {
                                 nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
@@ -357,7 +460,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                           child: OutlinedButton(
                             onPressed: () async {
                               army.setAddtoIndex(u);
-                              faction.setSelectedCategory(8, null, thisunit.unit.name, null, false, null);
+                              faction.setSelectedCategory(8, null, thisunit.unit.name, null, false, null, false, army.armyList.listfaction);
                               if (nav.swiping) {
                                 nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                               }
@@ -509,7 +612,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
             oofwidgets.add(Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: buttonInsets,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 child: SizedBox(
                   height: buttonHeight,
                   child: Row(
@@ -522,7 +625,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                             int factionindex = AppData()
                                 .factionList
                                 .indexWhere((element) => element['name']!.toLowerCase() == army.armyList.leadergroup[a].heartofdarknessfaction);
-                            faction.setSelectedCategory(666, null, null, null, true, factionindex);
+                            faction.setSelectedCategory(666, null, null, null, true, factionindex, false, army.armyList.listfaction);
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -575,7 +678,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                                     int factionindex = AppData().factionList.indexWhere(
                                         (element) => element['name']!.toLowerCase() == army.armyList.leadergroup[a].heartofdarknessfaction);
                                     army.setAddtoIndex(u);
-                                    faction.setSelectedCategory(668, null, thisunit.unit.name, null, true, factionindex);
+                                    faction.setSelectedCategory(
+                                        668, null, thisunit.unit.name, null, true, factionindex, false, army.armyList.listfaction);
                                     if (nav.swiping) {
                                       nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                                     }
@@ -636,7 +740,8 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                                     int factionindex = AppData().factionList.indexWhere(
                                         (element) => element['name']!.toLowerCase() == army.armyList.leadergroup[a].heartofdarknessfaction);
                                     army.setAddtoIndex(u);
-                                    faction.setSelectedCategory(669, null, thisunit.unit.name, null, true, factionindex);
+                                    faction.setSelectedCategory(
+                                        669, null, thisunit.unit.name, null, true, factionindex, false, army.armyList.listfaction);
                                     if (nav.swiping) {
                                       nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                                     }
@@ -700,7 +805,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
             oofwidgets.add(Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: buttonInsets,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 child: SizedBox(
                   height: buttonHeight,
                   child: Row(
@@ -713,7 +818,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                             int factionindex = AppData()
                                 .factionList
                                 .indexWhere((element) => element['name']!.toLowerCase() == army.armyList.leadergroup[a].heartofdarknessfaction);
-                            faction.setSelectedCategory(667, null, null, null, true, factionindex);
+                            faction.setSelectedCategory(667, null, null, null, true, factionindex, false, army.armyList.listfaction);
                             if (nav.swiping) {
                               nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             }
@@ -816,7 +921,7 @@ Future<void> _showResetDialog(context, FactionNotifier faction, ArmyListNotifier
           TextButton(
             child: const Text('Reset'),
             onPressed: () {
-              faction.setSelectedCategory(0, null, null, null, false, null);
+              faction.setSelectedCategory(0, null, null, null, false, null, false, army.armyList.listfaction);
               army.resetList();
               Navigator.of(context).pop();
             },

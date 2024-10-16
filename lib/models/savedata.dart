@@ -136,22 +136,25 @@ Future<int> importLists() async {
   if (result != null) {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> lists = prefs.getStringList('lists') ?? [];
+    List<String> newlists = [];
     PlatformFile file = result.files.first;
     String fileContent = utf8.decode(file.bytes!);
-    final reg = RegExp(r'^[a-zA-Z0-9\#\[\]\,\.\&\-\\\/\:\{\}\"\? ]+$');
+    final reg = RegExp(r'''^[a-zA-Z0-9\#\[\]\,\.\&\-\\\/\:\{\}\'\"\? ]+$''');
     if (reg.hasMatch(fileContent)) {
       List<String> armies = fileContent.split('::::');
       for (var a in armies) {
         Map<String, dynamic> list = jsonDecode(a);
         bool validlist = await FactionNotifier().validateListFromFile(list);
         if (!validlist) {
+          print('list invalid: $a');
           return 99;
         }
-        lists.insert(0, a);
+        newlists.insert(0, a);
       }
     } else {
       return -1;
     }
+    lists.addAll(newlists);
     await prefs.setStringList('lists', lists);
     return 1;
   } else {
@@ -221,8 +224,9 @@ Future<bool> importPastedList(String text, bool opponent, ArmyListNotifier army)
     solos: [],
     battleengines: [],
     structures: [],
-    jrcasters: [],    
+    jrcasters: [],
     heartofdarkness: false,
+    flamesinthedarkness: false,
   );
 
   int factionindex = AppData().factionList.indexWhere((element) => element['name'] == factionselected);

@@ -68,6 +68,9 @@ class _CategoryListState extends State<CategoryList> {
           child: InkWell(
             onTap: () {
               if ((index == 1 && army.selectedcasterFactionIndexes.isNotEmpty) || index != 1) {
+                if (army.selectedcastertype == 'oofcohort') {
+                  army.updateSelectedCaster('warcaster', army.selectedcasterProduct);
+                }
                 faction.setSelectedCategory(
                   index,
                   army.selectedcasterProduct,
@@ -75,6 +78,8 @@ class _CategoryListState extends State<CategoryList> {
                   index == 1 ? army.selectedcasterFactionIndexes : null,
                   army.armyList.heartofdarkness,
                   null,
+                  army.armyList.flamesinthedarkness,
+                  army.armyList.listfaction,
                 );
               }
             },

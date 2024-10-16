@@ -1,4 +1,5 @@
 import 'package:armybuilder/models/model.dart';
+import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,11 +13,13 @@ class DeployedListItem extends StatelessWidget {
   final Product product;
   final int modelindex;
   final bool minsize;
-  const DeployedListItem({required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
+  const DeployedListItem(
+      {required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
     final Color textcolor = Colors.grey.shade200;
     const Color bordercolor = Colors.grey;
     List<List<Widget>> statrow = [];
@@ -98,9 +101,9 @@ class DeployedListItem extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           army.setDeployedListSelectedProduct(listindex, product, modelindex, listmodelindex, unitmodelcount);
-          // if (army.swiping) {
-          // army.builderPageController.animateToPage(2, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-          // }
+          if (nav.swiping) {
+            nav.builderPageController.animateToPage(1, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+          }
         },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(5),

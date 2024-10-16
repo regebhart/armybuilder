@@ -41,7 +41,6 @@ class MenuDrawer extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             army.resetEncounterLevel();
-            army.resetList();
             army.setlistname('');
             nav.pageController.jumpToPage(2);
             army.cancelDeployment();

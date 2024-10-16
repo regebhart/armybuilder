@@ -118,6 +118,7 @@ class ArmyListNotifier extends ChangeNotifier {
   String get status => _status;
   int get armylistindex => _armylistindex;
   String get armylistFactionFilter => _armylistFactionFilter;
+  int get cohortindex => _cohortindex;
 
   List<List<dynamic>> get hptracking => _hptracking;
   List<List<dynamic>> get custombartracking => _custombartracking;
@@ -155,11 +156,13 @@ class ArmyListNotifier extends ChangeNotifier {
           cohort: [],
           spellrack: [],
           spellracklimit: 0,
+          oofcohort: [],
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
           heartofdarkness: false,
           heartofdarknessfaction: '',
+          flamesinthedarkness: false,
         )
       ],
       solos: [],
@@ -168,6 +171,7 @@ class ArmyListNotifier extends ChangeNotifier {
       structures: [],
       jrcasters: [],
       heartofdarkness: false,
+      flamesinthedarkness: false,
     );
     _deploying = false;
     _deployedLists = [];
@@ -280,11 +284,13 @@ class ArmyListNotifier extends ChangeNotifier {
           cohort: [],
           spellrack: [],
           spellracklimit: 0,
+          oofcohort: [],
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
           heartofdarkness: false,
           heartofdarknessfaction: '',
+          flamesinthedarkness: false,
         ));
         // updateCasterCount(1);
         _castergroupindex.add(0);
@@ -304,7 +310,7 @@ class ArmyListNotifier extends ChangeNotifier {
   int getSelectedCasterIndex(Product product) {
     int foundindex = -1;
     switch (_selectedcastertype) {
-      case 'warcaster':
+      case 'warcaster' || 'oofcohort':
         for (int a = 0; a < _armyList.leadergroup.length; a++) {
           if (_armyList.leadergroup[a].leader.uuid == product.uuid) {
             foundindex = a;
@@ -432,7 +438,7 @@ class ArmyListNotifier extends ChangeNotifier {
     // _hodleaderindex = -1;
     _selectedcastertype = type;
     switch (type) {
-      case 'warcaster':
+      case 'warcaster' || 'oofcohort':
         for (var a = 0; a < _armyList.leadergroup.length; a++) {
           if (_armyList.leadergroup[a].leader.uuid == product.uuid) {
             _selectedcaster = a;
@@ -440,15 +446,18 @@ class ArmyListNotifier extends ChangeNotifier {
             setcasterfactionindex();
             found = true;
             if (_selectedcasterProduct.models[0].heartofdarknessfaction! != '') {
-              _armyList.heartofdarkness = true;
+              // _armyList.heartofdarkness = true;
               _armyList.leadergroup[a].heartofdarkness = true;
               _armyList.leadergroup[a].heartofdarknessfaction = _selectedcasterProduct.models[0].heartofdarknessfaction!;
               _hodleaderindex = a;
             } else {
-              _armyList.heartofdarkness = false;
+              // _armyList.heartofdarkness = false;
               _armyList.leadergroup[a].heartofdarkness = false;
               _armyList.leadergroup[a].heartofdarknessfaction = '';
               _hodleaderindex = -1;
+            }
+            if (FactionNotifier().checkProductForFlamesintheDarkness(selectedcasterProduct)) {
+              _armyList.flamesinthedarkness = true;
             }
             break;
           }
@@ -703,7 +712,11 @@ class ArmyListNotifier extends ChangeNotifier {
     _armyList.leadergroup[index].leader.uuid = const Uuid().v1();
     _armyList.leadergroup[index].spellrack!.clear();
     _armyList.leadergroup[index].spellracklimit = FactionNotifier().casterHasSpellRack(leader);
-
+    _armyList.leadergroup[index].heartofdarkness = FactionNotifier().checkProductForHeartofDarkness(leader);
+    _armyList.leadergroup[index].flamesinthedarkness = FactionNotifier().checkProductForFlamesintheDarkness(leader);
+    if (!_armyList.leadergroup[index].flamesinthedarkness && _armyList.leadergroup[index].oofcohort.isNotEmpty) {
+      _armyList.leadergroup[index].oofcohort.clear();
+    }
     //sort casters then find new index of caster that was just added
     _armyList.leadergroup.sort((a, b) => a.leader.name.toLowerCase().compareTo(b.leader.name != "" ? b.leader.name.toLowerCase() : "zzzzzzzzz"));
 
@@ -713,7 +726,8 @@ class ArmyListNotifier extends ChangeNotifier {
         break;
       }
     }
-    updateHeartofDarkness();
+    if (_armyList.listfaction == 'Infernals') updateHeartofDarkness();
+    if (_armyList.listfaction == 'Religion of the Twins') updateFlamesintheDarkness();
     updateSelectedCaster('warcaster', leader);
   }
 
@@ -733,6 +747,20 @@ class ArmyListNotifier extends ChangeNotifier {
     _armyList.heartofdarkness = hod;
   }
 
+  updateFlamesintheDarkness() {
+    bool fitd = false;
+    for (var l in _armyList.leadergroup) {
+      fitd = FactionNotifier().checkProductForFlamesintheDarkness(l.leader);
+      if (fitd) break;
+    }
+    if (!fitd) {
+      for (var ld in _armyList.leadergroup) {
+        ld.oofcohort.clear();
+      }
+    }
+    _armyList.flamesinthedarkness = fitd;
+  }
+
   removeSelectedLeader(int groupnum) {
     _armyList.leadergroup[groupnum].leader = blankproduct;
     _armyList.leadergroup[groupnum].spellrack!.clear();
@@ -742,7 +770,6 @@ class ArmyListNotifier extends ChangeNotifier {
     _armyList.leadergroup[groupnum].oofsolos.clear();
     _armyList.leadergroup[groupnum].oofunits.clear();
     _selectedcasterFactionIndexes.clear();
-    if (_armyList.heartofdarkness) updateHeartofDarkness();
     updateCasterCount(-1);
     if (_castercount > 0) {
       //if there's still casters in the list, sort them
@@ -750,56 +777,86 @@ class ArmyListNotifier extends ChangeNotifier {
           ? a.leader.name.toLowerCase().compareTo(b.leader.name != "" ? b.leader.name.toLowerCase() : "zzzzzzzzz")
           : "zzzzzzzz".compareTo(b.leader.name != "" ? b.leader.name.toLowerCase() : "zzzzzzzzz"));
     }
+    if (_armyList.listfaction == 'Infernals') updateHeartofDarkness();
+    if (_armyList.listfaction == 'Religion of the Twins') updateFlamesintheDarkness();
+    notifyListeners();
   }
 
   addCohort(Cohort cohort, int casterindex, bool oof, int? leaderindex) {
     switch (_selectedcastertype) {
       case 'warcaster':
-        _armyList.leadergroup[casterindex].cohort
-            .add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
-        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-          if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-            for (var element in cohort.product.models[0].modularoptions!) {
-              _armyList.leadergroup[casterindex].cohort.last.selectedOptions!.add(blankOption);
-            }
-          }
-        }
-        _armyList.leadergroup[casterindex].cohort.sort(
+        LeaderGroup ld = _armyList.leadergroup[casterindex];
+        ld.cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
+        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
+
+        String cohortuuid = ld.cohort.last.product.uuid;
+        ld.cohort.sort(
           (a, b) => a.product.name.compareTo(b.product.name),
         );
+        for (int c = 0; c < ld.cohort.length; c++) {
+          Cohort cohort = ld.cohort[c];
+          if (cohort.product.uuid == cohortuuid) {
+            _cohortindex = c;
+            break;
+          }
+        }
+        break;
+      case 'oofcohort':
+        LeaderGroup ld = _armyList.leadergroup[casterindex];
+        if (ld.oofcohort.length == 2) ld.oofcohort.removeLast();
+        ld.oofcohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
+        
+        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
+        String cohortuuid = ld.oofcohort.last.product.uuid;
+        ld.oofcohort.sort(
+          (a, b) => a.product.name.compareTo(b.product.name),
+        );
+        for (int c = 0; c < ld.oofcohort.length; c++) {
+          Cohort cohort = ld.oofcohort[c];
+          if (cohort.product.uuid == cohortuuid) {
+            _cohortindex = c;
+            break;
+          }
+        }
         break;
       case 'jrcaster':
-        if (FactionNotifier().checkProductForMarshal(_armyList.jrcasters[casterindex].leader)) {
-          _armyList.jrcasters[casterindex].cohort.clear();
+        JrCasterGroup jr = _armyList.jrcasters[casterindex];
+        if (FactionNotifier().checkProductForMarshal(jr.leader)) {
+          jr.cohort.clear();
         }
-        _armyList.jrcasters[casterindex].cohort
-            .add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
-        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-          if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-            for (var element in cohort.product.models[0].modularoptions!) {
-              _armyList.jrcasters[casterindex].cohort.last.selectedOptions!.add(blankOption);
-            }
-          }
-        }
-        _armyList.jrcasters[casterindex].cohort.sort(
+        jr.cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
+        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
+        String cohortuuid = jr.cohort.last.product.uuid;
+        jr.cohort.sort(
           (a, b) => a.product.name.compareTo(b.product.name),
         );
+        for (int c = 0; c < jr.cohort.length; c++) {
+          Cohort cohort = jr.cohort[c];
+          if (cohort.product.uuid == cohortuuid) {
+            _cohortindex = c;
+            break;
+          }
+        }
         break;
       case 'unit':
-        if (FactionNotifier().checkUnitForMashal(_armyList.units[casterindex])) {
-          _armyList.units[casterindex].cohort.clear();
+        Unit unit = _armyList.units[casterindex];
+        if (FactionNotifier().checkUnitForMashal(unit)) {
+          unit.cohort.clear();
         }
-        _armyList.units[casterindex].cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
-        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-          if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-            for (var element in cohort.product.models[0].modularoptions!) {
-              _armyList.units[casterindex].cohort.last.selectedOptions!.add(blankOption);
-            }
+        unit.cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
+        if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
+        String cohortuuid = unit.cohort.last.product.uuid;
+        unit.cohort.sort(
+          (a, b) => a.product.name.compareTo(b.product.name),
+        );
+        for (int c = 0; c < unit.cohort.length; c++) {
+          Cohort cohort = unit.cohort[c];
+          if (cohort.product.uuid == cohortuuid) {
+            _cohortindex = c;
+            break;
           }
-          _armyList.units[casterindex].cohort.sort(
-            (a, b) => a.product.name.compareTo(b.product.name),
-          );
         }
+
         break;
       case 'oofjrcaster':
         for (var jr in _armyList.leadergroup[leaderindex!].oofjrcasters) {
@@ -808,14 +865,16 @@ class ArmyListNotifier extends ChangeNotifier {
               jr.cohort.clear();
             }
             jr.cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
-            if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) {
-              if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-                for (var element in cohort.product.models[0].modularoptions!) {
-                  jr.cohort.last.selectedOptions!.add(blankOption);
-                }
+            if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
+            String cohortuuid = jr.cohort.last.product.uuid;
+            jr.cohort.sort((a, b) => a.product.name.compareTo(b.product.name));
+            for (int c = 0; c < jr.cohort.length; c++) {
+              Cohort cohort = jr.cohort[c];
+              if (cohort.product.uuid == cohortuuid) {
+                _cohortindex = c;
+                break;
               }
             }
-            jr.cohort.sort((a, b) => a.product.name.compareTo(b.product.name));
             break;
           }
         }
@@ -825,11 +884,7 @@ class ArmyListNotifier extends ChangeNotifier {
           if (u.unit.uuid == _selectedcasterProduct.uuid) {
             u.cohort.clear();
             u.cohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
-            if (cohort.product.models[0].modularoptions!.isNotEmpty) {
-              for (var element in cohort.product.models[0].modularoptions!) {
-                u.cohort.last.selectedOptions!.add(blankOption);
-              }
-            }
+            if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
           }
         }
         break;
@@ -839,10 +894,27 @@ class ArmyListNotifier extends ChangeNotifier {
     updateEverything();
   }
 
+  fillCohortOptions(Cohort cohort) {
+    if (cohort.product.models[0].modularoptions!.isNotEmpty) {
+      {
+        for (var element in cohort.product.models[0].modularoptions!) {
+          if (element.options!.length != 1) {
+            cohort.selectedOptions!.add(blankOption);
+          } else {
+            cohort.selectedOptions!.add(element.options![0]);
+          }
+        }
+      }
+    }
+  }
+
   removeCohort(int index, int cohortindex, String type, bool oof, int? oofleaderindex) {
     switch (type) {
       case 'warcaster':
         _armyList.leadergroup[index].cohort.removeAt(cohortindex);
+        break;
+      case 'oofcohort':
+        _armyList.leadergroup[index].oofcohort.removeAt(cohortindex);
         break;
       case 'jrcaster':
         _armyList.jrcasters[index].cohort.removeAt(cohortindex);
@@ -867,6 +939,9 @@ class ArmyListNotifier extends ChangeNotifier {
       case 'warcaster':
         _armyList.leadergroup[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
         break;
+      case 'oofcohort':
+        _armyList.leadergroup[_cohortleaderindex].oofcohort[_cohortindex].selectedOptions![groupindex] = option;
+        break;
       case 'jrcaster':
         _armyList.jrcasters[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] = option;
         break;
@@ -890,6 +965,9 @@ class ArmyListNotifier extends ChangeNotifier {
     switch (type) {
       case 'warcaster':
         _armyList.leadergroup[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
+        break;
+      case 'oofcohort':
+        _armyList.leadergroup[index].oofcohort[cohortindex].selectedOptions![optionindex] = blankOption;
         break;
       case 'jrcaster':
         _armyList.jrcasters[index].cohort[cohortindex].selectedOptions![optionindex] = blankOption;
@@ -916,7 +994,7 @@ class ArmyListNotifier extends ChangeNotifier {
         (a, b) => a.name.compareTo(b.name),
       );
     } else {
-      if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex!].oofsolos.length >= 3) {
+      if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex].oofsolos.length >= 3) {
         if (_armyList.leadergroup[leaderindex].oofsolos.isNotEmpty) {
           //remove the last one to add the jr (limit 3)
           _armyList.leadergroup[leaderindex].oofsolos.removeLast();
@@ -924,7 +1002,7 @@ class ArmyListNotifier extends ChangeNotifier {
           _armyList.leadergroup[leaderindex].oofjrcasters.removeLast();
         }
       }
-      _armyList.leadergroup[leaderindex!].oofsolos.add(Product.copyProduct(product, false));
+      _armyList.leadergroup[leaderindex].oofsolos.add(Product.copyProduct(product, false));
       _armyList.leadergroup[leaderindex].oofsolos.sort(
         (a, b) => a.name.compareTo(b.name),
       );
@@ -958,8 +1036,8 @@ class ArmyListNotifier extends ChangeNotifier {
       if (_armyList.leadergroup[leaderindex!].oofunits.length >= 2) {
         _armyList.leadergroup[leaderindex].oofunits.removeLast();
       }
-      _armyList.leadergroup[leaderindex!].oofunits.add(unit);
-      _armyList.leadergroup[leaderindex!].oofunits.last.unit.uuid = const Uuid().v1();
+      _armyList.leadergroup[leaderindex].oofunits.add(unit);
+      _armyList.leadergroup[leaderindex].oofunits.last.unit.uuid = const Uuid().v1();
       _armyList.leadergroup[leaderindex].oofunits.last.hasMarshal = FactionNotifier().checkUnitForMashal(unit);
       _armyList.leadergroup[leaderindex].oofunits.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(unit.unit.name);
       if (_armyList.leadergroup[leaderindex].oofunits.last.hasMarshal) {
@@ -1075,26 +1153,25 @@ class ArmyListNotifier extends ChangeNotifier {
       switch (_armyList.leadergroup[leaderindex!].oofunits[unitnum].commandattachment.name) {
         case 'Koldun Kapitan Valachev':
           _armyList.units[_addToIndex].unit = Product.copyProduct(
-              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Khador", "Mercenary"), true);
+              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex].oofunits[unitnum].unit, "Khador", "Mercenary"), true);
           break;
         case 'Captain Jonas Murdoch':
           _armyList.units[_addToIndex].unit = Product.copyProduct(
-              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Cygnar", "Mercenary"), true);
+              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex].oofunits[unitnum].unit, "Cygnar", "Mercenary"), true);
           break;
         case 'Cephalyx Dominator':
           _armyList.units[_addToIndex].unit = Product.copyProduct(
-              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Cephalyx", "Mercenary"),
-              true);
+              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex].oofunits[unitnum].unit, "Cephalyx", "Mercenary"), true);
           break;
         case 'Doctor Alejandro Mosby':
           _armyList.units[_addToIndex].unit = Product.copyProduct(
-              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex!].oofunits[unitnum].unit, "Crucible Guard", "Mercenary"),
+              FactionNotifier().changeModelFactionInTitles(_armyList.leadergroup[leaderindex].oofunits[unitnum].unit, "Crucible Guard", "Mercenary"),
               true);
           break;
         default:
           break;
       }
-      if (FactionNotifier().checkProductForMarshal(_armyList.leadergroup[leaderindex!].oofunits[unitnum].commandattachment) &&
+      if (FactionNotifier().checkProductForMarshal(_armyList.leadergroup[leaderindex].oofunits[unitnum].commandattachment) &&
           !FactionNotifier().checkProductForMarshal(_armyList.leadergroup[leaderindex].oofunits[unitnum].unit)) {
         //command attachment had marshal but the unit itself does not so reduce caster count
         updateCasterCount(-1);
@@ -1177,7 +1254,7 @@ class ArmyListNotifier extends ChangeNotifier {
       if (!oof) {
         _armyList.jrcasters.add(JrCasterGroup(leader: caster, cohort: []));
       } else {
-        if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex!].oofsolos.length >= 3) {
+        if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex].oofsolos.length >= 3) {
           if (_armyList.leadergroup[leaderindex].oofsolos.isNotEmpty) {
             //remove the last one to add the jr (limit 3)
             _armyList.leadergroup[leaderindex].oofsolos.removeLast();
@@ -1213,7 +1290,7 @@ class ArmyListNotifier extends ChangeNotifier {
         _armyList.jrcasters.add(JrCasterGroup(leader: Product.copyProduct(product, false), cohort: []));
         addedProduct = _armyList.jrcasters.last.leader;
       } else {
-        if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex!].oofsolos.length >= 3) {
+        if (_armyList.leadergroup[leaderindex!].oofjrcasters.length + _armyList.leadergroup[leaderindex].oofsolos.length >= 3) {
           if (_armyList.leadergroup[leaderindex].oofsolos.isNotEmpty) {
             //remove the last one to add the jr (limit 3)
             _armyList.leadergroup[leaderindex].oofsolos.removeLast();
@@ -1232,15 +1309,6 @@ class ArmyListNotifier extends ChangeNotifier {
     } else {
       _armyList.leadergroup[leaderindex!].oofjrcasters.sort((a, b) => a.leader.name.compareTo(b.leader.name));
       jrcasterindex = getJrIndex(addedProduct);
-      // int oofjrcasters = 0;
-      // for (int ldr = 0; ldr < _hodleaderindex; ldr++) {
-      //   oofjrcasters += _armyList.leadergroup[ldr].oofjrcasters.length;
-      // }
-      // jrcasterindex = _armyList.leadergroup.length +
-      //     _armyList.jrcasters.length +
-      //     _armyList.units.where((element) => element.hasMarshal).length +
-      //     oofjrcasters +
-      //     _armyList.leadergroup[_hodleaderindex].oofjrcasters.indexWhere((element) => element.leader.uuid == addeduuid);
     }
     updateCasterCount(1);
     if (product.selectable) {
@@ -1321,6 +1389,30 @@ class ArmyListNotifier extends ChangeNotifier {
         }
       }
       for (var c in _armyList.leadergroup[a].cohort) {
+        if (bgp < leaderpoints) {
+          if (c.product.points != '*') {
+            bgp += int.parse(c.product.points!);
+          } else {
+            for (var o in c.selectedOptions!) {
+              bgp += int.parse(o.cost);
+            }
+          }
+
+          if (bgp > leaderpoints) {
+            _currentpoints = _currentpoints + (bgp - leaderpoints);
+          }
+        } else {
+          if (c.product.points != '*') {
+            _currentpoints += int.parse(c.product.points!);
+          } else {
+            for (var o in c.selectedOptions!) {
+              _currentpoints += int.parse(o.cost);
+            }
+          }
+        }
+      }
+
+      for (var c in _armyList.leadergroup[a].oofcohort) {
         if (bgp < leaderpoints) {
           if (c.product.points != '*') {
             bgp += int.parse(c.product.points!);
@@ -1448,6 +1540,15 @@ class ArmyListNotifier extends ChangeNotifier {
         }
       }
       for (var c in _armyList.leadergroup[groupnum].cohort) {
+        if (c.product.points != '*') {
+          bgp += int.parse(c.product.points!);
+        } else {
+          for (var o in c.selectedOptions!) {
+            bgp += int.parse(o.cost);
+          }
+        }
+      }
+      for (var c in _armyList.leadergroup[groupnum].oofcohort) {
         if (c.product.points != '*') {
           bgp += int.parse(c.product.points!);
         } else {
@@ -2152,6 +2253,7 @@ class ArmyListNotifier extends ChangeNotifier {
       structures: [],
       jrcasters: [],
       heartofdarkness: _armyList.heartofdarkness,
+      flamesinthedarkness: _armyList.flamesinthedarkness,
     );
 
     for (var g in _armyList.leadergroup) {
@@ -2161,11 +2263,13 @@ class ArmyListNotifier extends ChangeNotifier {
         cohort: [],
         spellrack: g.spellrack!,
         spellracklimit: g.spellracklimit!,
+        oofcohort: [],
         oofjrcasters: [],
         oofsolos: [],
         oofunits: [],
         heartofdarkness: g.heartofdarkness,
         heartofdarknessfaction: g.heartofdarknessfaction,
+        flamesinthedarkness: g.flamesinthedarkness,
       ));
       if (g.leader.name != '') {
         newarmy.leadergroup.last.leader = Product.copyProduct(g.leader, true);
@@ -2178,6 +2282,10 @@ class ArmyListNotifier extends ChangeNotifier {
       for (var c in g.cohort) {
         newarmy.leadergroup.last.cohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
         newarmy.leadergroup.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
+      }
+      for (var c in g.oofcohort) {
+        newarmy.leadergroup.last.oofcohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
+        newarmy.leadergroup.last.oofcohort.last.product.fanum = calculateFA(newarmy, c.product);
       }
       for (var jr in g.oofjrcasters) {
         newarmy.leadergroup.last.oofjrcasters.add(JrCasterGroup(leader: blankproduct, cohort: []));
@@ -2420,6 +2528,14 @@ class ArmyListNotifier extends ChangeNotifier {
           }
         }
         break;
+      case 'oofcohort':
+        if (_armyList.leadergroup.isNotEmpty) {
+          if (_armyList.leadergroup[_cohortleaderindex].oofcohort[_cohortindex].selectedOptions![groupindex].cost == option.cost &&
+              _armyList.leadergroup[_cohortleaderindex].oofcohort[_cohortindex].selectedOptions![groupindex].name == option.name) {
+            return true;
+          }
+        }
+        break;
       case 'jrcaster':
         if (_armyList.jrcasters.isNotEmpty) {
           if (_armyList.jrcasters[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex].cost == option.cost &&
@@ -2465,6 +2581,13 @@ class ArmyListNotifier extends ChangeNotifier {
       case 'warcaster':
         if (_armyList.leadergroup.isNotEmpty) {
           if (_armyList.leadergroup[_cohortleaderindex].cohort[_cohortindex].selectedOptions![groupindex] != blankOption) {
+            return true;
+          }
+        }
+        break;
+      case 'oofcohort':
+        if (_armyList.leadergroup.isNotEmpty) {
+          if (_armyList.leadergroup[_cohortleaderindex].oofcohort[_cohortindex].selectedOptions![groupindex] != blankOption) {
             return true;
           }
         }
@@ -2517,11 +2640,13 @@ class ArmyListNotifier extends ChangeNotifier {
           cohort: [],
           spellrack: [],
           spellracklimit: 0,
+          oofcohort: [],
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
           heartofdarkness: false,
           heartofdarknessfaction: '',
+          flamesinthedarkness: false,
         )
       ],
       solos: [],
@@ -2530,6 +2655,35 @@ class ArmyListNotifier extends ChangeNotifier {
       structures: [],
       jrcasters: [],
       heartofdarkness: false,
+      flamesinthedarkness: false,
+    );
+    _addToIndex = 0;
+    _currentpoints = 0;
+    _cohortpoints = 0;
+    _selectedcaster = 0;
+    _castercount = -1;
+    _selectedcasterFactionIndexes = [];
+    _selectedProduct = blankproduct;
+    _leadertype = 'warcaster';
+    _status = 'new';
+    notifyListeners();
+  }
+
+  clearList() {
+    _armyList = ArmyList(
+      name: '',
+      listfaction: '',
+      pointtarget: '',
+      totalpoints: '0',
+      favorite: false,
+      leadergroup: [],
+      solos: [],
+      units: [],
+      battleengines: [],
+      structures: [],
+      jrcasters: [],
+      heartofdarkness: false,
+      flamesinthedarkness: false,
     );
     _addToIndex = 0;
     _currentpoints = 0;
@@ -2574,6 +2728,14 @@ class ArmyListNotifier extends ChangeNotifier {
         export = '$export\n- ${g.leaderattachment.name} - PC: ${g.leaderattachment.points}';
       }
       for (var c in g.cohort) {
+        export = '$export\n- ${c.product.name} - PC: ${c.product.points}';
+        if (c.selectedOptions!.isNotEmpty) {
+          for (var op in c.selectedOptions!) {
+            export = '$export \n + ${op.name} - PC: ${op.cost}';
+          }
+        }
+      }
+      for (var c in g.oofcohort) {
         export = '$export\n- ${c.product.name} - PC: ${c.product.points}';
         if (c.selectedOptions!.isNotEmpty) {
           for (var op in c.selectedOptions!) {
@@ -2705,11 +2867,13 @@ class ArmyListNotifier extends ChangeNotifier {
           cohort: [],
           spellrack: [],
           spellracklimit: 0,
+          oofcohort: [],
           oofjrcasters: [],
           oofsolos: [],
           oofunits: [],
           heartofdarkness: false,
           heartofdarknessfaction: '',
+          flamesinthedarkness: false,
         )
       ],
       solos: [],
@@ -2718,6 +2882,7 @@ class ArmyListNotifier extends ChangeNotifier {
       structures: [],
       jrcasters: [],
       heartofdarkness: false,
+      flamesinthedarkness: false,
     );
     _castercount = 0;
 
@@ -2726,6 +2891,7 @@ class ArmyListNotifier extends ChangeNotifier {
     late Product firstcaster;
     setFactionSelected(army.listfaction);
     setEncounterLevel(AppData().encounterlevels.firstWhere((element) => element['armypoints'].toString() == army.pointtarget));
+    setlistname(army.name);
     _armyList.name = army.name;
     _addToIndex = 0;
     for (var g = 0; g < army.leadergroup.length; g++) {
@@ -2744,6 +2910,10 @@ class ArmyListNotifier extends ChangeNotifier {
       }
       if (group.leaderattachment.name != '') setLeaderAttachment(group.leaderattachment);
       for (var c in group.cohort) {
+        addCohort(c, g, false, g);
+      }
+      for (var c in group.oofcohort) {
+        _selectedcastertype = 'oofcohort';
         addCohort(c, g, false, g);
       }
     }
@@ -2971,6 +3141,7 @@ class ArmyListNotifier extends ChangeNotifier {
 
   cancelDeployment() {
     _deploying = false;
+    clearList();
     resetList();
     resetDeployedLists();
     resetHPListTracking();

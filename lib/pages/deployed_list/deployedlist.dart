@@ -178,6 +178,38 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
           }
         }
 
+        for (var c in list.leadergroup[a].oofcohort) {
+          for (var m = 0; m < c.product.models.length; m++) {
+            count++;
+            if (add) {
+              if (c.product.models[m].grid!.columns.isNotEmpty) {
+                army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
+              }
+              if (c.product.models[m].shield != null) {
+                army.addShieldTracking(listindex);
+              }
+              if (c.product.models[m].spiral!.values.isNotEmpty) {
+                army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
+              }
+              if (c.product.models[m].web!.values.isNotEmpty) {
+                army.addWebHPTracking(listindex, c.product.models[m].web!);
+              }
+            }
+            leaders.add(
+              Padding(
+                padding: itemInsets,
+                child: DeployedListCohortItem(
+                  listindex: listindex,
+                  listmodelindex: count,
+                  cohort: c,
+                  modelindex: m,
+                  minsize: false,
+                ),
+              ),
+            );
+          }
+        }
+
         if (list.leadergroup[a].oofjrcasters.isNotEmpty) {
           for (var jr = 0; jr < list.leadergroup[a].oofjrcasters.length; jr++) {
             JrCasterGroup jrcastergroup = list.leadergroup[a].oofjrcasters[jr];

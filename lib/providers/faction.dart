@@ -249,7 +249,8 @@ class FactionNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex, bool hod, int? oofFactionindex) {
+  setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex, bool hod, int? oofFactionindex, bool fitd,
+      String listFaction) {
     _selectedCategory = index;
     _filteredProducts.clear();
     _filteredProducts = [[], [], []];
@@ -258,7 +259,8 @@ class FactionNotifier extends ChangeNotifier {
     factionindex.add(_selectedFactionIndex); //to filter cohort lists
 
     String selectedfaction = AppData().factionList[_selectedFactionIndex]['name']!;
-    bool infernalslist = AppData().factionList[_selectedFactionIndex]['name']! == 'Infernals';
+    // bool infernalslist = AppData().factionList[_selectedFactionIndex]['name']! == 'Infernals';
+
     if (index <= 6 || index == 666 || index == 667 || index == 999) {
       switch (index) {
         case 1:
@@ -276,6 +278,30 @@ class FactionNotifier extends ChangeNotifier {
             for (var c in p['cohorts']) {
               Product product = findByName(c);
               _filteredProducts[0].add(product);
+              if (listFaction == 'Religion of the Twins') {
+                if (!fitd && checkProductForFlamesintheDarkness(selectedCaster)) {
+                  //remove cygnar and khador warjacks
+                  if (product.primaryFaction.contains('Cygnar') || product.primaryFaction.contains('Khador')) {
+                    _filteredProducts[0].removeLast();
+                  }
+                }
+                if (fitd) {
+                  //remove everything but cygnar and khador warjacks
+                  if ((!product.primaryFaction.contains('Cygnar') && !product.primaryFaction.contains('Khador')) || product.fa == 'C') {
+                    _filteredProducts[0].removeLast();
+                  } else {
+                    product = _filteredProducts[0].last;
+                    _filteredProducts[0].last = changeModelFactionInTitles(
+                        product,
+                        product.primaryFaction.contains('Cygnar')
+                            ? 'Cygnar'
+                            : product.primaryFaction.contains('Khador')
+                                ? 'Khador'
+                                : product.primaryFaction[0],
+                        'Religion of the Twins');
+                  }
+                }
+              }
             }
           }
           switch (selectedCaster.name.toLowerCase()) {
@@ -367,8 +393,8 @@ class FactionNotifier extends ChangeNotifier {
               //     }
               //   }
               // }
-              bool heartofdarkness = selectedCaster.models[0].heartofdarknessfaction! != '';
-              if (infernalslist && heartofdarkness) {
+              // bool heartofdarkness = selectedCaster.models[0].heartofdarknessfaction! != '';
+              if (hod) {
                 //include only non-C cohort
                 for (Product p in _filteredProducts[0]) {
                   if (p.fa != 'C' && p.models[0].title.toLowerCase().contains('warjack')) {
@@ -378,13 +404,18 @@ class FactionNotifier extends ChangeNotifier {
                           'When it begins its activation within 3" of one or more other friendly Soulless models, this model gains 1 focus point.',
                     ));
                   }
-                  // if (p.models[0].title.toLowerCase().contains('horror')) {
-                  //   p.models[0].characterabilities!.add(Ability(
-                  //     name: 'Serenity',
-                  //     description:
-                  //         'At the beginning of your Control Phase, before leeching, you can remove 1 fury point from a friendly Faction warbeast within 1" of this model.',
-                  //   ));
-                  // }
+                  for (var m in p.models) {
+                    for (var k in m.keywords!) {
+                      if (k.toLowerCase() == 'soulless') {
+                        m.characterabilities!.add(Ability(
+                          name: 'Serenity',
+                          description:
+                              'At the beginning of your Control Phase, before leeching, you can remove 1 fury point from a friendly Faction warbeast within 1" of this model.',
+                        ));
+                        break;
+                      }
+                    }
+                  }
                   p.models[0].characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
                 }
               }
@@ -421,6 +452,25 @@ class FactionNotifier extends ChangeNotifier {
               }
               break;
             default:
+              // bool heartofdarkness = selectedCaster.models[0].heartofdarknessfaction! != '';
+              if (hod) {
+                //include only non-C cohort
+                for (Product p in _filteredProducts[0]) {
+                  for (var m in p.models) {
+                    for (var k in m.keywords!) {
+                      if (k.toLowerCase() == 'soulless') {
+                        m.characterabilities!.add(Ability(
+                          name: 'Serenity',
+                          description:
+                              'At the beginning of your Control Phase, before leeching, you can remove 1 fury point from a friendly Faction warbeast within 1" of this model.',
+                        ));
+                        break;
+                      }
+                    }
+                  }
+                  p.models[0].characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                }
+              }
               break;
           }
         case 3:
@@ -472,6 +522,42 @@ class FactionNotifier extends ChangeNotifier {
               }
               break;
             default:
+              // bool heartofdarkness = selectedCaster.models[0].heartofdarknessfaction! != '';
+              if (hod) {
+                //include only non-C cohort
+                for (Product p in _filteredProducts[0]) {
+                  for (var m in p.models) {
+                    for (var k in m.keywords!) {
+                      if (k.toLowerCase() == 'soulless') {
+                        m.characterabilities!.add(Ability(
+                          name: 'Serenity',
+                          description:
+                              'At the beginning of your Control Phase, before leeching, you can remove 1 fury point from a friendly Faction warbeast within 1" of this model.',
+                        ));
+                        break;
+                      }
+                    }
+                  }
+                  p.models[0].characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                }
+              }
+              if (fitd) {
+                //include only non-C cohort
+                for (Product p in _filteredProducts[0]) {
+                  for (var m in p.models) {
+                    if (m.characterabilities!.isNotEmpty) {
+                      if (m.characterabilities!.where((element) => element.name == 'Vengeance').isEmpty) {
+                        m.characterabilities!.add(Ability(
+                          name: 'Vengeance',
+                          description:
+                              'During your Maintenance Phase, if one or more models in this unit were damaged by enemy attacks during the last round, each model in the unit can advance 3” and make one basic melee attack.',
+                        ));
+                        m.characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                      }
+                    }
+                  }
+                }
+              }
               break;
           }
         case 666:
@@ -509,6 +595,26 @@ class FactionNotifier extends ChangeNotifier {
         _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
         _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
       }
+
+      if (fitd && index == 3) {
+        //add vengeance to allies and mercs
+        for (int g = 1; g < 3; g++) {
+          for (Product p in _filteredProducts[g]) {
+            for (var m in p.models) {
+              if (m.characterabilities!.isNotEmpty) {
+                if (m.characterabilities!.where((element) => element.name == 'Vengeance').isEmpty) {
+                  m.characterabilities!.add(Ability(
+                    name: 'Vengeance',
+                    description:
+                        'During your Maintenance Phase, if one or more models in this unit were damaged by enemy attacks during the last round, each model in the unit can advance 3” and make one basic melee attack.',
+                  ));
+                  m.characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                }
+              }
+            }
+          }
+        }
+      }
     } else if (unitname != null) {
       //unit attachments
       if (!hod) {
@@ -544,6 +650,7 @@ class FactionNotifier extends ChangeNotifier {
     }
     if (!spellrack) {
       _showingoptions = false;
+      _filteredProducts[0].toSet().toList();
       _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
       _filteredProducts[1].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
       _filteredProducts[2].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
@@ -650,7 +757,8 @@ class FactionNotifier extends ChangeNotifier {
         for (var ab in m.characterabilities!) {
           if (ab.name.toLowerCase().contains('journeyman warcaster') ||
               ab.name.toLowerCase().contains('journeyman warlock') ||
-              ab.name.toLowerCase().contains('lesser warlock')) {
+              ab.name.toLowerCase().contains('lesser warlock') ||
+              ab.name.toLowerCase().contains('master infernalist')) {
             return true;
           }
         }
@@ -689,6 +797,17 @@ class FactionNotifier extends ChangeNotifier {
     for (var m in product.models) {
       for (var ab in m.characterabilities!) {
         if (ab.name.toLowerCase().contains('heart of darkness')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  bool checkProductForFlamesintheDarkness(Product product) {
+    for (var m in product.models) {
+      for (var ab in m.characterabilities!) {
+        if (ab.name.toLowerCase().contains('flames in the darkness')) {
           return true;
         }
       }
@@ -759,6 +878,7 @@ class FactionNotifier extends ChangeNotifier {
       structures: [],
       jrcasters: [],
       heartofdarkness: false,
+      flamesinthedarkness: false,
     );
     String listfaction = army.listfaction;
     bool infernalslist = listfaction == 'Infernals';
@@ -766,14 +886,18 @@ class FactionNotifier extends ChangeNotifier {
     if (list.containsKey('leadergroups')) {
       for (Map<String, dynamic> lg in list['leadergroups']) {
         LeaderGroup group = LeaderGroup(
-            leader: ArmyListNotifier().blankproduct,
-            leaderattachment: ArmyListNotifier().blankproduct,
-            cohort: [],
-            spellrack: [],
-            oofjrcasters: [],
-            oofsolos: [],
-            oofunits: [],
-            spellracklimit: 0);
+          leader: ArmyListNotifier().blankproduct,
+          leaderattachment: ArmyListNotifier().blankproduct,
+          cohort: [],
+          spellrack: [],
+          oofcohort: [],
+          oofjrcasters: [],
+          oofsolos: [],
+          oofunits: [],
+          spellracklimit: 0,
+          heartofdarkness: false,
+          flamesinthedarkness: false,
+        );
         group.leader = trimTitleToSingleFaction(findByName(lg['leader']), list['faction']);
 
         bool casteradept = false;
@@ -793,6 +917,9 @@ class FactionNotifier extends ChangeNotifier {
                 heartofdarkness = true;
                 army.heartofdarkness = true;
               }
+              if (ab.name.toLowerCase().contains('flames in the darkness') && listfaction == 'Religion of the Twins') {
+                army.flamesinthedarkness = true;
+              }
             }
           }
         }
@@ -810,8 +937,9 @@ class FactionNotifier extends ChangeNotifier {
         if (lg.containsKey('leaderattachment')) {
           group.leaderattachment = trimTitleToSingleFaction(findByName(lg['leaderattachment']), list['faction']);
         }
+
         if (lg.containsKey('cohort')) {
-          group.cohort.addAll(getCohortModelsFromJson(lg['cohort'], list['faction']));
+          group.cohort.addAll(getCohortModelsFromJson(lg['cohort'], list['faction'], true));
           switch (group.leader.name.toLowerCase()) {
             case 'midas':
               //add keyword farrow to boneswarm
@@ -859,90 +987,95 @@ class FactionNotifier extends ChangeNotifier {
               }
             }
           }
-          if (lg.containsKey('oofjrcasters')) {
-            for (Map<String, dynamic> jr in lg['oofjrcasters']) {
-              JrCasterGroup jrgroup = JrCasterGroup(leader: ArmyListNotifier().blankproduct, cohort: []);
-              jrgroup.leader = trimTitleToSingleFaction(findByName(jr['leader']), heartofdarknessfaction);
-              if (jrgroup.leader.models.length > 1) {
-                //has cohorts
-                Product caster = Product.copyProduct(jrgroup.leader, false);
-                Product additionalmodels = Product.copyProduct(jrgroup.leader, false);
-                caster.models.removeRange(1, caster.models.length);
-                jrgroup = JrCasterGroup(leader: caster, cohort: []);
-                additionalmodels.models.removeAt(0);
-                for (var m in additionalmodels.models) {
-                  Product copy = ArmyListNotifier().blankproduct;
-                  copy.fanum = 0;
-                  copy.name = m.modelname;
-                  copy.points = '0';
-                  copy.fa = 'C';
-                  copy.category = 'Warjacks/Warbeasts/Horrors';
-                  copy.factions = [army.listfaction];
-                  copy.primaryFaction = [army.listfaction];
-                  copy.models.add(m);
-                  Cohort thiscohort = Cohort(product: copy, selectedOptions: []);
-                  jrgroup.cohort.add(thiscohort);
-                }
+        }
+
+        if (lg.containsKey('oofcohort')) {
+          group.oofcohort.addAll(getCohortModelsFromJson(lg['oofcohort'], '', true));
+        }
+
+        if (lg.containsKey('oofjrcasters')) {
+          for (Map<String, dynamic> jr in lg['oofjrcasters']) {
+            JrCasterGroup jrgroup = JrCasterGroup(leader: ArmyListNotifier().blankproduct, cohort: []);
+            jrgroup.leader = trimTitleToSingleFaction(findByName(jr['leader']), heartofdarknessfaction);
+            if (jrgroup.leader.models.length > 1) {
+              //has cohorts
+              Product caster = Product.copyProduct(jrgroup.leader, false);
+              Product additionalmodels = Product.copyProduct(jrgroup.leader, false);
+              caster.models.removeRange(1, caster.models.length);
+              jrgroup = JrCasterGroup(leader: caster, cohort: []);
+              additionalmodels.models.removeAt(0);
+              for (var m in additionalmodels.models) {
+                Product copy = ArmyListNotifier().blankproduct;
+                copy.fanum = 0;
+                copy.name = m.modelname;
+                copy.points = '0';
+                copy.fa = 'C';
+                copy.category = 'Warjacks/Warbeasts/Horrors';
+                copy.factions = [army.listfaction];
+                copy.primaryFaction = [army.listfaction];
+                copy.models.add(m);
+                Cohort thiscohort = Cohort(product: copy, selectedOptions: []);
+                jrgroup.cohort.add(thiscohort);
               }
-              if (jr.containsKey('cohort')) {
-                jrgroup.cohort.addAll(getCohortModelsFromJson(jr['cohort'], list['faction']));
-              }
-              jrgroup.cohort.sort((a, b) => a.product.name.toLowerCase().compareTo(b.product.name.toLowerCase()));
-              group.oofjrcasters.add(jrgroup);
             }
-          }
-          if (lg.containsKey('oofsolos')) {
-            for (String s in lg['oofsolos']) {
-              Product product = trimTitleToSingleFaction(findByName(s), heartofdarknessfaction);
-              group.oofsolos.add(product);
+            if (jr.containsKey('cohort')) {
+              jrgroup.cohort.addAll(getCohortModelsFromJson(jr['cohort'], list['faction'], true));
             }
+            jrgroup.cohort.sort((a, b) => a.product.name.toLowerCase().compareTo(b.product.name.toLowerCase()));
+            group.oofjrcasters.add(jrgroup);
           }
-          if (lg.containsKey('oofunits')) {
-            for (Map<String, dynamic> u in lg['oofunits']) {
-              if (u['unit'] != 'Nyss Hunters') {
-                Unit unit = Unit(
-                  unit: trimTitleToSingleFaction(findByName(u['unit']), heartofdarknessfaction),
-                  minsize: u['minsize'],
-                  hasMarshal: false,
-                  commandattachment: u.containsKey('commandattachment')
-                      ? trimTitleToSingleFaction(findByName(u['commandattachment']), heartofdarknessfaction)
-                      : ArmyListNotifier().blankproduct,
-                  weaponattachments: [],
-                  cohort: [],
-                  weaponattachmentlimits: [],
-                );
-                if (u.containsKey('weaponattachments')) {
-                  for (var wa in u['weaponattachments']) {
-                    unit.weaponattachments.add(trimTitleToSingleFaction(findByName(wa), heartofdarknessfaction));
-                  }
+        }
+        if (lg.containsKey('oofsolos')) {
+          for (String s in lg['oofsolos']) {
+            Product product = trimTitleToSingleFaction(findByName(s), heartofdarknessfaction);
+            group.oofsolos.add(product);
+          }
+        }
+        if (lg.containsKey('oofunits')) {
+          for (Map<String, dynamic> u in lg['oofunits']) {
+            if (u['unit'] != 'Nyss Hunters') {
+              Unit unit = Unit(
+                unit: trimTitleToSingleFaction(findByName(u['unit']), heartofdarknessfaction),
+                minsize: u['minsize'],
+                hasMarshal: false,
+                commandattachment: u.containsKey('commandattachment')
+                    ? trimTitleToSingleFaction(findByName(u['commandattachment']), heartofdarknessfaction)
+                    : ArmyListNotifier().blankproduct,
+                weaponattachments: [],
+                cohort: [],
+                weaponattachmentlimits: [],
+              );
+              if (u.containsKey('weaponattachments')) {
+                for (var wa in u['weaponattachments']) {
+                  unit.weaponattachments.add(trimTitleToSingleFaction(findByName(wa), heartofdarknessfaction));
                 }
-                unit.hasMarshal = checkUnitForMashal(unit);
-                if (unit.hasMarshal && u.containsKey('cohort')) {
-                  unit.cohort.addAll(getCohortModelsFromJson(u['cohort'], heartofdarknessfaction));
-                }
-                unit.weaponattachmentlimits = getUnitWeaponAttachLimit(unit.unit.name);
-                group.oofunits.add(unit);
-              } else {
-                Product product = Product.copyProduct(findByName('Cylena Raefyll & Nyss Hunters'), false);
-                product.models.removeAt(0); //remove Cylena
-                product.name = 'Nyss Hunters';
-                product.fa = '2';
-                product.factions = ['Khador'];
-                product.primaryFaction = ['Khador'];
-                product.unitPoints!['minunit'] = 'Leader and 5 Grunts';
-                product.unitPoints!['maxunit'] = 'Leader and 9 Grunts';
-                product.models[0].modelname = 'Leader and Grunts';
-                Unit unit = Unit(
-                  unit: product,
-                  minsize: u['minsize'],
-                  hasMarshal: false,
-                  commandattachment: ArmyListNotifier().blankproduct,
-                  weaponattachments: [],
-                  cohort: [],
-                  weaponattachmentlimits: [],
-                );
-                group.oofunits.add(unit);
               }
+              unit.hasMarshal = checkUnitForMashal(unit);
+              if (unit.hasMarshal && u.containsKey('cohort')) {
+                unit.cohort.addAll(getCohortModelsFromJson(u['cohort'], heartofdarknessfaction, true));
+              }
+              unit.weaponattachmentlimits = getUnitWeaponAttachLimit(unit.unit.name);
+              group.oofunits.add(unit);
+            } else {
+              Product product = Product.copyProduct(findByName('Cylena Raefyll & Nyss Hunters'), false);
+              product.models.removeAt(0); //remove Cylena
+              product.name = 'Nyss Hunters';
+              product.fa = '2';
+              product.factions = ['Khador'];
+              product.primaryFaction = ['Khador'];
+              product.unitPoints!['minunit'] = 'Leader and 5 Grunts';
+              product.unitPoints!['maxunit'] = 'Leader and 9 Grunts';
+              product.models[0].modelname = 'Leader and Grunts';
+              Unit unit = Unit(
+                unit: product,
+                minsize: u['minsize'],
+                hasMarshal: false,
+                commandattachment: ArmyListNotifier().blankproduct,
+                weaponattachments: [],
+                cohort: [],
+                weaponattachmentlimits: [],
+              );
+              group.oofunits.add(unit);
             }
           }
         }
@@ -976,7 +1109,7 @@ class FactionNotifier extends ChangeNotifier {
           }
         }
         if (jr.containsKey('cohort')) {
-          group.cohort.addAll(getCohortModelsFromJson(jr['cohort'], list['faction']));
+          group.cohort.addAll(getCohortModelsFromJson(jr['cohort'], list['faction'], true));
         }
         group.cohort.sort((a, b) => a.product.name.toLowerCase().compareTo(b.product.name.toLowerCase()));
         army.jrcasters.add(group);
@@ -1003,9 +1136,51 @@ class FactionNotifier extends ChangeNotifier {
           }
           group.hasMarshal = checkUnitForMashal(group);
           if (group.hasMarshal && u.containsKey('cohort')) {
-            group.cohort.addAll(getCohortModelsFromJson(u['cohort'], list['faction']));
+            group.cohort.addAll(getCohortModelsFromJson(u['cohort'], list['faction'], true));
           }
           group.weaponattachmentlimits = getUnitWeaponAttachLimit(group.unit.name);
+
+          if (army.flamesinthedarkness) {
+            for (var m in group.unit.models) {
+              if (m.characterabilities!.isNotEmpty) {
+                if (m.characterabilities!.where((element) => element.name == 'Vengeance').isEmpty) {
+                  m.characterabilities!.add(Ability(
+                    name: 'Vengeance',
+                    description:
+                        'During your Maintenance Phase, if one or more models in this unit were damaged by enemy attacks during the last round, each model in the unit can advance 3” and make one basic melee attack.',
+                  ));
+                  m.characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                }
+              }
+            }
+            for (var m in group.commandattachment.models) {
+              if (m.characterabilities!.isNotEmpty) {
+                if (m.characterabilities!.where((element) => element.name == 'Vengeance').isEmpty) {
+                  m.characterabilities!.add(Ability(
+                    name: 'Vengeance',
+                    description:
+                        'During your Maintenance Phase, if one or more models in this unit were damaged by enemy attacks during the last round, each model in the unit can advance 3” and make one basic melee attack.',
+                  ));
+                  m.characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                }
+              }
+            }
+            for (var wa in group.weaponattachments) {
+              for (var m in wa.models) {
+                if (m.characterabilities!.isNotEmpty) {
+                  if (m.characterabilities!.where((element) => element.name == 'Vengeance').isEmpty) {
+                    m.characterabilities!.add(Ability(
+                      name: 'Vengeance',
+                      description:
+                          'During your Maintenance Phase, if one or more models in this unit were damaged by enemy attacks during the last round, each model in the unit can advance 3” and make one basic melee attack.',
+                    ));
+                    m.characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+                  }
+                }
+              }
+            }
+          }
+
           army.units.add(group);
         } else {
           Product product = Product.copyProduct(findByName('Cylena Raefyll & Nyss Hunters'), false);
@@ -1049,10 +1224,15 @@ class FactionNotifier extends ChangeNotifier {
     return army;
   }
 
-  List<Cohort> getCohortModelsFromJson(List<dynamic> json, String faction) {
+  List<Cohort> getCohortModelsFromJson(List<dynamic> json, String faction, bool trim) {
     List<Cohort> cohorts = [];
     for (Map<String, dynamic> c in json) {
-      Cohort cohort = Cohort(product: trimTitleToSingleFaction(findByName(c['product']), faction), selectedOptions: []);
+      Cohort cohort;
+      if (trim) {
+        cohort = Cohort(product: trimTitleToSingleFaction(findByName(c['product']), faction), selectedOptions: []);
+      } else {
+        cohort = Cohort(product: findByName(c['product']), selectedOptions: []);
+      }
       if (c.containsKey('modularoptions')) {
         for (var op in c['modularoptions']) {
           bool added = false;
@@ -1117,6 +1297,9 @@ class FactionNotifier extends ChangeNotifier {
           case 'warcaster':
             thiscohort = list.leadergroup.last.cohort.last;
             break;
+          case 'oofcohort':
+            thiscohort = list.leadergroup.last.oofcohort.last;
+            break;
           case 'jrcaster':
             thiscohort = list.jrcasters.last.cohort.last;
             break;
@@ -1167,10 +1350,14 @@ class FactionNotifier extends ChangeNotifier {
               case 'Warcasters/Warlocks/Masters':
                 bool heartofdarkness = false;
                 String heartofdarknessfaction = '';
+                bool flamesinthedarkness = false;
                 for (var ab in thisproduct.models[0].characterabilities!) {
                   if (ab.name.toLowerCase().contains('heart of darkness')) {
                     heartofdarkness = true;
                     heartofdarknessfaction = ab.name.substring(ab.name.indexOf('[') + 1, ab.name.length - 1);
+                  }
+                  if (ab.name.toLowerCase().contains('flames in the darkness')) {
+                    flamesinthedarkness = true;
                   }
                 }
                 list.leadergroup.add(LeaderGroup(
@@ -1178,19 +1365,29 @@ class FactionNotifier extends ChangeNotifier {
                   leaderattachment: blankproduct,
                   cohort: [],
                   spellrack: [],
+                  oofcohort: [],
                   oofjrcasters: [],
                   oofsolos: [],
                   oofunits: [],
                   heartofdarkness: heartofdarkness,
                   heartofdarknessfaction: heartofdarknessfaction,
+                  flamesinthedarkness: flamesinthedarkness,
                 ));
                 lastleader = 'warcaster';
                 break;
               case 'Warjacks/Warbeasts/Horrors':
                 switch (lastleader) {
                   case 'warcaster':
-                    list.leadergroup.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                    if (list.listfaction == 'Religion of the Twins' &&
+                        (thisproduct.primaryFaction.contains('Cygnar') || thisproduct.primaryFaction.contains('Khador'))) {
+                      list.leadergroup.last.oofcohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                      lastleader = 'oofcohort';
+                    } else {
+                      list.leadergroup.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
+                    }
                     break;
+                  case 'oofcohort':
+                    list.leadergroup.last.oofcohort.add(Cohort(product: thisproduct, selectedOptions: []));
                   case 'jrcaster':
                     list.jrcasters.last.cohort.add(Cohort(product: thisproduct, selectedOptions: []));
                     break;
@@ -1206,7 +1403,7 @@ class FactionNotifier extends ChangeNotifier {
                 }
                 break;
               case 'Solos':
-                if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                if ((!infernalslist && !list.leadergroup.last.heartofdarkness) || infaction) {
                   if (checkSoloForJourneyman(thisproduct) || checkProductForMarshal(thisproduct)) {
                     list.jrcasters.add(JrCasterGroup(leader: thisproduct, cohort: []));
                     lastleader = 'jrcaster';
@@ -1224,7 +1421,7 @@ class FactionNotifier extends ChangeNotifier {
                 break;
               case 'Units':
                 bool min = true;
-                if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                if ((!infernalslist && !list.leadergroup.last.heartofdarkness) || infaction) {
                   if (thisproduct.unitPoints!['maxunit'] == unitsize) min = false;
                   list.units.add(Unit(
                     unit: thisproduct,
@@ -1267,7 +1464,7 @@ class FactionNotifier extends ChangeNotifier {
                     break;
                   }
                   if (ab.name.toLowerCase().contains('command') && ab.name.toLowerCase().contains('attachment')) {
-                    if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                    if ((!infernalslist && !list.leadergroup.last.heartofdarkness) || infaction) {
                       list.units.last.commandattachment = thisproduct;
                       break;
                     } else {
@@ -1280,7 +1477,7 @@ class FactionNotifier extends ChangeNotifier {
                     }
                   }
                   if (ab.name.toLowerCase().contains('weapon') && ab.name.toLowerCase().contains('attachment')) {
-                    if ((!infernalslist && !list.leadergroup.last.heartofdarkness!) || infaction) {
+                    if ((!infernalslist && !list.leadergroup.last.heartofdarkness) || infaction) {
                       list.units.last.weaponattachments.add(thisproduct);
                       break;
                     } else {
@@ -1307,24 +1504,42 @@ class FactionNotifier extends ChangeNotifier {
   Future<bool> validateListFromFile(Map<String, dynamic> army) async {
     final alphanumeric = RegExp(r'^[a-zA-Z0-9+]');
     final numeric = RegExp(r'^[0-9]');
+    int faction = -1;
     if (army.containsKey('name')) {
-      if (!alphanumeric.hasMatch(army['name'])) return false;
+      if (!alphanumeric.hasMatch(army['name'])) {
+        print('invalid list name: ${army['name']}');
+        return false;
+      }
     } else {
+      print('army missing key: name');
       return false;
     }
     if (army.containsKey('faction')) {
-      if (AppData().factionList.where((element) => element['name'] == army['faction']).isEmpty) return false;
+      if (AppData().factionList.where((element) => element['name'] == army['faction']).isEmpty) {
+        print('list faction not found: ${army['faction']}');
+        return false;
+      }
+      faction = AppData().factionList.indexWhere((element) => element['name'] == army['faction']);
     } else {
+      print('army missing key: faction');
       return false;
     }
     if (army.containsKey('pointtarget')) {
-      if (!numeric.hasMatch(army['pointtarget'])) return false;
+      if (!numeric.hasMatch(army['pointtarget'])) {
+        print('list points invalid: ${army['pointtarget']}');
+        return false;
+      }
     } else {
+      print('army missing key: pointtarget');
       return false;
     }
     if (army.containsKey('totalpoints')) {
-      if (!numeric.hasMatch(army['totalpoints'])) return false;
+      if (!numeric.hasMatch(army['totalpoints'])) {
+        print('list total points invalid: ${army['totalpoints']}');
+        return false;
+      }
     } else {
+      print('army missing key: totalpoints');
       return false;
     }
     if (_allFactions.isEmpty) {
@@ -1332,72 +1547,119 @@ class FactionNotifier extends ChangeNotifier {
     }
     if (army.containsKey('leadergroups')) {
       for (Map<String, dynamic> lg in army['leadergroups']) {
-        if (!validatename(lg['leader'])) return false;
+        if (!validatename(lg['leader'], faction)) {
+          print('invalid leader: ${lg['leader']}');
+          return false;
+        }
 
         if (lg.containsKey('leaderattachment')) {
-          if (!validatename(lg['leaderattachment'])) return false;
+          if (!validatename(lg['leaderattachment'], faction)) {
+            print('invalid leader attachment: ${lg['leaderattachment']}');
+            return false;
+          }
         }
 
         if (lg.containsKey('cohort')) {
           for (var c in lg['cohort']) {
-            if (!validatename(c['product'])) return false;
+            if (!validatename(c['product'], faction)) {
+              print('invalid leader cohort: $c');
+              return false;
+            }
           }
         }
       }
     }
     if (army.containsKey('jrcasters')) {
       for (Map<String, dynamic> jr in army['jrcasters']) {
-        if (!validatename(jr['leader'])) return false;
+        if (!validatename(jr['leader'], faction)) {
+          print('invalid jr: ${jr['leader']}');
+          return false;
+        }
         if (jr.containsKey('cohort')) {
           for (var c in jr['cohort']) {
-            if (!validatename(c['product'])) return false;
+            if (!validatename(c['product'], faction)) {
+              print('invalid jr cohort: $c');
+              return false;
+            }
           }
         }
       }
     }
     if (army.containsKey('units')) {
       for (Map<String, dynamic> u in army['units']) {
-        if (!validatename(u['unit'])) return false;
+        if (!validatename(u['unit'], faction)) {
+          print('invald unit: ${u['unit']}');
+          return false;
+        }
         if (u.containsKey('commandattachment')) {
-          if (!validatename(u['commandattachment'])) return false;
+          if (!validatename(u['commandattachment'], faction)) {
+            print('invalid command attachment: ${u['commandattachment']}');
+            return false;
+          }
         }
         if (u.containsKey('weaponattachments')) {
           for (var wa in u['weaponattachments']) {
-            if (!validatename(wa)) return false;
+            if (!validatename(wa, faction)) {
+              print('invalid command attachment: ${u['weaponattachments']}');
+              return false;
+            }
           }
         }
         if (u.containsKey('cohort')) {
           for (var c in u['cohort']) {
-            if (!validatename(c['product'])) return false;
+            if (!validatename(c['product'], faction)) {
+              print('invalid unit cohort: $c');
+              return false;
+            }
           }
         }
       }
     }
     if (army.containsKey('solos')) {
       for (var s in army['solos']) {
-        if (!validatename(s)) return false;
+        if (!validatename(s, faction)) {
+          print('invalid solo: $s');
+          return false;
+        }
       }
     }
     if (army.containsKey('battleengines')) {
       for (var be in army['battleengines']) {
-        if (be) return false;
+        if (!validatename(be, faction)) {
+          print('invalid battle engine: $be');
+          return false;
+        }
       }
     }
     if (army.containsKey('structures')) {
       for (var st in army['structures']) {
-        if (!validatename(st)) return false;
+        if (!validatename(st, faction)) {
+          print('invalid structure: $st');
+          return false;
+        }
       }
     }
     return true;
   }
 
-  bool validatename(String name) {
+  bool validatename(String name, int factionindex) {
     List<dynamic> found = [];
     if (name == 'Nyss Hunters') {
       return true;
     }
     for (int g = 0; g < 3; g++) {
-      found.addAll(_allFactions[_selectedFactionIndex]['products'][g].where((element) => element.name == name));
+      found.addAll(_allFactions[factionindex]['products'][g].where((element) => element.name == name));
+    }
+    if (found.isEmpty) {
+      for (var f in _allFactions) {
+        for (int g = 0; g < 3; g++) {
+          {
+            found.addAll(f['products'][g].where((element) => element.name == name));
+            if (found.isNotEmpty) break;
+          }
+        }
+        if (found.isNotEmpty) break;
+      }
     }
     return found.isNotEmpty;
   }

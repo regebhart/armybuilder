@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 
 import '../../providers/armylist.dart';
 
-class ArmyDeployment extends StatelessWidget {
-  const ArmyDeployment({super.key});
+class ArmyDeploymentWideView extends StatelessWidget {
+  const ArmyDeploymentWideView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,8 @@ class ArmyDeployment extends StatelessWidget {
                             children: [
                               Text(army.deployedLists.isNotEmpty ? army.deployedLists[0].list.name : ''),
                               Text('Faction: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.listfaction : ''}'),
-                              Text('Points: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.totalpoints : ''} / ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.pointtarget : ''}'),
+                              Text(
+                                  'Points: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.totalpoints : ''} / ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.pointtarget : ''}'),
                             ],
                           ),
                         ),

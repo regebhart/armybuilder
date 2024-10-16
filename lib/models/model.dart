@@ -149,6 +149,9 @@ class Model {
         if (abname.contains('heart of darkness')) {
           heartofdarknessfaction = abname.substring(abname.indexOf('[') + 1, abname.length - 1);
         }
+        if (abname.contains('infernal master')) {
+          hasMarshal = true;
+        }
       }
     }
 

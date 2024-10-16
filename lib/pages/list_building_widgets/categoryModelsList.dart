@@ -171,19 +171,21 @@ class _CategoryModelsListState extends State<CategoryModelsList> with AutomaticK
                     if (p.models[0].modularoptions!.isNotEmpty) {
                       switch (army.selectedcastertype) {
                         case 'warcaster':
-                          army.setCohortVals(leaderindex, army.armyList.leadergroup[leaderindex].cohort.length - 1, army.selectedcastertype);
+                          army.setCohortVals(leaderindex, army.cohortindex, army.selectedcastertype);
+                          break;
+                        case 'oofcohort':
+                          army.setCohortVals(leaderindex, army.cohortindex, army.selectedcastertype);
                           break;
                         case 'jrcaster':
-                          army.setCohortVals(leaderindex, army.armyList.jrcasters[leaderindex].cohort.length - 1, army.selectedcastertype);
+                          army.setCohortVals(leaderindex, army.cohortindex, army.selectedcastertype);
                           break;
                         case 'unit':
-                          int unitindex = army.getUnitIndex(army.selectedcasterProduct);
-                          army.setCohortVals(leaderindex, army.armyList.units[unitindex].cohort.length - 1, army.selectedcastertype);
+                          // int unitindex = army.getUnitIndex(army.selectedcasterProduct);
+                          army.setCohortVals(leaderindex, army.cohortindex, army.selectedcastertype);
                           break;
                         case 'oofjrcaster':
                           int jrindex = army.getJrIndex(army.selectedcasterProduct);
-                          army.setCohortVals(jrindex, army.armyList.leadergroup[army.hodleaderindex].oofjrcasters[jrindex].cohort.length - 1,
-                              army.selectedcastertype);
+                          army.setCohortVals(jrindex, army.cohortindex, army.selectedcastertype);
                           break;
                         case 'oofunit':
                           int unitindex = army.getUnitIndex(army.selectedcasterProduct);

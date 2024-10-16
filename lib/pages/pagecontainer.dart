@@ -1,4 +1,5 @@
 import 'package:armybuilder/pages/deployed_list/deploymainview.dart';
+import 'package:armybuilder/pages/deployed_list/deploymainviewswiping.dart';
 import 'package:armybuilder/pages/import_export/importexport.dart';
 import 'package:armybuilder/pages/list_building_widgets/layouts/wide.dart';
 import 'package:armybuilder/pages/menu_widgets/factionselection.dart';
@@ -78,7 +79,15 @@ class _PagesContainerState extends State<PagesContainer> {
         const ImportExport(),
 
         //6:deployed lists/playing a game
-        const ArmyDeployment(),
+        LayoutBuilder(builder: (context, constraints) {
+          bool swiping = constraints.maxWidth < minwidth;
+          nav.setSwiping(swiping);
+          if (swiping) {
+            return const ArmyDeploymentSwiping();
+          } else {
+            return const ArmyDeploymentWideView();
+          }
+        }),
       ],
     );
   }

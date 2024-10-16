@@ -59,7 +59,16 @@ class ArmyListUnitItem extends StatelessWidget {
                         .factionList
                         .indexWhere((element) => element['name']!.toLowerCase() == army.armyList.leadergroup[leaderindex!].heartofdarknessfaction);
                     if (faction.selectedCategory == 1) {
-                      faction.setSelectedCategory(1, army.selectedcasterProduct, product.name, army.selectedcasterFactionIndexes, oof, factionindex);
+                      faction.setSelectedCategory(
+                        1,
+                        army.selectedcasterProduct,
+                        product.name,
+                        army.selectedcasterFactionIndexes,
+                        oof,
+                        factionindex,
+                        false,
+                        army.armyList.listfaction,
+                      );
                     }
                   },
                   child: Icon(
