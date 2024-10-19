@@ -767,6 +767,18 @@ class FactionNotifier extends ChangeNotifier {
     return false;
   }
 
+  bool checkSoloForXCount(Product product) {
+    String name = product.name;
+    String lastcharacter = name.substring(name.length - 1);
+    String xchar = name.substring(name.length - 2, name.length - 1);
+    if (int.tryParse(lastcharacter) != null && xchar == 'x') return true;
+    return false;
+  }
+
+  int getXCount(Product product) {
+    return int.parse(product.name.substring(product.name.length - 1));
+  }
+
   bool checkUnitForMashal(Unit unit) {
     for (var m in unit.unit.models) {
       if (m.hasMarshal!) return true;

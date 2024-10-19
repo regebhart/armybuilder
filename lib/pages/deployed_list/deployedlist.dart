@@ -1,5 +1,6 @@
 import 'package:armybuilder/pages/deployed_list/widgets/deployedlistcohort.dart';
 import 'package:armybuilder/pages/deployed_list/widgets/deployedlistitem.dart';
+import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -447,32 +448,38 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
       }
 
       for (var s in list.solos) {
-        count++;
-        if (add) {
-          if (s.models[0].grid!.columns.isNotEmpty) {
-            army.addGridHPTracking(listindex, s.models[0].grid!.columns.length);
-          } else {
-            army.addSingleHPBarHPTracking(listindex);
-          }
+        int xcount = 1;
+        if (FactionNotifier().checkSoloForXCount(s)) {
+          xcount = FactionNotifier().getXCount(s);          
         }
-        solos.add(DeployedListItem(
-          listindex: listindex,
-          listmodelindex: count,
-          product: s,
-          modelindex: 0,
-          minsize: false,
-        ));
-        if (s.models.length > 1) {
-          for (int m = 1; m < s.models.length; m++) {
-            count++;
-            army.addSingleHPBarHPTracking(listindex);
-            solos.add(DeployedListItem(
-              listindex: listindex,
-              listmodelindex: count,
-              product: s,
-              modelindex: m,
-              minsize: false,
-            ));
+        for (int x = 1; x <= xcount; x++) {
+          count++;
+          if (add) {
+            if (s.models[0].grid!.columns.isNotEmpty) {
+              army.addGridHPTracking(listindex, s.models[0].grid!.columns.length);
+            } else {
+              army.addSingleHPBarHPTracking(listindex);
+            }
+          }
+          solos.add(DeployedListItem(
+            listindex: listindex,
+            listmodelindex: count,
+            product: s,
+            modelindex: 0,
+            minsize: false,
+          ));
+          if (s.models.length > 1) {
+            for (int m = 1; m < s.models.length; m++) {
+              count++;
+              army.addSingleHPBarHPTracking(listindex);
+              solos.add(DeployedListItem(
+                listindex: listindex,
+                listmodelindex: count,
+                product: s,
+                modelindex: m,
+                minsize: false,
+              ));
+            }
           }
         }
       }

@@ -1,4 +1,5 @@
 import 'package:armybuilder/models/model.dart';
+import 'package:armybuilder/providers/faction.dart';
 import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,13 @@ class DeployedListItem extends StatelessWidget {
           if (product.models.length > 1) {
             modelname = m.modelname;
           }
+        }
+        break;
+      case ('Solos'):
+        productname = product.name;
+        modelname = m.modelname;
+        if (FactionNotifier().checkSoloForXCount(product)) {
+          productname = product.name.substring(0, product.name.length - 3).trim();
         }
         break;
       default:
