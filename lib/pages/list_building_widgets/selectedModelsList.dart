@@ -127,46 +127,48 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
       } else {
         bool hasAttachment = false;
         if (army.armyList.leadergroup[a].leader.name != '') {
-          if (army.armyList.leadergroup[a].leader.models.length > 1) {
-            for (var m in army.armyList.leadergroup[a].leader.models) {
-              //check if caster has a preset attached model
-              for (var ab in m.characterabilities!) {
-                if (ab.name.contains('Attach')) {
-                  hasAttachment = true;
-                  break;
+          if (!faction.checkProductForWarcasterEquivalent(army.armyList.leadergroup[a].leader)) {
+            if (army.armyList.leadergroup[a].leader.models.length > 1) {
+              for (var m in army.armyList.leadergroup[a].leader.models) {
+                //check if caster has a preset attached model
+                for (var ab in m.characterabilities!) {
+                  if (ab.name.contains('Attach')) {
+                    hasAttachment = true;
+                    break;
+                  }
                 }
               }
             }
-          }
-          if (!hasAttachment && faction.allFactions[faction.selectedFactionIndex]['hascasterattachments'][army.castergroupindex[a]]) {
-            leaders.add(Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: buttonInsets,
-                child: SizedBox(
-                  height: buttonHeight,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () async {
-                            faction.setSelectedCategory(6, null, null, null, false, null, false, army.armyList.listfaction);
-                            if (nav.swiping) {
-                              nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-                            }
-                          },
-                          child: Text(
-                            'Select an Attachment',
-                            style: TextStyle(fontSize: AppData().fontsize - 4, color: Colors.white),
+            if (!hasAttachment && faction.allFactions[faction.selectedFactionIndex]['hascasterattachments'][army.castergroupindex[a]]) {
+              leaders.add(Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: buttonInsets,
+                  child: SizedBox(
+                    height: buttonHeight,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () async {
+                              faction.setSelectedCategory(6, null, null, null, false, null, false, army.armyList.listfaction);
+                              if (nav.swiping) {
+                                nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
+                              }
+                            },
+                            child: Text(
+                              'Select an Attachment',
+                              style: TextStyle(fontSize: AppData().fontsize - 4, color: Colors.white),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ));
+              ));
+            }
           }
         }
       }

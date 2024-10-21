@@ -827,6 +827,17 @@ class FactionNotifier extends ChangeNotifier {
     return false;
   }
 
+  bool checkProductForWarcasterEquivalent(Product product) {
+    for (var m in product.models) {
+      for (var ab in m.characterabilities!) {
+        if (ab.name.toLowerCase().contains('warcaster equivalent')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   bool validHeartofDarknessModel(Product p, int oofFactionindex) {
     bool partisan = false;
     bool archon = p.name.toLowerCase().contains('archon');
