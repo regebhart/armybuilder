@@ -289,7 +289,15 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
                         onPressed: () async {
                           army.updateSelectedCaster('oofcohort', army.armyList.leadergroup[a].leader);
                           faction.setSelectedCategory(
-                              1, army.armyList.leadergroup[a].leader, null, null, true, null, true, army.armyList.listfaction);
+                            1,
+                            army.armyList.leadergroup[a].leader,
+                            null,
+                            null,
+                            false,
+                            null,
+                            true,
+                            army.armyList.listfaction,
+                          );
                           if (nav.swiping) {
                             nav.builderPageController.animateToPage(0, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                           }

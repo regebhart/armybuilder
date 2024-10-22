@@ -805,7 +805,7 @@ class ArmyListNotifier extends ChangeNotifier {
         LeaderGroup ld = _armyList.leadergroup[casterindex];
         if (ld.oofcohort.length == 2) ld.oofcohort.removeLast();
         ld.oofcohort.add(Cohort(product: Product.copyProduct(cohort.product, false), selectedOptions: cohort.selectedOptions));
-        
+
         if (cohort.product.models[0].modularoptions != null && cohort.selectedOptions!.isEmpty) fillCohortOptions(cohort);
         String cohortuuid = ld.oofcohort.last.product.uuid;
         ld.oofcohort.sort(
@@ -1847,6 +1847,24 @@ class ArmyListNotifier extends ChangeNotifier {
           }
         }
 
+        //loop through each FA C out of faction cohort model
+        for (Cohort c in lg.oofcohort) {
+          if (c.product.fa == 'C') {
+            for (var m in c.product.models) {
+              bool found = false;
+              for (Model productmodel in product.models) {
+                String searchName = faName(productmodel.modelname);
+                if (m.modelname.contains(searchName) || searchName.contains(faName(m.modelname))) {
+                  count += 1;
+                  found = true;
+                  break; //stop searching the current product
+                }
+              }
+              if (found) break;
+            }
+          }
+        }
+
         //repeat for each out of faction jr caster
         for (JrCasterGroup jr in lg.oofjrcasters) {
           //loop through each jr caster in the army list
@@ -2176,6 +2194,10 @@ class ArmyListNotifier extends ChangeNotifier {
         //skip looping through casters, they are all FA C
         if (lg.leaderattachment.name == product.name) count += 1; //check leader attachment
         for (Cohort c in lg.cohort) {
+          //loop through each no C cohort
+          if (c.product.fa != 'C' && c.product.name == product.name) count += 1;
+        }
+        for (Cohort c in lg.oofcohort) {
           //loop through each no C cohort
           if (c.product.fa != 'C' && c.product.name == product.name) count += 1;
         }

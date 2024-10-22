@@ -78,7 +78,7 @@ class _CategoryListState extends State<CategoryList> {
                   index == 1 ? army.selectedcasterFactionIndexes : null,
                   army.armyList.heartofdarkness,
                   null,
-                  army.armyList.flamesinthedarkness,
+                  false,
                   army.armyList.listfaction,
                 );
               }

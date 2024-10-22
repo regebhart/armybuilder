@@ -277,28 +277,36 @@ class FactionNotifier extends ChangeNotifier {
           for (var p in cohorts.products) {
             for (var c in p['cohorts']) {
               Product product = findByName(c);
-              _filteredProducts[0].add(product);
-              if (listFaction == 'Religion of the Twins') {
-                if (!fitd && checkProductForFlamesintheDarkness(selectedCaster)) {
-                  //remove cygnar and khador warjacks
-                  if (product.primaryFaction.contains('Cygnar') || product.primaryFaction.contains('Khador')) {
-                    _filteredProducts[0].removeLast();
+              if (product.name != '') {
+                _filteredProducts[0].add(product);
+                if (listFaction == 'Religion of the Twins') {
+                  String adeptfaction = '';
+                  if (checkProductForCasterAdept(selectedCaster)) adeptfaction = getCasterAdeptFaction(selectedCaster);
+                  if (!fitd && checkProductForFlamesintheDarkness(selectedCaster)) {
+                    //remove cygnar and khador warjacks
+                    bool cygnar = product.primaryFaction.contains('Cygnar') && (adeptfaction != 'Cygnar');
+                    bool khador = product.primaryFaction.contains('Khador') && adeptfaction != 'Khador';
+                    bool notreligion = !product.primaryFaction.contains('Religion of the Twins');
+                    bool notadept = adeptfaction != '' ? !product.primaryFaction.contains(adeptfaction) : true;
+                    if ((cygnar || khador) && notreligion && notadept) {
+                      _filteredProducts[0].removeLast();
+                    }
                   }
-                }
-                if (fitd) {
-                  //remove everything but cygnar and khador warjacks
-                  if ((!product.primaryFaction.contains('Cygnar') && !product.primaryFaction.contains('Khador')) || product.fa == 'C') {
-                    _filteredProducts[0].removeLast();
-                  } else {
-                    product = _filteredProducts[0].last;
-                    _filteredProducts[0].last = changeModelFactionInTitles(
-                        product,
-                        product.primaryFaction.contains('Cygnar')
-                            ? 'Cygnar'
-                            : product.primaryFaction.contains('Khador')
-                                ? 'Khador'
-                                : product.primaryFaction[0],
-                        'Religion of the Twins');
+                  if (fitd) {
+                    //remove everything but cygnar and khador warjacks
+                    if ((!product.primaryFaction.contains('Cygnar') && !product.primaryFaction.contains('Khador')) || product.fa == 'C') {
+                      _filteredProducts[0].removeLast();
+                    } else {
+                      product = _filteredProducts[0].last;
+                      _filteredProducts[0].last = changeModelFactionInTitles(
+                          product,
+                          product.primaryFaction.contains('Cygnar')
+                              ? 'Cygnar'
+                              : product.primaryFaction.contains('Khador')
+                                  ? 'Khador'
+                                  : product.primaryFaction[0],
+                          'Religion of the Twins');
+                    }
                   }
                 }
               }
@@ -836,6 +844,32 @@ class FactionNotifier extends ChangeNotifier {
       }
     }
     return false;
+  }
+
+  bool checkProductForCasterAdept(Product product) {
+    for (var m in product.models) {
+      for (var ab in m.characterabilities!) {
+        if (ab.name.toLowerCase().contains('caster adept')) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  String getCasterAdeptFaction(Product product) {
+    String faction = '';
+    for (var m in product.models) {
+      for (var ab in m.characterabilities!) {
+        if (ab.name.toLowerCase().contains('caster adept')) {
+          int start = ab.name.indexOf('[') + 1;
+          int stop = ab.name.indexOf(']');
+          faction = ab.name.substring(start, stop);
+          break;
+        }
+      }
+    }
+    return faction;
   }
 
   bool validHeartofDarknessModel(Product p, int oofFactionindex) {

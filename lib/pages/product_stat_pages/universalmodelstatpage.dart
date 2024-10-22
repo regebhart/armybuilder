@@ -138,6 +138,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       'heart of darkness',
       'limited battlegroup',
       'limited marshal',
+      'master infernalist',
       'mercenary',
       'military attaché',
       'of the swamp',
@@ -148,6 +149,8 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       'spell rack',
       'split loyalties',
       'strange bedfelllows',
+      'warcaster equivalent',
+      'warlock adept',
       'weapon attachment',
       'weapon attachment specialists'
     ];
