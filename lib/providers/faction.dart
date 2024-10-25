@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:armybuilder/models/abilities.dart';
+import 'package:armybuilder/models/model.dart';
 import 'package:armybuilder/models/modularoptions.dart';
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/providers/armylist.dart';
@@ -125,8 +126,7 @@ class FactionNotifier extends ChangeNotifier {
                     break;
                   case 'Legionnaire Standard Bearer':
                     //small or medium based storm legion
-                    attachname =
-                        'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
+                    attachname = 'Arcane Mechaniks,Storm Lance Legionnaires,Stormblade Legionnaires,Stormguard Legionnaires,Stormthrower Legionnaires';
                     break;
                   case 'Marauder Crew Bosun' || 'Marauder Crew Quartermaster' || 'Marauder Crew Tapper':
                     //medium based marauder crew
@@ -207,13 +207,8 @@ class FactionNotifier extends ChangeNotifier {
           }
         }
       }
-      _allFactions.add({
-        'faction': '${f['name']}',
-        'products': factionProducts,
-        'hascasterattachments': factionHasCasterAttachments,
-        'sortedproducts': products,
-        'unitattachments': ua
-      });
+      _allFactions
+          .add({'faction': '${f['name']}', 'products': factionProducts, 'hascasterattachments': factionHasCasterAttachments, 'sortedproducts': products, 'unitattachments': ua});
     }
   }
 
@@ -249,8 +244,7 @@ class FactionNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex, bool hod, int? oofFactionindex, bool fitd,
-      String listFaction) {
+  setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex, bool hod, int? oofFactionindex, bool fitd, String listFaction) {
     _selectedCategory = index;
     _filteredProducts.clear();
     _filteredProducts = [[], [], []];
@@ -408,8 +402,7 @@ class FactionNotifier extends ChangeNotifier {
                   if (p.fa != 'C' && p.models[0].title.toLowerCase().contains('warjack')) {
                     p.models[0].characterabilities!.add(Ability(
                       name: 'Accumulator [Soulless]',
-                      description:
-                          'When it begins its activation within 3" of one or more other friendly Soulless models, this model gains 1 focus point.',
+                      description: 'When it begins its activation within 3" of one or more other friendly Soulless models, this model gains 1 focus point.',
                     ));
                   }
                   for (var m in p.models) {
@@ -872,6 +865,25 @@ class FactionNotifier extends ChangeNotifier {
     return faction;
   }
 
+  List<String> getWarjackSystems(Product product) {
+    List<String> systems = [];
+    Model m = product.models[0];
+    if (m.grid != null) {
+      if (m.grid!.columns.isNotEmpty) {
+        for (var c in m.grid!.columns) {
+          for (var r in c.boxes) {
+            if (r.system != '-' && r.system != 'x' && !systems.contains(r.system)) {
+              systems.insert(0, r.system);
+            }
+          }
+        }
+        // systems = systems.toSet().toList();
+        // systems.sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+      }
+    }
+    return systems;
+  }
+
   bool validHeartofDarknessModel(Product p, int oofFactionindex) {
     bool partisan = false;
     bool archon = p.name.toLowerCase().contains('archon');
@@ -880,8 +892,7 @@ class FactionNotifier extends ChangeNotifier {
       if (k.toLowerCase() == 'morrowan') morrowan = true;
     }
     for (var ab in p.models[0].characterabilities!) {
-      if (ab.name.toLowerCase().contains('partisan') &&
-          ab.name.toLowerCase().contains(AppData().factionList[oofFactionindex]['name']!.toLowerCase())) {
+      if (ab.name.toLowerCase().contains('partisan') && ab.name.toLowerCase().contains(AppData().factionList[oofFactionindex]['name']!.toLowerCase())) {
         partisan = true;
       }
     }
@@ -893,8 +904,7 @@ class FactionNotifier extends ChangeNotifier {
     Product foundproduct = blankproduct;
     for (int f = 0; f < AppData().factionList.length; f++) {
       for (int g = 0; g < 3; g++) {
-        foundproduct =
-            Product.copyProduct(_allFactions[f]['products'][g].firstWhere((element) => element.name == name, orElse: () => blankproduct), false);
+        foundproduct = Product.copyProduct(_allFactions[f]['products'][g].firstWhere((element) => element.name == name, orElse: () => blankproduct), false);
         if (foundproduct.name != '') {
           break;
         }
@@ -1036,8 +1046,7 @@ class FactionNotifier extends ChangeNotifier {
                 //add accumulator soulless to non-c warjacks
                 product.models[0].characterabilities!.add(Ability(
                   name: 'Accumulator [Soulless]',
-                  description:
-                      'When it begins its activation within 3" of one or more other friendly Soulless models, this model gains 1 focus point.',
+                  description: 'When it begins its activation within 3" of one or more other friendly Soulless models, this model gains 1 focus point.',
                 ));
                 product.models[0].characterabilities!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
                 c.product = product;
@@ -1095,9 +1104,8 @@ class FactionNotifier extends ChangeNotifier {
                 unit: trimTitleToSingleFaction(findByName(u['unit']), heartofdarknessfaction),
                 minsize: u['minsize'],
                 hasMarshal: false,
-                commandattachment: u.containsKey('commandattachment')
-                    ? trimTitleToSingleFaction(findByName(u['commandattachment']), heartofdarknessfaction)
-                    : ArmyListNotifier().blankproduct,
+                commandattachment:
+                    u.containsKey('commandattachment') ? trimTitleToSingleFaction(findByName(u['commandattachment']), heartofdarknessfaction) : ArmyListNotifier().blankproduct,
                 weaponattachments: [],
                 cohort: [],
                 weaponattachmentlimits: [],
@@ -1179,9 +1187,7 @@ class FactionNotifier extends ChangeNotifier {
             unit: trimTitleToSingleFaction(findByName(u['unit']), army.listfaction),
             minsize: u['minsize'],
             hasMarshal: false,
-            commandattachment: u.containsKey('commandattachment')
-                ? trimTitleToSingleFaction(findByName(u['commandattachment']), list['faction'])
-                : ArmyListNotifier().blankproduct,
+            commandattachment: u.containsKey('commandattachment') ? trimTitleToSingleFaction(findByName(u['commandattachment']), list['faction']) : ArmyListNotifier().blankproduct,
             weaponattachments: [],
             cohort: [],
             weaponattachmentlimits: [],
@@ -1435,8 +1441,7 @@ class FactionNotifier extends ChangeNotifier {
               case 'Warjacks/Warbeasts/Horrors':
                 switch (lastleader) {
                   case 'warcaster':
-                    if (list.listfaction == 'Religion of the Twins' &&
-                        (thisproduct.primaryFaction.contains('Cygnar') || thisproduct.primaryFaction.contains('Khador'))) {
+                    if (list.listfaction == 'Religion of the Twins' && (thisproduct.primaryFaction.contains('Cygnar') || thisproduct.primaryFaction.contains('Khador'))) {
                       list.leadergroup.last.oofcohort.add(Cohort(product: thisproduct, selectedOptions: []));
                       lastleader = 'oofcohort';
                     } else {
@@ -1510,8 +1515,7 @@ class FactionNotifier extends ChangeNotifier {
                   if (list.leadergroup.last.oofunits.last.hasMarshal) {
                     lastleader = 'oofunit';
                   }
-                  list.leadergroup.last.oofunits.last.weaponattachmentlimits =
-                      getUnitWeaponAttachLimit(list.leadergroup.last.oofunits.last.unit.name);
+                  list.leadergroup.last.oofunits.last.weaponattachmentlimits = getUnitWeaponAttachLimit(list.leadergroup.last.oofunits.last.unit.name);
                   break;
                 }
               case 'Attachments':

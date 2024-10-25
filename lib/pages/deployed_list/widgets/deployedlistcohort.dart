@@ -1,4 +1,5 @@
 import 'package:armybuilder/models/model.dart';
+import 'package:armybuilder/providers/faction.dart';
 import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,8 +17,7 @@ class DeployedListCohortItem extends StatelessWidget {
   final Cohort cohort;
   final int modelindex;
   final bool minsize;
-  const DeployedListCohortItem(
-      {required this.listindex, required this.listmodelindex, required this.cohort, required this.modelindex, required this.minsize, super.key});
+  const DeployedListCohortItem({required this.listindex, required this.listmodelindex, required this.cohort, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,11 @@ class DeployedListCohortItem extends StatelessWidget {
     const Color bordercolor = Colors.grey;
     List<List<Widget>> statrow = [];
     late Widget stats;
+    late Widget systems;
     Product product = cohort.product;
     Model m = product.models[modelindex];
     String productname = cohort.product.name;
+    List<String> gridsystems = FactionNotifier().getWarjackSystems(cohort.product);
 
     BaseStats moddedStats = BaseStats(
       base: m.stats.base,
@@ -126,6 +128,33 @@ class DeployedListCohortItem extends StatelessWidget {
       children: [toprow, bottomrow],
     );
 
+    systems = Align(
+      alignment: Alignment.centerRight,
+      child: Table(
+        border: TableBorder.all(width: 1, color: bordercolor),
+        defaultColumnWidth: const IntrinsicColumnWidth(),
+        children: [
+          TableRow(
+            children: List.generate(
+              gridsystems.length,
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                child: Text(
+                  gridsystems[index],
+                  overflow: TextOverflow.fade,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: textcolor,
+                    fontSize: AppData().fontsize - 4,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: GestureDetector(
@@ -140,50 +169,58 @@ class DeployedListCohortItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(color: Colors.grey.shade800),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Flexible(
-                  flex: 6,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (productname != modelname)
-                        Text(
-                          productname,
-                          style: TextStyle(fontSize: AppData().fontsize - 5, color: Colors.grey.shade200),
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      Text(
-                        modelname,
-                        style: TextStyle(fontSize: AppData().fontsize - 3, color: Colors.grey.shade200),
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                      stats,
-                    ],
+                if (productname != modelname)
+                  Text(
+                    productname,
+                    style: TextStyle(fontSize: AppData().fontsize - 5, color: Colors.grey.shade200),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
                   ),
+                Text(
+                  modelname,
+                  style: TextStyle(fontSize: AppData().fontsize - 3, color: Colors.grey.shade200),
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
                 ),
-                if (hp != '')
-                  Flexible(
-                    flex: 4,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          hp.toString(),
-                          style: TextStyle(fontSize: AppData().fontsize),
-                        ),
-                        const SizedBox(width: 5),
-                        Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red),
-                      ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Flexible(
+                      flex: 7,
+                      child: stats,
                     ),
-                  )
+                    Flexible(
+                      flex: 3,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          if (hp != '')
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  hp.toString(),
+                                  style: TextStyle(fontSize: AppData().fontsize),
+                                ),
+                                const SizedBox(width: 5),
+                                Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red)
+                              ],
+                            ),
+                          if (hp != '' && gridsystems.isNotEmpty) const SizedBox(height: 5),
+                          if (gridsystems.isNotEmpty) systems,
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),

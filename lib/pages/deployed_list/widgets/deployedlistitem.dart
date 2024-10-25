@@ -14,8 +14,7 @@ class DeployedListItem extends StatelessWidget {
   final Product product;
   final int modelindex;
   final bool minsize;
-  const DeployedListItem(
-      {required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
+  const DeployedListItem({required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -118,50 +117,50 @@ class DeployedListItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(color: Colors.grey.shade800),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Flexible(
-                  flex: 6,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (productname != modelname)
-                        Text(
-                          productname,
-                          style: TextStyle(fontSize: AppData().fontsize - 5, color: Colors.grey.shade200),
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      Text(
-                        modelname,
-                        style: TextStyle(fontSize: AppData().fontsize - 3, color: Colors.grey.shade200),
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                      stats,
-                    ],
+                if (productname != modelname)
+                  Text(
+                    productname,
+                    style: TextStyle(fontSize: AppData().fontsize - 5, color: Colors.grey.shade200),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
                   ),
+                Text(
+                  modelname,
+                  style: TextStyle(fontSize: AppData().fontsize - 3, color: Colors.grey.shade200),
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
                 ),
-                if (hp != '')
-                  Flexible(
-                    flex: 4,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          hp.toString(),
-                          style: TextStyle(fontSize: AppData().fontsize),
-                        ),
-                        const SizedBox(width: 5),
-                        Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red),
-                      ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Flexible(
+                      flex: 7,
+                      child: stats,
                     ),
-                  )
+                    if (hp != '')
+                      Flexible(
+                        flex: 3,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              hp.toString(),
+                              style: TextStyle(fontSize: AppData().fontsize),
+                            ),
+                            const SizedBox(width: 5),
+                            Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red),
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
               ],
             ),
           ),
