@@ -1245,7 +1245,16 @@ class ArmyListNotifier extends ChangeNotifier {
     //   }
     // }
 
+    bool separatemodels = false;
     if (product.models.length > 1) {
+      for (var m in product.models) {
+        if (m.title.toLowerCase().contains('warjack') || m.title.toLowerCase().contains('warbeast') || m.title.toLowerCase().contains('horror')) {
+          separatemodels = true;
+        }
+      }
+    }
+
+    if (separatemodels) {
       //has cohorts
       Product caster = Product.copyProduct(product, false);
       addedProduct = caster;
@@ -2172,7 +2181,7 @@ class ArmyListNotifier extends ChangeNotifier {
       }
 
       //loop through each FA C structure
-      for (Product st in army.battleengines) {
+      for (Product st in army.structures) {
         if (st.fa == 'C') {
           for (Model m in st.models) {
             bool found = false; //will be used to break from the current product for cases like Black 13 vs Hellslingers

@@ -1144,7 +1144,15 @@ class FactionNotifier extends ChangeNotifier {
       for (Map<String, dynamic> jr in list['jrcasters']) {
         JrCasterGroup group = JrCasterGroup(leader: ArmyListNotifier().blankproduct, cohort: []);
         group.leader = trimTitleToSingleFaction(findByName(jr['leader']), list['faction']);
+        bool separatemodels = false;
         if (group.leader.models.length > 1) {
+          for (var m in group.leader.models) {
+            if (m.title.toLowerCase().contains('warjack') || m.title.toLowerCase().contains('warbeast') || m.title.toLowerCase().contains('horror')) {
+              separatemodels = true;
+            }
+          }
+        }
+        if (separatemodels) {
           //has cohorts
           Product caster = Product.copyProduct(group.leader, false);
           Product additionalmodels = Product.copyProduct(group.leader, false);
