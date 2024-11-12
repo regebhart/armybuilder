@@ -26,7 +26,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
-    const EdgeInsets itemInsets = EdgeInsets.only(left: 30);
+    const EdgeInsets itemInsets = EdgeInsets.only(left: 20);
     int listindex = widget.listindex;
     bool add =
         false; //used to add the hp bars only on the first build, otherwise they would be added everytime the page is rebuilt/when the user interacts with the page
@@ -450,7 +450,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
       for (var s in list.solos) {
         int xcount = 1;
         if (FactionNotifier().checkSoloForXCount(s)) {
-          xcount = FactionNotifier().getXCount(s);          
+          xcount = FactionNotifier().getXCount(s);
         }
         for (int x = 1; x <= xcount; x++) {
           count++;

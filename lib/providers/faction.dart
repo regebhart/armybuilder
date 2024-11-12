@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:armybuilder/models/abilities.dart';
+import 'package:armybuilder/models/model.dart';
 import 'package:armybuilder/models/modularoptions.dart';
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/providers/armylist.dart';
@@ -89,6 +90,7 @@ class FactionNotifier extends ChangeNotifier {
           factionProducts[g].add(Product.fromJson(p));
 
           Product thisproduct = factionProducts[g].last;
+          // print(thisproduct.name);
           String attachname = '';
           index = AppData().productCategories.indexWhere((element) => element == thisproduct.category);
 
@@ -872,6 +874,25 @@ class FactionNotifier extends ChangeNotifier {
     return faction;
   }
 
+  List<String> getWarjackSystems(Product product) {
+    List<String> systems = [];
+    Model m = product.models[0];
+    if (m.grid != null) {
+      if (m.grid!.columns.isNotEmpty) {
+        for (var c in m.grid!.columns) {
+          for (var r in c.boxes) {
+            if (r.system != '-' && r.system != 'x' && !systems.contains(r.system)) {
+              systems.add(r.system);
+            }
+          }
+        }
+        // systems = systems.toSet().toList();
+        // systems.sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+      }
+    }
+    return systems;
+  }
+
   bool validHeartofDarknessModel(Product p, int oofFactionindex) {
     bool partisan = false;
     bool archon = p.name.toLowerCase().contains('archon');
@@ -1199,12 +1220,12 @@ class FactionNotifier extends ChangeNotifier {
               group.weaponattachments.add(trimTitleToSingleFaction(findByName(wa), list['faction']));
             }
           }
+          group.weaponattachmentlimits = getUnitWeaponAttachLimit(group.unit.name);
           group.hasMarshal = checkUnitForMashal(group);
           if (group.hasMarshal && u.containsKey('cohort')) {
             group.cohort.addAll(getCohortModelsFromJson(u['cohort'], list['faction'], true));
+            group.cohort.sort((a, b) => a.product.name.toLowerCase().compareTo(b.product.name.toLowerCase()));
           }
-          group.weaponattachmentlimits = getUnitWeaponAttachLimit(group.unit.name);
-
           if (army.flamesinthedarkness) {
             for (var m in group.unit.models) {
               if (m.characterabilities!.isNotEmpty) {
@@ -1244,8 +1265,12 @@ class FactionNotifier extends ChangeNotifier {
                 }
               }
             }
+            group.hasMarshal = checkUnitForMashal(group);
+            if (group.hasMarshal && u.containsKey('cohort')) {
+              group.cohort.addAll(getCohortModelsFromJson(u['cohort'], list['faction'], true));
+              group.cohort.sort((a, b) => a.product.name.toLowerCase().compareTo(b.product.name.toLowerCase()));
+            }
           }
-
           army.units.add(group);
         } else {
           Product product = Product.copyProduct(findByName('Cylena Raefyll & Nyss Hunters'), false);
@@ -1403,8 +1428,6 @@ class FactionNotifier extends ChangeNotifier {
         }
         if (p.contains('Spell Rack')) {
           String spellname = p.replaceAll('Spell Rack: ', '');
-          // int i = spellname.indexOf(' - ');
-          // spellname = spellname.substring(0, i).trim();
           Spell spell = _allSpells.firstWhere((element) => element.name == spellname);
           list.leadergroup.last.spellrack!.add(spell);
         } else {
@@ -1531,6 +1554,10 @@ class FactionNotifier extends ChangeNotifier {
                   if (ab.name.toLowerCase().contains('command') && ab.name.toLowerCase().contains('attachment')) {
                     if ((!infernalslist && !list.leadergroup.last.heartofdarkness) || infaction) {
                       list.units.last.commandattachment = thisproduct;
+                      list.units.last.hasMarshal = checkUnitForMashal(list.units.last);
+                      if (list.units.last.hasMarshal) {
+                        lastleader = 'unit';
+                      }
                       break;
                     } else {
                       list.leadergroup.last.oofunits.last.commandattachment = thisproduct;

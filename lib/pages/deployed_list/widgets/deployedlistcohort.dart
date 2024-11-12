@@ -1,4 +1,6 @@
+import 'package:armybuilder/models/grid.dart';
 import 'package:armybuilder/models/model.dart';
+import 'package:armybuilder/providers/faction.dart';
 import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +29,13 @@ class DeployedListCohortItem extends StatelessWidget {
     const Color bordercolor = Colors.grey;
     List<List<Widget>> statrow = [];
     late Widget stats;
+    late Widget systems;
     Product product = cohort.product;
     Model m = product.models[modelindex];
     String productname = cohort.product.name;
+    List<String> gridsystems = FactionNotifier().getWarjackSystems(cohort.product);
+    List<String> warbeastbranches = ['M', 'B', 'S'];
+    List<String> horrorsystems = ['O', 'M', 'I'];
 
     BaseStats moddedStats = BaseStats(
       base: m.stats.base,
@@ -126,6 +132,127 @@ class DeployedListCohortItem extends StatelessWidget {
       children: [toprow, bottomrow],
     );
 
+    if (m.title.toLowerCase().contains('warjack') || m.title.toLowerCase().contains('colossal')) {
+      systems = Align(
+        alignment: Alignment.centerRight,
+        child: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          children: List.generate(gridsystems.length, (index) {
+            GridBox r = GridBox(system: gridsystems[index], active: army.getSystemDisabled(m.grid!, listindex, listmodelindex, gridsystems[index]));
+            return Padding(
+              padding: const EdgeInsets.all(1),
+              child: Container(
+                decoration: BoxDecoration(border: Border.all(width: 3, color: Colors.grey)),
+                child: SizedBox.square(
+                  dimension: 17,
+                  child: Container(
+                    color: r.active ? Colors.red : Colors.white,
+                    child: Center(
+                        child: Text(
+                      r.system,
+                      style: TextStyle(
+                        color: Colors.grey.shade800,
+                        fontSize: AppData().fontsize - 4,
+                      ),
+                    )),
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
+      );
+    }
+
+    if (m.title.toLowerCase().contains('warbeast') || m.title.toLowerCase().contains('gargantuan')) {
+      systems = Align(
+        alignment: Alignment.centerRight,
+        child: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          children: List.generate(warbeastbranches.length, (index) {
+            bool disabled = army.getBranchDisabled(listindex, listmodelindex, warbeastbranches[index]);
+            return disabled
+                ? const SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1.5,
+                            color: index == 0
+                                ? Colors.blue
+                                : index == 1
+                                    ? Colors.red
+                                    : Colors.green,
+                          ),
+                          shape: BoxShape.circle),
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            warbeastbranches[index],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: AppData().fontsize - 2,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+          }),
+        ),
+      );
+    }
+
+    if (m.title.toLowerCase().contains('horror')) {
+      systems = Align(
+        alignment: Alignment.centerRight,
+        child: Wrap(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.start,
+          children: List.generate(horrorsystems.length, (index) {
+            bool disabled = army.getRingDisabled(listindex, listmodelindex, horrorsystems[index]);
+            return disabled
+                ? const SizedBox()
+                : Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 1.5,
+                            color: index == 0
+                                ? Colors.red[200]!
+                                : index == 1
+                                    ? Colors.red[600]!
+                                    : Colors.red[900]!,
+                          ),
+                          shape: BoxShape.circle),
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            horrorsystems[index],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: AppData().fontsize - 2,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+          }),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: GestureDetector(
@@ -140,50 +267,63 @@ class DeployedListCohortItem extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(color: Colors.grey.shade800),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Flexible(
-                  flex: 6,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (productname != modelname)
-                        Text(
-                          productname,
-                          style: TextStyle(fontSize: AppData().fontsize - 5, color: Colors.grey.shade200),
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.left,
-                        ),
-                      Text(
-                        modelname,
-                        style: TextStyle(fontSize: AppData().fontsize - 3, color: Colors.grey.shade200),
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.left,
-                      ),
-                      stats,
-                    ],
+                if (productname != modelname)
+                  Text(
+                    productname,
+                    style: TextStyle(fontSize: AppData().fontsize - 5, color: Colors.grey.shade200),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
                   ),
+                Text(
+                  modelname,
+                  style: TextStyle(fontSize: AppData().fontsize - 3, color: Colors.grey.shade200),
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
                 ),
-                if (hp != '')
-                  Flexible(
-                    flex: 4,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          hp.toString(),
-                          style: TextStyle(fontSize: AppData().fontsize),
-                        ),
-                        const SizedBox(width: 5),
-                        Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red),
-                      ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Flexible(
+                      flex: 9,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: stats,
+                      ),
                     ),
-                  )
+                    Flexible(
+                      flex: 7,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          if (hp != '')
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    hp.toString(),
+                                    style: TextStyle(fontSize: AppData().fontsize),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red)
+                                ],
+                              ),
+                            ),
+                          systems,
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),

@@ -257,6 +257,7 @@ class SavedArmyListTile extends StatelessWidget {
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            //edit button
             Text(
               '${armylist['totalpoints']}/${armylist['pointtarget']}',
               style: TextStyle(fontSize: AppData().fontsize, color: Colors.black),
@@ -271,6 +272,7 @@ class SavedArmyListTile extends StatelessWidget {
                     faction.setSelectedFactionIndex(AppData().factionList.indexWhere((element) => element['name'] == army.armyList.listfaction));
                     faction.setSelectedCategory(0, null, null, null, false, null, false, army.armyList.listfaction);
                     nav.pageController.jumpToPage(3);
+                    army.setStatus('saved');
                     army.setDeploying(false);
                   },
                   child: Container(
@@ -282,6 +284,8 @@ class SavedArmyListTile extends StatelessWidget {
                 ),
               ),
             ),
+
+            //trash button
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: ClipRRect(
@@ -299,6 +303,8 @@ class SavedArmyListTile extends StatelessWidget {
                 ),
               ),
             ),
+
+            //deploy button
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: ClipRRect(

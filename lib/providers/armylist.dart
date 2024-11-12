@@ -2,6 +2,7 @@
 
 import 'package:armybuilder/models/activearmylist.dart';
 import 'package:armybuilder/models/armylist.dart';
+import 'package:armybuilder/models/grid.dart';
 import 'package:armybuilder/models/model.dart';
 import 'package:armybuilder/models/product.dart';
 import 'package:armybuilder/models/spiral.dart';
@@ -192,6 +193,7 @@ class ArmyListNotifier extends ChangeNotifier {
   setStatus(String value) {
     //status of the list, new or updating existing list
     _status = value;
+    notifyListeners();
   }
 
   setlistnameController(TextEditingController con) {
@@ -296,6 +298,7 @@ class ArmyListNotifier extends ChangeNotifier {
         _castergroupindex.add(0);
       } while (_armyList.leadergroup.length < level['castercount']);
     }
+    if (_status == 'saved') setStatus('edit');
     notifyListeners();
   }
 
@@ -334,7 +337,7 @@ class ArmyListNotifier extends ChangeNotifier {
         // int index = castercount;
         for (int u = 0; u < _armyList.units.length; u++) {
           // if (_armyList.units[u].hasMarshal) index++;
-          if (_armyList.units[u].unit.uuid == product.uuid) {
+          if (_armyList.units[u].unit.uuid == product.uuid || _armyList.units[u].commandattachment.uuid == product.uuid) {
             foundindex = u;
             break;
           }
@@ -486,10 +489,20 @@ class ArmyListNotifier extends ChangeNotifier {
             index++;
             if (_armyList.units[u].unit.uuid == product.uuid) {
               _selectedcaster = index;
-              _selectedcasterProduct = _armyList.units[u].unit;
-              setcasterfactionindex();
-              found = true;
-              break;
+              if (FactionNotifier().checkProductForMarshal(_armyList.units[u].unit)) {
+                _selectedcasterProduct = _armyList.units[u].unit;
+                setcasterfactionindex();
+                found = true;
+                break;
+              } else if (_armyList.units[u].commandattachment.name != '') {
+                _selectedcasterProduct = _armyList.units[u].commandattachment;
+                setcasterfactionindex();
+                found = true;
+                break;
+              } else {
+                print('error assigning unit caster');
+                break;
+              }
             }
           }
         }
@@ -642,6 +655,7 @@ class ArmyListNotifier extends ChangeNotifier {
         addStructure(product);
         break;
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -674,6 +688,7 @@ class ArmyListNotifier extends ChangeNotifier {
         removeStructure(product);
         break;
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -891,6 +906,7 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         break;
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -931,6 +947,7 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         break;
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -957,7 +974,7 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         break;
     }
-
+    if (_status == 'saved') setStatus('edit');
     notifyListeners();
   }
 
@@ -984,6 +1001,7 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         break;
     }
+    if (_status == 'saved') setStatus('edit');
     notifyListeners();
   }
 
@@ -1074,6 +1092,7 @@ class ArmyListNotifier extends ChangeNotifier {
     } else {
       _armyList.leadergroup[leaderindex!].oofunits[unitnum].minsize = !_armyList.leadergroup[leaderindex].oofunits[unitnum].minsize;
     }
+    if (_status == 'saved') setStatus('edit');
     calculatePoints();
     notifyListeners();
   }
@@ -1116,6 +1135,7 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         break;
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -1178,6 +1198,7 @@ class ArmyListNotifier extends ChangeNotifier {
       }
       _armyList.leadergroup[leaderindex].oofunits[unitnum].commandattachment = blankproduct;
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -1199,6 +1220,7 @@ class ArmyListNotifier extends ChangeNotifier {
         _armyList.leadergroup[leaderindex].oofunits[_addToIndex].weaponattachments.add(Product.copyProduct(product, false));
       }
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -1208,6 +1230,7 @@ class ArmyListNotifier extends ChangeNotifier {
     } else {
       _armyList.leadergroup[leaderindex!].oofunits[unitnum].weaponattachments.remove(product);
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -1239,6 +1262,7 @@ class ArmyListNotifier extends ChangeNotifier {
 
   addJrCaster(Product product, bool oof, int? leaderindex) async {
     Product addedProduct = blankproduct;
+    bool separatemodels = false;
     // for (var ab in product.models[0].characterabilities!) {
     //   if (ab.name.toLowerCase().contains('limited battlegroup')) {
     //     product.selectable = false;
@@ -1338,15 +1362,6 @@ class ArmyListNotifier extends ChangeNotifier {
     updateEverything();
   }
 
-  removeJrCohort(Cohort cohort, int jrindex, bool oof, int? oofleaderindex) {
-    if (!oof) {
-      _armyList.jrcasters[jrindex].cohort.remove(cohort);
-    } else {
-      _armyList.leadergroup[oofleaderindex!].oofjrcasters[jrindex].cohort.remove(cohort);
-    }
-    updateEverything();
-  }
-
   removeUnitCohort(Cohort cohort, int unitindex, bool oof, int? oofleaderindex) {
     if (!oof) {
       _armyList.units[unitindex].cohort.remove(cohort);
@@ -1362,11 +1377,13 @@ class ArmyListNotifier extends ChangeNotifier {
         _armyList.leadergroup[_selectedcaster].leaderattachment = Product.copyProduct(product, false);
       }
     }
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
   removeLeaderAttachment(int casterindex) {
     _armyList.leadergroup[casterindex].leaderattachment = blankproduct;
+    if (_status == 'saved') setStatus('edit');
     updateEverything();
   }
 
@@ -3184,5 +3201,67 @@ class ArmyListNotifier extends ChangeNotifier {
       if (sp.name == spellname) return true;
     }
     return false;
+  }
+
+  bool getSystemDisabled(Grid grid, int listindex, int modelindex, String system) {
+    bool disabled = true;
+    for (int c = 0; c < _hptracking[listindex][modelindex]['grid'].length; c++) {
+      for (int r = 0; r < _hptracking[listindex][modelindex]['grid'][c].length; r++) {
+        if (grid.columns[c].boxes[r].system == system && !_hptracking[listindex][modelindex]['grid'][c][r]) {
+          return false;
+        }
+      }
+    }
+    return disabled;
+  }
+
+  bool getBranchDisabled(int listindex, int modelindex, String system) {
+    late int branch;
+    switch (system) {
+      case 'M':
+        branch = 0;
+        break;
+      case 'B':
+        branch = 2;
+        break;
+      case 'S':
+        branch = 4;
+        break;
+      default:
+        return false;
+    }
+    for (int b = branch; b <= branch + 1; b++) {
+      for (int d = 0; d < _hptracking[listindex][modelindex]['spiral'][b].length; d++) {
+        if (!_hptracking[listindex][modelindex]['spiral'][b][d]) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  bool getRingDisabled(int listindex, int modelindex, String system) {
+    late int ring;
+    switch (system) {
+      case 'O':
+        ring = 0;
+        break;
+      case 'M':
+        ring = 1;
+        break;
+      case 'I':
+        ring = 2;
+        break;
+      default:
+        return false;
+    }
+    
+      for (int r = 0; r < _hptracking[listindex][modelindex]['web'][ring].length; r++) {
+        if (!_hptracking[listindex][modelindex]['web'][ring][r]) {
+          return false;
+        }
+      }
+    
+    return true;
   }
 }

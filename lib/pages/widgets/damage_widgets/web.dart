@@ -4,17 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' show radians;
 
 Widget web(int outer, int middle, int inner, ArmyListNotifier army, int? listindex, int? modelindex) {
-  const double dotsize = 10;
-  const double outerradius = 74;
-  const double middleradius = 53;
-  const double innerradius = 30;
-  const double padding = 5;
-  const double framesize = outerradius * 2 + padding * 2 + 5;
+  const double dotsize = 18;
+  const double outerradius = 120;
+  const double middleradius = 90;
+  const double innerradius = 60;
+  const double padding = 14;
+  const double framesize = outerradius * 2 + padding * 2;
   const double framecenter = outerradius;
 
-  List<Widget> outerWidgets = List.generate(outer, (index) => ring(outerradius, (360 / outer * index) - 90, dotsize, framecenter, 0, index, army, listindex, modelindex));
-  List<Widget> middleWidgets = List.generate(middle, (index) => ring(middleradius, (360 / middle * index) + 90, dotsize, framecenter, 1, index, army, listindex, modelindex));
-  List<Widget> innerWidgets = List.generate(inner, (index) => ring(innerradius, (360 / inner * index) - 90, dotsize, framecenter, 2, index, army, listindex, modelindex));
+  List<Widget> outerWidgets = List.generate(
+      outer, (index) => ring(outerradius, (360 / outer * index) - 90, dotsize, framecenter, 0, index, army, listindex, modelindex, padding));
+  List<Widget> middleWidgets = List.generate(
+      middle, (index) => ring(middleradius, (360 / middle * index) + 90, dotsize, framecenter, 1, index, army, listindex, modelindex, padding));
+  List<Widget> innerWidgets = List.generate(
+      inner, (index) => ring(innerradius, (360 / inner * index) - 90, dotsize, framecenter, 2, index, army, listindex, modelindex, padding));
 
   // outerWidgets = outerWidgets.reversed.toList();
   // middleWidgets = middleWidgets.reversed.toList();
@@ -24,8 +27,8 @@ Widget web(int outer, int middle, int inner, ArmyListNotifier army, int? listind
       0,
       Center(
           child: Container(
-              height: outerradius * 2 + dotsize / 3,
-              width: outerradius * 2 + dotsize / 3,
+              height: outerradius * 2,
+              width: outerradius * 2,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(width: 3, color: Colors.red[200]!),
@@ -37,8 +40,8 @@ Widget web(int outer, int middle, int inner, ArmyListNotifier army, int? listind
           // left: framesize / 2 - middleradius,
           // top: framesize / 2 - middleradius,
           child: Container(
-              height: middleradius * 2 + dotsize / 3,
-              width: middleradius * 2 + dotsize / 3,
+              height: middleradius * 2,
+              width: middleradius * 2,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(width: 3, color: Colors.red[600]!),
@@ -50,8 +53,8 @@ Widget web(int outer, int middle, int inner, ArmyListNotifier army, int? listind
           // left: framesize / 2 - innerradius,
           // top: framesize / 2 - innerradius,
           child: Container(
-              height: innerradius * 2 + dotsize / 3,
-              width: innerradius * 2 + dotsize / 3,
+              height: innerradius * 2,
+              width: innerradius * 2,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(width: 3, color: Colors.red[900]!),
@@ -77,12 +80,13 @@ Widget web(int outer, int middle, int inner, ArmyListNotifier army, int? listind
   );
 }
 
-Widget ring(double radius, double angle, double dotsize, double center, int ringindex, int dotindex, ArmyListNotifier army, int? listindex, int? modelindex) {
+Widget ring(double radius, double angle, double dotsize, double center, int ringindex, int dotindex, ArmyListNotifier army, int? listindex,
+    int? modelindex, double padding) {
   final double rad = radians(angle);
   Widget box = webBox(Colors.black, dotsize, ringindex, dotindex, army, listindex, modelindex);
   return Positioned(
-    top: center + (radius * sin(rad)),
-    left: center + (radius * cos(rad)),
+    top: center + (dotsize / 2) + (radius * sin(rad)) - (padding / 2),
+    left: center + (dotsize / 2) + (radius * cos(rad)) - (padding / 2),
     child: box,
   );
 }

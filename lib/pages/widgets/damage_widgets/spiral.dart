@@ -54,7 +54,7 @@ Widget spiral(List<int> branchvalues, int modelindex, ArmyListNotifier army, int
     }
   }
 
-  framesize = bottommost - topmost + 25;
+  framesize = bottommost - topmost + 30;
   leftmost = leftmost.abs() + 10;
   topmost = topmost.abs() + 5;
   for (var h = 0; h < 6; h++) {
