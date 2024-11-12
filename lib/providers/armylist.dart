@@ -1263,13 +1263,7 @@ class ArmyListNotifier extends ChangeNotifier {
   addJrCaster(Product product, bool oof, int? leaderindex) async {
     Product addedProduct = blankproduct;
     bool separatemodels = false;
-    // for (var ab in product.models[0].characterabilities!) {
-    //   if (ab.name.toLowerCase().contains('limited battlegroup')) {
-    //     product.selectable = false;
-    //   }
-    // }
 
-    bool separatemodels = false;
     if (product.models.length > 1) {
       for (var m in product.models) {
         if (m.title.toLowerCase().contains('warjack') || m.title.toLowerCase().contains('warbeast') || m.title.toLowerCase().contains('horror')) {
@@ -3255,13 +3249,13 @@ class ArmyListNotifier extends ChangeNotifier {
       default:
         return false;
     }
-    
-      for (int r = 0; r < _hptracking[listindex][modelindex]['web'][ring].length; r++) {
-        if (!_hptracking[listindex][modelindex]['web'][ring][r]) {
-          return false;
-        }
+
+    for (int r = 0; r < _hptracking[listindex][modelindex]['web'][ring].length; r++) {
+      if (!_hptracking[listindex][modelindex]['web'][ring][r]) {
+        return false;
       }
-    
+    }
+
     return true;
   }
 }
