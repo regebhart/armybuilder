@@ -57,81 +57,84 @@ class ArmyDeploymentWideView extends StatelessWidget {
       }
     }
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Flexible(
-          flex: 5,
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600, minWidth: 450),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5, left: 15.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(army.deployedLists.isNotEmpty ? army.deployedLists[0].list.name : ''),
-                              Text('Faction: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.listfaction : ''}'),
-                              Text(
-                                  'Points: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.totalpoints : ''} / ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.pointtarget : ''}'),
-                            ],
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 15.0),
-                          child: CopyToClipboardButton(),
-                        ),
-                      ],
-                    ),
-                    const DeployedListWidget(
-                      listindex: 0,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-        Flexible(
-          flex: 5,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 50.0),
+        return Align(
+      alignment: Alignment.topCenter,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Flexible(
+            flex: 5,
+            child: SingleChildScrollView(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 600, minWidth: 450),
-                child: const SingleModelStatPage(listindex: 0),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5, left: 15.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(army.deployedLists.isNotEmpty ? army.deployedLists[0].list.name : ''),
+                                Text('Faction: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.listfaction : ''}'),
+                                Text(
+                                    'Points: ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.totalpoints : ''} / ${army.deployedLists.isNotEmpty ? army.deployedLists[0].list.pointtarget : ''}'),
+                              ],
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 15.0),
+                            child: CopyToClipboardButton(),
+                          ),
+                        ],
+                      ),
+                      const DeployedListWidget(
+                        listindex: 0,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-        if (additionallists.isEmpty)
-          const Padding(
-            padding: EdgeInsets.only(left: 8.0, top: 50, right: 15),
-            child: Column(
-              children: [
-                Text('Import Opponents List'),
-                SizedBox(
-                  height: 10,
+          Flexible(
+            flex: 5,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600, minWidth: 450),
+                  child: const SingleModelStatPage(listindex: 0),
                 ),
-                ImportPastedList(opponent: true),
-              ],
+              ),
             ),
           ),
-        if (additionallists.isNotEmpty) ...additionallists,
-      ],
+          if (additionallists.isEmpty)
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 50, right: 15),
+              child: Column(
+                children: [
+                  Text('Import Opponents List'),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ImportPastedList(opponent: true),
+                ],
+              ),
+            ),
+            if (additionallists.isNotEmpty) ...additionallists,
+        ],
+      ),
     );
   }
 }

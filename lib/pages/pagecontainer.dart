@@ -1,4 +1,5 @@
 import 'package:armybuilder/pages/deployed_list/deploymainview.dart';
+import 'package:armybuilder/pages/deployed_list/deploymainviewgrid.dart';
 import 'package:armybuilder/pages/deployed_list/deploymainviewswiping.dart';
 import 'package:armybuilder/pages/import_export/importexport.dart';
 import 'package:armybuilder/pages/list_building_widgets/layouts/wide.dart';
@@ -36,6 +37,8 @@ class _PagesContainerState extends State<PagesContainer> {
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
     const double minwidth = 1080; //minimum width to display wide layout
+    const double deployedminwidth = 800;
+    const double deployedfullwidth = 1525;
     nav.setPageController(pageController);
 
     return PageView(
@@ -79,12 +82,15 @@ class _PagesContainerState extends State<PagesContainer> {
         const ImportExport(),
 
         //6:deployed lists/playing a game
-        LayoutBuilder(builder: (context, constraints) {
-          bool swiping = constraints.maxWidth < minwidth;
-          nav.setSwiping(swiping);
-          if (swiping) {
+        LayoutBuilder(builder: (context, constraints) {          
+          if (constraints.maxWidth < deployedminwidth) {
+            nav.setSwiping(true);
             return const ArmyDeploymentSwiping();
+          } else if (constraints.maxWidth < deployedfullwidth) {
+            nav.setSwiping(false);
+            return const ArmyDeploymentGridView();
           } else {
+            nav.setSwiping(false);
             return const ArmyDeploymentWideView();
           }
         }),

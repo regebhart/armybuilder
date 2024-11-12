@@ -17,27 +17,31 @@ class SaveListButton extends StatelessWidget {
 
     return InkWell(
       onTap: () async {
-        if (army.armyList.isEmpty()) {
+        bool error = false;
+        if (army.armyList.leadergroup[0].leader.name == '') {
           await _showErrorDialog(context, 'You must assign at least one leader before saving.');
+          error = true;
         }
         if (army.listnameController.text == '') {
           if (context.mounted) {
             await _showErrorDialog(context, 'You must set a name for the list before saving.');
+            error = true;
           }
         }
-        {
-          if (army.status == 'edit') {
+        if (!error) {
+          if (army.status == 'edit' || army.status == 'saved') {
             if (army.armyList.name != army.listnameController.text) {
               if (context.mounted) {
                 await _showSaveDialog(context, army);
               }
             } else {
               updateExisitingList(army.armyList, army.armylistindex);
+              army.setStatus('saved');
             }
           } else {
-            army.setStatus('edit');
             army.setlistname(army.listnameController.text);
             saveNewList(army.armyList);
+            army.setStatus('saved');
           }
 
           FirebaseAnalytics.instance.logEvent(
@@ -98,6 +102,7 @@ Future<void> _showSaveDialog(context, ArmyListNotifier army) async {
             onPressed: () {
               army.setlistname(army.listnameController.text);
               saveNewList(army.armyList);
+              army.setStatus('saved');
               Navigator.of(context).pop();
             },
           ),
@@ -106,6 +111,7 @@ Future<void> _showSaveDialog(context, ArmyListNotifier army) async {
             onPressed: () {
               army.setlistname(army.listnameController.text);
               updateExisitingList(army.armyList, army.armylistindex);
+              army.setStatus('saved');
               Navigator.of(context).pop();
             },
           ),

@@ -14,7 +14,8 @@ class DeployedListItem extends StatelessWidget {
   final Product product;
   final int modelindex;
   final bool minsize;
-  const DeployedListItem({required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
+  const DeployedListItem(
+      {required this.listindex, required this.listmodelindex, required this.product, required this.modelindex, required this.minsize, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,10 @@ class DeployedListItem extends StatelessWidget {
     final Color textcolor = Colors.grey.shade200;
     const Color bordercolor = Colors.grey;
     List<List<Widget>> statrow = [];
+    List<List<Widget>> altstatrow = [];
     late Widget stats;
+    late Widget altstats;
+    late Widget statstable;
     Model m = product.models[modelindex];
     String productname = product.name;
     String modelname = '';
@@ -68,7 +72,7 @@ class DeployedListItem extends StatelessWidget {
     if (m.hpbars!.isNotEmpty && unitmodelcount > 0) {
       for (int h = 0; h < unitmodelcount; h++) {
         if (int.tryParse(m.hpbars![h].hp) != null) {
-          hp = '$hp  ${int.parse(m.hpbars![h].hp) - army.hptracking[listindex][listmodelindex]['hpbarsdamage'][h]}';
+          hp = '$hp ${int.parse(m.hpbars![h].hp) - army.hptracking[listindex][listmodelindex]['hpbarsdamage'][h]}';
           hptotal = (hptotal! + int.parse(m.hpbars![h].hp) - army.hptracking[listindex][listmodelindex]['hpbarsdamage'][h]) as int?;
         } else {}
       }
@@ -88,19 +92,39 @@ class DeployedListItem extends StatelessWidget {
     if (m.stats.rat != '-') statrow.add(statBlock('RAT', m.stats.rat!, bordercolor, textcolor));
     if (m.stats.def != '-') statrow.add(statBlock('DEF', m.stats.def!, bordercolor, textcolor));
     if (m.stats.arm != '-') statrow.add(statBlock('ARM', m.stats.arm!, bordercolor, textcolor));
-    if (m.stats.arc != '-') statrow.add(statBlock('ARC', m.stats.arc!, bordercolor, textcolor));
-    if (m.stats.cmd != '-') statrow.add(statBlock('CMD', m.stats.cmd!, bordercolor, textcolor));
-    if (m.stats.ctrl != '-') statrow.add(statBlock('CTRL', m.stats.ctrl!, bordercolor, textcolor));
-    if (m.stats.fury != '-') statrow.add(statBlock('FURY', m.stats.fury!, bordercolor, textcolor));
-    if (m.stats.thr != '-') statrow.add(statBlock('THR', m.stats.thr!, bordercolor, textcolor));
-    if (m.stats.ess != '-') statrow.add(statBlock('ESS', m.stats.ess!, bordercolor, textcolor));
+    if (m.stats.cmd != '-') altstatrow.add(statBlock('CMD', m.stats.cmd!, bordercolor, textcolor));
+    if (m.stats.ctrl != '-') altstatrow.add(statBlock('CTRL', m.stats.ctrl!, bordercolor, textcolor));
+    if (m.stats.arc != '-') altstatrow.add(statBlock('ARC', m.stats.arc!, bordercolor, textcolor));
+    if (m.stats.fury != '-') altstatrow.add(statBlock('FURY', m.stats.fury!, bordercolor, textcolor));
+    if (m.stats.thr != '-') altstatrow.add(statBlock('THR', m.stats.thr!, bordercolor, textcolor));
+    if (m.stats.ess != '-') altstatrow.add(statBlock('ESS', m.stats.ess!, bordercolor, textcolor));
 
     TableRow toprow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][0]));
     TableRow bottomrow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][1]));
+    TableRow alttoprow = TableRow(children: List.generate(altstatrow.length, (index) => altstatrow[index][0]));
+    TableRow altbottomrow = TableRow(children: List.generate(altstatrow.length, (index) => altstatrow[index][1]));
     stats = Table(
       border: TableBorder.all(width: 1, color: bordercolor),
       defaultColumnWidth: const IntrinsicColumnWidth(),
       children: [toprow, bottomrow],
+    );
+
+    altstats = const SizedBox();
+    if (alttoprow.children.isNotEmpty) {
+      altstats = Table(
+        border: TableBorder.all(width: 1, color: bordercolor),
+        defaultColumnWidth: const IntrinsicColumnWidth(),
+        children: [alttoprow, altbottomrow],
+      );
+    }
+
+    statstable = Align(
+      alignment: Alignment.centerLeft,
+      child: Wrap(
+        direction: Axis.horizontal,
+        alignment: WrapAlignment.start,
+        children: [stats, altstats],
+      ),
     );
 
     return Padding(
@@ -140,12 +164,12 @@ class DeployedListItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Flexible(
-                      flex: 7,
-                      child: stats,
+                      flex: 9,
+                      child: statstable,
                     ),
                     if (hp != '')
-                      Flexible(
-                        flex: 3,
+                      Expanded(
+                        flex: 7,
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -154,7 +178,7 @@ class DeployedListItem extends StatelessWidget {
                               hp.toString(),
                               style: TextStyle(fontSize: AppData().fontsize),
                             ),
-                            const SizedBox(width: 5),
+                            const SizedBox(width: 1),
                             Icon(hptotal == 0 ? Icons.clear : Icons.favorite, color: Colors.red),
                           ],
                         ),

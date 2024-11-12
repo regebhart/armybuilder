@@ -35,8 +35,17 @@ class UniversalModelStatPage extends StatefulWidget {
 }
 
 class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
+  late final ScrollController _horizontal;
+
+  @override
+  void initState() {
+    _horizontal = ScrollController();
+    super.initState();
+  }
+
   @override
   void dispose() {
+    _horizontal.dispose();
     super.dispose();
   }
 
@@ -549,12 +558,20 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         grid.insert(6, shieldWidget);
       }
 
-      hp = Padding(
-        padding: const EdgeInsets.all(5),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: grid,
+      hp = Scrollbar(
+        controller: _horizontal,
+        scrollbarOrientation: ScrollbarOrientation.bottom,
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: SingleChildScrollView(
+            controller: _horizontal,
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: grid,
+            ),
+          ),
         ),
       );
     }
