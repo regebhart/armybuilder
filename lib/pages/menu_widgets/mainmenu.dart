@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:armybuilder/providers/faction.dart';
 import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';
@@ -124,6 +126,29 @@ class MainMenu extends StatelessWidget {
                           },
                           child: Text(
                             'Import/Export',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: AppData().fontsize - 2, color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: SizedBox(
+                    width: 200,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        color: Colors.white,
+                        child: TextButton(
+                          onPressed: () {
+                            html.window.open('https://www.legacymachine.online/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
+                          },
+                          child: Text(
+                            'Core Rulebook',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: AppData().fontsize - 2, color: Colors.black),
                           ),

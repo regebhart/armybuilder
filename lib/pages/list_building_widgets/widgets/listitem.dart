@@ -18,7 +18,7 @@ class ArmyListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: false);
+    ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
     FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context, listen: false);
 
@@ -98,20 +98,22 @@ class ArmyListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      GestureDetector(
-                        onTap: onTap,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Container(
-                            decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.red)),
-                            child: Icon(
-                              Icons.clear,
-                              color: Colors.red,
-                              size: AppData().fontsize + 10,
-                            ),
-                          ),
-                        ),
-                      ),
+                      product.removable
+                          ? GestureDetector(
+                              onTap: onTap,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5),
+                                child: Container(
+                                  decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.red)),
+                                  child: Icon(
+                                    Icons.clear,
+                                    color: Colors.red,
+                                    size: AppData().fontsize + 10,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(width: 30),
                       SizedBox(width: AppData().listButtonSpacing),
                       GestureDetector(
                           child: ClipRRect(
@@ -186,11 +188,6 @@ class ArmyListItem extends StatelessWidget {
               RichText(
                 textAlign: TextAlign.right,
                 text: TextSpan(
-                  // text: 'FA: ',
-                  // style: TextStyle(
-                  //   color: Colors.white,
-                  //   fontSize: AppData().fontsize,
-                  // ),
                   children: [
                     TextSpan(
                       text: product.fanum.toString(),

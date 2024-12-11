@@ -38,6 +38,11 @@ class DeployedListItem extends StatelessWidget {
     int unitmodelcount = 0;
 
     switch (product.category) {
+      case ('Warcasters/Warlocks/Masters'):
+        modelname = m.modelname;
+        if (m.hpbars != null) {
+          unitmodelcount = m.hpbars!.length;
+        }
       case ('Units'):
         String unit = product.unitPoints![minsize ? 'minunit' : 'maxunit'];
         modelname = '${product.name} - $unit';
@@ -74,7 +79,7 @@ class DeployedListItem extends StatelessWidget {
         if (int.tryParse(m.hpbars![h].hp) != null) {
           hp = '$hp ${int.parse(m.hpbars![h].hp) - army.hptracking[listindex][listmodelindex]['hpbarsdamage'][h]}';
           hptotal = (hptotal! + int.parse(m.hpbars![h].hp) - army.hptracking[listindex][listmodelindex]['hpbarsdamage'][h]) as int?;
-        } else {}
+        }
       }
     } else {
       if (int.tryParse(m.stats.hp!) != null) {
@@ -99,23 +104,28 @@ class DeployedListItem extends StatelessWidget {
     if (m.stats.thr != '-') altstatrow.add(statBlock('THR', m.stats.thr!, bordercolor, textcolor));
     if (m.stats.ess != '-') altstatrow.add(statBlock('ESS', m.stats.ess!, bordercolor, textcolor));
 
-    TableRow toprow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][0]));
-    TableRow bottomrow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][1]));
-    TableRow alttoprow = TableRow(children: List.generate(altstatrow.length, (index) => altstatrow[index][0]));
-    TableRow altbottomrow = TableRow(children: List.generate(altstatrow.length, (index) => altstatrow[index][1]));
-    stats = Table(
-      border: TableBorder.all(width: 1, color: bordercolor),
-      defaultColumnWidth: const IntrinsicColumnWidth(),
-      children: [toprow, bottomrow],
-    );
-
-    altstats = const SizedBox();
-    if (alttoprow.children.isNotEmpty) {
-      altstats = Table(
+    if (statrow.isEmpty && altstatrow.isEmpty) {
+      stats = const SizedBox();
+      altstats = const SizedBox();
+    } else {
+      TableRow toprow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][0]));
+      TableRow bottomrow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][1]));
+      TableRow alttoprow = TableRow(children: List.generate(altstatrow.length, (index) => altstatrow[index][0]));
+      TableRow altbottomrow = TableRow(children: List.generate(altstatrow.length, (index) => altstatrow[index][1]));
+      stats = Table(
         border: TableBorder.all(width: 1, color: bordercolor),
         defaultColumnWidth: const IntrinsicColumnWidth(),
-        children: [alttoprow, altbottomrow],
+        children: [toprow, bottomrow],
       );
+
+      altstats = const SizedBox();
+      if (alttoprow.children.isNotEmpty) {
+        altstats = Table(
+          border: TableBorder.all(width: 1, color: bordercolor),
+          defaultColumnWidth: const IntrinsicColumnWidth(),
+          children: [alttoprow, altbottomrow],
+        );
+      }
     }
 
     statstable = Align(
@@ -164,7 +174,7 @@ class DeployedListItem extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Flexible(
-                      flex: 9,
+                      flex: 10,
                       child: statstable,
                     ),
                     if (hp != '')

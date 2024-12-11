@@ -82,6 +82,7 @@ class ArmyListNotifier extends ChangeNotifier {
       name: '',
       category: '',
       fa: '',
+      basefa: '',
       points: '0',
       models: [],
       fanum: 0,
@@ -1300,6 +1301,7 @@ class ArmyListNotifier extends ChangeNotifier {
         copy.name = m.modelname;
         copy.points = '0';
         copy.fa = 'C';
+        copy.basefa = 'C';
         copy.category = 'Warjacks/Warbeasts/Horrors';
         copy.factions = [_armyList.listfaction];
         copy.primaryFaction = [_armyList.listfaction];
@@ -2298,6 +2300,8 @@ class ArmyListNotifier extends ChangeNotifier {
       flamesinthedarkness: _armyList.flamesinthedarkness,
     );
 
+    bool cathmore = false;
+
     for (var g in _armyList.leadergroup) {
       newarmy.leadergroup.add(LeaderGroup(
         leader: blankproduct,
@@ -2313,35 +2317,43 @@ class ArmyListNotifier extends ChangeNotifier {
         heartofdarknessfaction: g.heartofdarknessfaction,
         flamesinthedarkness: g.flamesinthedarkness,
       ));
+
       if (g.leader.name != '') {
         newarmy.leadergroup.last.leader = Product.copyProduct(g.leader, true);
         newarmy.leadergroup.last.leader.fanum = calculateFA(newarmy, g.leader);
+        if (g.leader.name == 'Colonel Drake Cathmore') cathmore = true;
       }
       if (g.leaderattachment.name != '') {
         newarmy.leadergroup.last.leaderattachment = Product.copyProduct(g.leaderattachment, true);
         newarmy.leadergroup.last.leaderattachment.fanum = calculateFA(newarmy, g.leaderattachment);
+        scaleFA(newarmy.leadergroup.last.leaderattachment, false);
       }
       for (var c in g.cohort) {
         newarmy.leadergroup.last.cohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
         newarmy.leadergroup.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
+        scaleFA(newarmy.leadergroup.last.cohort.last.product, false);
       }
       for (var c in g.oofcohort) {
         newarmy.leadergroup.last.oofcohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
         newarmy.leadergroup.last.oofcohort.last.product.fanum = calculateFA(newarmy, c.product);
+        scaleFA(newarmy.leadergroup.last.oofcohort.last.product, false);
       }
       for (var jr in g.oofjrcasters) {
         newarmy.leadergroup.last.oofjrcasters.add(JrCasterGroup(leader: blankproduct, cohort: []));
         newarmy.leadergroup.last.oofjrcasters.last.leader = Product.copyProduct(jr.leader, true);
         newarmy.leadergroup.last.oofjrcasters.last.leader.fanum = calculateFA(newarmy, jr.leader);
+        scaleFA(newarmy.leadergroup.last.oofjrcasters.last.leader, false);
         for (var c in jr.cohort) {
           newarmy.leadergroup.last.oofjrcasters.last.cohort
               .add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
           newarmy.leadergroup.last.oofjrcasters.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
+          scaleFA(newarmy.leadergroup.last.oofjrcasters.last.cohort.last.product, false);
         }
       }
       for (var s in g.oofsolos) {
         newarmy.leadergroup.last.oofsolos.add(Product.copyProduct(s, true));
         newarmy.leadergroup.last.oofsolos.last.fanum = calculateFA(newarmy, s);
+        scaleFA(newarmy.leadergroup.last.oofsolos.last, false);
       }
       for (var u in g.oofunits) {
         newarmy.leadergroup.last.oofunits.add(Unit(
@@ -2355,13 +2367,16 @@ class ArmyListNotifier extends ChangeNotifier {
         ));
         newarmy.leadergroup.last.oofunits.last.unit = Product.copyProduct(u.unit, true);
         newarmy.leadergroup.last.oofunits.last.unit.fanum = calculateFA(newarmy, u.unit);
+        scaleFA(newarmy.leadergroup.last.oofunits.last.unit, false);
         if (u.commandattachment.name != '') {
           newarmy.leadergroup.last.oofunits.last.commandattachment = Product.copyProduct(u.commandattachment, true);
           newarmy.leadergroup.last.oofunits.last.commandattachment.fanum = calculateFA(newarmy, u.commandattachment);
+          scaleFA(newarmy.leadergroup.last.oofunits.last.commandattachment, false);
         }
         for (var wa in u.weaponattachments) {
           newarmy.leadergroup.last.oofunits.last.weaponattachments.add(Product.copyProduct(wa, true));
           newarmy.leadergroup.last.oofunits.last.weaponattachments.last.fanum = calculateFA(newarmy, wa);
+          scaleFA(newarmy.leadergroup.last.oofunits.last.weaponattachments.last, false);
         }
         newarmy.leadergroup.last.oofunits.last.hasMarshal = FactionNotifier().checkUnitForMashal(newarmy.leadergroup.last.oofunits.last);
         if (newarmy.leadergroup.last.oofunits.last.hasMarshal) {
@@ -2369,6 +2384,7 @@ class ArmyListNotifier extends ChangeNotifier {
             newarmy.leadergroup.last.oofunits.last.cohort
                 .add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
             newarmy.leadergroup.last.oofunits.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
+            scaleFA(newarmy.leadergroup.last.oofunits.last.cohort.last.product, false);
           }
         }
         newarmy.leadergroup.last.oofunits.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(u.unit.name);
@@ -2378,9 +2394,11 @@ class ArmyListNotifier extends ChangeNotifier {
       newarmy.jrcasters.add(JrCasterGroup(leader: blankproduct, cohort: []));
       newarmy.jrcasters.last.leader = Product.copyProduct(jr.leader, true);
       newarmy.jrcasters.last.leader.fanum = calculateFA(newarmy, jr.leader);
+      scaleFA(newarmy.jrcasters.last.leader, cathmore);
       for (var c in jr.cohort) {
         newarmy.jrcasters.last.cohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
         newarmy.jrcasters.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
+        scaleFA(newarmy.jrcasters.last.cohort.last.product, false);
       }
     }
     for (var u in _armyList.units) {
@@ -2395,19 +2413,23 @@ class ArmyListNotifier extends ChangeNotifier {
       ));
       newarmy.units.last.unit = Product.copyProduct(u.unit, true);
       newarmy.units.last.unit.fanum = calculateFA(newarmy, u.unit);
+      scaleFA(newarmy.units.last.unit, false);
       if (u.commandattachment.name != '') {
         newarmy.units.last.commandattachment = Product.copyProduct(u.commandattachment, true);
         newarmy.units.last.commandattachment.fanum = calculateFA(newarmy, u.commandattachment);
+        scaleFA(newarmy.units.last.commandattachment, false);
       }
       for (var wa in u.weaponattachments) {
         newarmy.units.last.weaponattachments.add(Product.copyProduct(wa, true));
         newarmy.units.last.weaponattachments.last.fanum = calculateFA(newarmy, wa);
+        scaleFA(newarmy.units.last.weaponattachments.last, false);
       }
       newarmy.units.last.hasMarshal = FactionNotifier().checkUnitForMashal(newarmy.units.last);
       if (newarmy.units.last.hasMarshal) {
         for (var c in u.cohort) {
           newarmy.units.last.cohort.add(Cohort(product: Product.copyProduct(c.product, true), selectedOptions: c.selectedOptions));
           newarmy.units.last.cohort.last.product.fanum = calculateFA(newarmy, c.product);
+          scaleFA(newarmy.units.last.cohort.last.product, false);
         }
       }
       newarmy.units.last.weaponattachmentlimits = FactionNotifier().getUnitWeaponAttachLimit(u.unit.name);
@@ -2415,17 +2437,21 @@ class ArmyListNotifier extends ChangeNotifier {
     for (var s in _armyList.solos) {
       newarmy.solos.add(Product.copyProduct(s, true));
       newarmy.solos.last.fanum = calculateFA(newarmy, s);
+      scaleFA(newarmy.solos.last, false);
     }
 
     for (var be in _armyList.battleengines) {
       newarmy.battleengines.add(Product.copyProduct(be, true));
       newarmy.battleengines.last.fanum = calculateFA(newarmy, be);
+      scaleFA(newarmy.battleengines.last, false);
     }
     for (var st in _armyList.structures) {
       newarmy.structures.add(Product.copyProduct(st, true));
       newarmy.structures.last.fanum = calculateFA(newarmy, st);
+      scaleFA(newarmy.structures.last, false);
     }
     _armyList = newarmy;
+    notifyListeners();
   }
 
   String armyListToString() {
@@ -3257,5 +3283,21 @@ class ArmyListNotifier extends ChangeNotifier {
     }
 
     return true;
+  }
+
+  scaleFA(Product p, bool cathmore) {
+    if (p.basefa != 'C' && p.basefa != 'U') {
+      //increase the FA by leadercount
+      int fa = int.parse(p.basefa);
+      fa = fa * armyList.leadergroup.length;
+      switch (p.name) {
+        case 'Journeyman Warcaster':
+          if (cathmore) fa += 1;
+          break;
+        default:
+          break;
+      }
+      p.fa = fa.toString();
+    }
   }
 }

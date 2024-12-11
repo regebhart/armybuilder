@@ -1,3 +1,4 @@
+import 'package:armybuilder/providers/faction.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,7 @@ class _PointSelectState extends State<PointSelect> {
   @override
   Widget build(BuildContext context) {
     ArmyListNotifier army = Provider.of<ArmyListNotifier>(context, listen: true);
+    FactionNotifier faction = Provider.of<FactionNotifier>(context, listen: false);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -45,6 +47,12 @@ class _PointSelectState extends State<PointSelect> {
                     dropdownColor: Colors.white,
                     onChanged: (value) {
                       army.setEncounterLevel(AppData().encounterlevels.firstWhere((element) => element['level'] == value));
+                      bool cathmore = false;
+                      for (var l in army.armyList.leadergroup) {
+                        if (l.leader.name == 'Colonel Drake Cathmore') cathmore = true;
+                      }
+                      faction.scaleFA(army.armyList.leadergroup.length, cathmore);
+                      army.recalulateFA();
                     },
                     style: TextStyle(fontSize: AppData().fontsize),
                     items: AppData().encounterlevels.map<DropdownMenuItem<String>>((e) {

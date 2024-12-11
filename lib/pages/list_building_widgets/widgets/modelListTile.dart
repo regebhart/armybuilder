@@ -76,7 +76,7 @@ class CategoryModelListTile extends StatelessWidget {
               textAlign: TextAlign.right,
             ),
             subtitle: Text(
-              'FA: ${p.fa}', // ${atlimit ? ' Met!' : ''}',
+              'FA: ${p.fa}',
               style: TextStyle(
                 color: atlimit ? limittextcolor : normaltextcolor,
               ),

@@ -208,18 +208,28 @@ class _CategoryModelsListState extends State<CategoryModelsList> with AutomaticK
               if (p.points == '') {
                 cost = 'Min: ${p.unitPoints!['mincost']}';
                 onTap = () {
-                  army.addUnit(
-                    Unit(
-                        unit: Product.copyProduct(p, false),
-                        minsize: true,
-                        hasMarshal: false,
-                        commandattachment: army.blankproduct,
-                        weaponattachments: [],
-                        cohort: [],
-                        weaponattachmentlimits: faction.getUnitWeaponAttachLimit(p.name)),
-                    false,
-                    null,
-                  );
+                  bool found = false;
+                  for (var o in AppData().rankingOfficers) {
+                    if (p.name.contains(o['officer']!)) {
+                      army.addUnit(faction.buildRankingOfficerUnit(p, o), false, null);
+                      found = true;
+                      break;
+                    }
+                  }
+                  if (!found) {
+                    army.addUnit(
+                      Unit(
+                          unit: Product.copyProduct(p, false),
+                          minsize: true,
+                          hasMarshal: false,
+                          commandattachment: army.blankproduct,
+                          weaponattachments: [],
+                          cohort: [],
+                          weaponattachmentlimits: faction.getUnitWeaponAttachLimit(p.name)),
+                      false,
+                      null,
+                    );
+                  }
                   toast.show(context);
                 };
                 if (p.unitPoints!['maxcost'] != '-') {

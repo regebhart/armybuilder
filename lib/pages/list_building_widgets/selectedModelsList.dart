@@ -77,7 +77,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
       if (army.armyList.leadergroup[a].spellracklimit != null) {
         if (army.armyList.leadergroup[a].spellracklimit! > 0) {
           for (var sp in army.armyList.leadergroup[a].spellrack!) {
-            leaders.add(SpellRackListItem(title: sp.name, cost: sp.cost, casterindex: a));
+            leaders.add(SpellRackListItem(title: sp.name, cost: sp.poolcost!, casterindex: a));
           }
           for (int s = army.armyList.leadergroup[a].spellrack!.length; s < army.armyList.leadergroup[a].spellracklimit!; s++) {
             leaders.add(Align(
@@ -396,7 +396,7 @@ class _ModelSelectedListState extends State<ModelSelectedList> {
           oof: false,
         ));
         showclearbutton = true;
-        if (faction.unitHasCommandAttachments(thisunit.unit.name, false, null)) {
+        if (thisunit.commandattachment.name != '' || faction.unitHasCommandAttachments(thisunit.unit.name, false, null)) {
           if (thisunit.commandattachment.name == '') {
             units.add(
               Align(

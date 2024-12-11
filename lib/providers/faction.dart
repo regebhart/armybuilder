@@ -174,9 +174,6 @@ class FactionNotifier extends ChangeNotifier {
                     attachname =
                         'Dawnguard Destors,Dawnguard Invictors,Dawnguard Sentinels,Dreadguard Archers,Dreadguard Cavalry,Dreadguard Slayers,Heavy Rifle Team,House Ellowuyr Swordsman,House Ellowuyr Wardens,House Shyeel Arcanists,House Shyeel Battle Mages,House Vyre Electromancers,Houseguard Halberdiers,Houseguard Riflemen,Mage Hunter Assassins,Mage Hunter Infiltrators,Mage Hunter Rangers,Mage Hunter Strike Force,Ryssovass Defenders,Seeker Adepts,Soulless Blademasters,Soulless Guardians,Soulless Hunters,Spears of Scyrah,Stormfall Archers';
                     break;
-                  case 'Cephalyx Domintor':
-                    //small or medium based merc unit
-                    break;
                   default:
                     attachname = ab.name.substring(ab.name.indexOf('['));
                     attachname = attachname.replaceAll('[', '').replaceAll(']', '');
@@ -266,10 +263,6 @@ class FactionNotifier extends ChangeNotifier {
     if (index <= 6 || index == 666 || index == 667 || index == 999) {
       switch (index) {
         case 1:
-          //cohort
-          // if (selectedCaster!.name != '' && AppData().limitedBattlegroup.contains(selectedCaster.name)) {
-          //   setLimitedCohort(selectedCaster.name);
-          // } else {
           if (casterFactionIndex != null) {
             factionindex.clear();
             factionindex.addAll(casterFactionIndex);
@@ -329,7 +322,6 @@ class FactionNotifier extends ChangeNotifier {
                   product.models[0].keywords!.sort(
                     (a, b) => a.toLowerCase().compareTo(b.toLowerCase()),
                   );
-                  // _filteredProducts[0].add(p);
                   _filteredProducts[0].remove(p);
                   _filteredProducts[0].add(product);
                   _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
@@ -337,73 +329,7 @@ class FactionNotifier extends ChangeNotifier {
                 }
               }
               break;
-            // case 'brigadier general gunnbjorn':
-            //   //add Troll warbeasts if not a Troll list
-            //   //change factions of both
-            //   if (selectedfaction != 'Trollbloods') {
-            //     //int factionindex = _allFactions.indexWhere((element) => element['faction'] == 'Trollbloods');
-            //     for (Product p in selectedCaster!.validcohortmodels!) {
-            //       Product product = changeModelFactionInTitles(p, 'Trollblood', selectedfaction);
-            //       _filteredProducts[0].add(product);
-            //     }
-            //   }
-            //   break;
-            // case 'captain gunnbjorn':
-            //   //   //add Troll warbeasts if not a troll list
-            //   //   //change faction
-            //   if (selectedfaction != 'Trollbloods') {
-            //     // int factionindex = _allFactions.indexWhere((element) => element['faction'] == 'Trollbloods');
-            //     for (Product p in selectedCaster!.validcohortmodels!) {
-            //       Product product = changeModelFactionInTitles(p, 'Trollblood', selectedfaction);
-            //       _filteredProducts[0].add(product);
-            //     }
-            //   }
-            //   break;
-            // case 'allister caine, leader of the hellslingers': //|| 'Captain Allister Caine' || 'Lieutenant Allister Caine'
-            //   //   //add Ace if not a Cygnar list
-            //   //   //change faction
-            //   if (selectedfaction != 'Cygnar') {
-            //     //int factionindex = _allFactions.indexWhere((element) => element['faction'] == 'Cygnar');
-            //     for (Product p in selectedCaster!.validcohortmodels!) {
-            //       if (p.name == 'Ace') {
-            //         Product product = changeModelFactionInTitles(p, 'Cygnar', selectedfaction);
-            //         _filteredProducts[0].add(product);
-            //         break;
-            //       }
-            //     }
-            //   }
-            //   break;
-            // case 'vladimir tzepesci, great prince of umbrey':
-            //   //add Drago if not Khador list
-            //   //change faction
-            //   if (selectedfaction != 'Khador') {
-            //     int factionindex = _allFactions.indexWhere((element) => element['faction'] == 'Khador');
-            //     for (Product p in _allFactions[factionindex]['sortedproducts'][0][1]) {
-            //       if (p.name == 'Drago') {
-            //         Product product = changeModelFactionInTitles(p, 'Khador', selectedfaction);
-            //         _filteredProducts[0].add(product);
-            //         break;
-            //       }
-            //     }
-            //   }
-            //   break;
             default:
-              // bool casteradept = selectedCaster.models[0].casteradeptfaction! != '';
-              // bool heartofdarkness = selectedCaster.models[0].heartofdarknessfaction! != '';
-              // if (casteradept && !infernalslist) {
-              //   String adeptfaction = selectedCaster.models[0].casteradeptfaction!;
-              //   //caster has caster adept and not an infernals list,
-              //   //add all cohort from the designated faction
-              //   if (!selectedfaction.toLowerCase().contains(adeptfaction)) {
-              //     //if the selected faction does not contain the string found in the brackets of caster/warlock adept, add that faction
-              //     int factionindex = _allFactions.indexWhere((element) => element['faction'].contains(adeptfaction));
-              //     for (Product p in _allFactions[factionindex]['sortedproducts'][0][1]) {
-              //       Product product = changeModelFactionInTitles(p, adeptfaction, selectedfaction);
-              //       _filteredProducts[0].add(Product.copyProduct(product));
-              //     }
-              //   }
-              // }
-              // bool heartofdarkness = selectedCaster.models[0].heartofdarknessfaction! != '';
               if (hod) {
                 //include only non-C cohort
                 for (Product p in _filteredProducts[0]) {
@@ -457,6 +383,19 @@ class FactionNotifier extends ChangeNotifier {
                 if (p.name == 'Targ') {
                   Product product = Product.copyProduct(p, false);
                   _filteredProducts[0].add(product);
+                  break;
+                }
+              }
+              break;
+            case 'colonel drake cathmore':
+              //journeyman warcasters are FA: 2
+              for (Product p in _filteredProducts[0]) {
+                if (p.name == 'Journeyman Warcaster') {
+                  Product jw = Product.copyProduct(p, false);
+                  jw.fa = "2";
+                  _filteredProducts[0].remove(p);
+                  _filteredProducts[0].add(jw);
+                  _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
                   break;
                 }
               }
@@ -570,6 +509,20 @@ class FactionNotifier extends ChangeNotifier {
               }
               break;
           }
+          //check for and add Ranking Officer units if they exist
+          if (AppData().rankingOfficers.where((element) => element['faction'] == listFaction).isNotEmpty) {
+            int factionindex = _allFactions.indexWhere((element) => element['faction'] == 'Mercenaries');
+            String officername = AppData().rankingOfficers.firstWhere((element) => element['faction'] == listFaction)['officer']!;
+            Product ca = findByName(officername);
+            for (Product p in _allFactions[factionindex]['sortedproducts'][0][3]) {
+              if (p.models[0].stats.base.contains('30') || p.models[0].stats.base.contains('40')) {
+                Product unit = addRankingOfficertoMercenaryUnit(p, ca, listFaction);
+                _filteredProducts[0].add(unit);
+              }
+            }
+            _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+          }
+          break;
         case 666:
           //HoD solos
           for (Product p in _allFactions[oofFactionindex!]['sortedproducts'][0][2]) {
@@ -666,6 +619,72 @@ class FactionNotifier extends ChangeNotifier {
       _filteredProducts[2].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     }
     notifyListeners();
+  }
+
+  scaleFA(int leadercount, bool cathmore) {
+    for (Product p in _filteredProducts[0]) {
+      if (p.basefa != 'C' && p.basefa != 'U') {
+        //increase the FA by leadercount
+        int fa = int.parse(p.basefa);
+        fa = fa * leadercount;
+        switch (p.name) {
+          case 'Journeyman Warcaster':
+            if (cathmore) fa += 1;
+            break;
+          default:
+            break;
+        }
+        p.fa = fa.toString();
+      }
+    }
+  }
+
+  Product addRankingOfficertoMercenaryUnit(Product unit, Product ca, String newFaction) {
+    Model caModel = Model.copy(ca.models[0]);
+    Product newUnit = Product.copyProduct(unit, false);
+    int caCost = int.parse(ca.points!);
+    newUnit.name = '${newUnit.name} + CA: ${ca.name}';
+    newUnit = FactionNotifier().changeModelFactionInTitles(newUnit, 'Mercenary', newFaction);
+    String mincost = '-';
+    if (newUnit.unitPoints!.containsKey('basemincost')) mincost = newUnit.unitPoints!['basemincost'];
+    String maxcost = '-';
+    if (newUnit.unitPoints!.containsKey('basemaxcost')) maxcost = newUnit.unitPoints!['basemaxcost'];
+    if (mincost != '-') {
+      mincost = ((int.tryParse(mincost) ?? 0) + caCost).toString();
+    }
+    if (maxcost != '-') {
+      maxcost = ((int.tryParse(maxcost) ?? 0) + caCost).toString();
+    }
+    newUnit.unitPoints!['mincost'] = mincost;
+    newUnit.unitPoints!['maxcost'] = maxcost;
+    newUnit.models.add(caModel);
+    return newUnit;
+  }
+
+  Unit buildRankingOfficerUnit(Product selectedunit, Map<String, String> officer) {
+    Product unit = Product.copyProduct(selectedunit, false);
+    unit = FactionNotifier().changeModelFactionInTitles(unit, 'Mercenary', officer['faction']!);
+    unit.name = unit.name.replaceAll(' + CA: ${officer['officer']}', '');
+    unit.models.removeLast(); //remove the CA model from model list
+    String mincost = '-';
+    if (unit.unitPoints!.containsKey('basemincost')) mincost = unit.unitPoints!['basemincost'];
+    String maxcost = '-';
+    if (unit.unitPoints!.containsKey('basemaxcost')) maxcost = unit.unitPoints!['basemaxcost'];
+    //reset the costs of the unit
+    unit.unitPoints!['mincost'] = mincost;
+    unit.unitPoints!['maxcost'] = maxcost;
+    Product caCopy = findByName(officer['officer']!);
+    caCopy.removable = false;
+
+    Unit newUnit = Unit(
+        unit: unit,
+        minsize: true,
+        hasMarshal: false,
+        commandattachment: caCopy,
+        weaponattachments: [],
+        cohort: [],
+        weaponattachmentlimits: getUnitWeaponAttachLimit(unit.name));
+    return newUnit;
   }
 
   copyFilteredProductsToCategory(int categoryindex) {

@@ -54,6 +54,14 @@ class AppData {
     'Structures',
   ];
 
+  final List<Map<String, String>> _rankingOfficers = [
+    {'faction': 'Cephalyx', 'officer': 'Cephalyx Dominator'},
+    {'faction': 'Crucible Guard', 'officer': 'Doctor Alejandro Mosby'},
+    {'faction': 'Cygnar', 'officer': 'Captain Jonas Murdoch'},
+    {'faction': 'Khador', 'officer': 'Koldun Kapitan Valachev'},
+    {'faction': 'Protectorate of Menoth', 'officer': 'Attendant Priest'},
+  ];
+
   final List<Map<String, dynamic>> encounterlevels = [
     {'name': 'Duel', 'level': '0', 'armypoints': 0, 'options': 0, 'castercount': 1},
     {'name': 'Demo', 'level': '0.5', 'armypoints': 15, 'options': 0, 'castercount': 1},
@@ -87,6 +95,7 @@ class AppData {
   List<Map<String, String>> get factionList => _factionList;
   List<String> get warmachine => _warmachine;
   List<String> get hordes => _hordes;
+  List<Map<String, String>> get rankingOfficers => _rankingOfficers;
   double get fontsize => _fontsize;
   double get iconsize => _iconsize;
 

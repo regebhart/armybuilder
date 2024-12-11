@@ -1,3 +1,5 @@
+import 'dart:js_interop_unsafe';
+
 import 'package:armybuilder/models/cohort.dart';
 import 'package:uuid/uuid.dart';
 
@@ -8,6 +10,7 @@ class Product {
   List<String> factions;
   String name;
   String fa;
+  String basefa;
   String? attachlimit;
   String? points;
   List<Model> models;
@@ -25,6 +28,7 @@ class Product {
     required this.name,
     required this.category,
     required this.fa,
+    required this.basefa,
     this.attachlimit,
     this.points,
     required this.models,
@@ -94,6 +98,12 @@ class Product {
 
     if (json.containsKey('unitpoints')) {
       unitpoints = json['unitpoints'];
+      if (unitpoints.containsKey('mincost')) {
+        unitpoints['basemincost'] = unitpoints['mincost'];
+      }
+      if (unitpoints.containsKey('maxcost')) {
+        unitpoints['basemaxcost'] = unitpoints['maxcost'];
+      }
     }
 
     List<ValidCohortList> validcohort = [];
@@ -109,6 +119,7 @@ class Product {
       name: productname,
       category: category,
       fa: fieldallowance,
+      basefa: fieldallowance,
       attachlimit: attachlimit,
       points: productpoints,
       models: models,
@@ -122,12 +133,18 @@ class Product {
   }
 
   factory Product.copyProduct(Product product, bool copy) {
+    Map<String, dynamic> unitpoints = {};
+    if (product.unitPoints != null) {
+      unitpoints = Map.from(product.unitPoints!);
+    }
+
     Product newcopy = Product(
       primaryFaction: product.primaryFaction,
       factions: product.factions,
       name: product.name,
       category: product.category,
       fa: product.fa,
+      basefa: product.basefa,
       attachlimit: product.attachlimit,
       points: product.points,
       selectable: product.selectable,
@@ -138,10 +155,14 @@ class Product {
           product.models[index],
         ),
       ),
-      unitPoints: product.unitPoints,
+      unitPoints: unitpoints,
       fanum: product.fanum,
       validcohortmodels: product.validcohortmodels,
-      uuid: copy ? product.uuid == '' ? const Uuid().v1() : product.uuid : const Uuid().v1(),
+      uuid: copy
+          ? product.uuid == ''
+              ? const Uuid().v1()
+              : product.uuid
+          : const Uuid().v1(),
     );
     return newcopy;
   }

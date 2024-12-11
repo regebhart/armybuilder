@@ -266,13 +266,15 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     if (moddedStats.ess != '-') statrow.add(statBlock('ESS', moddedStats.ess!, bordercolor, textcolor));
     if (moddedStats.base != '-') statrow.add(statBlock('Base', moddedStats.base, bordercolor, textcolor));
 
-    TableRow toprow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][0]));
-    TableRow bottomrow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][1]));
-    stats = Table(
-      border: TableBorder.all(width: 1, color: bordercolor),
-      defaultColumnWidth: const IntrinsicColumnWidth(),
-      children: [toprow, bottomrow],
-    );
+    if (statrow.isNotEmpty) {
+      TableRow toprow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][0]));
+      TableRow bottomrow = TableRow(children: List.generate(statrow.length, (index) => statrow[index][1]));
+      stats = Table(
+        border: TableBorder.all(width: 1, color: bordercolor),
+        defaultColumnWidth: const IntrinsicColumnWidth(),
+        children: [toprow, bottomrow],
+      );
+    }
 
     if (m.grid!.columns.isEmpty && m.spiral!.values.isEmpty && m.web!.values.isEmpty && m.hpbars!.isEmpty) {
       //single model with more than 1 HP

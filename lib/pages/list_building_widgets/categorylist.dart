@@ -81,6 +81,13 @@ class _CategoryListState extends State<CategoryList> {
                   false,
                   army.armyList.listfaction,
                 );
+                if (index != 1) {
+                  bool cathmore = false;
+                  for (var l in army.armyList.leadergroup) {
+                    if (l.leader.name == 'Colonel Drake Cathmore') cathmore = true;
+                  }
+                  faction.scaleFA(army.armyList.leadergroup.length, cathmore);
+                }
               }
             },
             borderRadius: BorderRadius.circular(5),
