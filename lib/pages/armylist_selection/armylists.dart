@@ -270,7 +270,7 @@ class SavedArmyListTile extends StatelessWidget {
                   onTap: () async {
                     await army.setArmyList(await faction.convertJsonStringToArmyList(armyjson), index, 'edit');
                     faction.setSelectedFactionIndex(AppData().factionList.indexWhere((element) => element['name'] == army.armyList.listfaction));
-                    faction.setSelectedCategory(0, null, null, null, false, null, false, army.armyList.listfaction);
+                    faction.setSelectedCategory(0, null, null, null, false, null, false, army.armyList.listfaction, false);
                     nav.pageController.jumpToPage(3);
                     army.setStatus('saved');
                     army.setDeploying(false);

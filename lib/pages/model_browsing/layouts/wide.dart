@@ -1,6 +1,7 @@
 import 'package:armybuilder/pages/model_browsing/browsing_categoryModelsList.dart';
 import 'package:armybuilder/pages/model_browsing/browsing_categorylist.dart';
 import 'package:armybuilder/pages/model_browsing/widgets/factiondropdown.dart';
+import 'package:armybuilder/pages/product_cards/card.dart';
 import 'package:armybuilder/pages/product_stat_pages/productstatpage.dart';
 
 import 'package:flutter/material.dart';
@@ -65,6 +66,7 @@ class _BrowsingWideLayoutState extends State<BrowsingWideLayout> {
                   flex: 10,
                   child: BrowsingModelsList(),
                 ),
+                // const ModelCard(),
                 const Flexible(
                   flex: 15,
                   child: SingleChildScrollView(

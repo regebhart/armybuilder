@@ -1,3 +1,4 @@
+import 'package:armybuilder/pages/list_building_widgets/buttonRow.dart';
 import 'package:armybuilder/pages/list_building_widgets/categorylist.dart';
 import 'package:armybuilder/pages/list_building_widgets/listpoints.dart';
 import 'package:armybuilder/pages/product_stat_pages/productstatpage.dart';
@@ -44,7 +45,14 @@ class _ArmyBuildingWideLayoutState extends State<ArmyBuildingWideLayout> {
         ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-          child: ListNameField(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ListNameField(),
+              ButtonRow(),
+            ],
+          ),
         ),
         Flexible(
           child: ConstrainedBox(

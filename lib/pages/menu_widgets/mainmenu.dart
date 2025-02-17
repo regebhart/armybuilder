@@ -1,5 +1,6 @@
 import 'dart:html' as html;
 
+import 'package:armybuilder/pages/product_cards/card.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:armybuilder/providers/navigation.dart';
 import 'package:flutter/material.dart';

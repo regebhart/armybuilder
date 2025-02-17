@@ -68,6 +68,7 @@ class ArmyListUnitItem extends StatelessWidget {
                         factionindex,
                         false,
                         army.armyList.listfaction,
+                        army.armyList.solos.indexWhere((element) => element.name == 'Julius Raelthorne') >= 0,
                       );
                     }
                   },

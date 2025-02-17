@@ -69,7 +69,7 @@ class FactionSelection extends StatelessWidget {
                                       army.setFactionSelected(factionlist[index]['name']!);
                                       army.setlistname('New ${army.factionSelected} Army');
                                       faction.setSelectedFactionIndex(index);
-                                      faction.setSelectedCategory(0, null, null, null, false, null, false, '');
+                                      faction.setSelectedCategory(0, null, null, null, false, null, false, '', false);
                                       nav.pageController.jumpToPage(3);
                                       army.setDeploying(false);
                                       await FirebaseAnalytics.instance.logEvent(

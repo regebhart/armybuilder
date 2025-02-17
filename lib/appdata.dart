@@ -84,6 +84,40 @@ class AppData {
     {'name': 'Open War', 'level': '17', 'armypoints': 400, 'options': 10, 'castercount': 5},
   ];
 
+  final List<String> _listbuildingabilities = [
+    'attached',
+    'animosity',
+    'attachment',
+    'attached',
+    'bog trog warlock',
+    'caster adept',
+    'command attachment',
+    'companion',
+    'dispensation',
+    'faithful',
+    'flames in the darkness',
+    'garrison troops',
+    'heart of darkness',
+    'irregulars',
+    'limited battlegroup',
+    'limited marshal',
+    'master infernalist',
+    'mercenary',
+    'military attaché',
+    'of the swamp',
+    'paid loyalties',
+    'partisan',
+    'requisition',
+    'special issue',
+    'spell rack',
+    'split loyalties',
+    'strange bedfelllows',
+    'warcaster equivalent',
+    'warlock adept',
+    'weapon attachment',
+    'weapon attachment specialists'
+  ];
+
   final double _fontsize = 16;
   final double _iconsize = 28;
   final double _listButtonSpacing = 8;
@@ -103,6 +137,7 @@ class AppData {
   double get listItemSpacing => _listItemSpacing;
 
   double get selectedListLeftWidth => _selectedListLeftWidth;
-
+  List<String> get listbuildingabilities => _listbuildingabilities;
+  
   AppData();
 }

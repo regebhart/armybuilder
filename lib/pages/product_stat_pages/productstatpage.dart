@@ -29,7 +29,6 @@ class _ProductStatPageState extends State<ProductStatPage> {
     Cohort c = army.selectedCohort;
     double fontsize = AppData().fontsize - 4;
     List<Widget> modelsWidget = [];
-    String cost = 'PC: ${p.points!}';
 
     if (!army.viewingcohort[0]) {
       p = army.selectedProduct;
@@ -37,6 +36,8 @@ class _ProductStatPageState extends State<ProductStatPage> {
       c = army.selectedCohort;
       p = c.product;
     }
+
+    String cost = 'PC: ${p.points!}';
 
     if (p.name == '') {
       modelsWidget.add(
@@ -130,10 +131,13 @@ class _ProductStatPageState extends State<ProductStatPage> {
         color: Colors.grey.shade900,
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: modelsWidget,
+          child: SelectionArea(
+            // onSelectionChanged: (value) => '',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: modelsWidget,
+            ),
           ),
         ),
       ),

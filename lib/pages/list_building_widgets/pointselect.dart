@@ -51,7 +51,7 @@ class _PointSelectState extends State<PointSelect> {
                       for (var l in army.armyList.leadergroup) {
                         if (l.leader.name == 'Colonel Drake Cathmore') cathmore = true;
                       }
-                      faction.scaleFA(army.armyList.leadergroup.length, cathmore);
+                      faction.scaleFA(army.armyList.leadergroup.length, cathmore, army.armyList.leadergroup.indexWhere((element) => (element.leader.name.contains('Deneghra') && element.leader.points! == '0')) > -1);
                       army.recalulateFA();
                     },
                     style: TextStyle(fontSize: AppData().fontsize),

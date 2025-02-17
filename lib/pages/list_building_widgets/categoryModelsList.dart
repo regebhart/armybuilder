@@ -142,6 +142,13 @@ class _CategoryModelsListState extends State<CategoryModelsList> with AutomaticK
                 toast.show(context);
               };
               break;
+            case 5795:
+              //optional deneghras
+              onTap = () {
+                army.addOptionalDeneghra(p);
+                toast.show(context);
+              };
+              break;
             case 9:
               break;
             default:

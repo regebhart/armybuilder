@@ -131,38 +131,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     Widget hpTitle = const SizedBox();
     bool addhp = false;
 
-    List<String> listbuildingabilities = [
-      'attached',
-      'animosity',
-      'attachment',
-      'attached',
-      'bog trog warlock',
-      'caster adept',
-      'command attachment',
-      'companion',
-      'dispensation',
-      'faithful',
-      'flames in the darkness',
-      'garrison troops',
-      'heart of darkness',
-      'limited battlegroup',
-      'limited marshal',
-      'master infernalist',
-      'mercenary',
-      'military attaché',
-      'of the swamp',
-      'paid loyalties',
-      'partisan',
-      'requisition',
-      'special issue',
-      'spell rack',
-      'split loyalties',
-      'strange bedfelllows',
-      'warcaster equivalent',
-      'warlock adept',
-      'weapon attachment',
-      'weapon attachment specialists'
-    ];
+    
 
     if (army.viewingcohort[index]) {
       for (Option op in cohort.selectedOptions!) {
@@ -227,9 +196,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     animilist.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
 
     if (keywordlist.isNotEmpty) {
-      keywords = RichText(
+      keywords = Text.rich(
         textAlign: TextAlign.left,
-        text: TextSpan(
+        TextSpan(
           text: 'KEYWORDS: ',
           style: TextStyle(
             color: textcolor,
@@ -649,8 +618,8 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         )),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
-          child: RichText(
-            text: TextSpan(
+          child: Text.rich(
+            TextSpan(
               text: m.arcana!.description,
               style: TextStyle(
                 color: textcolor,
@@ -696,8 +665,8 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         )),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
-          child: RichText(
-            text: TextSpan(
+          child: Text.rich(
+            TextSpan(
               text: m.feat!.description,
               style: TextStyle(
                 color: textcolor,
@@ -725,9 +694,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         }
         ability = Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-          child: RichText(
+          child: Text.rich(
             textAlign: TextAlign.left,
-            text: TextSpan(
+            TextSpan(
               text: ab.name,
               style: TextStyle(
                 color: textcolor,
@@ -749,7 +718,7 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         );
 
         String abname = ab.name.replaceAll(RegExp(r'\[(.*)\]'), '').replaceAll('(★Attack)', '').replaceAll('(★Action)', '').trim().toLowerCase();
-        if (listbuildingabilities.contains(abname)) {
+        if (AppData().listbuildingabilities.contains(abname)) {
           listbuildingrestrictions.add(ability);
         } else {
           abilities.add(ability);
@@ -762,9 +731,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         if (n.topability.name != '' && n.subabilities.isNotEmpty) {
           ability = Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-            child: RichText(
+            child: Text.rich(
               textAlign: TextAlign.left,
-              text: TextSpan(
+              TextSpan(
                 text: n.topability.name,
                 style: TextStyle(
                   color: textcolor,
@@ -790,9 +759,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
         for (var ab in n.subabilities) {
           ability = Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1.5),
-            child: RichText(
+            child: Text.rich(
               textAlign: TextAlign.left,
-              text: TextSpan(
+              TextSpan(
                 text: ab.name,
                 style: TextStyle(
                   color: textcolor,
@@ -820,9 +789,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     if (m.execution!.name != '') {
       ability = Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-        child: RichText(
+        child: Text.rich(
           textAlign: TextAlign.left,
-          text: TextSpan(
+          TextSpan(
             text: 'EXECUTION: ${m.execution!.name}',
             style: TextStyle(
               color: textcolor,
@@ -1097,9 +1066,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               for (var ab in w.abilities!) {
                 ability = Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: RichText(
+                  child: Text.rich(
                     textAlign: TextAlign.left,
-                    text: TextSpan(
+                    TextSpan(
                       text: ab.name,
                       style: TextStyle(
                         color: textcolor,
@@ -1144,9 +1113,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                 if (n.topability.name != '' && n.subabilities.isNotEmpty) {
                   ability = Padding(
                     padding: const EdgeInsets.symmetric(vertical: 3),
-                    child: RichText(
+                    child: Text.rich(
                       textAlign: TextAlign.left,
-                      text: TextSpan(
+                      TextSpan(
                         text: n.topability.name,
                         style: TextStyle(
                           color: textcolor,
@@ -1171,9 +1140,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                   for (var ab in n.subabilities) {
                     ability = Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                      child: RichText(
+                      child: Text.rich(
                         textAlign: TextAlign.left,
-                        text: TextSpan(
+                        TextSpan(
                           text: '• ${ab.name}',
                           style: TextStyle(
                             color: textcolor,
@@ -1205,9 +1174,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               if (d != '') {
                 damageType = Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: RichText(
+                  child: Text.rich(
                     textAlign: TextAlign.left,
-                    text: TextSpan(
+                    TextSpan(
                         text: 'Damage Type: ',
                         style: TextStyle(
                           color: textcolor,
@@ -1496,9 +1465,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                child: RichText(
+                child: Text.rich(
                   textAlign: TextAlign.left,
-                  text: TextSpan(
+                  TextSpan(
                     text: ab.name,
                     style: TextStyle(
                       color: textcolor,
@@ -1527,9 +1496,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               if (n.topability.name != '' && n.subabilities.isNotEmpty) {
                 ability = Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                  child: RichText(
+                  child: Text.rich(
                     textAlign: TextAlign.left,
-                    text: TextSpan(
+                    TextSpan(
                       text: n.topability.name,
                       style: TextStyle(
                         color: textcolor,
@@ -1555,9 +1524,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               for (var ab in n.subabilities) {
                 ability = Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1.5),
-                  child: RichText(
+                  child: Text.rich(
                     textAlign: TextAlign.left,
-                    text: TextSpan(
+                    TextSpan(
                       text: ab.name,
                       style: TextStyle(
                         color: textcolor,
@@ -1833,9 +1802,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                     for (var ab in w.abilities!) {
                       ability = Padding(
                         padding: const EdgeInsets.symmetric(vertical: 3),
-                        child: RichText(
+                        child: Text.rich(
                           textAlign: TextAlign.left,
-                          text: TextSpan(
+                          TextSpan(
                             text: ab.name,
                             style: TextStyle(
                               color: textcolor,
@@ -1880,9 +1849,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                       if (n.topability.name != '' && n.subabilities.isNotEmpty) {
                         ability = Padding(
                           padding: const EdgeInsets.symmetric(vertical: 3),
-                          child: RichText(
+                          child: Text.rich(
                             textAlign: TextAlign.left,
-                            text: TextSpan(
+                            TextSpan(
                               text: n.topability.name,
                               style: TextStyle(
                                 color: textcolor,
@@ -1907,9 +1876,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                         for (var ab in n.subabilities) {
                           ability = Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                            child: RichText(
+                            child: Text.rich(
                               textAlign: TextAlign.left,
-                              text: TextSpan(
+                              TextSpan(
                                 text: '• ${ab.name}',
                                 style: TextStyle(
                                   color: textcolor,
@@ -1941,9 +1910,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
                     if (d != '') {
                       damageType = Padding(
                         padding: const EdgeInsets.symmetric(vertical: 3),
-                        child: RichText(
+                        child: Text.rich(
                           textAlign: TextAlign.left,
-                          text: TextSpan(
+                          TextSpan(
                               text: 'Damage Type: ',
                               style: TextStyle(
                                 color: textcolor,
@@ -2280,9 +2249,9 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-        child: RichText(
+        child: Text.rich(
           textAlign: TextAlign.left,
-          text: TextSpan(
+          TextSpan(
             text: 'MODEL TYPE',
             style: TextStyle(
               color: textcolor,

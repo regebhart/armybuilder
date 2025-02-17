@@ -45,6 +45,8 @@ dependencies:
   http: ^1.2.1
   universal_html: ^2.2.4
   uuid: ^4.4.2
+  google_fonts: ^6.2.1
+  auto_size_text_plus: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -70,7 +72,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/
+    - assets/    
+    - assets/card_assets/back/
+    - assets/card_assets/front/
+    - assets/card_assets/icons/
+    - assets/card_assets/icons/sources/
+    - assets/card_assets/parts/
+    - assets/card_assets/parts/weapons/
+    - assets/card_assets/parts/statbar/    
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

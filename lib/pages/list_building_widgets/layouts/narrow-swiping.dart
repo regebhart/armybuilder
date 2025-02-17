@@ -1,3 +1,4 @@
+import 'package:armybuilder/pages/list_building_widgets/buttonRow.dart';
 import 'package:armybuilder/pages/list_building_widgets/categorylist.dart';
 import 'package:armybuilder/pages/list_building_widgets/listNameField.dart';
 import 'package:armybuilder/pages/list_building_widgets/modularItemsList.dart';
@@ -210,6 +211,10 @@ class _SwipingArmyBuildingNarrowLayoutState extends State<SwipingArmyBuildingNar
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         ListNameField(),
+                        Padding(
+                          padding: EdgeInsets.only(top: 12),
+                          child: ButtonRow(),
+                        ),
                         Flexible(
                           flex: 11,
                           child: Padding(

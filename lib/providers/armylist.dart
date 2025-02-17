@@ -1,5 +1,7 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:io';
+
 import 'package:armybuilder/models/activearmylist.dart';
 import 'package:armybuilder/models/armylist.dart';
 import 'package:armybuilder/models/grid.dart';
@@ -46,6 +48,7 @@ class ArmyListNotifier extends ChangeNotifier {
   late int _cohortindex;
   late String _leadertype;
   late int _hodleaderindex;
+  late bool _optionalDeneghraExists;
 
   List<List<dynamic>> _hptracking = [];
   List<List<dynamic>> _custombartracking = [];
@@ -121,6 +124,7 @@ class ArmyListNotifier extends ChangeNotifier {
   int get armylistindex => _armylistindex;
   String get armylistFactionFilter => _armylistFactionFilter;
   int get cohortindex => _cohortindex;
+  bool get optionalDeneghraExists => _optionalDeneghraExists;
 
   List<List<dynamic>> get hptracking => _hptracking;
   List<List<dynamic>> get custombartracking => _custombartracking;
@@ -185,6 +189,7 @@ class ArmyListNotifier extends ChangeNotifier {
     _leadertype = 'warcaster';
     _castergroupindex = [0];
     _hodleaderindex = -1;
+    _optionalDeneghraExists = false;
   }
 
   notify() {
@@ -273,13 +278,15 @@ class ArmyListNotifier extends ChangeNotifier {
     if (_armyList.leadergroup[0].leader.name != '') {
       updateSelectedCaster('warcaster', _armyList.leadergroup[0].leader);
     }
-    if (_armyList.leadergroup.length > level['castercount']) {
+    int levelcastercount = level['castercount'];
+    levelcastercount += _optionalDeneghraExists ? 1 : 0;
+    if (_armyList.leadergroup.length > levelcastercount) {
       do {
         _armyList.leadergroup.removeLast();
         updateCasterCount(-1);
         _castergroupindex.removeLast();
-      } while (_armyList.leadergroup.length > level['castercount']);
-    } else if (_armyList.leadergroup.length < level['castercount']) {
+      } while (_armyList.leadergroup.length > levelcastercount);
+    } else if (_armyList.leadergroup.length < levelcastercount) {
       do {
         _armyList.leadergroup.add(LeaderGroup(
           leader: blankproduct,
@@ -295,7 +302,6 @@ class ArmyListNotifier extends ChangeNotifier {
           heartofdarknessfaction: '',
           flamesinthedarkness: false,
         ));
-        // updateCasterCount(1);
         _castergroupindex.add(0);
       } while (_armyList.leadergroup.length < level['castercount']);
     }
@@ -696,13 +702,37 @@ class ArmyListNotifier extends ChangeNotifier {
   addLeaderandSelect(Product leader) {
     int index = 0;
     bool factionchange = true;
-    for (var a = 0; a < _armyList.leadergroup.length; a++) {
-      if (_armyList.leadergroup[a].leader.name == '') {
-        index = a;
-        updateCasterCount(1);
-        break;
+
+    if (_armyList.leadergroup.where((element) => element.leader.name == leader.name && element.leader.points! == leader.points!).isNotEmpty) return;
+    index = _armyList.leadergroup.indexWhere((element) => element.leader.name == '');
+    if (index == -1) index = _armyList.leadergroup.length - 1;
+
+    if (_optionalDeneghraExists) {
+      if (_armyList.leadergroup.indexWhere((element) => element.leader.name.contains('Deneghra') && element.leader.points! == '0') >= 0) {
+        //free denny is in the list and it's a warcaster version
+
+        if (leader.points == '0' && _armyList.leadergroup[index].leader.name != '') {
+          //user changed the free denny selected, set index to slot
+
+          index = _armyList.leadergroup.indexWhere((element) => element.leader.name.contains('Deneghra') && element.leader.points! == '0');
+        } else {
+          //leader being added is not a free denny and the list is full
+
+          int deneghraindex =
+              _armyList.leadergroup.indexWhere((element) => element.leader.name.contains('Deneghra') && element.leader.points! == '0');
+          if (deneghraindex > -1) removeSelectedLeader(deneghraindex);
+
+          index = _armyList.leadergroup.indexWhere((element) => element.leader.name == 'Warwitch Jezraell');
+        }
+      } else {
+        //remove free initiate denny
+        int deneghraindex =
+            _armyList.jrcasters.indexWhere((element) => element.leader.name == 'Warwitch Initiate Deneghra' && element.leader.points! == '0');
+        if (deneghraindex > -1) removeJrCaster(deneghraindex, false, null);
+        _optionalDeneghraExists = false;
       }
     }
+
     if (_armyList.leadergroup[index].leader.name != '') {
       //check if the faction changed between leaders, if so clear cohort/invalid models
       for (var f in _armyList.leadergroup[index].leader.primaryFaction) {
@@ -736,12 +766,6 @@ class ArmyListNotifier extends ChangeNotifier {
     //sort casters then find new index of caster that was just added
     _armyList.leadergroup.sort((a, b) => a.leader.name.toLowerCase().compareTo(b.leader.name != "" ? b.leader.name.toLowerCase() : "zzzzzzzzz"));
 
-    for (var a = 0; a < _armyList.leadergroup.length; a++) {
-      if (_armyList.leadergroup[a].leader.name == leader.name) {
-        index = a;
-        break;
-      }
-    }
     if (_armyList.listfaction == 'Infernals') updateHeartofDarkness();
     if (_armyList.listfaction == 'Religion of the Twins') updateFlamesintheDarkness();
     updateSelectedCaster('warcaster', leader);
@@ -778,15 +802,29 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   removeSelectedLeader(int groupnum) {
-    _armyList.leadergroup[groupnum].leader = blankproduct;
-    _armyList.leadergroup[groupnum].spellrack!.clear();
-    _armyList.leadergroup[groupnum].heartofdarknessfaction = "";
-    _armyList.leadergroup[groupnum].heartofdarkness = false;
-    _armyList.leadergroup[groupnum].oofjrcasters.clear();
-    _armyList.leadergroup[groupnum].oofsolos.clear();
-    _armyList.leadergroup[groupnum].oofunits.clear();
+    if ((_armyList.leadergroup[groupnum].leader.name.contains('Deneghra') && _optionalDeneghraExists)) {
+      _optionalDeneghraExists = false;
+      _armyList.leadergroup.removeAt(groupnum);
+      _castergroupindex.removeAt(groupnum);
+    } else {
+      if (_armyList.leadergroup[groupnum].leader.name == 'Warwitch Jezraell') {
+        int deneghraindex = _armyList.leadergroup.indexWhere((element) => element.leader.name.contains('Deneghra') && element.leader.points! == '0');
+        if (deneghraindex > -1) removeSelectedLeader(deneghraindex);
+        groupnum = _armyList.leadergroup.indexWhere((element) => element.leader.name == 'Warwitch Jezraell');
+      }
+
+      _armyList.leadergroup[groupnum].leader = blankproduct;
+      _armyList.leadergroup[groupnum].spellrack!.clear();
+      _armyList.leadergroup[groupnum].spellracklimit = 0;
+      _armyList.leadergroup[groupnum].heartofdarknessfaction = "";
+      _armyList.leadergroup[groupnum].heartofdarkness = false;
+      _armyList.leadergroup[groupnum].oofjrcasters.clear();
+      _armyList.leadergroup[groupnum].oofsolos.clear();
+      _armyList.leadergroup[groupnum].oofunits.clear();
+    }
     _selectedcasterFactionIndexes.clear();
     updateCasterCount(-1);
+
     if (_castercount > 0) {
       //if there's still casters in the list, sort them
       _armyList.leadergroup.sort((a, b) => a.leader.name != ""
@@ -1032,6 +1070,12 @@ class ArmyListNotifier extends ChangeNotifier {
   removeSolo(Product product, bool oof, int? leaderindex) {
     if (!oof) {
       _armyList.solos.remove(product);
+      if (product.name == 'Julius Raelthorne') {
+        //remove magnus, merc solo/unit options
+        _armyList.leadergroup.removeWhere((element) => element.leader.name.contains('Magnus'));
+        _armyList.solos.removeWhere((element) => element.name == 'Kell Bailoch' || element.name == 'Orin Midwinter, Rogue Inquisitor');
+        _armyList.units.removeWhere((element) => element.unit.name == 'Croe\'s Cutthroats');
+      }
     } else {
       _armyList.leadergroup[leaderindex!].oofsolos.remove(product);
     }
@@ -1350,6 +1394,7 @@ class ArmyListNotifier extends ChangeNotifier {
     if (!oof) {
       JrCasterGroup jrgroup = _armyList.jrcasters[jrindex];
       _armyList.jrcasters.remove(jrgroup);
+      if (jrgroup.leader.name == 'Warwitch Initiate Deneghra' && jrgroup.leader.points! == '0') _optionalDeneghraExists = false;
     } else {
       JrCasterGroup jrgroup = _armyList.leadergroup[oofleaderindex!].oofjrcasters[jrindex];
       _armyList.leadergroup[oofleaderindex].oofjrcasters.remove(jrgroup);
@@ -2734,6 +2779,7 @@ class ArmyListNotifier extends ChangeNotifier {
     _selectedProduct = blankproduct;
     _leadertype = 'warcaster';
     _status = 'new';
+    _optionalDeneghraExists = false;
     notifyListeners();
   }
 
@@ -3217,8 +3263,10 @@ class ArmyListNotifier extends ChangeNotifier {
   }
 
   bool spellAtLimit(String spellname) {
-    for (var sp in _armyList.leadergroup[_selectedcaster].spellrack!) {
-      if (sp.name == spellname) return true;
+    {
+      for (var sp in _armyList.leadergroup[_selectedcaster].spellrack!) {
+        if (sp.name == spellname) return true;
+      }
     }
     return false;
   }
@@ -3289,7 +3337,8 @@ class ArmyListNotifier extends ChangeNotifier {
     if (p.basefa != 'C' && p.basefa != 'U') {
       //increase the FA by leadercount
       int fa = int.parse(p.basefa);
-      fa = fa * armyList.leadergroup.length;
+      int dennyindex = _armyList.leadergroup.indexWhere((element) => (element.leader.name.contains('Deneghra') && element.leader.points! == '0'));
+      fa = fa * (_armyList.leadergroup.length - dennyindex > -1 ? 1 : 0);
       switch (p.name) {
         case 'Journeyman Warcaster':
           if (cathmore) fa += 1;
@@ -3298,6 +3347,48 @@ class ArmyListNotifier extends ChangeNotifier {
           break;
       }
       p.fa = fa.toString();
+    }
+  }
+
+  addOptionalDeneghra(Product denny) {
+    if (_armyList.leadergroup.indexWhere((element) => element.leader.name == denny.name && element.leader.points! == '0') >= 0 ||
+        _armyList.jrcasters.indexWhere((element) => element.leader.name == denny.name && element.leader.points! == '0') >= 0) {
+      return;
+    }
+
+    if (!denny.name.contains('Initiate')) {
+      int index = _armyList.jrcasters.indexWhere((element) => element.leader.name == 'Warwitch Initiate Deneghra' && element.leader.points! == '0');
+      if (index >= 0) {
+        removeJrCaster(index, false, null);
+        _optionalDeneghraExists = false;
+      }
+      if (!_optionalDeneghraExists) {
+        _armyList.leadergroup.add(LeaderGroup(
+          leader: blankproduct,
+          leaderattachment: blankproduct,
+          cohort: [],
+          spellrack: [],
+          spellracklimit: 0,
+          oofcohort: [],
+          oofjrcasters: [],
+          oofsolos: [],
+          oofunits: [],
+          heartofdarkness: false,
+          heartofdarknessfaction: '',
+          flamesinthedarkness: false,
+        ));
+        _castergroupindex.add(0);
+      }
+      addLeaderandSelect(denny);
+      _optionalDeneghraExists = true;
+      updateEverything();
+    } else {
+      if (_optionalDeneghraExists) {
+        removeSelectedLeader(
+            _armyList.leadergroup.indexWhere((element) => element.leader.name.contains('Deneghra') && element.leader.points! == '0'));
+      }
+      _optionalDeneghraExists = true;
+      addJrCaster(denny, false, null);
     }
   }
 }

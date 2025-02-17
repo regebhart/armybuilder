@@ -27,6 +27,9 @@ class FactionNotifier extends ChangeNotifier {
   late List<Spell> _filteredSpells;
   late String _spellsUpdateDate;
 
+  late Product _cardmodel;
+  late String _cardfaction;
+
   List<Map<String, dynamic>> get allFactions => _allFactions;
   Map<String, String> get factionUpdateDates => _factionUpdateDates;
   int get selectedFactionIndex => _selectedFactionIndex;
@@ -39,6 +42,8 @@ class FactionNotifier extends ChangeNotifier {
   List<Spell> get allSpells => _allSpells;
   List<Spell> get filteredSpells => _filteredSpells;
   String get spellsUpdateDate => _spellsUpdateDate;
+  Product get cardmodel => _cardmodel;
+  String get cardfaction => _cardfaction;
 
   FactionNotifier() {
     _allFactions = [];
@@ -53,6 +58,8 @@ class FactionNotifier extends ChangeNotifier {
     _allSpells = [];
     _filteredSpells = [];
     _spellsUpdateDate = '';
+    _cardmodel = ArmyListNotifier().blankproduct;
+    _cardfaction = '';
   }
 
   readAllFactions() async {
@@ -249,20 +256,36 @@ class FactionNotifier extends ChangeNotifier {
   }
 
   setSelectedCategory(int index, Product? selectedCaster, String? unitname, List<int>? casterFactionIndex, bool hod, int? oofFactionindex, bool fitd,
-      String listFaction) {
+      String listFaction, bool julius) {
     _selectedCategory = index;
     _filteredProducts.clear();
     _filteredProducts = [[], [], []];
     bool spellrack = false;
     List<int> factionindex = [];
     factionindex.add(_selectedFactionIndex); //to filter cohort lists
-
+    _showingoptions = false;
     String selectedfaction = AppData().factionList[_selectedFactionIndex]['name']!;
-    // bool infernalslist = AppData().factionList[_selectedFactionIndex]['name']! == 'Infernals';
 
-    if (index <= 6 || index == 666 || index == 667 || index == 999) {
+    if (index <= 6 || index == 666 || index == 667 || index == 999 || index == 5795) {
+      // 5795 = optional deneghra list
       switch (index) {
+        case 0:
+          copyFilteredProductsToCategory(index);
+          if (selectedfaction == 'Cygnar' && julius) {
+            List<Product> magnuses = [];
+            magnuses.add(findByName('Magnus the Traitor'));
+            magnuses.add(findByName('Magnus the Warlord'));
+            for (var magnus in magnuses) {
+              for (var m in magnus.models) {
+                m.characterabilities!.removeWhere((element) => element.name == 'Animosity [Cygnar]');
+              }
+              magnus = changeModelFactionInTitles(magnus, 'Mercenary', 'Cygnar');
+              _filteredProducts[0].add(Product.copyProduct(magnus, false));
+            }
+          }
+          break;
         case 1:
+          //cohorts
           if (casterFactionIndex != null) {
             factionindex.clear();
             factionindex.addAll(casterFactionIndex);
@@ -357,11 +380,21 @@ class FactionNotifier extends ChangeNotifier {
               }
               break;
           }
-          // }
           break;
         case 2:
           //solos
           copyFilteredProductsToCategory(index);
+          if (selectedfaction == 'Cygnar' && julius) {
+            //add orin midwinter, kell bailoch solos
+            List<Product> mercs = [];
+            mercs.add(findByName('Kell Bailoch'));
+            mercs.add(findByName('Orin Midwinter, Rogue Inquisitor'));
+            for (var merc in mercs) {
+              merc = changeModelFactionInTitles(merc, 'Mercenary', 'Cygnar');
+              _filteredProducts[0].add(Product.copyProduct(merc, false));
+            }
+          }
+
           switch (selectedCaster!.name.toLowerCase()) {
             case 'mortenebra, numen of necrogenesis':
               //add Necrotechs to solos
@@ -425,6 +458,11 @@ class FactionNotifier extends ChangeNotifier {
         case 3:
           //units
           copyFilteredProductsToCategory(index);
+          if (selectedfaction == 'Cygnar' && julius) {
+            //add croes cutthroat unit
+            Product croes = changeModelFactionInTitles(findByName('Croe\'s Cutthroats'), 'Mercenary', 'Cygnar');
+            _filteredProducts[0].add(Product.copyProduct(croes, false));
+          }
           switch (selectedCaster!.name.toLowerCase()) {
             case 'brigadier general gunnbjorn':
               //add Trollkin Barrage Team
@@ -515,12 +553,26 @@ class FactionNotifier extends ChangeNotifier {
             String officername = AppData().rankingOfficers.firstWhere((element) => element['faction'] == listFaction)['officer']!;
             Product ca = findByName(officername);
             for (Product p in _allFactions[factionindex]['sortedproducts'][0][3]) {
-              if (p.models[0].stats.base.contains('30') || p.models[0].stats.base.contains('40')) {
+              bool skip = false;
+              for (var ab in p.models[0].characterabilities!) {
+                if (ab.name.contains('Partisan') && ab.name.contains(listFaction)) {
+                  skip = true;
+                  break;
+                }
+              }
+              if ((p.models[0].stats.base.contains('30') || p.models[0].stats.base.contains('40')) && !skip) {
                 Product unit = addRankingOfficertoMercenaryUnit(p, ca, listFaction);
                 _filteredProducts[0].add(unit);
               }
             }
             _filteredProducts[0].sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+          }
+          break;
+        case 6:
+          copyFilteredProductsToCategory(index);
+          if (selectedCaster!.name == 'Aurum Legate Lukas di Morray' && selectedfaction != 'Crucible Guard') {
+            //irregulars alyce marc
+            _filteredProducts[0].add(Product.copyProduct(findByName('Aurum Ominus Alyce Marc'), false));
           }
           break;
         case 666:
@@ -550,11 +602,24 @@ class FactionNotifier extends ChangeNotifier {
           }
           _filteredSpells.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
           break;
+        case 5795:
+          //optional deneghra list when Jezrael is selected
+          List<Product> dennys = [];
+          dennys.add(findByName('Warwitch Deneghra'));
+          dennys.add(findByName('Wraith Witch Deneghra'));
+          dennys.add(findByName('Deneghra, the Soul Weaver'));
+          dennys.add(findByName('Warwitch Initiate Deneghra'));
+          for (var d in dennys) {
+            d.points = '0';
+          }
+          _filteredProducts[0].clear();
+          _filteredProducts[0].addAll(dennys);
+          break;
         default:
           copyFilteredProductsToCategory(index);
       }
 
-      if (!hod && !spellrack) {
+      if (!hod && !spellrack && index <= 10) {
         _filteredProducts[1] = _allFactions[_selectedFactionIndex]['sortedproducts'][1][index];
         _filteredProducts[2] = _allFactions[_selectedFactionIndex]['sortedproducts'][2][index];
       }
@@ -621,12 +686,12 @@ class FactionNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  scaleFA(int leadercount, bool cathmore) {
+  scaleFA(int leadercount, bool cathmore, bool optionalDenny) {
     for (Product p in _filteredProducts[0]) {
       if (p.basefa != 'C' && p.basefa != 'U') {
         //increase the FA by leadercount
         int fa = int.parse(p.basefa);
-        fa = fa * leadercount;
+        fa = fa * (leadercount + (optionalDenny ? -1 : 0));
         switch (p.name) {
           case 'Journeyman Warcaster':
             if (cathmore) fa += 1;
@@ -1796,5 +1861,19 @@ class FactionNotifier extends ChangeNotifier {
     spells.addAll(_allSpells.where((element) => element.poolfactions!.contains(faction)));
     spells.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
     return spells;
+  }
+
+  List<Product> getDeneghras() {
+    List<Product> dennys = [];
+    dennys.add(findByName('Warwitch Initiate Deneghra'));
+    dennys.add(findByName('Warwitch Deneghra'));
+    dennys.add(findByName('Wraith Witch Deneghra'));
+    dennys.add(findByName('Deneghra, the Soul Weaver'));
+    return dennys;
+  }
+
+  setCardProduct() {
+    _cardmodel = findByName('Mechanithralls');
+    notifyListeners();
   }
 }

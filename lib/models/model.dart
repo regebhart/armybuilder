@@ -118,9 +118,25 @@ class Model {
 
     List<Weapon> weapons = [];
     if (json.containsKey('weapons')) {
+      List<Weapon> tempweapons = [];
       for (var w in json['weapons']) {
         Weapon weapon = Weapon.fromJson(w);
-        weapons.add(weapon);
+        tempweapons.add(weapon);
+      }
+      for (var w in tempweapons) {
+        if (w.type.toLowerCase() == 'ranged') {
+          weapons.add(w);
+        }
+      }
+      for (var w in tempweapons) {
+        if (w.type.toLowerCase() == 'melee') {
+          weapons.add(w);
+        }
+      }
+      for (var w in tempweapons) {
+        if (w.type.toLowerCase() == 'mount') {
+          weapons.add(w);
+        }
       }
     }
 

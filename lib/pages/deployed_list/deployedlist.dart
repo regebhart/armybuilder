@@ -63,10 +63,11 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
               for (var ab in leader.models[m].characterabilities!) {
                 if (ab.name.contains('Spell Rack')) {
                   for (var sp in list.leadergroup[a].spellrack!) {
-                    if (!leader.models[m].spells!.contains(sp)) {
+                    if (leader.models[m].spells!.indexWhere((element) => element.name == sp.name) == -1) {
                       leader.models[m].spells!.add(sp);
                     }
                   }
+
                   leader.models[m].spells!.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
                   break;
                 }

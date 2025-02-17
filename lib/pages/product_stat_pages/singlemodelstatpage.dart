@@ -33,14 +33,14 @@ class _SingleModelStatPageState extends State<SingleModelStatPage> {
       int listmodelindex = army.deployedLists[widget.listindex].selectedListModelIndex;
       double fontsize = AppData().fontsize - 4;
 
-      String cost = 'PC: ${p.points!}';
-
       if (!army.viewingcohort[widget.listindex]) {
         p = army.deployedLists[widget.listindex].selectedProduct;
       } else {
         c = army.deployedLists[widget.listindex].selectedCohort;
         p = c.product;
       }
+
+      String cost = 'PC: ${p.points!}';
 
       if (p.name == '') {
         modelsWidget.add(
@@ -133,10 +133,12 @@ class _SingleModelStatPageState extends State<SingleModelStatPage> {
         color: Colors.grey.shade900,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
-            children: modelsWidget,
+          child: SelectionArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: modelsWidget,
+            ),
           ),
         ),
       ),

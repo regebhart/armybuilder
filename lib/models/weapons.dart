@@ -34,6 +34,8 @@ class Weapon {
 
   factory Weapon.fromJson(Map<String, dynamic> json) {
     List<String> damagetypes = [];
+    String fieldoffire = '';
+
     if (json.containsKey('damagetype')) {
       for (var d in json['damagetype']) {
         damagetypes.add(d);
@@ -62,10 +64,14 @@ class Weapon {
       }
     }
 
+    if (json.containsKey('fieldoffire')) {
+      fieldoffire = json['fieldoffire'].toString().toLowerCase();
+    }
+
     return Weapon(
       name: json['name'],
       type: json['type'],
-      fieldoffire: json['fieldoffire'] ?? '',
+      fieldoffire: fieldoffire,
       rng: json['rng'],
       rof: json['rof'] ?? '-',
       aoe: json['aoe'] ?? '-',
@@ -81,25 +87,24 @@ class Weapon {
 
   factory Weapon.copy(Weapon weapon) {
     return Weapon(
-      name: weapon.name,
-      type: weapon.type,
-      fieldoffire: weapon.fieldoffire,
-      rng: weapon.rng,
-      rof: weapon.rof,
-      aoe: weapon.aoe,
-      pow: weapon.pow,
-      system: weapon.system,
-      count: weapon.count,
-      nestedabilities: List.generate(
-        weapon.nestedabilities!.length,
-        (index) => NestedAbility.copy(weapon.nestedabilities![index]),
-      ),
-      damagetype: weapon.damagetype!,
-      abilities: List.generate(
-        weapon.abilities!.length,
-        (index) => Ability.copy(weapon.abilities![index]),
-      ),
-      presetabilities: weapon.presetabilities!
-    );
+        name: weapon.name,
+        type: weapon.type,
+        fieldoffire: weapon.fieldoffire,
+        rng: weapon.rng,
+        rof: weapon.rof,
+        aoe: weapon.aoe,
+        pow: weapon.pow,
+        system: weapon.system,
+        count: weapon.count,
+        nestedabilities: List.generate(
+          weapon.nestedabilities!.length,
+          (index) => NestedAbility.copy(weapon.nestedabilities![index]),
+        ),
+        damagetype: weapon.damagetype!,
+        abilities: List.generate(
+          weapon.abilities!.length,
+          (index) => Ability.copy(weapon.abilities![index]),
+        ),
+        presetabilities: weapon.presetabilities!);
   }
 }

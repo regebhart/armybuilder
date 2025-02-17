@@ -1,5 +1,6 @@
 import 'package:armybuilder/models/spells.dart';
 import 'package:armybuilder/providers/armylist.dart';
+import 'package:armybuilder/providers/faction.dart';
 
 import 'cohort.dart';
 import 'product.dart';
@@ -356,6 +357,7 @@ class LeaderGroup {
   factory LeaderGroup.fromJson(Map<String, dynamic> json) {
     Product leader = Product.fromJson(json['leader']);
     Product attachment = ArmyListNotifier().blankproduct;
+
     List<Cohort> cohort = [];
     List<Cohort> oofcohort = [];
     List<Spell> spellrack = [];

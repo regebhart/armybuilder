@@ -1,4 +1,8 @@
+import 'dart:async';
+
 import 'package:armybuilder/firebase_options.dart';
+import 'package:armybuilder/models/product.dart';
+import 'package:armybuilder/pages/product_cards/card.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:armybuilder/providers/faction.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -74,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String buildlastupdated = '12/10/2024';
+    String buildlastupdated = '02/16/2025';
 
     return SafeArea(
       child: Scaffold(

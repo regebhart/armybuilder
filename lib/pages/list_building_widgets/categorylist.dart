@@ -80,13 +80,18 @@ class _CategoryListState extends State<CategoryList> {
                   null,
                   false,
                   army.armyList.listfaction,
+                  army.armyList.solos.indexWhere((element) => element.name == 'Julius Raelthorne') >= 0,
                 );
                 if (index != 1) {
                   bool cathmore = false;
                   for (var l in army.armyList.leadergroup) {
                     if (l.leader.name == 'Colonel Drake Cathmore') cathmore = true;
                   }
-                  faction.scaleFA(army.armyList.leadergroup.length, cathmore);
+                  faction.scaleFA(
+                      army.armyList.leadergroup.length,
+                      cathmore,
+                      army.armyList.leadergroup.indexWhere((element) => (element.leader.name.contains('Deneghra') && element.leader.points! == '0')) >
+                          -1);
                 }
               }
             },

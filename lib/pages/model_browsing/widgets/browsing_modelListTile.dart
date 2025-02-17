@@ -43,6 +43,9 @@ class ModelListTile extends StatelessWidget {
                   color: normaltextcolor,
                 ),
               ),
+              trailing: p.models[0].title.toLowerCase().contains('gargantuan') || p.models[0].title.toLowerCase().contains('colossal')
+                  ? const Icon(Icons.accessibility_new_rounded)
+                  : const SizedBox(),
               dense: true,
               tileColor: tilecolor,
               hoverColor: hovercolor,

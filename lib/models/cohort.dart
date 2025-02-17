@@ -55,7 +55,7 @@ class ValidCohortList {
   factory ValidCohortList.fromJson(Map<String, dynamic> json) {
     String factionchoice = '';
     List<Map<String, dynamic>> products = [];
-
+    
     if (json.containsKey('factionchoice')) {
       factionchoice = json['factionchoice'];
     }
