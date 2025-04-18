@@ -146,7 +146,7 @@ class MainMenu extends StatelessWidget {
                         color: Colors.white,
                         child: TextButton(
                           onPressed: () {
-                            html.window.open('https://www.legacymachine.online/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
+                            html.window.open('https://www.wmhlegacy.com/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
                           },
                           child: Text(
                             'Core Rulebook',

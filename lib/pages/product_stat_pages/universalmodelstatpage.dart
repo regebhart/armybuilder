@@ -131,8 +131,6 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
     Widget hpTitle = const SizedBox();
     bool addhp = false;
 
-    
-
     if (army.viewingcohort[index]) {
       for (Option op in cohort.selectedOptions!) {
         if (op.keywords!.isNotEmpty) {
@@ -479,7 +477,28 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
       }
 
       if (hasshield) {
-        double shield = double.parse(m.shield!);
+        int shieldcount = (int.parse(m.shield!) / 2) as int;
+        List<List<Widget>> shieldcolumns = [];
+        for (int col = 0; col < 2; col++) {
+          List<Widget> shieldcolumn = [];
+          for (int rownum = 0; rownum < 6; rownum++) {
+            Color fillColor;
+            bool filled = false;
+            if (army.hptracking.isNotEmpty && army.deploying) {
+              filled = army.hptracking[widget.listindex!][widget.listmodelindex!]['shield'][col][rownum];
+            }
+            if (6 - rownum <= shieldcount) {
+              fillColor = Colors.lightBlue.shade200;
+              if (widget.deployed && filled) {
+                fillColor = Colors.red;
+              }
+            } else {
+              fillColor = Colors.black;
+            }
+            shieldcolumn.add(shieldBox(6 - rownum <= shieldcount, army, widget.listindex, widget.listmodelindex, col, rownum, fillColor));
+          }
+          shieldcolumns.add(shieldcolumn);
+        }
         var shieldWidget = Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -495,37 +514,16 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               children: [
                 Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: List.generate(
-                    6,
-                    (index) => shieldBox(
-                      index >= (6 - (shield / 2)),
-                      army,
-                      widget.listindex,
-                      widget.listmodelindex,
-                      0,
-                      index,
-                    ),
-                  ),
+                  children: shieldcolumns[0],
                 ),
                 Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: List.generate(
-                    6,
-                    (index) => shieldBox(
-                      index >= (6 - (shield / 2)),
-                      army,
-                      widget.listindex,
-                      widget.listmodelindex,
-                      1,
-                      index,
-                    ),
-                  ),
+                  children: shieldcolumns[1],
                 ),
               ],
             )
           ],
         );
-
         grid.insert(6, shieldWidget);
       }
 
@@ -1491,30 +1489,39 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
             modularoptions.add(ability);
           }
 
-          if (m.nestedabilities!.isNotEmpty) {
+          if (op.nestedabilities!.isNotEmpty) {
             for (var n in op.nestedabilities!) {
               if (n.topability.name != '' && n.subabilities.isNotEmpty) {
-                ability = Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                  child: Text.rich(
-                    textAlign: TextAlign.left,
-                    TextSpan(
-                      text: n.topability.name,
-                      style: TextStyle(
-                        color: textcolor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontsize,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: n.topability.description == '' ? '' : ' - ${n.topability.description}',
-                          style: TextStyle(
-                            color: textcolor,
-                            fontWeight: FontWeight.normal,
-                            fontSize: fontsize,
-                          ),
+                ability = Container(
+                  width: 1000,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(width: 2, color: bordercolor),
+                      right: BorderSide(width: 2, color: bordercolor),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                    child: Text.rich(
+                      textAlign: TextAlign.left,
+                      TextSpan(
+                        text: n.topability.name,
+                        style: TextStyle(
+                          color: textcolor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: fontsize,
                         ),
-                      ],
+                        children: [
+                          TextSpan(
+                            text: n.topability.description == '' ? '' : ' - ${n.topability.description}',
+                            style: TextStyle(
+                              color: textcolor,
+                              fontWeight: FontWeight.normal,
+                              fontSize: fontsize,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -1522,27 +1529,36 @@ class _UniversalModelStatPageState extends State<UniversalModelStatPage> {
               }
 
               for (var ab in n.subabilities) {
-                ability = Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1.5),
-                  child: Text.rich(
-                    textAlign: TextAlign.left,
-                    TextSpan(
-                      text: ab.name,
-                      style: TextStyle(
-                        color: textcolor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontsize,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: ' - ${ab.description}',
-                          style: TextStyle(
-                            color: textcolor,
-                            fontWeight: FontWeight.normal,
-                            fontSize: fontsize,
-                          ),
+                ability = Container(
+                  width: 1000,
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(width: 2, color: bordercolor),
+                      right: BorderSide(width: 2, color: bordercolor),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1.5),
+                    child: Text.rich(
+                      textAlign: TextAlign.left,
+                      TextSpan(
+                        text: ab.name,
+                        style: TextStyle(
+                          color: textcolor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: fontsize,
                         ),
-                      ],
+                        children: [
+                          TextSpan(
+                            text: ' - ${ab.description}',
+                            style: TextStyle(
+                              color: textcolor,
+                              fontWeight: FontWeight.normal,
+                              fontSize: fontsize,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -2853,20 +2869,12 @@ Widget custombarbox(int boxindex, Color bordercolor, ArmyListNotifier army, int?
   );
 }
 
-Widget shieldBox(bool active, ArmyListNotifier army, int? listindex, int? modelindex, int column, int row) {
-  Color fillColor;
+Widget shieldBox(bool active, ArmyListNotifier army, int? listindex, int? modelindex, int column, int row, Color fillColor) {
   Color borderColor = Colors.grey.shade700;
-
-  if (!active) {
-    fillColor = Colors.black;
-  } else {
-    // fillColor = const Color.fromARGB(255, 170, 212, 221); //light blue
-    fillColor = Colors.lightBlue.shade200;
-  }
 
   return GestureDetector(
     onTap: () {
-      if (listindex != null && modelindex != null) {
+      if (listindex != null && modelindex != null && active) {
         army.adjustShieldDamage(listindex, modelindex, column, row);
       }
     },

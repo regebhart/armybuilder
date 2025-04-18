@@ -1,7 +1,3 @@
-// ignore_for_file: unused_local_variable
-
-import 'dart:io';
-
 import 'package:armybuilder/models/activearmylist.dart';
 import 'package:armybuilder/models/armylist.dart';
 import 'package:armybuilder/models/grid.dart';
@@ -3141,26 +3137,27 @@ class ArmyListNotifier extends ChangeNotifier {
     _hptracking[listindex].add(hp);
   }
 
-  addGridHPTracking(int listindex, int columncount) {
+  addGridHPTracking(int listindex, int columncount, bool hasshield) {
     List<List<bool>> grid = [];
+    List<List<bool>> shield = [];
     for (int c = 0; c < columncount; c++) {
       grid.add([]);
       for (int i = 0; i < 6; i++) {
         grid[c].add(false);
       }
     }
-    Map<String, dynamic> hp = {'damage': 0, 'grid': grid};
-    _hptracking[listindex].add(hp);
-  }
 
-  addShieldTracking(int listindex) {
-    List<List<bool>> shield = [];
-    for (int c = 0; c < 2; c++) {
-      shield.add([]);
-      for (int i = 0; i < 6; i++) {
-        shield[c].add(false);
+    if (hasshield) {      
+      for (int c = 0; c < 2; c++) {
+        shield.add([]);
+        for (int i = 0; i < 6; i++) {
+          shield[c].add(false);
+        }
       }
     }
+
+    Map<String, dynamic> hp = {'damage': 0, 'grid': grid, 'shielddamage': 0, 'shield': shield};
+    _hptracking[listindex].add(hp);
   }
 
   addSpiralHPTracking(int listindex, Spiral s) {
@@ -3219,10 +3216,10 @@ class ArmyListNotifier extends ChangeNotifier {
     _hptracking[listindex][modelindex]['shield'][columnindex][rowindex] = active;
     if (active) {
       //add damage
-      _hptracking[listindex][modelindex]['shield']++;
+      _hptracking[listindex][modelindex]['shielddamage']++;
     } else {
       //remove damage
-      _hptracking[listindex][modelindex]['shield']--;
+      _hptracking[listindex][modelindex]['shielddamage']--;
     }
     notifyListeners();
   }

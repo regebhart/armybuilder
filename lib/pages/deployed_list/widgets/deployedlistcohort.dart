@@ -98,16 +98,23 @@ class DeployedListCohortItem extends StatelessWidget {
       }
     }
     String hp = '';
-    int? hptotal = 0;
+    int hptotal = 0;
 
     int unitmodelcount = 0;
     String modelname = m.modelname;
 
     if (int.tryParse(m.stats.hp!) != null) {
       if (int.parse(m.stats.hp!) > 1) {
-        hptotal = (int.parse(m.stats.hp!) - army.hptracking[listindex][listmodelindex]['damage']) as int?;
+        hptotal = (int.parse(m.stats.hp!) - army.hptracking[listindex][listmodelindex]['damage']) as int;
         hp = hptotal.toString();
       }
+    }
+
+    String shieldhp = '';
+    int shieldtotal = 0;
+    if (m.shield!.isNotEmpty) {
+      shieldtotal = (int.parse(m.shield!) - army.hptracking[listindex][listmodelindex]['shielddamage']) as int;
+      shieldhp = shieldtotal.toString();
     }
 
     if (moddedStats.spd != '-') statrow.add(statBlock('SPD', moddedStats.spd!, bordercolor, textcolor));
@@ -309,8 +316,17 @@ class DeployedListCohortItem extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
+                                  if (shieldhp != '') ...[
+                                    Text(
+                                      shieldhp,
+                                      style: TextStyle(fontSize: AppData().fontsize),
+                                    ),
+                                    const SizedBox(width: 5),
+                                    Icon(shieldtotal == 0 ? Icons.clear : Icons.shield, color: Colors.blue),
+                                    const SizedBox(width: 5),
+                                  ],
                                   Text(
-                                    hp.toString(),
+                                    hp,
                                     style: TextStyle(fontSize: AppData().fontsize),
                                   ),
                                   const SizedBox(width: 5),
@@ -318,7 +334,10 @@ class DeployedListCohortItem extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          systems,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 3.0),
+                            child: systems,
+                          ),
                         ],
                       ),
                     )

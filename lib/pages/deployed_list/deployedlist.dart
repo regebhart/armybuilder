@@ -155,10 +155,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
             count++;
             if (add) {
               if (c.product.models[m].grid!.columns.isNotEmpty) {
-                army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
-              }
-              if (c.product.models[m].shield != null) {
-                army.addShieldTracking(listindex);
+                army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length, c.product.models[m].shield != null);
               }
               if (c.product.models[m].spiral!.values.isNotEmpty) {
                 army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
@@ -187,10 +184,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
             count++;
             if (add) {
               if (c.product.models[m].grid!.columns.isNotEmpty) {
-                army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
-              }
-              if (c.product.models[m].shield != null) {
-                army.addShieldTracking(listindex);
+                army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length, c.product.models[m].shield != null);
               }
               if (c.product.models[m].spiral!.values.isNotEmpty) {
                 army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
@@ -239,7 +233,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
                 count++;
                 if (add) {
                   if (c.product.models[m].grid!.columns.isNotEmpty) {
-                    army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
+                    army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length, c.product.models[m].shield != null);
                   }
                   if (c.product.models[m].spiral!.values.isNotEmpty) {
                     army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
@@ -269,7 +263,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
           count++;
           if (add) {
             if (s.models[0].grid!.columns.isNotEmpty) {
-              army.addGridHPTracking(listindex, s.models[0].grid!.columns.length);
+              army.addGridHPTracking(listindex, s.models[0].grid!.columns.length, false);
             } else {
               army.addSingleHPBarHPTracking(listindex);
             }
@@ -369,7 +363,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
                   count++;
                   if (add) {
                     if (c.product.models[m].grid!.columns.isNotEmpty) {
-                      army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
+                      army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length, c.product.models[m].shield != null);
                     }
                     if (c.product.models[m].spiral!.values.isNotEmpty) {
                       army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
@@ -422,7 +416,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
               count++;
               if (add) {
                 if (c.product.models[m].grid!.columns.isNotEmpty) {
-                  army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
+                  army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length, c.product.models[m].shield != null);
                 }
                 if (c.product.models[m].spiral!.values.isNotEmpty) {
                   army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);
@@ -457,7 +451,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
           count++;
           if (add) {
             if (s.models[0].grid!.columns.isNotEmpty) {
-              army.addGridHPTracking(listindex, s.models[0].grid!.columns.length);
+              army.addGridHPTracking(listindex, s.models[0].grid!.columns.length, false);
             } else {
               army.addSingleHPBarHPTracking(listindex);
             }
@@ -558,7 +552,7 @@ class _DeployedListWidgetState extends State<DeployedListWidget> {
                 count++;
                 if (add) {
                   if (c.product.models[m].grid!.columns.isNotEmpty) {
-                    army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length);
+                    army.addGridHPTracking(listindex, c.product.models[m].grid!.columns.length, c.product.models[m].shield != null);
                   }
                   if (c.product.models[m].spiral!.values.isNotEmpty) {
                     army.addSpiralHPTracking(listindex, c.product.models[m].spiral!);

@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'dart:html' as html;
 import 'dart:math';
 
+import 'package:curved_text/curved_text.dart';
 import 'package:vector_math/vector_math.dart' show radians;
 
 import 'package:armybuilder/appdata.dart';
@@ -73,8 +74,12 @@ const double gridsquaresize = 28;
 const double gridwithshieldwidth = 351;
 const double gridwithshieldheight = 293;
 
-const double webwidth = 375;
-const double webheight = 380;
+const double beastspiralwidth = 600;
+const double beastspiralheight = 600;
+const double spiralframedimension = 600;
+
+const double webwidth = 450;
+const double webheight = 450;
 
 const double fieldoffireboxwidth = 299;
 const double fieldoffireboxheight = 36;
@@ -316,23 +321,29 @@ class _ModelCardState extends State<ModelCard> {
           colossal = true;
         }
 
-        double spiralwidth = 450;
-        double spiralheight = 450;
+        String warbeastsize = 'normal';
+        if (model.title.toLowerCase().contains('warbeast')) {
+          if (model.title.toLowerCase().contains('light') || model.title.toLowerCase().contains('lesser')) warbeastsize = 'normal';
+          if (model.title.toLowerCase().contains('heavy')) warbeastsize = 'large';
+          if (model.title.toLowerCase().contains('gargantuan')) warbeastsize = 'huge';
+        }
+        double spiralwidth = spiralframedimension;
+        double spiralheight = spiralframedimension;
         bool gargantuan = false;
 
         if (model.title.toLowerCase().contains('gargantuan')) {
           //slaughterhouse needs width
           //wold wrath needs width
           gargantuan = true;
-          spiralwidth = backgroundwidth;
-          spiralheight = 625;
+          // spiralwidth = backgroundwidth;
+          // spiralheight = 625;
         }
 
-        double spiralleft = 10 / scalevalue;
-        double spiraltop = (backgroundheight - spiralheight - (fieldweaponbottompadding / 3)) / scalevalue;
+        double spiralleft = -20;
+        double spiraltop = (backgroundheight - spiralheight - 20) / scalevalue;
 
-        double webleft = 10 / scalevalue;
-        double webtop = (backgroundheight - webheight - fieldweaponbottompadding) / scalevalue;
+        double webleft = 20 / scalevalue;
+        double webtop = (backgroundheight - webheight - 10) / scalevalue;
 
         //loop through each weapon and generate their bars
         for (var w in model.weapons!) {
@@ -578,6 +589,7 @@ class _ModelCardState extends State<ModelCard> {
               }
               if (modelnum == 2) {
                 //add grid or spiral
+
                 if (model.grid!.columns.isNotEmpty) {
                   if (model.grid!.columns.isNotEmpty) gridleft = rangedleftfieldleftpadding + ((rangedweaponbarwidth - gridwidth) / 2 / scalevalue);
                   frontcardparts.add(cardgrid(gridleft, gridtop, model.grid!, int.tryParse(model.shield!) ?? 0, 0));
@@ -587,15 +599,15 @@ class _ModelCardState extends State<ModelCard> {
                     for (var b in model.spiral!.values) {
                       branchvalues.add(int.tryParse(b) ?? 0);
                     }
-                    frontcardparts
-                        .add(cardspiral(spiralleft, spiraltop, spiralwidth / scalevalue, spiralheight / scalevalue, branchvalues, gargantuan));
+
+                    frontcardparts.add(cardspiral(spiralleft, spiraltop, branchvalues, warbeastsize));
                   } else {
                     if (model.web!.values.isNotEmpty) {
                       List<int> ringvalues = [];
                       for (var r in model.web!.values) {
                         ringvalues.add(int.tryParse(r) ?? 0);
                       }
-                      frontcardparts.add(cardweb(webleft, webtop, ringvalues));
+                      frontcardparts.add(cardweb(webleft, webtop, ringvalues, colossal));
                     }
                   }
                 }
@@ -639,7 +651,7 @@ class _ModelCardState extends State<ModelCard> {
               for (var b in model.spiral!.values) {
                 branchvalues.add(int.tryParse(b) ?? 0);
               }
-              frontcardparts.add(cardspiral(spiralleft, spiraltop, spiralwidth / scalevalue, spiralheight / scalevalue, branchvalues, gargantuan));
+              frontcardparts.add(cardspiral(spiralleft, spiraltop, branchvalues, warbeastsize));
               added = true;
             }
             if (model.web!.values.isNotEmpty && !colossal) {
@@ -647,7 +659,7 @@ class _ModelCardState extends State<ModelCard> {
               for (var r in model.web!.values) {
                 ringvalues.add(int.tryParse(r) ?? 0);
               }
-              frontcardparts.add(cardweb(webleft, webtop, ringvalues));
+              frontcardparts.add(cardweb(webleft, webtop, ringvalues, colossal));
               added = true;
             }
             if (model.title.toLowerCase().contains('battle engine')) {
@@ -743,16 +755,18 @@ class _ModelCardState extends State<ModelCard> {
               for (var b in model.spiral!.values) {
                 branchvalues.add(int.tryParse(b) ?? 0);
               }
-              spiralleft = ((backgroundwidth / 2) - (spiralwidth / 2)) / scalevalue;
-              frontcardparts.add(cardspiral(spiralleft, spiraltop, spiralwidth / scalevalue, spiralheight / scalevalue, branchvalues, gargantuan));
+              spiralleft = (backgroundwidth - spiralwidth) / 2 / scalevalue;
+              spiraltop = (backgroundheight - spiralheight - 75) / scalevalue;
+              frontcardparts.add(cardspiral(spiralleft, spiraltop, branchvalues, warbeastsize));
             }
             if (model.web!.values.isNotEmpty) {
               List<int> ringvalues = [];
               for (var r in model.web!.values) {
                 ringvalues.add(int.tryParse(r) ?? 0);
               }
-              webleft = ((backgroundwidth / 2) - (webwidth / 2)) / scalevalue;
-              frontcardparts.add(cardweb(webleft, webtop, ringvalues));
+              webleft = (backgroundwidth - webwidth) / 2 / scalevalue;
+              webtop = webtop - (75 / scalevalue);
+              frontcardparts.add(cardweb(webleft, webtop, ringvalues, colossal));
             }
             //add colossal/gargantuan health card
             imageKeys.add(GlobalKey());
@@ -2373,62 +2387,81 @@ Widget cardgrid(double x, double y, Grid gridvalues, int shieldvalue, int startc
   );
 }
 
-Widget cardweb(double x, double y, List<int> values) {
+Widget cardweb(double x, double y, List<int> values, bool huge) {
   int outer = values[0];
   int middle = values[1];
   int inner = values[2];
 
-  const double dotsize = 24 / scalevalue;
-  const double outerradius = 150;
-  const double middleradius = 112.5;
-  const double innerradius = 75;
-  const double padding = 20;
-  const double framesize = (outerradius * 2 + padding * 2) / scalevalue;
-  const double framecenter = outerradius / scalevalue;
+  final double smallscale = huge ? 1 : 0.9;
+
+  double dotsize = 24 / scalevalue * smallscale;
+  const double outerradius = 180;
+  const double middleradius = 130;
+  const double innerradius = 80;
+  const double padding = 25;
+  double framesize = (outerradius * 2 + padding * 2) / scalevalue * smallscale;
+  double framecenter = outerradius / scalevalue * smallscale;
+
+  double framexoffset = (webwidth - (outerradius * 2 + padding * 2) + 4) / 2 / scalevalue * smallscale;
+  double frameyoffset = (webheight - (outerradius * 2 + padding * 2)) / 2 / scalevalue * smallscale;
+
+  const double ringexpansion = 2;
 
   List<Widget> outerWidgets = List.generate(
-      outer, (index) => ring(outerradius / scalevalue, (360 / outer * index) - 90, dotsize, framecenter, 0, index, padding / scalevalue));
+      outer,
+      (index) =>
+          ring(outerradius / scalevalue * smallscale, (360 / outer * index) - 90, dotsize, framecenter, 0, index, padding / scalevalue * smallscale));
   List<Widget> middleWidgets = List.generate(
-      middle, (index) => ring(middleradius / scalevalue, (360 / middle * index) + 90, dotsize, framecenter, 1, index, padding / scalevalue));
+      middle,
+      (index) => ring(
+          middleradius / scalevalue * smallscale, (360 / middle * index) + 90, dotsize, framecenter, 1, index, padding / scalevalue * smallscale));
   List<Widget> innerWidgets = List.generate(
-      inner, (index) => ring(innerradius / scalevalue, (360 / inner * index) - 90, dotsize, framecenter, 2, index, padding / scalevalue));
+      inner,
+      (index) =>
+          ring(innerradius / scalevalue * smallscale, (360 / inner * index) - 90, dotsize, framecenter, 2, index, padding / scalevalue * smallscale));
 
   outerWidgets.insert(
       0,
-      Center(
-          child: Container(
-              height: outerradius * 2 / scalevalue,
-              width: outerradius * 2 / scalevalue,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(width: 3 / scalevalue, color: Colors.red[200]!),
-              ))));
+      Positioned(
+        left: framexoffset,
+        top: frameyoffset,
+        child: Container(
+          height: (outerradius + ringexpansion) * 2 / scalevalue * smallscale,
+          width: (outerradius + ringexpansion) * 2 / scalevalue * smallscale,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 6 / scalevalue * smallscale, color: Colors.white),
+          ),
+        ),
+      ));
 
   middleWidgets.insert(
       0,
-      Center(
-          // left: framesize / 2 - middleradius,
-          // top: framesize / 2 - middleradius,
-          child: Container(
-              height: middleradius * 2 / scalevalue,
-              width: middleradius * 2 / scalevalue,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(width: 3 / scalevalue, color: Colors.red[600]!),
-              ))));
+      Positioned(
+        left: framexoffset + framecenter - ((middleradius) / scalevalue * smallscale),
+        top: frameyoffset + framecenter - ((middleradius) / scalevalue * smallscale),
+        child: Container(
+            height: (middleradius + ringexpansion) * 2 / scalevalue * smallscale,
+            width: (middleradius + ringexpansion) * 2 / scalevalue * smallscale,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(width: 6 / scalevalue * smallscale, color: Colors.white),
+            )),
+      ));
 
   innerWidgets.insert(
       0,
-      Center(
-          // left: framesize / 2 - innerradius,
-          // top: framesize / 2 - innerradius,
-          child: Container(
-              height: innerradius * 2 / scalevalue,
-              width: innerradius * 2 / scalevalue,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(width: 3 / scalevalue, color: Colors.red[900]!),
-              ))));
+      Positioned(
+        left: framexoffset + framecenter - ((innerradius) / scalevalue * smallscale),
+        top: frameyoffset + framecenter - ((innerradius) / scalevalue * smallscale),
+        child: Container(
+            height: (innerradius + ringexpansion) * 2 / scalevalue * smallscale,
+            width: (innerradius + ringexpansion) * 2 / scalevalue * smallscale,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(width: 6 / scalevalue * smallscale, color: Colors.white),
+            )),
+      ));
 
   List<Widget> web = [];
   web.addAll(outerWidgets);
@@ -2438,21 +2471,28 @@ Widget cardweb(double x, double y, List<int> values) {
   return Positioned(
     left: x,
     top: y,
-    child: Padding(
-      padding: const EdgeInsets.all(padding),
-      child: SizedBox(
-        height: framesize,
-        width: framesize,
-        child: Stack(children: [
-          Image.asset(
-            'assets/card_assets/parts/infernal_circle.png',
-            width: webwidth / scalevalue,
-            height: webheight / scalevalue,
-          ),
-          ...web,
-        ]),
+    child: Stack(children: [
+      SizedBox(
+        width: webwidth / scalevalue * smallscale,
+        height: webheight / scalevalue * smallscale,
+        child: Image.asset(
+          'assets/card_assets/parts/infernal_circle.png',
+          width: webwidth / scalevalue * smallscale,
+          height: webheight / scalevalue * smallscale,
+        ),
       ),
-    ),
+      Positioned(
+        left: framexoffset,
+        top: frameyoffset,
+        child: SizedBox(
+          height: framesize,
+          width: framesize,
+          child: Stack(children: [
+            ...web,
+          ]),
+        ),
+      ),
+    ]),
   );
 }
 
@@ -2460,8 +2500,8 @@ Widget ring(double radius, double angle, double dotsize, double center, int ring
   final double rad = radians(angle);
   Widget box = webBox(Colors.black, dotsize, ringindex, dotindex);
   return Positioned(
-    top: center + (dotsize / 2) + (radius * sin(rad)) - (padding / 2),
-    left: center + (dotsize / 2) + (radius * cos(rad)) - (padding / 2),
+    top: center + (dotsize / 2) + (radius * sin(rad)) - (padding / 4),
+    left: center + (dotsize / 2) + (radius * cos(rad)) - (padding / 4),
     child: box,
   );
 }
@@ -2475,11 +2515,6 @@ Widget webBox(Color color, double dotsize, int ringindex, int dotindex) {
       height: dotsize,
       width: dotsize,
       decoration: BoxDecoration(shape: BoxShape.circle, color: dotcolor),
-      child: Text(
-        dotindex.toString(),
-        style: const TextStyle(fontSize: 9, color: Colors.black),
-        textAlign: TextAlign.center,
-      ),
     ),
   );
 }
@@ -2494,7 +2529,7 @@ Widget fieldoffiretop(double x, double y, String value) {
         alignment: Alignment.center,
         children: [
           Image.asset(
-            'assets/card_assets/parts/weapon field of fire box.png',
+            'assets/card_assets/parts/weapon_field_of_fire_box.png',
             width: fieldoffireboxwidth / scalevalue,
             height: fieldoffireboxheight / scalevalue,
           ),
@@ -2516,123 +2551,14 @@ Widget fieldoffiretop(double x, double y, String value) {
   );
 }
 
-Widget cardspiral(double x, double y, double spiralwidth, double spiralheight, List<int> values, bool gargantuan) {
-  const double dotsize = 24 / scalevalue;
-  const double backsize = dotsize + (20 / scalevalue);
-
-  double framecenterx = spiralwidth / 2;
-  double framecentery = spiralheight / 2;
-  Color dotbordercolor = Colors.white;
-  Color backcolor = Colors.white;
-  List<Widget> spiral = [];
-  List<Widget> backs = [];
-  List<Widget> lines = [];
-
-  if (gargantuan) {
-    framecenterx = spiralwidth / 2;
-    framecentery = spiralheight / 2 - (60 / scalevalue);
-  }
-
-  for (var branch = 0; branch < values.length; branch++) {
-    double angle = (360 / values.length) * branch;
-    double wrapangle = 90.0;
-
-    double topoffset = 0;
-    double leftoffset = 0;
-
-    switch (branch) {
-      case 1:
-        topoffset = dotsize * 0.6; // -dotsize * positive goes up
-        leftoffset = -dotsize * 0.15; // dotsize * positive goes right
-        break;
-      case 3:
-        topoffset = -dotsize * 0.5;
-        leftoffset = -dotsize * 0.5; // dotsize * positive goes right
-        break;
-      case 5:
-        topoffset = -dotsize * 0.15;
-        leftoffset = dotsize * 0.6;
-        break;
-      default:
-        break;
-    }
-
-    switch (branch + 1) {
-      case 1 || 2:
-        dotbordercolor = Colors.blue;
-        backcolor = Colors.purple;
-        break;
-      case 3 || 4:
-        dotbordercolor = Colors.red;
-        backcolor = Colors.deepOrange;
-        break;
-      default:
-        dotbordercolor = Colors.green;
-        backcolor = Colors.yellow;
-    }
-
-    // if (branch.isEven) {
-    for (int d = 2; d < values[branch] + 2; d++) {
-      angle = angle + (wrapangle / (d + 1) * 1.25);
-
-      spiral.add(spiralbranch(angle, dotsize, framecenterx, framecentery, branch, d, topoffset, leftoffset, dotbordercolor));
-      backs.add(spiralBackground(angle, framecenterx, framecentery, d, backcolor, dotsize, backsize, topoffset, leftoffset));
-
-      if (d != values[branch] + 1) {
-        lines.add(spiralLine(angle, framecenterx, framecentery, d, dotsize, backsize, topoffset, leftoffset, branch, false));
-        if (d == 3 && branch.isEven) {
-          lines.add(spiralLine(angle, framecenterx, framecentery, d, dotsize, backsize, topoffset, leftoffset, branch, true));
-        }
-      }
-    }
-
-    angle = angle + (wrapangle / (values[branch] + 1.5) * 1.25);
-
-    spiral.add(Positioned(
-      top: framecentery + ((values[branch] + 2) * dotsize * sin(radians(angle)) * 0.9) + topoffset,
-      left: framecenterx + ((values[branch] + 2) * dotsize * cos(radians(angle)) * 0.9) + leftoffset,
-      child: Container(
-        decoration: BoxDecoration(border: Border.all(width: 1.5, color: Colors.green), shape: BoxShape.circle),
-        child: Container(
-          height: dotsize + (4 / scalevalue),
-          width: dotsize + (4 / scalevalue),
-          decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-          child: Text(
-            (branch + 1).toString(),
-            style: const TextStyle(fontSize: 10, color: Colors.black, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    ));
-    angle = angle + (wrapangle / values[branch]);
-  }
-  return Positioned(
-    left: x,
-    top: y,
-    child: SizedBox(
-      width: spiralwidth,
-      height: spiralheight,
-      child: Stack(children: [
-        // Image.asset(
-        //   'assets/card_assets/parts/Infernal Circle.png',
-        //   width: webwidth / scalevalue,
-        //   height: webheight / scalevalue,
-        // ),
-        ...backs,
-        ...lines,
-        ...spiral,
-      ]),
-    ),
-  );
-}
+//
 
 Widget spiralBox(Color color, double dotsize, int branchnum, int dotnum) {
   double size = dotsize;
 
   if (branchnum.isEven) {
-    if (dotnum == 0) size = dotsize - (4 / scalevalue);
-    if (dotnum == 1) size = dotsize - (2 / scalevalue);
+    if (dotnum == 0) size = dotsize - (2 / scalevalue);
+    if (dotnum == 1) size = dotsize - (1 / scalevalue);
   }
 
   return GestureDetector(
@@ -2666,40 +2592,13 @@ Widget spiralBox(Color color, double dotsize, int branchnum, int dotnum) {
   );
 }
 
-Widget spiralBackground(
-    double angle, double centerx, double centery, int dotindex, Color color, double dotsize, double backsize, double topoffset, double leftoffset) {
-  final double rad = radians(angle);
-
-  return Positioned(
-    top: centery + ((dotindex - 0.5) * dotsize * sin(rad) * 0.9) + topoffset - ((backsize / 2) - (dotsize / 2)),
-    left: centerx + ((dotindex - 0.5) * dotsize * cos(rad) * 0.9) + leftoffset - ((backsize / 2) - (dotsize / 2)),
-    child: Container(
-      width: backsize,
-      height: backsize,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
-    ),
-  );
-}
-
-Widget spiralLine(double angle, double centerx, double centery, int dotindex, double dotsize, double backsize, double topoffset, double leftoffset,
-    int branch, bool offbranch) {
-  final double rad = radians(angle);
-
-  return Positioned(
-    top: centery + ((dotindex - 0.5) * dotsize * sin(rad) * 0.9) + topoffset - ((backsize / 2) - (dotsize / 2)),
-    left: centerx + ((dotindex - 0.5) * dotsize * cos(rad) * 0.9) + leftoffset - ((backsize / 2) - (dotsize / 2)),
-    child: Transform.rotate(
-      angle: radians(angle + 60 + (!offbranch ? 0 : 60)),
-      child: SizedBox(
-        width: backsize,
-        height: backsize,
-        child: CustomPaint(
-          painter: LinePainter(),
-        ),
-      ),
+Widget spiralBackground(Color color, double size) {
+  return Container(
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      color: color,
+      shape: BoxShape.circle,
     ),
   );
 }
@@ -3253,243 +3152,397 @@ Widget ability(String name, String description, bool nested) {
   );
 }
 
-class LinePainter extends CustomPainter {
+class SpiralBranchLinePainter extends CustomPainter {
+  final List<Map<String, double>> points;
+  final double halfdotsize;
+
+  SpiralBranchLinePainter(this.points, this.halfdotsize);
+
   @override
   void paint(Canvas canvas, Size size) {
-    const double size = 11; //12 - 1;
-    final p1 = Offset(size, size);
-    final p2 = Offset(size * 2.5, size);
-    final paint = Paint()
-      ..color = Colors.black
-      ..strokeWidth = 1;
-    canvas.drawLine(p1, p2, paint);
+    final double midpoint = (spiralframedimension - (halfdotsize * scalevalue)) / scalevalue;
+    final controlpoints = List.generate(
+        points.length,
+        (index) =>
+            Offset((midpoint + points[index]['left']! + halfdotsize) / scalevalue, (midpoint + points[index]['top']! + halfdotsize) / scalevalue));
+
+    final spline = CatmullRomSpline(controlpoints);
+
+    final bezierPaint = Paint()
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 4
+      ..color = Colors.white.withAlpha(80);
+    canvas.drawPoints(ui.PointMode.points, spline.generateSamples().map((e) => e.value).toList(), bezierPaint);
   }
 
-  bool shouldRepaint(CustomPainter old) => false;
+  @override
+  bool shouldRepaint(SpiralBranchLinePainter oldDelegate) => false;
 }
 // if (shieldvalue > 0) {
-  //   var shieldWidget = Column(
-  //     mainAxisSize: MainAxisSize.min,
-  //     children: [
-  //       Text(
-  //         'Force\nField',
-  //         textAlign: TextAlign.center,
-  //         style: TextStyle(
-  //           fontSize: fontsize,
-  //         ),
-  //       ),
-  //       Row(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           Column(
-  //             mainAxisSize: MainAxisSize.min,
-  //             children: List.generate(
-  //               6,
-  //               (index) => shieldBox(
-  //                 index >= (6 - (shieldvalue / 2)),
-  //                 army,
-  //                 widget.listindex,
-  //                 widget.listmodelindex,
-  //                 0,
-  //                 index,
-  //               ),
-  //             ),
-  //           ),
-  //           Column(
-  //             mainAxisSize: MainAxisSize.min,
-  //             children: List.generate(
-  //               6,
-  //               (index) => shieldBox(
-  //                 index >= (6 - (shield / 2)),
-  //                 army,
-  //                 widget.listindex,
-  //                 widget.listmodelindex,
-  //                 1,
-  //                 index,
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       )
-  //     ],
-  //   );
-
-  //   grid.insert(6, shieldWidget);
-  // }
-
-  // Widget cardspiralold(double x, double y, List<int> branchvalues) {
-//   const double spacing = 35 / scalevalue;
-//   const double rotation = 1.9;
-//   const double dotsize = 33 / scalevalue;
-//   double backsize = dotsize + (20 / scalevalue);
-
-//   List<List<Widget>> arms = [];
-//   List<List<Widget>> backs = [];
-//   List<Widget> spiral = [];
-//   List<List<Map<String, double>>> points = [];
-//   double leftmost = 2000;
-//   double topmost = 2000;
-//   double bottommost = 0;
-//   double rightmost = 0;
-//   double left;
-//   double top;
-
-//   for (var h = 0; h < 6; h++) {
-//     double angle = (360 / 6 * (h + 1)) * pi / 180;
-//     double adjustx = 0;
-//     double adjusty = 0;
-
-//     switch (h) {
-//       case 1:
-//         adjustx = -1;
-//         adjusty = 5;
-//         break;
-//       case 3:
-//         adjustx = -4;
-//         adjusty = -3;
-//         break;
-//       case 5:
-//         adjustx = 5;
-//         adjusty = -2;
-//         break;
-//       default:
-//         adjustx = 0;
-//         adjusty = 0;
-//     }
-//     double r = 0;
-//     Map<String, double> point;
-//     points.add([]);
-//     for (var x = 0; x <= branchvalues[h]; x++) {
-//       if (x < branchvalues[h]) {
-//         r = sqrt(x + 1) * rotation;
-//       } else {
-//         r = sqrt(x + 1.5) * rotation;
-//       }
-//       angle += asin(1 / r);
-//       left = (r * spacing * cos(angle)) + adjustx;
-//       top = (r * spacing * sin(angle)) + adjusty;
-//       if (left < leftmost) leftmost = left;
-//       if (left > rightmost) rightmost = left;
-//       if (top < topmost) topmost = top;
-//       if (top > bottommost) bottommost = top;
-//       point = {'left': left, 'top': top};
-//       points[h].add(point);
-//     }
-//   }
-
-//   // frameheight = bottommost - topmost + 30;
-//   leftmost = leftmost.abs() + 10;
-//   topmost = topmost.abs() + 5;
-//   bottommost = bottommost.abs() + topmost;
-//   rightmost = rightmost.abs() + leftmost;
-//   for (var h = 0; h < 6; h++) {
-//     Color color = Colors.black;
-//     Color backcolor = Colors.black;
-//     switch (h + 1) {
-//       case 1 || 2:
-//         color = Colors.blue;
-//         backcolor = Colors.purple;
-//         break;
-//       case 3 || 4:
-//         color = Colors.red;
-//         backcolor = Colors.deepOrange;
-//         break;
-//       default:
-//         color = Colors.green;
-//         backcolor = Colors.yellow;
-//     }
-
-//     List<Widget> arm = [];
-//     List<Widget> back = [];
-//     for (var b = 0; b < points[h].length - 1; b++) {
-//       arm.add(
-//         Positioned(
-//           left: points[h][b]['left']! + leftmost,
-//           top: points[h][b]['top']! + topmost,
-//           child: spiralBox(color, dotsize, h, b),
-//         ),
-//       );
-//       back.add(
-//         Positioned(
-//           left: points[h][b]['left']! + leftmost - ((backsize / 2) - (dotsize / 2)),
-//           top: points[h][b]['top']! + topmost - ((backsize / 2) - (dotsize / 2)),
-//           child: spiralBackground(backcolor, backsize),
-//         ),
-//       );
-//     }
-
-//     arm.add(
-//       Positioned(
-//         left: points[h][points[h].length - 1]['left']! + leftmost,
-//         top: points[h][points[h].length - 1]['top']! + topmost,
-//         child: spiralArmNum(h, dotsize, color),
-//       ),
-//     );
-//     arms.add(arm);
-//     backs.add(back);
-//   }
-
-//   for (var b in backs) {
-//     spiral.add(Stack(
-//       children: b,
-//     ));
-//   }
-
-//   for (var s in arms) {
-//     spiral.add(
-//       Stack(children: s),
-//     );
-//   }
-
-//   Widget beastspiral = Stack(
-//     children: spiral,
-//   );
-
-//   return Positioned(
-//     left: x,
-//     top: y,
-//     child: SizedBox(
-//       width: 500 / scalevalue,
-//       height: 500 / scalevalue,
-//       child: Center(
-//         child: SizedBox(
-//           width: rightmost * 1.2,
-//           height: bottommost * 1.2,
-//           child: beastspiral,
+//   var shieldWidget = Column(
+//     mainAxisSize: MainAxisSize.min,
+//     children: [
+//       Text(
+//         'Force\nField',
+//         textAlign: TextAlign.center,
+//         style: TextStyle(
+//           fontSize: fontsize,
 //         ),
 //       ),
-//     ),
+//       Row(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: List.generate(
+//               6,
+//               (index) => shieldBox(
+//                 index >= (6 - (shieldvalue / 2)),
+//                 army,
+//                 widget.listindex,
+//                 widget.listmodelindex,
+//                 0,
+//                 index,
+//               ),
+//             ),
+//           ),
+//           Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: List.generate(
+//               6,
+//               (index) => shieldBox(
+//                 index >= (6 - (shield / 2)),
+//                 army,
+//                 widget.listindex,
+//                 widget.listmodelindex,
+//                 1,
+//                 index,
+//               ),
+//             ),
+//           ),
+//         ],
+//       )
+//     ],
 //   );
-// }
 
-// Widget spiralArmNum(int h, double dotsize, Color color) {
-//   return Container(
-//     height: dotsize,
-//     width: dotsize,
-//     decoration: BoxDecoration(
-//       shape: BoxShape.circle,
-//       border: Border.all(width: 1 / scalevalue, color: Colors.black),
-//       color: Colors.white,
-//     ),
-//     child: Text(
-//       (h + 1).toString(),
-//       style: GoogleFonts.ptSerif(
-//         fontSize: 22 / scalevalue,
-//         fontWeight: FontWeight.bold,
-//         color: Colors.black,
-//       ),
-//       textAlign: TextAlign.center,
-//     ),
-//   );
-// }
+Widget cardspiral(double x, double y, List<int> branchvalues, String size) {
+  const double spacing = 62 / scalevalue;
+  const double dotsize = 28 / scalevalue;
+  double backsize = dotsize + (20 / scalevalue);
 
-// Widget spiralBackground(Color color, double backsize) {
-//   return Container(
-//     width: backsize,
-//     height: backsize,
-//     decoration: BoxDecoration(
-//       color: color,
-//       shape: BoxShape.circle,
-//     ),
-//   );
-// }
+  List<Widget> arms = [];
+  List<Widget> backs = [];
+  List<Widget> spiral = [];
+  List<Widget> lines = [];
+  List<Widget> texts = [];
+  List<List<Map<String, double>>> points = [];
+  double left;
+  double top;
+
+  int maxdots = 0;
+
+  for (var b in branchvalues) {
+    if (b > maxdots) maxdots = b;
+  }
+
+  maxdots += 1;
+
+  if (maxdots < 8) size = 'normal';
+
+  for (var branch = 0; branch < 6; branch++) {
+    double angle = radians(branch * (360 / 6) + 15);
+
+    if (branch.isOdd) {
+      angle = radians(branch * (360 / 6));
+    }
+
+    double r = 0;
+    Map<String, double> point;
+    points.add([]);
+    for (var x = 0; x <= maxdots; x++) {
+      int dot = x;
+
+      if (branch.isOdd) {
+        dot += 1;
+        if (x == 0) {
+          r = 1.005;
+          angle += asin(1 / r);
+        }
+      }
+
+      r = dot == 0 ? 1 : sqrt(dot) * 2;
+
+      angle += asin(1 / r);
+
+      left = (r * spacing * cos(angle));
+      top = (r * spacing * sin(angle));
+
+      point = {'left': left, 'top': top};
+      points[branch].add(point);
+    }
+  }
+
+  for (var branch = 0; branch < 6; branch++) {
+    Color color = Colors.black;
+    Color backcolor = Colors.black;
+    switch (branch + 1) {
+      case 1 || 2:
+        color = Colors.blue;
+        backcolor = Colors.blue.shade800;
+        break;
+      case 3 || 4:
+        color = Colors.red;
+        backcolor = Colors.red.shade800;
+        break;
+      default:
+        color = Colors.green;
+        backcolor = Colors.green.shade800;
+    }
+
+    double midpoint = (spiralframedimension - (spacing * scalevalue) / 2) / scalevalue;
+
+    for (var dot = 0; dot < branchvalues[branch]; dot++) {
+      arms.add(
+        Positioned(
+          left: (midpoint + points[branch][dot]['left']!) / scalevalue,
+          top: (midpoint + points[branch][dot]['top']!) / scalevalue,
+          child: spiralBox(color, dotsize, branch, dot),
+        ),
+      );
+      backs.add(
+        Positioned(
+          left: ((midpoint + points[branch][dot]['left']!) / scalevalue) - ((backsize - dotsize) / 2),
+          top: ((midpoint + points[branch][dot]['top']!) / scalevalue) - ((backsize - dotsize) / 2),
+          child: spiralBackground(backcolor, backsize),
+        ),
+      );
+    }
+
+    if (branch.isOdd) {
+      points[branch].insert(0, points[branch - 1][1]);
+      points[branch].removeLast();
+      points[branch].removeLast();
+      switch (branch) {
+        case 1:
+          if (size != 'normal') {
+            texts.add(Positioned(
+              left: (midpoint + 55 + points[branch][4]['left']!) / scalevalue,
+              top: (midpoint + points[branch][4]['top']!) / scalevalue,
+              child: Transform.rotate(
+                angle: radians(125),
+                child: CurvedText(
+                  curvature: -0.01,
+                  text: 'MIND',
+                  textStyle: GoogleFonts.ptSerif(
+                    fontSize: 20 / scalevalue,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ));
+          } else {
+            texts.add(Positioned(
+              left: (midpoint + 50 + points[branch][3]['left']!) / scalevalue,
+              top: (midpoint + 10 + points[branch][3]['top']!) / scalevalue,
+              child: Transform.rotate(
+                angle: radians(95),
+                child: CurvedText(
+                  curvature: -0.01,
+                  text: 'MIND',
+                  textStyle: GoogleFonts.ptSerif(
+                    fontSize: 18 / scalevalue,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ));
+          }
+          break;
+        case 3:
+          if (size != 'normal') {
+            texts.add(Positioned(
+                left: (midpoint + points[branch][4]['left']!) / scalevalue,
+                top: (midpoint + 40 + points[branch][4]['top']!) / scalevalue,
+                child: Transform.rotate(
+                  angle: radians(55),
+                  child: CurvedText(
+                    curvature: 0.01,
+                    text: 'BODY',
+                    textStyle: GoogleFonts.ptSerif(
+                      fontSize: 20 / scalevalue,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                )));
+          } else {
+            texts.add(Positioned(
+                left: (midpoint + points[branch][3]['left']!) / scalevalue,
+                top: (midpoint + 40 + points[branch][3]['top']!) / scalevalue,
+                child: Transform.rotate(
+                  angle: radians(30),
+                  child: CurvedText(
+                    curvature: 0.01,
+                    text: 'BODY',
+                    textStyle: GoogleFonts.ptSerif(
+                      fontSize: 18 / scalevalue,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                )));
+          }
+          break;
+        case 5:
+          if (size != 'normal') {
+            texts.add(Positioned(
+                left: (midpoint + points[branch][4]['left']!) / scalevalue,
+                top: (midpoint - 15 + points[branch][4]['top']!) / scalevalue,
+                child: Transform.rotate(
+                  angle: radians(-10),
+                  child: CurvedText(
+                    curvature: -0.01,
+                    text: 'SPIRIT',
+                    textStyle: GoogleFonts.ptSerif(
+                      fontSize: 20 / scalevalue,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                )));
+          } else {
+            texts.add(Positioned(
+                left: (midpoint + points[branch][3]['left']!) / scalevalue,
+                top: (midpoint - 15 + points[branch][3]['top']!) / scalevalue,
+                child: Transform.rotate(
+                  angle: radians(-30),
+                  child: CurvedText(
+                    curvature: -0.01,
+                    text: 'SPIRIT',
+                    textStyle: GoogleFonts.ptSerif(
+                      fontSize: 18 / scalevalue,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                )));
+          }
+          break;
+      }
+    }
+
+    arms.add(
+      Positioned(
+        left: (midpoint + points[branch].last['left']!) / scalevalue,
+        top: (midpoint + points[branch].last['top']!) / scalevalue,
+        child: spiralArmNum(branch, dotsize + (6 / scalevalue), backcolor),
+      ),
+    );
+
+    lines.add(Container(
+      child: spiralLineWidget(points[branch], dotsize * scalevalue / 2),
+    ));
+
+    // arm.add(
+    //   Positioned(
+    //     left: points[h][points[h].length - 1]['left']! + leftmost,
+    //     top: points[h][points[h].length - 1]['top']! + topmost,
+    //     child: spiralArmNum(h, dotsize, color),
+    //   ),
+    // );
+    // backs.add(back);
+  }
+
+  double blurradius = 20;
+  double spreadradius = 0;
+  if (size == 'large') blurradius = 70;
+  if (size == 'huge') {
+    blurradius = 50;
+    spreadradius = 50;
+  }
+
+  spiral.add(
+    Stack(children: [
+      // ...backs,
+      Center(
+        child: Container(
+          width: 350 / scalevalue,
+          height: 350 / scalevalue,
+          // decoration: BoxDecoration(
+          //   border: Border.all(color: Colors.black, width: 6 / scalevalue),
+          //   shape: BoxShape.circle,
+          //   color: Colors.white54,
+          // ),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                spreadRadius: spreadradius / scalevalue,
+                blurRadius: blurradius / scalevalue,
+                color: Colors.white54,
+              )
+            ],
+          ),
+        ),
+      ),
+      SizedBox(
+          width: beastspiralwidth / scalevalue,
+          height: beastspiralheight / scalevalue,
+          child: Image.asset('assets/card_assets/parts/beast_spiral_$size.png')),
+      ...lines,
+      ...arms,
+      ...texts,
+    ]),
+  );
+
+  Widget beastspiral = Stack(
+    children: [...spiral],
+  );
+
+  return Positioned(
+    left: x,
+    top: y,
+    child: SizedBox(
+      width: spiralframedimension / scalevalue,
+      height: spiralframedimension / scalevalue,
+      child: beastspiral,
+    ),
+  );
+}
+
+Widget spiralArmNum(int h, double dotsize, Color color) {
+  return Container(
+    height: dotsize,
+    width: dotsize,
+    decoration: BoxDecoration(
+      shape: BoxShape.circle,
+      // border: Border.all(width: 1 / scalevalue, color: Colors.white),
+      color: color,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.white.withValues(alpha: 0.5),
+          spreadRadius: 8 / scalevalue,
+          blurRadius: 4 / scalevalue,
+        )
+      ],
+    ),
+    child: Text(
+      (h + 1).toString(),
+      style: GoogleFonts.ptSerif(
+        fontSize: 22 / scalevalue,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
+      textAlign: TextAlign.center,
+    ),
+  );
+}
+
+Widget spiralLineWidget(List<Map<String, double>> points, double halfdotsize) {
+  return CustomPaint(
+    size: const Size(spiralframedimension, spiralframedimension),
+    painter: SpiralBranchLinePainter(points, halfdotsize),
+  );
+}

@@ -9,12 +9,10 @@ import 'package:armybuilder/pages/menu_widgets/mainmenu.dart';
 import 'package:armybuilder/pages/list_building_widgets/layouts/narrow-swiping.dart';
 import 'package:armybuilder/pages/model_browsing/layouts/narrow-swiping.dart';
 import 'package:armybuilder/pages/model_browsing/layouts/wide.dart';
-import 'package:armybuilder/pages/product_cards/card_page.dart';
 import 'package:armybuilder/providers/armylist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/faction.dart';
 import '../providers/navigation.dart';
 
 class PagesContainer extends StatefulWidget {

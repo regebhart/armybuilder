@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 
 import '../../models/armylist.dart';
 import '../../models/cohort.dart';
-import '../../models/product.dart';
 import '../../models/unit.dart';
 import '../../appdata.dart';
 import '../../providers/armylist.dart';

@@ -47,6 +47,7 @@ dependencies:
   uuid: ^4.4.2
   google_fonts: ^6.2.1
   auto_size_text_plus: ^3.0.2
+  curved_text: ^0.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,3 @@
-import 'dart:js_interop_unsafe';
-
 import 'package:armybuilder/models/cohort.dart';
 import 'package:uuid/uuid.dart';
 
@@ -44,6 +42,8 @@ class Product {
     List<String> primaryfaction = [];
     String fieldallowance = '';
     Map<String, dynamic> unitpoints = {};
+
+    print(json['name']);
 
     if (json.containsKey('primaryfaction')) {
       primaryfaction = (json['primaryfaction'] as List).map((e) => e as String).toList();

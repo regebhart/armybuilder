@@ -85,6 +85,7 @@ class FactionNotifier extends ChangeNotifier {
         [[], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], []],
       ];
+      print(f['file']);
       String data = await rootBundle.loadString('json/${f['file'].toString().toLowerCase()}');
       var decodeddata = jsonDecode(data);
       if (decodeddata.containsKey('updated')) {
@@ -380,6 +381,7 @@ class FactionNotifier extends ChangeNotifier {
               }
               break;
           }
+
           break;
         case 2:
           //solos
@@ -502,8 +504,9 @@ class FactionNotifier extends ChangeNotifier {
                 if (p.name == 'Shifting Stones') {
                   Product product = Product.copyProduct(p, false);
                   product.fa = '3'; //default is 2
+                  product.basefa = '3';
                   _filteredProducts[0].add(product);
-                  _filteredProducts.remove(p);
+                  _filteredProducts[0].removeWhere((element) => element.name == 'Shifting Stones' && element.fa == '2');
                   break;
                 }
               }

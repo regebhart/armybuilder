@@ -64,7 +64,7 @@ class MenuDrawer extends StatelessWidget {
         ListTile(
           title: const Text('Core Rulebook'),
           onTap: () {
-            html.window.open('https://www.legacymachine.online/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
+            html.window.open('https://www.wmhlegacy.com/rulebook/3.5%20Core%20Rulebook.pdf', 'new tab');
           },
         ),
         const SizedBox(

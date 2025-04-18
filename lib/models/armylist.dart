@@ -1,6 +1,5 @@
 import 'package:armybuilder/models/spells.dart';
 import 'package:armybuilder/providers/armylist.dart';
-import 'package:armybuilder/providers/faction.dart';
 
 import 'cohort.dart';
 import 'product.dart';

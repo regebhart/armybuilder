@@ -66,7 +66,10 @@ class _BrowsingWideLayoutState extends State<BrowsingWideLayout> {
                   flex: 10,
                   child: BrowsingModelsList(),
                 ),
-                // const ModelCard(),
+                // const Padding(
+                //   padding: const EdgeInsets.all(10.0),
+                //   child: SizedBox(width: 450, child: const ModelCard()),
+                // ),
                 const Flexible(
                   flex: 15,
                   child: SingleChildScrollView(
